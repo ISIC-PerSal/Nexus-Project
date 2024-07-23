@@ -1,9 +1,1 @@
-PARA SUBIR CAMBIOS 
-#Verificar su rama
-git add .
-git commit -m "Mensaje"
-git push origin <rama>
-
-TRAER CAMBIOS
-git fetch origin
-git pull origin <rama>
+INSTRUCCIONES
