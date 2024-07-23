@@ -1,0 +1,15 @@
+#root { 
+  margin: 0 auto;
+  padding: 0px;
+}
+.bg-principal{
+  background: linear-gradient(to bottom right, #290004 10%, #b62f3d 44%, #e783b8 69%, #ffccfb 87%);
+}
+.bg-gral{
+  background-color: #F8F9FA;
+}
+.color-block{
+  background: white;
+  height: 5px;
+  width: 100%;
+}
