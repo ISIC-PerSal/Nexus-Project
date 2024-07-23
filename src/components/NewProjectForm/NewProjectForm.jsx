@@ -1,12 +1,12 @@
-import React from 'react'
-import NewProjectFormView from './NewProjectFormView'
+import React from "react";
+import NewProjectFormView from "./NewProjectFormView";
 
 function NewProjectForm() {
   return (
-   <>
-   <NewProjectFormView/>
-   </>
-  )
+    <>
+      <NewProjectFormView />
+    </>
+  );
 }
 
-export default NewProjectForm
+export default NewProjectForm;
