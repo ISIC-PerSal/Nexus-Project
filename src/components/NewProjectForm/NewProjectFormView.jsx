@@ -6,116 +6,114 @@ function NewProjectFormView() {
       <main>
         <form
           action=""
-          className="container w-50 bg-gral mt-3 p-3 border border-secondary-subtle rounded"
+          className="container w-50 mt-3 p-3 border rounded border-secondary-subtle bg-gral"
         >
           <div className="mb-3">
-            <label htmlFor="nombre-proyecto" className="form-label">
+            <label htmlFor="nombre-proyecto" class="form-label">
               Nombre del proyecto
             </label>
             <input
               type="text"
-              className="form-control"
+              class="form-control"
               id="nombre-proyecto"
             ></input>
           </div>
-          <div className="mb-3">
-            <label htmlFor="numero-voluntarios" className="form-label">
+          <div>
+            <label htmlFor="nombre-proyecto" class="form-label">
               Número de voluntarios
             </label>
             <input
               type="text"
-              className="form-control"
-              id="numero-voluntarios"
+              class="form-control"
+              id="nombre-proyecto"
             ></input>
           </div>
-          <div className="mb-3">
+          <div class="mb-3">
             <label htmlFor="descripcion" className="form-label">
-              Descricpción
+              Descripción
             </label>
-            <textarea
-              className="form-control"
-              id="descripcion"
-              rows="3"
-            ></textarea>
+            <textarea class="form-control" id="descripcion" rows="3"></textarea>
           </div>
           <div className="mb-3">
-            <label htmlFor="tipo-proyecto" className="form-label">
-              Tipo de proyecto
+            <label htmlFor="tipo-proyecto" class="form-label">
+              Proyecto
             </label>
-            <select
-              id="tipo-proyecto"
-              class="form-select"
-              aria-label="Default select example"
-            >
-              <option selected>Selecione un tipo de proyecto</option>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Seleccione su tipo de proyecto</option>
               <option value="1">Donación</option>
               <option value="2">Campaña</option>
+              <option value="3">Three</option>
             </select>
           </div>
-          <div className="mb-3">
+          <div class="mb-3">
             <label htmlFor="direccion" className="form-label">
               Dirección
             </label>
-            <textarea
-              className="form-control"
-              id="direccion"
-              rows="2"
-            ></textarea>
+            <textarea class="form-control" id="direccion" rows="2"></textarea>
           </div>
-          <div className="mb-3">
-            <label htmlFor="codigo-postal" className="form-label">
+          <div class="mb-3">
+            <label htmlFor="cp" className="form-label">
               Código postal
             </label>
-            <input
-              type="number"
-              className="form-control"
-              id="codigo-postal"
-            ></input>
+            <input type="number" class="form-control" id="cp" rows="2"></input>
           </div>
-          <div className="mb-3">
+          <div class="mb-3">
             <label htmlFor="municipio" className="form-label">
               Municipio
             </label>
-            <input type="text" className="form-control" id="municipio"></input>
+            <input class="form-control" id="municipio" rows="2"></input>
           </div>
-          <div className="mb-3">
+          <div class="mb-3">
             <label htmlFor="estado" className="form-label">
               Estado
             </label>
-            <input type="text" className="form-control" id="estado"></input>
+            <input class="form-control" id="estado" rows="2"></input>
           </div>
-          <div className="mb-3">
+          <div class="mb-3">
             <label htmlFor="pais" className="form-label">
               País
             </label>
-            <input type="text" className="form-control" id="pais"></input>
+            <input class="form-control" id="pais" rows="2"></input>
           </div>
-          <div className="mb-3">
+          <div class="mb-3">
             <label htmlFor="fecha-arranque" className="form-label">
               Fecha de arranque
             </label>
             <input
               type="date"
-              className="form-control"
+              class="form-control"
               id="fecha-arranque"
+              rows="2"
             ></input>
           </div>
-          <div className="mb-3">
-            <label htmlFor="fecha-limite" className="form-label">
-              Fecha limite para inscribirse
+          <div class="mb-3">
+            <label htmlFor="fecha-inscripcion" className="form-label">
+              Fecha límite de inscripción
             </label>
             <input
               type="date"
-              className="form-control"
-              id="fecha-limite"
+              class="form-control"
+              id="fecha-inscripcion"
+              rows="2"
             ></input>
           </div>
           <div className="mb-3">
-            <label htmlFor="fecha-limite" className="form-label">
-              ODS que involucra
+            <label htmlFor="ods" className="form-label">
+              ODS (s) que abarca
             </label>
             <div className="d-flex">
-              
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              ></input>
+              <label className="form-check-label" for="flexCheckDefault">
+                <img
+                  src="https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-01.jpg"
+                  alt=""
+                ></img>
+              </label>
             </div>
           </div>
         </form>

@@ -3,9 +3,8 @@ import HomeView from './HomeView'
 
 function Home() {
   return (
-    <>
-    < HomeView/>
-    </>
+    
+    <HomeView/>
   )
 }
 

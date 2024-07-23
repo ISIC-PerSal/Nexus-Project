@@ -1,9 +1,9 @@
 import React from 'react'
 
-function MainView() {
+function mainView() {
   return (
-    <div>MainView</div>
+    <div>mainView</div>
   )
 }
 
-export default MainView
+export default mainView
