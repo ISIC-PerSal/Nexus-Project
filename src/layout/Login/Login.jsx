@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 import React, { useState } from 'react'
 import LoginView from './LoginView'
 import fetchLogin from '../../util/user/fetchLogin';
 import NavbarGuest from '../../components/Navbar/NavbarGuest';
-=======
-import React, { useState } from "react";
-import LoginView from "./LoginView";
-import fetchLogin from "../../util/user/fetchLogin";
->>>>>>> 0bc403436f8d6eb448ebe6605fa848e56f26fa8c
 
 function Login() {
   sessionStorage.clear();
@@ -33,7 +27,6 @@ function Login() {
     } catch (error) {}
   }
   return (
-<<<<<<< HEAD
     <>
     <NavbarGuest/>
       <LoginView
@@ -43,15 +36,6 @@ function Login() {
       setPassword={setPassword} 
       handleLogin={handleLogin} />
     </>
-=======
-    <LoginView
-      email={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
-      handleLogin={handleLogin}
-    />
->>>>>>> 0bc403436f8d6eb448ebe6605fa848e56f26fa8c
   );
 }
 

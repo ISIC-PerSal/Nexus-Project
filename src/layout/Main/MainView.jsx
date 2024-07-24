@@ -1,27 +1,12 @@
-import React from 'react'
-import NavbarGuestView from '../../components/Navbar/NavbarGuestView'
-<<<<<<< HEAD
+import React from "react";
+import NavbarGuestView from "../../components/Navbar/NavbarGuestView";
 
-=======
->>>>>>> 0bc403436f8d6eb448ebe6605fa848e56f26fa8c
-
-
-function mainView() {
+function MainView() {
   return (
-<<<<<<< HEAD
-   <>
-   <NavbarGuestView/>
-   </>
-=======
-<<<<<<< HEAD
-    <div>mainView</div>
-=======
-   <>
-   <NavbarGuestView/>
-   </>
->>>>>>> rocio
->>>>>>> 0bc403436f8d6eb448ebe6605fa848e56f26fa8c
-  )
+    <>
+      <NavbarGuestView />
+    </>
+  );
 }
 
-export default mainView
+export default MainView;

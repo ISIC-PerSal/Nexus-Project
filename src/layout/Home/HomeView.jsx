@@ -1,11 +1,12 @@
 import React from 'react'
-import NavbarView from '../../componets/Navbar/NavbarView'
+import NavbarView from '../../components/Navbar/NavbarView'
 
 function HomeView() {
 
   return (
     <>
       <NavbarView/>
+      asd
     </>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import RegisterView from "./RegisterView";
 import fetchRegister from "../../util/user/fetchRegister";
-import NavbarGuest from '../../components/Navbar/NavbarGuest';
+import NavbarGuest from "../../components/Navbar/NavbarGuest";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -21,25 +21,16 @@ function Register() {
   }
 
   return (
-<<<<<<< HEAD
-   <>
-   <NavbarGuest/>
-   <RegisterView 
-   email={email} 
-   setEmail={setEmail} 
-   password={password} 
-   setPassword={setPassword} 
-   handleRegister={handleRegister}/>
-   </>
-=======
-    <RegisterView
-      email={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
-      handleRegister={handleRegister}
-    />
->>>>>>> 0bc403436f8d6eb448ebe6605fa848e56f26fa8c
+    <>
+      <NavbarGuest />
+      <RegisterView
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        handleRegister={handleRegister}
+      />
+    </>
   );
 }
 
