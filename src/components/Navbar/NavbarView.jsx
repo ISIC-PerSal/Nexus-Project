@@ -214,6 +214,6 @@ function NavbarView({ logOff, selected, setSelected }) {
       </nav>
     </>
   );
-}
+} 
 
 export default NavbarView;

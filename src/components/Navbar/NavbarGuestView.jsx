@@ -38,7 +38,7 @@ function NavbarGuestView({selected, setSelected}) {
                                     Explorar proyectos
                                     <div className={selected=="Explorar"? "color-block":""}></div>
                                     </a>
-                            </li>
+                            </li> 
                             <li className="nav-item">
                                 <a className="nav-link text-white fw-bold" href="#" onClick={()=>setSelected("Alianza")}>
                                     Alianza juvenil e infantil

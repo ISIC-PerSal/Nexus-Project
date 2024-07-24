@@ -6,7 +6,7 @@ import Register from './layout/Register/Register'
 import Home from './layout/Home/Home'
 import isAuth from './util/isAuth'
 import Main from './layout/Main/Main'
-import NewProject from './layout/New Project/NewProject'
+import NewProject from './layout/NewProject/NewProject'
 
 function App() {
   const isLogin = isAuth() != null;

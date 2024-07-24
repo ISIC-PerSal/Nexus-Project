@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../../componets/Navbar/Navbar'
-import NewProjectFormView from '../../componets/NewProjectForm/NewProjectFormView'
+import Navbar from '../../components/Navbar/Navbar'
+import NewProjectFormView from '../../components/NewProjectForm/NewProjectFormView'
 
 function NewProjectView() {
   return (
