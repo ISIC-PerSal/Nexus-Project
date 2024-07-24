@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 PARA SUBIR CAMBIOS 
 #Verificar su rama
 git add .
@@ -7,3 +8,6 @@ git push origin <rama>
 TRAER CAMBIOS
 git fetch origin
 git pull origin <rama>
+=======
+INSTRUCCIONES
+>>>>>>> rocio
