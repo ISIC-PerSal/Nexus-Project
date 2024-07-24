@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 function LoginView({ email, setEmail, password, setPassword, handleLogin }) {
     return (
         <>
-            <div className="bg-info vw-100 vh-100 d-flex justify-content-center align-items-center">
-                <main className="border bg-white w-50 h-50 p-5 rounded">
+            <div className="w-100 h-100 my-5 py-5 d-flex justify-content-center align-items-center">
+                <main className="border bg-white w-50 h-50 p-5 rounded bg-danger-subtle">
                     <form>
                         <h1>Inicia sesión</h1>
                         <div className="mb-3">

@@ -1,18 +1,13 @@
 import React, { useState } from 'react'
 import NavbarGuestView from './NavbarGuestView';
 
-function Navbar() {
-  const selected=()=>{
-    return sessionStorage.getItem("seleccionado");
-  };
-  const setSelected=(opcion)=>{
-    sessionStorage.setItem("seleccionado", opcion);
-  };
+function NavbarGuest() {
+
   return (
    <>
-   <NavbarGuestView  selected={selected} setSelected={setSelected}/>
+   <NavbarGuestView/>
    </>
   );
 }
 
-export default Navbar
+export default NavbarGuest
