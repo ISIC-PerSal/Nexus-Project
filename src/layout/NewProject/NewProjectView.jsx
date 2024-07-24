@@ -5,8 +5,8 @@ import NewProjectFormView from '../../components/NewProjectForm/NewProjectFormVi
 function NewProjectView() {
   return (
     <>
-    <Navbar/>
-    <NewProjectFormView/>
+      <Navbar />
+      <NewProjectFormView/>
     </>
   )
 }

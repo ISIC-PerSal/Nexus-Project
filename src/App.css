@@ -1,27 +1,63 @@
-#root { 
-  margin: 0 auto;
+#root {
+  margin: 0px;
   padding: 0px;
   width: 100%;
   height: 100%;
 }
-.bg-principal{
-  background: linear-gradient(to bottom right, #290004 10%, #b62f3d 44%, #e783b8 69%, #ffccfb 87%);
+
+.bg-principal {
+  background: linear-gradient(
+    to bottom right,
+    #290004 10%,
+    #b62f3d 44%,
+    #e783b8 69%,
+    #ffccfb 87%
+  );
 }
+
 .bg-gral{
   background-color: #F8F9FA;
 }
+
 .color-block{
   background: white;
-  height: 5px;
   width: 100%;
+  height: 5px;
+}#root {
+  margin: 0px;
+  padding: 0px;
 }
 
+<<<<<<< HEAD
+.bg-principal {
+  background: linear-gradient(
+    to bottom right,
+    #290004 10%,
+    #b62f3d 44%,
+    #e783b8 69%,
+    #ffccfb 87%
+  );
+}
+
+.bg-gral{
+  background-color: #F8F9FA;
+}
+
+.color-block{
+  background: white;
+  width: 100%;
+  height: 5px;
+=======
 .text-align-justify{
   text-align: justify;
+<<<<<<< HEAD
 }
 
 .fondo-nexus{
   background-image: url("./assets/Logo.png");
   width: 100vw;
   background-repeat: repeat;
+=======
+>>>>>>> rocio
+>>>>>>> 0bc403436f8d6eb448ebe6605fa848e56f26fa8c
 }

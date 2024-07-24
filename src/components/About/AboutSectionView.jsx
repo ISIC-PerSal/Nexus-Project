@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+import React from 'react'
+
+function AboutSectionView() {
+  return (
+    <>
+   
+    </>
+  )
+}
+
+export default AboutSectionView
+=======
 import React from "react";
 import Poster from "../../assets/Poster.jpg";
 
@@ -37,3 +50,4 @@ function AboutView() {
 }
 
 export default AboutView;
+>>>>>>> rocio

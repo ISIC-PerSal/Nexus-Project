@@ -1,12 +1,12 @@
 import React from 'react'
-import Navbar from '../../components/Navbar/Navbar'
-
+import NavbarView from '../../componets/Navbar/NavbarView'
 
 function HomeView() {
+
   return (
-  <>
-  <Navbar/>
-  </>
+    <>
+      <NavbarView/>
+    </>
   )
 }
 

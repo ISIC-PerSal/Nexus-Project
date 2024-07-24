@@ -1,11 +1,8 @@
 import React from 'react'
-import NewProjectFormView from './NewProjectFormView'
 
 function NewProjectForm() {
   return (
-   <>
-   <NewProjectFormView/>
-   </>
+    <>NewProjectForm</>
   )
 }
 
