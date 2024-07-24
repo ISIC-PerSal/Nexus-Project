@@ -1,8 +1,12 @@
 import React from 'react'
+import NavbarGuestView from '../../components/Navbar/NavbarGuestView'
+
 
 function MainView() {
   return (
-    <div>MainView</div>
+   <>
+   <NavbarGuestView/>
+   </>
   )
 }
 
