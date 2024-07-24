@@ -20,6 +20,7 @@
   text-align: justify;
 }
 
+<<<<<<< HEAD
 .fondo-nexus {
   background-image: url("./assets/Poster.jpg");
 
@@ -27,3 +28,17 @@
   background-size: cover;
   background-position: center;
 }
+=======
+.fondo-nexus{
+  background-image: url("./assets/Logo.png");
+  width: 100vw;
+  background-repeat: repeat;
+}
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bd-violet-bg);
+  --bs-tooltip-color: var(--bs-white);
+}
+.info{
+  font-size: x-small;
+}
+>>>>>>> rocio
