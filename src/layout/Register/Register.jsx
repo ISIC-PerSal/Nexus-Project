@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import RegisterView from './RegisterView';
 import fetchRegister from "../../util/user/fetchRegister";
+import NavbarGuest from '../../components/Navbar/NavbarGuest';
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -19,6 +20,7 @@ function Register() {
   }
   return (
    <>
+   <NavbarGuest/>
    <RegisterView 
    email={email} 
    setEmail={setEmail} 

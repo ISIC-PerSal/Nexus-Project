@@ -1,35 +1,10 @@
 import React, { useState } from 'react'
 
-const getDataApi = async (url, body) => {
-    try {
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        if (body) {
-            options.body = JSON.stringify(body)
-        }
-        const response = await fetch(url, options)
-
-        if (!response.ok) {
-            throw new Error("Error en la petición")
-        }
-
-        const json = await response.json()
-        return json
-
-    } catch (error) {
-        console.error("Error:", error.message)
-        return null
-    }
-};
 function RegisterView({email, setEmail, password, setPassword, handleRegister}) {
 
     return (
         <>
-            <div className="bg-info vw-100 vh-100 d-flex justify-content-center align-items-center">
+            <div className="py-5 my-5 w-100 d-flex justify-content-center align-items-center">
                 <main className="border bg-white w-50 h-50 p-5 rounded">
                     <form>
                         <h1>Registro</h1>
