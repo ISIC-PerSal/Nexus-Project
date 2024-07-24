@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import NavbarGuestView from './NavbarGuestView';
 
-function Navbar() {
+function NavbarGuest() {
   const selected=()=>{
     return sessionStorage.getItem("seleccionado");
   };
@@ -15,4 +15,4 @@ function Navbar() {
   );
 }
 
-export default Navbar
+export default NavbarGuest
