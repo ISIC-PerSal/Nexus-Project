@@ -59,7 +59,7 @@ function NavbarView({logOff, selected, setSelected}) {
                         <button type="button" className="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                             Yo
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <ul className="dropdown-menu dropdown-menu-lg-end">
                             <li><button className="dropdown-item" type="button">Mi perfil</button></li>
                             <li><button className="dropdown-item" type="button">Mis proyectos</button></li>
                             <li>

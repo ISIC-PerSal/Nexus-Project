@@ -1,14 +1,14 @@
-import React from 'react'
-import NewProjectFormView from './NewProjectFormView'
+import React, { useState } from "react";
+import NewProjectFormView from "./NewProjectFormView";
 
 function NewProjectForm() {
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
   return (
-   <>
-   <NewProjectFormView/>
-   </>
-  )
+    <>
+      <NewProjectFormView
+      />
+    </>
+  );
 }
 
-export default NewProjectForm
+export default NewProjectForm;
