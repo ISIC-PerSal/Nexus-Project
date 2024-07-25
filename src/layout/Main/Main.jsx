@@ -1,10 +1,11 @@
 import React from 'react'
+import MainView from './MainView';
 
 function Main() {
     sessionStorage.clear();
   return (
     <>
-    MainView
+    <MainView/>
     </>
   )
 }

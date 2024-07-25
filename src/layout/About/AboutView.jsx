@@ -1,16 +1,11 @@
 import React from 'react'
-<<<<<<< HEAD
 import Navbar from '../../../componets/Navbar/Navbar'
 import AboutSection from '../../componets/About/AboutSection'
 import Poster from "../../assets/Poster.jpg";
-=======
-import AboutSection from '../../components/About/AboutSection'
->>>>>>> rocio
 
 function AboutView() {
   return (
     <>
-<<<<<<< HEAD
      <Navbar/>
      <AboutSection/>
     <main>
@@ -46,11 +41,3 @@ function AboutView() {
 }
 
 export default AboutView
-=======
-    <AboutSection/>
-    </>
-  )
-}
-
-export default AboutView
->>>>>>> rocio
