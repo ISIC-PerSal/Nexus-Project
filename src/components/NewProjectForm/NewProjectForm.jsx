@@ -1,13 +1,13 @@
 import React from 'react'
 
 function NewProjectForm() {
-  const ValidarDatos=()=>{
+  function validarDatos(){
     console.log("first")
-  }
-
-
+  };
   return (
-    <>NewProjectForm</>
+   <>
+   <NewProjectFormView validarDatos={validarDatos}/>
+   </>
   )
 }
 
