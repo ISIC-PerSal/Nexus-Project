@@ -2,9 +2,12 @@ import React from 'react'
 import NewProjectFormView from './NewProjectFormView'
 
 function NewProjectForm() {
+  function validarDatos(){
+    console.log("first")
+  };
   return (
    <>
-   <NewProjectFormView/>
+   <NewProjectFormView validarDatos={validarDatos}/>
    </>
   )
 }

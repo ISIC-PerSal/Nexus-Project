@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 INSTRUCCIONES
+=======
+Intrucciones
+>>>>>>> 5cb13a64a47a6534bbe214a27b3af5a2185c7ce9
