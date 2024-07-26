@@ -5,7 +5,7 @@ import NavbarGuestView from '../../components/Navbar/NavbarGuestView'
 function MainView() {
   return (
    <>
-   <NavbarGuestView/>
+   <NavbarGuest/>
    </>
   )
 }
