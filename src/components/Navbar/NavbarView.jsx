@@ -22,7 +22,7 @@ function NavbarView({logOff, selected, setSelected}) {
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-bold" href="#" onClick={()=>setSelected("Directorio")}>
+                                <a className="nav-link text-white fw-bold" href="/directory" onClick={()=>setSelected("Directorio")}>
                                     Directorio
                                     <div className={selected=="Directorio"? "color-block":""}></div>
                                     </a>

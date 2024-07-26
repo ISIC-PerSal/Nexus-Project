@@ -8,6 +8,7 @@ import isAuth from './util/isAuth'
 import Main from './layout/Main/Main'
 import NewProject from './layout/New Project/NewProject'
 import About from './layout/About/About'
+import Directory from './layout/Directory/Directory'
 
 function App() {
 
@@ -18,6 +19,7 @@ const isLogin= isAuth()!=null
       <Router>
         <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/directory" element={<Directory />} />
         <Route path="/new-project" element={isLogin? <NewProject />:<Navigate to={"/login"}/>} />
         <Route
             path="/about"
