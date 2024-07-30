@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 function NavbarView({logOff, selected, setSelected}) {
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-principal">
+            <nav className="navbar navbar-expand-lg bg-principal sticky-top z-99">
                 <div className="container-fluid">
                     <a className="navbar-brand d-flex justify-content-center align-items-center text-white fw-bold fs-2" href="#">
                         <img src={logo} alt='' style={{ width: "50px" }} />

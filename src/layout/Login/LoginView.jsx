@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function LoginView({ email, setEmail, password, setPassword, handleLogin }) {
     return (
         <>
-            <div className="fondo-nexus w-100 h-100 position-absolute py-5 d-flex justify-content-center align-items-center">
+            <div className="h-100 z-1 d-flex justify-content-center align-items-center">
                 <main className="border bg-white w-50 h-50 p-5 rounded bg-danger-subtle">
                     <form>
                         <h1>Inicia sesión</h1>
