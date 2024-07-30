@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import Tooltip from '@mui/material/Tooltip';
+import odsData from '../../util/odsData';
 function DirectoryView() {
     const paises = [
         {
@@ -99,7 +100,7 @@ function DirectoryView() {
     return (
         <>
             <main className='bg-img'>
-                <div className='container w-50 mt-3 p-3 border rounded border-secondary-subtle bg-gral'>
+                <div className='container w-50 my-3 p-3 border rounded border-secondary-subtle bg-gral'>
                     <div className="mb-3">
                         <label htmlFor="seccion-lider" className="form-label fw-bold fs-2">Directorio</label>
                     </div>
@@ -136,7 +137,7 @@ function DirectoryView() {
                     </div>
                     <div>
                         <div>
-                            <label className='w-100 p-1 fw-bold'style={{backgroundColor:"#C13B6C", color: 'white'}}>Filtrar por letra inicial</label>
+                            <label className='w-100 p-1 fw-bold' style={{ backgroundColor: "#C13B6C", color: 'white' }}>Filtrar por letra inicial</label>
                             <div class="d-flex flex-row mb-3">
                                 <div class="p-2">A</div>
                                 <div class="p-2">C</div>
@@ -147,58 +148,29 @@ function DirectoryView() {
                             </div>
                         </div>
                         <div>
-                            <label className='w-100 p-1 fw-bold'style={{backgroundColor:"#173567", color: 'white'}}>Filtrar por ODS</label>
-                            <div className='d-flex flex-row mb-3 mt-2'>
-                                <Tooltip title="Fin de la pobreza">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#EA1C2D" }}>01</button>
-                                </Tooltip>
-                                <Tooltip title="Hambre cero">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#D3A028" }}>02</button>
-                                </Tooltip>
-                                <Tooltip title="Salud y bienestar">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#3CA643" }}>03</button>
-                                </Tooltip>
-                                <Tooltip title="Educación de calidad">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#C21E33" }}>04</button>
-                                </Tooltip>
-                                <Tooltip title="Igualdad de género">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#EE402A" }}>05</button>
-                                </Tooltip>
-                                <Tooltip title="Agua limpia y saneamiento">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#00ADD9" }}>06</button>
-                                </Tooltip>
-                                <Tooltip title="Energía asequible y no contaminante">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#FCB712" }}>07</button>
-                                </Tooltip>
-                                <Tooltip title="Trabajo decente y crecimiento económico">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#A21942" }}>08</button>
-                                </Tooltip>
-                                <Tooltip title="Industria, innovación e infraestructura">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#F36D25" }}>09</button>
-                                </Tooltip>
-                                <Tooltip title="Reducción de las desigualdades">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#E01383" }}>10</button>
-                                </Tooltip>
-                                <Tooltip title="Ciudades y comunidades sostenibles">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#F89C25" }}>11</button>
-                                </Tooltip>
-                                <Tooltip title="Producción y consumo responsables">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#CE8C29" }}>12</button>
-                                </Tooltip>
-                                <Tooltip title="Acción por el clima">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#48773D" }}>13</button>
-                                </Tooltip>
-                                <Tooltip title="Vida submarina">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#007DBC" }}>14</button>
-                                </Tooltip>
-                                <Tooltip title="Vida de ecosistemas terrestres">
-                                    <button type="button" className="icono-ods fw-bold" style={{ backgroundColor: "#3DB048" }}>15</button>
-                                </Tooltip>
-                                <Tooltip title="Paz, justicia e instituciones sólidas">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#02558B" }}>16</button>
-                                </Tooltip>
-                                <Tooltip title="Alianzas para lograr los objetivos">
-                                    <button type="button" className=" icono-ods fw-bold" style={{ backgroundColor: "#183568" }}>17</button>
+                            <label className='w-100 p-1 fw-bold' style={{ backgroundColor: "#173567", color: 'white' }}>Filtrar por ODS</label>
+                            <div className='d-flex justify-content-between flex-row mb-3 mt-2'>
+                                {odsData.map((item, index) => (
+                                    <Tooltip key={index} title={item.title}>
+                                        <button
+                                            type="button"
+                                            className=" icono-ods fw-bold"
+                                            style={{ backgroundColor: item.color }}
+                                        >
+                                            {item.ods}
+                                        </button>
+                                    </Tooltip>
+                                ))}
+                                <Tooltip title={"Todos los ODS"}>
+                                    <button
+                                        type="button"
+                                        className=" icono-ods fw-bold"
+                                        style={{ backgroundColor: "#C13B6C" }}
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe-americas" viewBox="0 0 16 16">
+                                            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484q-.121.12-.242.234c-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z" />
+                                        </svg>
+                                    </button>
                                 </Tooltip>
                             </div>
                         </div>
