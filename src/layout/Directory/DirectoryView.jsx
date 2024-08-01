@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import Tooltip from "@mui/material/Tooltip";
 import odsData from "../../util/odsData";
 import paises from "../../util/paises";
+import getDirectory from "../../util/directory/getDirectory";
 
 function DirectoryView() {
-  const [ods, setOds] = useState("All");
-  const [pais, setPais] = useState("");
+  const [ods, setOds] = useState("Todos");
+  const [pais, setPais] = useState("Todos");
+  const [directoryData, setDirectoryData] = useState([]);
 
+  async function handleODS() {
+    try {
+      const data = await getDirectory(pais, ods);
+      setDirectoryData(data);
+    } catch (error) {}
+  }
+
+  const handleFilter = () => {
+    handleODS();
+  };
+
+  handleODS();
   return (
     <>
       <main className="bg-img py-3">
@@ -58,7 +72,10 @@ function DirectoryView() {
                 placeholder="--"
                 options={paises}
                 defaultValue={pais}
-                onChange={(e) => setPais(e.label.props.children[1])}
+                onChange={(e) => {
+                  setPais(e.label.props.children[1]);
+                  handleFilter;
+                }}
               />
             </div>
           </div>
@@ -90,7 +107,10 @@ function DirectoryView() {
                 {odsData.map((item, index) => (
                   <Tooltip key={index} title={item.title}>
                     <button
-                      onClick={(e) => setOds(item.ods)}
+                      onClick={(e) => {
+                        setOds(item.ods);
+                        handleFilter;
+                      }}
                       type="button"
                       className=" icono-ods fw-bold"
                       style={{ backgroundColor: item.color }}
@@ -132,6 +152,36 @@ function DirectoryView() {
                 ODS: <span className="ms-1 badge bg-oficial">{ods}</span>
               </h5>
             </div>
+          </div>
+          <div>
+            {directoryData.map((item, index) => (
+              <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                className="text-dark"
+              >
+                <div className="d-flex justify-content-center my-1">
+                  <img
+                    src={item.imagen}
+                    className="img-fluid w-50 h-auto"
+                    alt="..."
+                  ></img>
+                  <div className="w-50 ps-2">
+                    <h5 className="fs-5">{item.nombre}</h5>
+                    <p className=" text-truncate">{item.descripcion}</p>
+                    <span
+                      style={{
+                        backgroundColor: odsData[item.id_ods - 1].color,
+                      }}
+                      className="badge"
+                    >
+                      {item.ods}
+                    </span>
+                  </div>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </main>

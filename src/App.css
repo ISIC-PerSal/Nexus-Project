@@ -103,3 +103,7 @@ blockquote::after {
 .bg-oficial{
   background-color: #C13B6C;
 }
+
+a{
+  text-decoration: none !important;
+}
