@@ -91,7 +91,6 @@ blockquote::after {
   width: 5%;
   height: auto;
 }
-
 .bg-img {
   background-image: url("assets/Fondo-main.png");
   background-size: cover;
@@ -99,11 +98,9 @@ blockquote::after {
   background-attachment: fixed; 
   width: 100%;
 }
-
 .bg-oficial{
   background-color: #C13B6C;
 }
-
 a{
   text-decoration: none !important;
 }

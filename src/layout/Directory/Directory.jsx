@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import DirectoryView from "./DirectoryView";
-import NavbarGuest from "../../components/Navbar/NavbarGuest";
-import isAuth from "../../util/isAuth";
-import Navbar from "../../components/Navbar/Navbar";
-
+import React from 'react'
+import DirectoryView from './DirectoryView'
+import NavbarGuest from '../../components/Navbar/NavbarGuest'
+import Navbar from '../../components/Navbar/Navbar'
+import isAuth from '../../util/isAuth'
 function Directory() {
-  const isLogin = isAuth();
-  const [ods, setOds] = useState("Todos");
-  const [pais, setPais] = useState("Todos");
-  const [directoryData, setDirectoryData] = useState("");
-  return (
-    <>
-      {isLogin ? <Navbar /> : <NavbarGuest />}
-      <DirectoryView 
-
-      />
-    </>
-  );
+    const isLogin= isAuth()
+    console.log(isLogin)
+    return (
+        <>
+        {
+           isLogin? (<Navbar />):(<NavbarGuest/>)
+        }
+          
+            <DirectoryView />
+        </>
+    )
 }
 
 export default Directory;
