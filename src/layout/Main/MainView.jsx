@@ -1,14 +1,10 @@
 import React from "react";
-import NavbarGuestView from "../../components/Navbar/NavbarGuestView";
+import NavbarGuest from "../../components/Navbar/NavbarGuest";
 
 function MainView() {
   return (
     <>
-<<<<<<< HEAD
-      <NavbarGuestView />
-=======
    <NavbarGuest/>
->>>>>>> 1ea2ee58cf3a6f2f53fabd91aff755732ba793df
     </>
   );
 }

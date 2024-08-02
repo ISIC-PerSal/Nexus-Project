@@ -9,8 +9,4 @@ function AboutSection() {
   )
 }
 
-<<<<<<< HEAD
 export default AboutSection
-=======
-export default AboutSection
->>>>>>> rocio
