@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import Tooltip from "@mui/material/Tooltip";
 import odsData from "../../util/odsData";
-import paises from "../../util/paises";
+import paises from "../../util/paises"
 import getDirectory from "../../util/directory/getDirectory";
 
 function DirectoryView() {
