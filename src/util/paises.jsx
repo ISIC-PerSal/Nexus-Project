@@ -4,8 +4,8 @@ const paises = [
     label: (
       <div className="d-flex align-items-center">
         <img
-          src="https://flagpedia.net/data/flags/h80/cl.webp"
-          alt="Chile"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/International_Flag_of_Planet_Earth.svg/1200px-International_Flag_of_Planet_Earth.svg.png"
+          alt="Todos"
           style={{ width: "30px", height: "20px", marginRight: "8px" }}
         />
         Todos

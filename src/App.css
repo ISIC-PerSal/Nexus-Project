@@ -109,11 +109,16 @@ blockquote::after {
   width: 5%;
   height: auto;
 }
-.bg-img{
-    background-image: url("assets\Fondo-main.png");
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    width: 100%;
-    height: 100vh; 
+.bg-img {
+  background-image: url("assets/Fondo-main.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; 
+  width: 100%;
+}
+.bg-oficial{
+  background-color: #C13B6C;
+}
+a{
+  text-decoration: none !important;
 }
