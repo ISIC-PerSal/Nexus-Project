@@ -35,7 +35,6 @@ function DirectoryView() {
     }
     fetchData();
   };
-
   return (
     <main className="bg-img py-3">
       <div className="container w-50 p-3 border rounded border-secondary-subtle bg-gral">
@@ -83,7 +82,7 @@ function DirectoryView() {
             <Select
               placeholder="--"
               options={paises}
-              defaultValue={pais}
+              defaultValue={paises[0]}
               onChange={(e) => {
                 setPais(e.label.props.children[1]);
                 handleFilter();
@@ -166,9 +165,11 @@ function DirectoryView() {
           </div>
         </div>
         <div>
-          {directoryData.map((item, index) => (
-            <CardODS key={index} item={item} />
-          ))}
+          {directoryData
+            ? directoryData.map((item, index) => (
+                <CardODS key={index} item={item} />
+              ))
+            : "Sin datos"}
         </div>
       </div>
     </main>

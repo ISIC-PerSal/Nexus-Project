@@ -5,7 +5,6 @@ import Navbar from '../../components/Navbar/Navbar'
 import isAuth from '../../util/isAuth'
 function Directory() {
     const isLogin= isAuth()
-    console.log(isLogin)
     return (
         <>
         {
