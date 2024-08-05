@@ -9,6 +9,7 @@ import Main from './layout/Main/Main'
 import NewProject from './layout/New Project/NewProject'
 import About from './layout/About/About'
 import Directory from './layout/Directory/Directory'
+import Alliance from './layout/Alliance/Alliance'
 
 function App() {
 
@@ -25,6 +26,7 @@ const isLogin= isAuth()!=null
             path="/about"
             element={isLogin ? <About/> : <Navigate to={"/login"} />}
           />
+           <Route path="/alliance" element={<Alliance />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={isLogin? <Home/>:<Navigate to={"/login"}/>}/>

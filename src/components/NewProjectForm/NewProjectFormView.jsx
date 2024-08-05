@@ -78,7 +78,7 @@ function NewProjectFormView({validarDatos}) {
     ];
     return (
         <>
-            <main className='py-3'>
+            <main className='py-3 bg-img'>
                 <form action="" className='container w-50 mt-3 p-3 border rounded border-secondary-subtle bg-gral'>
                     <div className="mb-3">
                         <label htmlFor="seccion-lider" className="form-label fw-bold fs-4">Datos del líder</label>
