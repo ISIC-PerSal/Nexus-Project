@@ -1,12 +1,10 @@
 import React from "react";
-import odsData from "../../util/odsData";
-import { Badge } from "@mui/material";
 import BadgeODSView from "../BadgeODS/BadgeODSView";
 
 function CardODSView({ item, toggleDescription, isExpanded }) {
-    const odsArray = item.ods;
-      return (
-    <div key={index} item={item} className="d-flex justify-content-center my-1">
+  const odsArray = item.ods;
+  return (
+    <div item={item} className="d-flex justify-content-center my-1">
       <div className="w-50 h-auto">
         <img src={item.imagen} className="img-fluid" alt="..." />
       </div>
