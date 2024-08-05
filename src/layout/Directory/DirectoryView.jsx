@@ -166,9 +166,11 @@ function DirectoryView() {
           </div>
         </div>
         <div>
-          {directoryData.map((item, index) => (
-            <CardODS  key={index} item={item} />
-          ))}
+          {directoryData
+            ? directoryData.map((item, index) => (
+                <CardODS key={index} item={item} />
+              ))
+            : "Sin datos"}
         </div>
       </div>
     </main>
