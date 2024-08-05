@@ -40,7 +40,7 @@ function NavbarView({logOff, selected, setSelected}) {
                                     </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-bold" href="#" onClick={()=>setSelected("Alianza")}>
+                                <a className="nav-link text-white fw-bold" href="/alliance" onClick={()=>setSelected("Alianza")}>
                                     Alianza juvenil e infantil
                                     <div className={selected=="Alianza"? "color-block":""}></div>
                                 </a>
