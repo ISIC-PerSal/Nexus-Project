@@ -3,7 +3,7 @@ import React from "react";
 function RegisterView({email, setEmail, password, setPassword, handleRegister}) {
 
     return (
-        <div className="py-5 my-5 w-100 d-flex justify-content-center align-items-center">
+        <div className="py-5 my-5 w-100 d-flex justify-content-center align-items-center bg-img">
             <main className="border bg-white w-50 h-50 p-5 rounded">
                 <form onSubmit={handleRegister}>
                     <h1>Registro</h1>
