@@ -60,10 +60,10 @@ function NavbarView({logOff, selected, setSelected}) {
                             Yo
                         </button>
                         <ul class="dropdown-menu dropdown-menu-lg-end">
-                            <li><button className="dropdown-item" type="button">Mi perfil</button></li>
-                            <li><button className="dropdown-item" type="button">Mis proyectos</button></li>
+                            <li><a href='/profile' className="dropdown-item" type="button">Mi perfil</a></li>
+                            <li><a href='' className="dropdown-item" type="button">Mis proyectos</a></li>
                             <li>
-                                <button onClick={logOff} className="dropdown-item" type="button">Cerrar sesión</button>
+                                <a href='/' className="dropdown-item" type="button">Cerrar sesión</a>
                             </li>
                         </ul>
                     </div>

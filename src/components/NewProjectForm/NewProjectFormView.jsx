@@ -111,6 +111,13 @@ function NewProjectFormView({validarDatos}) {
                             </Tooltip>
                             <input type="text" class="form-control" id="RFC-lider"></input>
                         </div>
+                        <div className="mb-3">
+                            <label htmlFor="CLABE-lider" className="form-label me-1">CLABE interbancaria</label>
+                            <Tooltip title={longText}>
+                                <HelpCenterIcon />
+                            </Tooltip>
+                            <input type="text" class="form-control" id="CLABE-lider"></input>
+                        </div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="seccion-proyecto" className="form-label fw-bold fs-4">Datos del proyecto</label>

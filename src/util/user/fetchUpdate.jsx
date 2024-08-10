@@ -1,8 +1,7 @@
 import React from 'react'
-import getDataApi from '../getDataApi';
 const API_NEXUS_PROJECT= import.meta.env.VITE_API_NEXUS_PROJECT_DATABASE;
-async function fetchRegister(body) {
-    const url = `${API_NEXUS_PROJECT}/user/createUser.php`;
+async function fetchUpdate(body) {
+    const url = `${API_NEXUS_PROJECT}/user/updateUser.php`;
     try {
         const data = await getDataApi(url, body);
         return data
@@ -12,4 +11,4 @@ async function fetchRegister(body) {
     }
 }
 
-export default fetchRegister
+export default fetchUpdate
