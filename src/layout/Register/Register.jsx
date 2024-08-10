@@ -37,6 +37,11 @@ function Register() {
             title: "Exito!",
             text: "Cuenta registrada. Inicie sesión!",
             icon: "success",
+            confirmButtonText: "Ir a inicio de sesión",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/login";
+            }
           });
         } else {
           Swal.fire({
