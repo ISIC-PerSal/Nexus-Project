@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
-import ProfileView from './ProfileView'
-import Navbar from '../../components/Navbar/Navbar'
-import calcularEdad from '../../util/user/calcularEdad'
+import React, { useState } from "react";
+import ProfileView from "./ProfileView";
+import NavbarView from "../../components/Navbar/NavbarView";
+import calcularEdad from "../../util/user/calcularEdad";
+
 function Profile() {
-  const [name, setName] = useState(sessionStorage.getItem("name"))
-  const [lastName, setlastName] = useState(sessionStorage.getItem("lastName"))
-  const [email, setEmail] = useState(sessionStorage.getItem("email"))
-  const [password, setPassword] = useState(sessionStorage.getItem("password"))
-  const [birthday, setBirthday] = useState(sessionStorage.getItem("birthday"))
-  const [age, setAge] = useState(sessionStorage.getItem("age"))
-  const [rfc, setRfc] = useState(sessionStorage.getItem("rfc"))
-  const [clabe, setClabe] = useState("null")
+  const [name, setName] = useState(sessionStorage.getItem("name"));
+  const [lastName, setLastName] = useState(sessionStorage.getItem("lastName"));
+  const [email, setEmail] = useState(sessionStorage.getItem("email"));
+  const [birthday, setBirthday] = useState(sessionStorage.getItem("birthday"));
+  const [age, setAge] = useState(sessionStorage.getItem("age"));
+  const [password, setPassword] = useState(sessionStorage.getItem("password"));
+  const [rfc, setRfc] = useState(sessionStorage.getItem("rfc"));
+  const [clabe, setClabe] = useState(sessionStorage.getItem("clabe"));
 
   function updateUser(e) {
     e.preventDefault();
@@ -22,18 +23,18 @@ function Profile() {
       birthday: birthday,
       age: calcularEdad(birthday),
       rfc: rfc,
-      clabe: clabe
+      clabe: clabe,
     };
-    console.log(body)
+    console.log(body);
   }
   return (
     <>
-      <Navbar />
+      <NavbarView />
       <ProfileView
         name={name}
         setName={setName}
         lastName={lastName}
-        setlastName={setlastName}
+        setLastName={setLastName}
         email={email}
         setEmail={setEmail}
         birthday={birthday}
@@ -48,7 +49,7 @@ function Profile() {
         updateUser={updateUser}
       />
     </>
-  )
+  );
 }
 
-export default Profile
+export default Profile;
