@@ -1,5 +1,5 @@
-import React from 'react'
-import NewProjectFormView from './NewProjectFormView'
+import React, { useState } from "react";
+import NewProjectFormView from "./NewProjectFormView";
 
 function NewProjectForm() {
   function validarDatos(){
@@ -12,4 +12,4 @@ function NewProjectForm() {
   )
 }
 
-export default NewProjectForm
+export default NewProjectForm;

@@ -198,4 +198,4 @@ function NewProjectFormView({validarDatos}) {
     )
 }
 
-export default NewProjectFormView
+export default NewProjectFormView;

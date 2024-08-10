@@ -1,44 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-function RegisterView({email, setEmail, password, setPassword, nombre, setNombre, apellido, setApellido, fechaNac, setFechaNac, handleRegister}) {
+function RegisterView({email, setEmail, password, setPassword, handleRegister}) {
 
     return (
         <>
-            <div className="py-5 my-5 w-100 d-flex justify-content-center align-items-center bg-img">
+            <div className="py-5 my-5 w-100 d-flex justify-content-center align-items-center">
                 <main className="border bg-white w-50 h-50 p-5 rounded">
                     <form>
                         <h1>Registro</h1>
-                        <div className="mb-3">
-                            <label htmlFor="nombreRegistro" className="form-label">Nombre</label>
-                            <input
-                            minLength={1}
-                                type="text" className="form-control" id="nombreRegistro" 
-                                value={nombre}
-                                onChange={(event) => setNombre(event.target.value)}
-                                required={true}
-                            ></input>
-
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="apellidoRegistro" className="form-label">Apellido</label>
-                            <input
-                            minLength={1}
-                                type="text" className="form-control" id="apellidoRegistro" 
-                                value={apellido}
-                                onChange={(event) => setApellido(event.target.value)}
-                                required={true}
-                            ></input>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="fechaNacRegistro" className="form-label">Fecha de nacimiento</label>
-                            <input
-                                type="date" className="form-control" id="fechaNacRegistro" 
-                                value={fechaNac}
-                                onChange={(event) => setFechaNac(event.target.value)}
-                                required={true}
-                            ></input>
-
-                        </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">Usuario</label>
                             <input
@@ -70,4 +39,4 @@ function RegisterView({email, setEmail, password, setPassword, nombre, setNombre
     );
 }
 
-export default RegisterView
+export default RegisterView;

@@ -12,5 +12,4 @@ async function getDirectory(pais, ods) {
     }
 }
 
-
 export default getDirectory

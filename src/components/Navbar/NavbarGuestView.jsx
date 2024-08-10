@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function NavbarGuestView({ handleLogin }) {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-principal">
+      <nav className="navbar navbar-expand-lg bg-principal fixed-top bg-principal">
         <div className="container-fluid">
           <a
             className="navbar-brand d-flex justify-content-center align-items-center text-white fw-bold fs-2"
