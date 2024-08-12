@@ -9,6 +9,7 @@ import Main from './layout/Main/Main'
 import NewProject from './layout/New Project/NewProject'
 import About from './layout/About/About'
 import Directory from './layout/Directory/Directory'
+import Profile from './layout/Profile/Profile'
 
 function App() {
   const isLogin = isAuth() != null;
@@ -18,6 +19,7 @@ function App() {
       <Router>
         <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/directory" element={<Directory />} />
         <Route path="/new-project" element={isLogin? <NewProject />:<Navigate to={"/login"}/>} />
         <Route

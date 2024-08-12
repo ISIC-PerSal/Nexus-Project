@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ProfileView from "./ProfileView";
 import NavbarView from "../../components/Navbar/NavbarView";
 import calcularEdad from "../../util/user/calcularEdad";
+import Swal from "sweetalert2";
 
 function Profile() {
   const [name, setName] = useState(sessionStorage.getItem("name"));
@@ -13,19 +14,54 @@ function Profile() {
   const [rfc, setRfc] = useState(sessionStorage.getItem("rfc"));
   const [clabe, setClabe] = useState(sessionStorage.getItem("clabe"));
 
-  function updateUser(e) {
+  async function updateUser(e) {
     e.preventDefault();
     const body = {
       idUser: sessionStorage.getItem("id_user"),
       name: name,
       lastName: lastName,
       email: email,
+      password: password,
       birthday: birthday,
       age: calcularEdad(birthday),
       rfc: rfc,
       clabe: clabe,
     };
-    console.log(body);
+    try {
+      const data = await fetchUpdate(body);
+      if (data.status == "Done") {
+        sessionStorage.setItem("id_user", body.id_user);
+        sessionStorage.setItem("email", body.email);
+        sessionStorage.setItem("name", body.name);
+        sessionStorage.setItem("lastName", body.lastName);
+        sessionStorage.setItem("birthday", body.birthday);
+        sessionStorage.setItem("age", body.age);
+        sessionStorage.setItem("password", body.password);
+        sessionStorage.setItem("rfc", body.rfc);
+        sessionStorage.setItem("clabe", body.clabe);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Los datos se han actualizados",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Ocurrio un error",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "Ocurrio un error",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
   }
   return (
     <>
