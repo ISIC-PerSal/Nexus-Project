@@ -51,7 +51,7 @@ function NavbarGuestView({ handleLogin }) {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-white fw-bold" href="#">
+                <a className="nav-link text-white fw-bold" href="/alliance">
                   Alianza juvenil e infantil
                 </a>
               </li>

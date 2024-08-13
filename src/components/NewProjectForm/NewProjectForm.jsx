@@ -7,7 +7,7 @@ function NewProjectForm() {
   };
   return (
    <>
-   <NewProjectFormView validarDatos={validarDatos}/>
+   <NewProjectForm validarDatos={validarDatos}/>
    </>
   )
 }

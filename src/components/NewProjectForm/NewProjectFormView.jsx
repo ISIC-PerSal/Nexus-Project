@@ -4,7 +4,7 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-function NewProjectFormView({validarDatos}) {
+function NewProjectFormView({ validarDatos }) {
     const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más`;
     const ods = [
         {
@@ -83,8 +83,8 @@ function NewProjectFormView({validarDatos}) {
                     <div className="mb-3">
                         <label htmlFor="seccion-lider" className="form-label fw-bold fs-4">Datos del líder</label>
                         <div className="mb-3">
-                            <label htmlFor="tipo-lider" class="form-label">Representante</label>
-                            <select class="form-select" aria-label="Default select example">
+                            <label htmlFor="tipo-lider" className="form-label">Representante</label>
+                            <select className="form-select" aria-label="Default select example">
                                 <option selected>Seleccione su tipo de representación </option>
                                 <option value="1">Individuo</option>
                                 <option value="2">Institución</option>
@@ -94,74 +94,85 @@ function NewProjectFormView({validarDatos}) {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="nombre-lider" className="form-label">Nombre del líder o representante</label>
-                            <input type="text" class="form-control" id="nombre-lider"></input>
+                            <input type="text" className="form-control" id="nombre-lider"></input>
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    value=""
+                                    id="flexCheckDefault"
+                                ></input>
+                                <label className="form-check-label text-body-secondary" htmlFor="flexCheckDefault">
+                                    Usar mi nombre completo
+                                </label>
+                            </div>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="telefono-lider" className="form-label">Número telefónico de contacto</label>
-                            <input type="text" class="form-control" id="nombre-lider"></input>
+                            <input type="text" className="form-control" id="nombre-lider"></input>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="correo-lider" className="form-label" required>Dirección email de contacto</label>
-                            <input type="email" class="form-control" id="correo-lider"></input>
+                            <input type="email" className="form-control" id="correo-lider"></input>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="RFC-lider" className="form-label me-1">RFC</label>
                             <Tooltip title={longText}>
                                 <HelpCenterIcon />
                             </Tooltip>
-                            <input type="text" class="form-control" id="RFC-lider"></input>
+                            <input type="text" className="form-control" id="RFC-lider"></input>
                         </div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="seccion-proyecto" className="form-label fw-bold fs-4">Datos del proyecto</label>
                         <div className="mb-3">
-                            <label htmlFor="nombre-proyecto" class="form-label">Nombre del proyecto</label>
-                            <input type="text" class="form-control" id="nombre-proyecto"></input>
+                            <label htmlFor="nombre-proyecto" className="form-label">Nombre del proyecto</label>
+                            <input type="text" className="form-control" id="nombre-proyecto"></input>
                         </div>
                         <div>
-                            <label htmlFor="nombre-proyecto" class="form-label">Número de voluntarios</label>
-                            <input type="number" class="form-control" id="nombre-proyecto"></input>
-                        </div>
-                        <div class="mb-3">
-                            <label htmlFor="descripcion" className="form-label">Descripción</label>
-                            <textarea class="form-control" id="descripcion" rows="3"></textarea>
+                            <label htmlFor="nombre-proyecto" className="form-label">Número de voluntarios</label>
+                            <input type="number" className="form-control" id="nombre-proyecto"></input>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="tipo-proyecto" class="form-label">Proyecto</label>
-                            <select class="form-select" aria-label="Default select example">
+                            <label htmlFor="descripcion" className="form-label">Descripción</label>
+                            <textarea className="form-control" id="descripcion" rows="3"></textarea>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="tipo-proyecto" className="form-label">Proyecto</label>
+                            <select className="form-select" aria-label="Default select example">
                                 <option selected>Seleccione su tipo de proyecto</option>
                                 <option value="1">Donación</option>
                                 <option value="2">Campaña</option>
                                 <option value="3">Three</option>
                             </select>
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <label htmlFor="direccion" className="form-label">Dirección</label>
-                            <textarea class="form-control" id="direccion" rows="2"></textarea>
+                            <textarea className="form-control" id="direccion" rows="2"></textarea>
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <label htmlFor="cp" className="form-label">Código postal</label>
-                            <input type="number" class="form-control" id="cp" rows="2"></input>
+                            <input type="number" className="form-control" id="cp" rows="2"></input>
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <label htmlFor="municipio" className="form-label">Municipio</label>
-                            <input class="form-control" id="municipio" rows="2"></input>
+                            <input className="form-control" id="municipio" rows="2"></input>
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <label htmlFor="estado" className="form-label">Estado</label>
-                            <input class="form-control" id="estado" rows="2"></input>
+                            <input className="form-control" id="estado" rows="2"></input>
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <label htmlFor="pais" className="form-label">País</label>
-                            <input class="form-control" id="pais" rows="2"></input>
+                            <input className="form-control" id="pais" rows="2"></input>
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <label htmlFor="fecha-arranque" className="form-label">Fecha de arranque</label>
-                            <input type="date" class="form-control" id="fecha-arranque" rows="2"></input>
+                            <input type="date" className="form-control" id="fecha-arranque" rows="2"></input>
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                             <label htmlFor="fecha-inscripcion" className="form-label">Fecha límite de inscripción</label>
-                            <input type="date" class="form-control" id="fecha-inscripcion" rows="2"></input>
+                            <input type="date" className="form-control" id="fecha-inscripcion" rows="2"></input>
                         </div>
                         <div className='mb-3'>
                             <label htmlFor="ods" className="form-label">ODS (s) que abarca</label>
@@ -169,9 +180,9 @@ function NewProjectFormView({validarDatos}) {
                                 {
                                     ods.map((item, index) => (
                                         <Grid item xs={3}>
-                                            <div key={index} class="form-check">
-                                                <input class="form-check-input" type="checkbox" id={`ods${item.ods}`}></input>
-                                                <label class="form-check-label" for={`ods${item.ods}`}>
+                                            <div key={index} className="form-check">
+                                                <input className="form-check-input" type="checkbox" id={`ods${item.ods}`}></input>
+                                                <label className="form-check-label" htmlFor={`ods${item.ods}`}>
                                                     <img src={item.url}
                                                         className='w-100'
                                                         alt=""
