@@ -1,15 +1,13 @@
-import React from 'react'
-import NewProjectFormView from './NewProjectFormView'
+import React, { useState } from "react";
+import NewProjectFormView from "./NewProjectFormView";
 
 function NewProjectForm() {
-  function validarDatos(){
-    console.log("first")
-  };
+  const [name, setName] = useState(sessionStorage.getItem("name"))
   return (
    <>
-   <NewProjectFormView validarDatos={validarDatos}/>
+   <NewProjectFormView name={name} setName={setName}/>
    </>
   )
 }
 
-export default NewProjectForm
+export default NewProjectForm;

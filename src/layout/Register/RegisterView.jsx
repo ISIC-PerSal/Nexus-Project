@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 function RegisterView({email, setEmail, password, setPassword, handleRegister}) {
 
     return (
         <>
-            <div className="py-5 my-5 w-100 d-flex justify-content-center align-items-center bg-gral">
+            <div className="py-5 my-5 w-100 d-flex justify-content-center align-items-center">
                 <main className="border bg-white w-50 h-50 p-5 rounded">
                     <form>
                         <h1>Registro</h1>
@@ -39,4 +39,4 @@ function RegisterView({email, setEmail, password, setPassword, handleRegister}) 
     );
 }
 
-export default RegisterView
+export default RegisterView;

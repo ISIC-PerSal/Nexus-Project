@@ -1,13 +1,13 @@
-import React from 'react'
-import MainView from './MainView'
+import React from "react";
+import MainView from "./MainView";
 
 function Main() {
-    sessionStorage.clear();
+  sessionStorage.clear();
   return (
     <>
-    <MainView/>
+      <MainView />
     </>
-  )
+  );
 }
 
-export default Main
+export default Main;

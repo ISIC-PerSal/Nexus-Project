@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import RegisterView from './RegisterView';
+import React, { useState } from "react";
+import RegisterView from "./RegisterView";
 import fetchRegister from "../../util/user/fetchRegister";
 import NavbarGuest from '../../components/Navbar/NavbarGuest';
 
@@ -31,4 +31,4 @@ function Register() {
   );
 }
 
-export default Register
+export default Register;
