@@ -4,7 +4,7 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-function NewProjectFormView({validarDatos}) {
+function NewProjectFormView({ name, setName }) {
     const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más`;
     const ods = [
         {
@@ -94,7 +94,21 @@ function NewProjectFormView({validarDatos}) {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="nombre-lider" className="form-label">Nombre del líder o representante</label>
-                            <input type="text" class="form-control" id="nombre-lider"></input>
+                            <input type="text" class="form-control" id="nombre-lider"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            ></input>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    value=""
+                                    id="flexCheckDefault"
+                                ></input>
+                                <label class="form-check-label text-body-secondary" for="flexCheckDefault">
+                                    Usar mi nombre completo
+                                </label>
+                            </div>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="telefono-lider" className="form-label">Número telefónico de contacto</label>
@@ -191,7 +205,7 @@ function NewProjectFormView({validarDatos}) {
                             </Grid>
                         </div>
                     </div>
-                    <button onClick={validarDatos} type="button" className="btn btn-danger w-100">Enviar datos</button>
+                    <button  type="button" className="btn btn-danger w-100">Enviar datos</button>
                 </form>
             </main>
         </>

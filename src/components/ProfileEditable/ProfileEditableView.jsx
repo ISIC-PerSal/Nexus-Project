@@ -117,8 +117,9 @@ function ProfileEditableView({
             value={rfc}
             onChange={(e) => setRfc(e.target.value)}
             type="text"
-            className="form-control"
+            className="form-control text-uppercase"
             id="rfcUser"
+            maxLength={13}
           ></input>
         </div>
         <div className="mb-3">
@@ -132,8 +133,9 @@ function ProfileEditableView({
             value={clabe}
             onChange={(e) => setClabe(e.target.value)}
             type="text"
-            className="form-control"
+            className="form-control text-uppercase"
             id="clabeUser"
+            maxLength={18}
           ></input>
         </div>
         <input

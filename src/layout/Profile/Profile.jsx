@@ -3,6 +3,7 @@ import ProfileView from "./ProfileView";
 import NavbarView from "../../components/Navbar/NavbarView";
 import calcularEdad from "../../util/user/calcularEdad";
 import Swal from "sweetalert2";
+import fetchUpdate from "../../util/user/fetchUpdate";
 
 function Profile() {
   const [name, setName] = useState(sessionStorage.getItem("name"));
@@ -24,13 +25,12 @@ function Profile() {
       password: password,
       birthday: birthday,
       age: calcularEdad(birthday),
-      rfc: rfc,
-      clabe: clabe,
+      rfc: rfc.toUpperCase(),
+      clabe: clabe.toUpperCase(),
     };
     try {
       const data = await fetchUpdate(body);
       if (data.status == "Done") {
-        sessionStorage.setItem("id_user", body.id_user);
         sessionStorage.setItem("email", body.email);
         sessionStorage.setItem("name", body.name);
         sessionStorage.setItem("lastName", body.lastName);
