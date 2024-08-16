@@ -11,11 +11,11 @@ import Register from "./layout/Register/Register";
 import Home from "./layout/Home/Home";
 import isAuth from "./util/isAuth";
 import Main from "./layout/Main/Main";
-import NewProject from "./layout/New Project/NewProject";
 import About from "./layout/About/About";
 import Directory from "./layout/Directory/Directory";
 import Alliance from "./layout/Alliance/Alliance";
 import Profile from "./layout/Profile/Profile";
+import NewProject from "./layout/NewProject/NewProject";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -29,7 +29,7 @@ function App() {
           <Route path="/directory" element={<Directory />} />
           <Route
             path="/new-project"
-            element={isLogin ? <NewProject /> : <Navigate to={"/login"} />}
+            element={isLogin ? <NewProject/>  : <Navigate to={"/login"} />}
           />
           <Route
             path="/about"
