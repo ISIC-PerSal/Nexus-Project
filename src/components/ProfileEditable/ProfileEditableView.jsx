@@ -75,7 +75,7 @@ function ProfileEditableView({ name, setName, lastName,
                     </label>
                     <input type="text" className="form-control text-uppercase" 
                     id="rfcUser" value={rfc} onChange={(e) => setRfc(e.target.value)}
-                    maxLength={13}></input>
+                    maxLength={13} minLength={12}></input>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="clabeUser" className="form-label">
@@ -85,7 +85,7 @@ function ProfileEditableView({ name, setName, lastName,
                         </Tooltip>
                     </label>
                     <input type="text" className="form-control text-uppercase" id="clabeUser" 
-                    value={clabe} onChange={(e) => setClabe(e.target.value)} maxLength={18}></input>
+                    value={clabe} onChange={(e) => setClabe(e.target.value)} maxLength={18} minLength={18}></input>
                 </div>
                 <input onClick={updateUser} className="btn btn-primary w-100" type="submit" 
                 value="Guardar datos" ></input>
