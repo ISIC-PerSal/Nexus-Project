@@ -6,7 +6,7 @@ function NewProjectForm() {
   const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("0");
   const [email, setEmail] = useState("");
   const [checkEmail, setCheckEmail] = useState(false);
   const [rfc, setRfc] = useState("");
@@ -17,19 +17,18 @@ function NewProjectForm() {
   const [project, setProject] = useState("");
   const [volunteers, setVolunteers] = useState(1);
   const [description, setDescription] = useState("");
-  const [typeProject, setTypeProject] = useState("");
-  const [address, setAddress] = useState("");
+  const [projectType, setProjectType] = useState("");
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");
-
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
+  const [address, setAddress] = useState("");
   const [startDate, setStartDate] = useState("");
   const [finishDate, setFinishDate] = useState("");
+
   const [ods1, setOds1] = useState(false);
   const [ods2, setOds2] = useState(false);
   const [ods3, setOds3] = useState(false);
-
   const [ods4, setOds4] = useState(false);
   const [ods5, setOds5] = useState(false);
   const [ods6, setOds6] = useState(false);
@@ -55,15 +54,15 @@ function NewProjectForm() {
     project: project,
     volunteers: volunteers,
     description: description,
-    address: address,
+    projectType: projectType,
+    country: country,
+    state: state,
     zip: zip,
     city: city,
-    state: state,
-    country: country,
+    address: address,
     startDate: startDate,
-    finishDate: finishDate,
+    finishDate: finishDate
   };
-
   const handleSaveNewProject = (e) => {
     e.preventDefault();
     const regex = new RegExp(/^[0-9]*$/);
@@ -74,10 +73,13 @@ function NewProjectForm() {
       rfc.trim().length > 11 &&
       clabe.trim().length > 17 &&
       regex.test(clabe) &&
-      phone.trim.length > 9 &&
+      phone.trim().length > 9 &&
       regex.test(phone) &&
-      project!="" &&
-      volunteers>0
+      project.trim() != "" &&
+      volunteers >= 0 &&
+      description.trim() != "" &&
+      projectType != 0  &&
+      address.trim() !=""
     ) {
       console.log(body);
     } else {
@@ -85,7 +87,7 @@ function NewProjectForm() {
         Swal.fire({
           position: "top-end",
           icon: "info",
-          title: "Selecione una opción para el tipo de representante",
+          title: "Seleccione una opción para el tipo de representante",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -93,7 +95,7 @@ function NewProjectForm() {
         Swal.fire({
           position: "top-end",
           icon: "info",
-          title: "Verifique los datos del nombre del lider o representante",
+          title: "Verifique los datos del nombre del líder o representante",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -105,11 +107,11 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (email == "") {
+      } else if (email.trim() == "") {
         Swal.fire({
           position: "top-end",
           icon: "info",
-          title: "Verifique los datos del correo del lider o representante",
+          title: "Verifique los datos del correo del líder o representante",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -129,26 +131,54 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (project.trim()=="") {
+      }
+      else if (project.trim() == "") {
         Swal.fire({
           position: "top-end",
           icon: "info",
-          title: "Verifique los datos del título del proyecto",
+          title: "Verifique los datos del nombre del proyecto",
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (volunteers<1) {
+      }
+      else if (volunteers < 1) {
         Swal.fire({
           position: "top-end",
           icon: "info",
-          title: "El numero de voluntarios no admite numero negativos",
+          title: "El número de voluntarios no admite números negativos",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+      else if (description.trim() == "") {
+        Swal.fire({
+          position: "top-center",
+          icon: "info",
+          title: "La descripción del proyecto no puede estar vacía",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+      else if (projectType == projectType) {
+        Swal.fire({
+          position: "top-center",
+          icon: "info",
+          title: "Por favor, seleccione una opción en tipo de proyecto",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+      else if (address.trim()=="") {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "La direccion del proyecto no puede estar vacia",
           showConfirmButton: false,
           timer: 1000,
         });
       }
     }
   };
-
   useEffect(() => {
     if (checkName) {
       setName(
@@ -160,7 +190,6 @@ function NewProjectForm() {
       setName("");
     }
   }, [checkName]);
-
   useEffect(() => {
     if (checkEmail) {
       setEmail(`${sessionStorage.getItem("email")}`);
@@ -168,7 +197,6 @@ function NewProjectForm() {
       setEmail("");
     }
   }, [checkEmail]);
-
   useEffect(() => {
     if (checkRfc) {
       setRfc(`${sessionStorage.getItem("rfc")}`);
@@ -176,7 +204,6 @@ function NewProjectForm() {
       setRfc("");
     }
   }, [checkRfc]);
-
   useEffect(() => {
     if (checkClabe) {
       setClabe(`${sessionStorage.getItem("clabe")}`);
@@ -184,7 +211,6 @@ function NewProjectForm() {
       setClabe("");
     }
   }, [checkClabe]);
-
   return (
     <>
       <NewProjectFormView
@@ -214,18 +240,18 @@ function NewProjectForm() {
         setVolunteers={setVolunteers}
         description={description}
         setDescription={setDescription}
-        typeProject={typeProject}
-        setTypeProject={setTypeProject}
-        address={address}
-        setAddress={setAddress}
-        zip={zip}
+        projectType={projectType}
+        setProjectType={setProjectType}
+        country={country}
+        setCountry={setCountry}
+        state={state}
+        setState={setState}
+        zip={zip} 
         setZip={setZip}
         city={city}
         setCity={setCity}
-        state={state}
-        setState={setState}
-        country={country}
-        setCountry={setCountry}
+        address={address}
+        setAddress={setAddress}
         startDate={startDate}
         setStartDate={setStartDate}
         finishDate={finishDate}
@@ -267,7 +293,7 @@ function NewProjectForm() {
         handleSaveNewProject={handleSaveNewProject}
       />
     </>
-  );
+  )
 }
 
 export default NewProjectForm;
