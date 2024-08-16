@@ -120,6 +120,7 @@ function ProfileEditableView({
             className="form-control text-uppercase"
             id="rfcUser"
             maxLength={13}
+            minLength={12}
           ></input>
         </div>
         <div className="mb-3">
@@ -136,6 +137,7 @@ function ProfileEditableView({
             className="form-control text-uppercase"
             id="clabeUser"
             maxLength={18}
+            minLength={18}
           ></input>
         </div>
         <input
