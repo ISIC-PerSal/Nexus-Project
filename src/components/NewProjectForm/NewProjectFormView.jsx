@@ -180,64 +180,7 @@ function NewProjectFormView({ leaderType, setLeaderType, name, setName, checkNam
                                 </label>
                             </div>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="RFC-lider" className="form-label me-1">RFC</label>
-                            <Tooltip title={longText}>
-                                <HelpCenterIcon />
-                            </Tooltip>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="RFC-lider"
-                                value={rfc}
-                                onChange={(e) => setRfc(e.target.value)}
-                            ></input>
-                            <div className="form-check">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    checked={checkRfc}
-                                    onChange={(e) => setCheckRfc(e.target.checked)}
-                                    id="checkRfc"
-                                    maxLength={13} minLength={12}
-                                ></input>
-                                <label
-                                    className="form-check-label text-body-secondary"
-                                    htmlFor="checkRfc"
-                                >
-                                    Usar mi RFC
-                                </label>
-                            </div>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="CLABE-lider" className="form-label me-1">CLABE interbancaria</label>
-                            <Tooltip title={longText}>
-                                <HelpCenterIcon />
-                            </Tooltip>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="CLABE-lider"
-                                value={clabe}
-                                onChange={(e) => setClabe(e.target.value)}
-                                maxLength={18} minLength={18}
-                            ></input>
-                            <div className="form-check">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    checked={checkClabe}
-                                    onChange={(e) => setCheckClabe(e.target.checked)}
-                                    id="checkClabe"
-                                ></input>
-                                <label
-                                    className="form-check-label text-body-secondary"
-                                    htmlFor="checkClabe"
-                                >
-                                    Usar mi CLABE
-                                </label>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div className="mb-3">
                         <label htmlFor="seccion-proyecto" className="form-label fw-bold fs-4">Datos del proyecto</label>
