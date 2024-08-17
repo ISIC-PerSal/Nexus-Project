@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 function NewProjectFormView({ leaderType, setLeaderType, name, setName, checkName, setCheckName, phone, setPhone, email, setEmail,
     checkEmail, setCheckEmail, rfc, setRfc, checkRfc, setCheckRfc, clabe, setClabe, checkClabe,
     setCheckClabe, project, setProject, volunteers, setVolunteers, description, setDescription, typeProject,
-    setTypeProject, country, setCountry, state, setState, zip, setZip, city, setCity, address, setAddress, 
+    setTypeProject, donation, setDonation, country, setCountry, state, setState, zip, setZip, city, setCity, address, setAddress, 
     startDate, setStartDate, finishDate, setFinishDate, ods1, setOds1, ods2, setOds2, ods3, setOds3, ods4,
     setOds4, ods5, setOds5, ods6,
     setOds6,
@@ -36,6 +36,7 @@ function NewProjectFormView({ leaderType, setLeaderType, name, setName, checkNam
     handleSaveNewProject }) {
 
     const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más`;
+    const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos`;
     const ods = [
         {
             url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-01.jpg",
@@ -289,11 +290,74 @@ function NewProjectFormView({ leaderType, setLeaderType, name, setName, checkNam
                                 >
                                     Estoy de acuerdo en recibir donativos para mi proyecto
                                 </label>
+                                <Tooltip title={donacion}>
+                                    <HelpCenterIcon />
+                                </Tooltip>   
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
                                     id="checkDonations"
-                                ></input>   
+                                    value={donation}
+                                    onChange={(e)=>setDonation(e.target.checked)}
+                                ></input>
+                            </div>
+                        </div>
+                        <div className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}>
+                            <label htmlFor="RFC-lider" className="form-label me-1">RFC</label>
+                            <Tooltip title={longText}>
+                                <HelpCenterIcon />
+                            </Tooltip>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="RFC-lider"
+                                value={rfc}
+                                onChange={(e) => setRfc(e.target.value)}
+                            ></input>
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={checkRfc}
+                                    onChange={(e) => setCheckRfc(e.target.checked)}
+                                    id="checkRfc"
+                                    maxLength={13} minLength={12}
+                                ></input>
+                                <label
+                                    className="form-check-label text-body-secondary"
+                                    htmlFor="checkRfc"
+                                >
+                                    Usar mi RFC
+                                </label>
+                            </div>
+                        </div>
+                        <div className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}>
+                            <label htmlFor="CLABE-lider" className="form-label me-1">CLABE interbancaria</label>
+                            <Tooltip title={longText}>
+                                <HelpCenterIcon />
+                            </Tooltip>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="CLABE-lider"
+                                value={clabe}
+                                onChange={(e) => setClabe(e.target.value)}
+                                maxLength={18} minLength={18}
+                            ></input>
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={checkClabe}
+                                    onChange={(e) => setCheckClabe(e.target.checked)}
+                                    id="checkClabe"
+                                ></input>
+                                <label
+                                    className="form-check-label text-body-secondary"
+                                    htmlFor="checkClabe"
+                                >
+                                    Usar mi CLABE
+                                </label>
                             </div>
                         </div>
                         <div className="mb-3">

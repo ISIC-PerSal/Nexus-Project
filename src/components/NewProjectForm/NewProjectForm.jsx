@@ -6,7 +6,7 @@ function NewProjectForm() {
   const [leaderType, setLeaderType] = useState(0)
   const [name, setName] = useState(`${sessionStorage.getItem("name")} ${sessionStorage.getItem("lastName")}`)
   const [checkName, setCheckName] = useState(false)
-  const [phone, setPhone] = useState(0)
+  const [phone, setPhone] = useState("")
   const [email, setEmail] = useState("")
   const [checkEmail, setCheckEmail] = useState(false)
   const [rfc, setRfc] = useState("")
@@ -17,7 +17,8 @@ function NewProjectForm() {
   const [project, setProject] = useState("")
   const [volunteers, setVolunteers] = useState(1)
   const [description, setDescription] = useState("")
-  const [typeProject, setTypeProject] = useState("")
+  const [typeProject, setTypeProject] = useState(0)
+  const [donation, setDonation] = useState(false)
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("")
@@ -55,6 +56,8 @@ function NewProjectForm() {
     project: project,
     volunteers: volunteers,
     description: description,
+    typeProject: typeProject,
+    donation: donation,
     address: address,
     zip: zip,
     city: city,
@@ -244,6 +247,8 @@ function NewProjectForm() {
   setDescription={setDescription} 
   typeProject={typeProject} 
   setTypeProject={setTypeProject}
+  donation={donation}
+  setDonation={setDonation}
   country={ country}
   setCountry={ setCountry}
   state= {state}
