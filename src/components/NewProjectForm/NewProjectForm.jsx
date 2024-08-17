@@ -18,7 +18,7 @@ function NewProjectForm() {
   const [volunteers, setVolunteers] = useState(1);
   const [description, setDescription] = useState("");
   const [projectType, setProjectType] = useState("");
-  const [donation, setDonation] = useState(false)
+  const [donation, setDonation] = useState(false);
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
@@ -56,14 +56,14 @@ function NewProjectForm() {
     volunteers: volunteers,
     description: description,
     projectType: projectType,
-    donation:donation,
+    donation: donation,
     country: country,
     state: state,
     zip: zip,
     city: city,
     address: address,
     startDate: startDate,
-    finishDate: finishDate
+    finishDate: finishDate,
   };
   const handleSaveNewProject = (e) => {
     e.preventDefault();
@@ -72,19 +72,41 @@ function NewProjectForm() {
       leaderType != 0 &&
       name.trim() != "" &&
       email.trim() != "" &&
-      donation==true &&
-      rfc.trim().length > 11 &&
-      clabe.trim().length > 17 &&
       regex.test(clabe) &&
       phone.trim().length > 9 &&
       regex.test(phone) &&
       project.trim() != "" &&
       volunteers >= 0 &&
       description.trim() != "" &&
-      projectType != 0  &&
-      address.trim() !=""
+      projectType != 0 &&
+      address.trim() != ""
     ) {
-      console.log(body);
+      console.log(rfc.length);
+      if (
+        donation == true &&
+        rfc.trim().length > 11 &&
+        clabe.trim().length > 17
+      ) {
+        console.log(body);
+      } else if (donation == false) {
+        console.log(body);
+      } else if (rfc.trim().length < 12) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Verifique los datos del RFC",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else if (clabe.trim().length < 18 || regex.test(clabe) == false) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Verifique los datos de la CLABE",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
     } else {
       if (leaderType == 0) {
         Swal.fire({
@@ -118,24 +140,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (donation==true && rfc.trim().length < 12) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del RFC",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (donation==true && clabe.trim().length < 18 || regex.test(clabe) == false) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos de la CLABE",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      }
-      else if (project.trim() == "") {
+      } else if (project.trim() == "") {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -143,8 +148,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      }
-      else if (volunteers < 1) {
+      } else if (volunteers < 1) {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -152,17 +156,15 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      }
-      else if (description.trim() == "") {
+      } else if (description.trim() == "") {
         Swal.fire({
-          position: "top-center",
+          position: "top-end",
           icon: "info",
           title: "La descripción del proyecto no puede estar vacía",
           showConfirmButton: false,
           timer: 1000,
         });
-      }
-      else if (projectType == "" || projectType=="0") {
+      } else if (projectType == "" || projectType == "0") {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -170,8 +172,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      }
-      else if (address.trim()=="") {
+      } else if (address.trim() == "") {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -251,7 +252,7 @@ function NewProjectForm() {
         setCountry={setCountry}
         state={state}
         setState={setState}
-        zip={zip} 
+        zip={zip}
         setZip={setZip}
         city={city}
         setCity={setCity}
@@ -298,7 +299,7 @@ function NewProjectForm() {
         handleSaveNewProject={handleSaveNewProject}
       />
     </>
-  )
+  );
 }
 
 export default NewProjectForm;
