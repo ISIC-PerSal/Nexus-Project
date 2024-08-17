@@ -33,6 +33,8 @@ function NewProjectFormView({
     setDescription,
     projectType,
     setProjectType,
+    donation,
+    setDonation,
     country,
     setCountry,
     state,
@@ -224,60 +226,6 @@ function NewProjectFormView({
                                 </label>
                             </div>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="RFC-lider" className="form-label me-1">RFC</label>
-                            <Tooltip title={longText}>
-                                <HelpCenterIcon />
-                            </Tooltip>
-                            <input type="text" className="form-control" id="RFC-lider"
-                                maxLength={13}
-                                minLength={12}
-                                value={rfc}
-                                onChange={(e) => setRfc(e.target.value)}
-                            ></input>
-                            <div className="form-check">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    checked={checkRfc}
-                                    onChange={(e) => setCheckRfc(e.target.checked)}
-                                    id="checkRfc"
-                                ></input>
-                                <label
-                                    className="form-check-label text-body-secondary"
-                                    htmlFor="checkRfc"
-                                >
-                                    Usar mi RFC
-                                </label>
-                            </div>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="CLABE-lider" className="form-label me-1">CLABE interbancaria</label>
-                            <Tooltip title={longText}>
-                                <HelpCenterIcon />
-                            </Tooltip>
-                            <input type="text" className="form-control" id="CLABE-lider"
-                                maxLength={18}
-                                minLength={18}
-                                value={clabe}
-                                onChange={(e) => setClabe(e.target.value)}
-                            ></input>
-                            <div className="form-check">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    checked={checkClabe}
-                                    onChange={(e) => setCheckClabe(e.target.checked)}
-                                    id="checkClabe"
-                                ></input>
-                                <label
-                                    className="form-check-label text-body-secondary"
-                                    htmlFor="checkClabe"
-                                >
-                                    Usar mi CLABE
-                                </label>
-                            </div>
-                        </div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="seccion-proyecto" className="form-label fw-bold fs-4">Datos del proyecto</label>
@@ -306,7 +254,7 @@ function NewProjectFormView({
                         <div className="mb-3">
                             <label htmlFor="tipo-proyecto" className="form-label" >Proyecto</label>
                             <select className="form-select" aria-label="Default select example" defaultValue={projectType} onChange={(e) => setProjectType(e.target.value)}>
-                                <option value={projectType}>Seleccione su tipo de proyecto</option>
+                                <option value={0}>Seleccione su tipo de proyecto</option>
                                 <option value={"Campaña Presencial"}>Campaña Presencial</option>
                                 <option value={"Iniciativa Virtual"}>Iniciativa Virtual</option>
                                 <option value={"Proyecto Hibrido"}>Proyecto Hibrido</option>
@@ -317,6 +265,7 @@ function NewProjectFormView({
                                 <label
                                     className="form-check-label text-body-secondary"
                                     htmlFor="checkDonations"
+
                                 >
                                     Estoy de acuerdo en recibir donativos para mi proyecto
                                 </label>
@@ -327,7 +276,63 @@ function NewProjectFormView({
                                     className="form-check-input"
                                     type="checkbox"
                                     id="checkDonations"
+                                    value={donation}
+                                    onChange={(e) => setDonation(e.target.checked)}
                                 ></input>
+                            </div>
+                        </div>
+                        <div className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}>
+                            <label htmlFor="RFC-lider" className="form-label me-1">RFC</label>
+                            <Tooltip title={longText}>
+                                <HelpCenterIcon />
+                            </Tooltip>
+                            <input type="text" className="form-control" id="RFC-lider"
+                                maxLength={13}
+                                minLength={12}
+                                value={rfc}
+                                onChange={(e) => setRfc(e.target.value)}
+                            ></input>
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={checkRfc}
+                                    onChange={(e) => setCheckRfc(e.target.checked)}
+                                    id="checkRfc"
+                                ></input>
+                                <label
+                                    className="form-check-label text-body-secondary"
+                                    htmlFor="checkRfc"
+                                >
+                                    Usar mi RFC
+                                </label>
+                            </div>
+                        </div>
+                        <div className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}>
+                            <label htmlFor="CLABE-lider" className="form-label me-1">CLABE interbancaria</label>
+                            <Tooltip title={longText}>
+                                <HelpCenterIcon />
+                            </Tooltip>
+                            <input type="text" className="form-control" id="CLABE-lider"
+                                maxLength={18}
+                                minLength={18}
+                                value={clabe}
+                                onChange={(e) => setClabe(e.target.value)}
+                            ></input>
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={checkClabe}
+                                    onChange={(e) => setCheckClabe(e.target.checked)}
+                                    id="checkClabe"
+                                ></input>
+                                <label
+                                    className="form-check-label text-body-secondary"
+                                    htmlFor="checkClabe"
+                                >
+                                    Usar mi CLABE
+                                </label>
                             </div>
                         </div>
                         <div className="mb-3">

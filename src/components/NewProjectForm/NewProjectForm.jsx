@@ -6,7 +6,7 @@ function NewProjectForm() {
   const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
-  const [phone, setPhone] = useState("0");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [checkEmail, setCheckEmail] = useState(false);
   const [rfc, setRfc] = useState("");
@@ -18,6 +18,7 @@ function NewProjectForm() {
   const [volunteers, setVolunteers] = useState(1);
   const [description, setDescription] = useState("");
   const [projectType, setProjectType] = useState("");
+  const [donation, setDonation] = useState(false)
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
@@ -55,6 +56,7 @@ function NewProjectForm() {
     volunteers: volunteers,
     description: description,
     projectType: projectType,
+    donation:donation,
     country: country,
     state: state,
     zip: zip,
@@ -70,6 +72,7 @@ function NewProjectForm() {
       leaderType != 0 &&
       name.trim() != "" &&
       email.trim() != "" &&
+      donation==true &&
       rfc.trim().length > 11 &&
       clabe.trim().length > 17 &&
       regex.test(clabe) &&
@@ -115,7 +118,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (rfc.trim().length < 12) {
+      } else if (donation==true && rfc.trim().length < 12) {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -123,7 +126,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (clabe.trim().length < 18 || regex.test(clabe) == false) {
+      } else if (donation==true && clabe.trim().length < 18 || regex.test(clabe) == false) {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -159,9 +162,9 @@ function NewProjectForm() {
           timer: 1000,
         });
       }
-      else if (projectType == projectType) {
+      else if (projectType == "" || projectType=="0") {
         Swal.fire({
-          position: "top-center",
+          position: "top-end",
           icon: "info",
           title: "Por favor, seleccione una opción en tipo de proyecto",
           showConfirmButton: false,
@@ -242,6 +245,8 @@ function NewProjectForm() {
         setDescription={setDescription}
         projectType={projectType}
         setProjectType={setProjectType}
+        donation={donation}
+        setDonation={setDonation}
         country={country}
         setCountry={setCountry}
         state={state}
