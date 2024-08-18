@@ -8,7 +8,7 @@ function Alliance() {
     const isLogin = isAuth()
     console.log(isLogin)
     return (
-        <> 
+        <>
             {
                 isLogin ? (<Navbar />) : (<NavbarGuest />)
             }

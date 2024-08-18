@@ -19,32 +19,19 @@ function RegisterView({
         <form onSubmit={handleRegister}>
           <h1>Registro</h1>
 
-          <div className="mb-3">
-            <label htmlFor="nombreRegistro" className="form-label">
-              nombre
-            </label>
-            <input
-              minLength={1}
-              type="text"
-              className="form-control"
-              id="nombreRegistro"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-            ></input>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="apellidoRegistro" className="form-label">
-              apellido
-            </label>
-            <input
-              minLength={1}
-              type="text"
-              className="form-control"
-              id="apellidoRegistro"
-              value={apellido}
-              onChange={(e) => setApellido(e.target.value)}
-            ></input>
-          </div>
+    return (
+        <>
+            <div className="py-5 my-5 w-100 d-flex justify-content-center align-items-center bg-gral">
+                <main className="border bg-white w-50 h-50 p-5 rounded">
+                    <form>
+                        <h1>Registro</h1>
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputEmail1" className="form-label">Usuario</label>
+                            <input
+                                type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
+                            ></input>
 
           <div className="mb-3">
             <label htmlFor="fechaRegistro" className="form-label">

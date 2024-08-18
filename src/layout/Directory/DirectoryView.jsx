@@ -4,7 +4,6 @@ import Tooltip from "@mui/material/Tooltip";
 import odsData from "../../util/odsData";
 import paises from "../../util/paises";
 import getDirectory from "../../util/directory/getDirectory";
-import CardODS from "../../components/CardODS/CardODS";
 
 function DirectoryView() {
   const [ods, setOds] = useState("Todos");
@@ -166,11 +165,9 @@ function DirectoryView() {
           </div>
         </div>
         <div>
-          {directoryData
-            ? directoryData.map((item, index) => (
-                <CardODS key={index} item={item} />
-              ))
-            : "Sin datos"}
+          {directoryData.map((item, index) => (
+            <ItemComponent key={index} item={item} />
+          ))}
         </div>
       </div>
     </main>
