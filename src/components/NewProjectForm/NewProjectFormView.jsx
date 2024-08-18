@@ -1,9 +1,15 @@
 import React from 'react'
 import Tooltip from '@mui/material/Tooltip';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import PaisesProyecto from '../../util/location/PaisesProyecto';
+import Select from "react-select";
+import Mexico from '../../util/location/Mexico';
+import Chile from '../../util/location/Chile';
+import Argentina from '../../util/location/Argentina';
+import Belice from '../../util/location/Belice';
+import Bolivia from '../../util/location/Bolivia';
+import Brasil from '../../util/location/Brasil';
 function NewProjectFormView({
     leaderType,
     setLeaderType,
@@ -337,34 +343,41 @@ function NewProjectFormView({
                         </div>
                         <div className="mb-3">
                             <label htmlFor="pais" className="form-label">País</label>
-                            <input className="form-control" id="pais" rows="2"
-                                value={country}
-                                onChange={(e) => setCountry(e.target.value)}
-                            ></input>
+                            <Select
+                                placeholder="--"
+                                options={PaisesProyecto}
+                                defaultValue={country}
+                                onChange={(e) => {
+                                    setCountry(e.label.props.children[1]);  
+                                }}
+                            />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="estado" className="form-label">Estado</label>
-                            <input className="form-control" id="estado" rows="2"
-                                value={state}
-                                onChange={(e) => setState(e.target.value)}
-                            ></input>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="cp" className="form-label">Código postal</label>
-                            <input type="number" className="form-control" id="cp" rows="2"
-                                value={zip}
-                                onChange={(e) => setZip(e.target.value)}
-                            ></input>
+                            <label htmlFor="pais" className="form-label">Estado</label>
+                            <Select
+                                placeholder="--"
+                                options={Brasil}
+                                defaultValue={state}
+                                onChange={(e) => {
+                                    setState(e.label.props.children[1]);  
+                                }}
+                            />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="municipio" className="form-label">Municipio</label>
-                            <input className="form-control" id="municipio" rows="2"
+                            <input className="form-control" id="municipio"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
                             ></input>
                         </div>
-
-                        <div className="mb-3">
+                        <div className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"}`}>
+                            <label htmlFor="cp" className="form-label">Código postal</label>
+                            <input type="number" className="form-control" id="cp"
+                                value={zip}
+                                onChange={(e) => setZip(e.target.value)}
+                            ></input>
+                        </div>
+                        <div className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"}`}>
                             <label htmlFor="direccion" className="form-label">Dirección</label>
                             <textarea className="form-control" id="direccion" rows="2"
                                 value={address}
