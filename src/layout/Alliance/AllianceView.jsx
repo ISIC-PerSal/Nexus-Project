@@ -7,7 +7,7 @@ function AllianceView() {
                 <div className="container w-50 p-3 border rounded border-secondary-subtle bg-gral">
                <div className='fs-3 fw-bold'>
                     Alianza juvenil e infantil
-               </div>
+               </div> 
                <div>
                 <p className='text-align-justify p-2'>
                     En Nexus Project creemos que todos los aliados aportan algo

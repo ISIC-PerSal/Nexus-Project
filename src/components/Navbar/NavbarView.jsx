@@ -32,7 +32,7 @@ function NavbarView({logOff, selected, setSelected}) {
                                 Registrar proyecto
                                 <div className={selected=="Registrar"? "color-block":""}></div>
                                 </a>
-                            </li>
+                            </li> 
                             <li className="nav-item">
                                 <a className="nav-link text-white fw-bold" href="#" onClick={()=>setSelected("Explorar")}>
                                     Explorar proyectos
@@ -40,7 +40,7 @@ function NavbarView({logOff, selected, setSelected}) {
                                     </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-bold" href="#" onClick={()=>setSelected("Alianza")}>
+                                <a className="nav-link text-white fw-bold" href="/alliance" onClick={()=>setSelected("Alianza")}>
                                     Alianza juvenil e infantil
                                     <div className={selected=="Alianza"? "color-block":""}></div>
                                 </a>
@@ -60,10 +60,10 @@ function NavbarView({logOff, selected, setSelected}) {
                             Yo
                         </button>
                         <ul className="dropdown-menu dropdown-menu-lg-end">
-                            <li><button className="dropdown-item" type="button">Mi perfil</button></li>
-                            <li><button className="dropdown-item" type="button">Mis proyectos</button></li>
+                            <li><a href='/profile' className="dropdown-item" type="button">Mi perfil</a></li>
+                            <li><a className="dropdown-item" type="button">Mis proyectos</a></li>
                             <li>
-                                <button onClick={logOff} className="dropdown-item" type="button">Cerrar sesión</button>
+                                <a href='/' className="dropdown-item" type="button">Cerrar sesión</a>
                             </li>
                         </ul>
                     </div>
