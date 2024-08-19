@@ -15,7 +15,7 @@ function ProfileView({
   setPassword,
   rfc,
   setRfc,
-  clabe,
+  clabe, 
   setClabe,
   updateUser
 }) {

@@ -16,7 +16,7 @@ function Profile() {
 
   async function updateUser(e) {
     e.preventDefault();
-    const body = {
+    const body = { 
       idUser: sessionStorage.getItem("id_user"),
       name: name,
       lastName: lastName,

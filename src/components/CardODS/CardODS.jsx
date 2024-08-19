@@ -6,7 +6,7 @@ function CardODS({item}) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleDescription = () => {
-      setIsExpanded(!isExpanded);
+      setIsExpanded(!isExpanded); 
     };
 
   return (

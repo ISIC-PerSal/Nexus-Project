@@ -11,7 +11,7 @@ function Alliance() {
         <>
             {
                 isLogin ? (<Navbar />) : (<NavbarGuest />)
-            }
+            } 
             <AllianceView />
         </>
     )

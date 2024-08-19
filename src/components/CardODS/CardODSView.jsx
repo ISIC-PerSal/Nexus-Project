@@ -7,7 +7,7 @@ function CardODSView({ item, toggleDescription, isExpanded }) {
     <div className="d-flex justify-content-center my-1">
       <div className="w-50 h-auto">
         <img src={item.imagen} className="img-fluid" alt="..." />
-      </div>
+      </div> 
       <div className="w-50">
         <h5 className="fs-5">{item.nombre}</h5>
         {odsArray.map((item, index) => (
