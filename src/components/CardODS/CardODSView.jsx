@@ -1,5 +1,4 @@
 import React from 'react'
-import odsData from '../../util/odsData';
 import BadgeODSView from '../BadgeODS/BadgeODSView';
 
 function CardODSView({ item, toggleDescription, isExpanded }) {
