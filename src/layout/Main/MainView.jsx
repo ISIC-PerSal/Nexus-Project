@@ -1,5 +1,5 @@
 import React from 'react'
-import NavbarGuestView from '../../components/Navbar/NavbarGuestView'
+import NavbarGuest from '../../components/Navbar/NavbarGuest'
 
 
 function MainView() {

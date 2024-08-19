@@ -40,7 +40,7 @@ function NavbarView({logOff, selected, setSelected}) {
                                     </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white fw-bold" href="/alliance" onClick={()=>setSelected("Alianza")}>
+                                <a className="nav-link text-white fw-bold" href="#" onClick={()=>setSelected("Alianza")}>
                                     Alianza juvenil e infantil
                                     <div className={selected=="Alianza"? "color-block":""}></div>
                                 </a>
@@ -59,11 +59,11 @@ function NavbarView({logOff, selected, setSelected}) {
                         <button type="button" className="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                             Yo
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-lg-end">
-                            <li><button className="dropdown-item" type="button">Mi perfil</button></li>
-                            <li><button className="dropdown-item" type="button">Mis proyectos</button></li>
+                        <ul className="dropdown-menu dropdown-menu-lg-end">
+                            <li><a href='/profile' className="dropdown-item" type="button">Mi perfil</a></li>
+                            <li><a className="dropdown-item" type="button">Mis proyectos</a></li>
                             <li>
-                                <button onClick={logOff} className="dropdown-item" type="button">Cerrar sesión</button>
+                                <a href='/' className="dropdown-item" type="button">Cerrar sesión</a>
                             </li>
                         </ul>
                     </div>
@@ -74,4 +74,4 @@ function NavbarView({logOff, selected, setSelected}) {
     )
 }
 
-export default NavbarView
+export default NavbarView;

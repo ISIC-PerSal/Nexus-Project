@@ -6,9 +6,6 @@ import paises from "../../util/paises";
 import getDirectory from "../../util/directory/getDirectory";
 import CardODS from "../../components/CardODS/CardODS";
 
-
-
-
 function DirectoryView() {
   const [ods, setOds] = useState("Todos");
   const [pais, setPais] = useState("Todos");
@@ -38,7 +35,6 @@ function DirectoryView() {
     }
     fetchData();
   };
-
   return (
     <main className="bg-img py-3">
       <div className="container w-50 p-3 border rounded border-secondary-subtle bg-gral">
@@ -179,4 +175,3 @@ function DirectoryView() {
   );
 }
 export default DirectoryView;
-
