@@ -6,7 +6,7 @@ function NewProjectForm() {
   const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
-  const [phone, setPhone] = useState("0");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [checkEmail, setCheckEmail] = useState(false);
   const [rfc, setRfc] = useState("");
@@ -18,7 +18,8 @@ function NewProjectForm() {
   const [volunteers, setVolunteers] = useState(1);
   const [description, setDescription] = useState("");
   const [projectType, setProjectType] = useState("");
-  const [country, setCountry] = useState("");
+  const [donation, setDonation] = useState(false);
+  const [country, setCountry] = useState("Todos");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");
@@ -43,7 +44,24 @@ function NewProjectForm() {
   const [ods15, setOds15] = useState(false);
   const [ods16, setOds16] = useState(false);
   const [ods17, setOds17] = useState(false);
-
+  const [donationVerify, setDonationVerify] = useState(false);
+  const [projectTypeVerify, setProjectTypeVerify] = useState(false);
+  const [estados, setEstados] = useState([]);
+  useEffect(() => {
+    if (
+      projectType != "Iniciativa Virtual" &&
+      zip.trim().length > 4 &&
+      address.trim().length > 0
+    ) {
+      setProjectTypeVerify(true);
+    } else if (projectType == "Iniciativa Virtual") {
+      setZip("");
+      setAddress("");
+      setProjectTypeVerify(true);
+    } else {
+      setProjectTypeVerify(false);
+    }
+  }, [projectType]);
   const body = {
     leaderType: leaderType,
     name: name,
@@ -55,33 +73,44 @@ function NewProjectForm() {
     volunteers: volunteers,
     description: description,
     projectType: projectType,
+    donation: donation,
     country: country,
     state: state,
     zip: zip,
     city: city,
     address: address,
     startDate: startDate,
-    finishDate: finishDate
+    finishDate: finishDate,
   };
   const handleSaveNewProject = (e) => {
     e.preventDefault();
     const regex = new RegExp(/^[0-9]*$/);
     if (
+      donation == true &&
+      rfc.trim().length > 11 &&
+      clabe.trim().length > 17
+    ) {
+      setDonationVerify(true);
+    } else if (donation == false) {
+      setRfc("");
+      setClabe("");
+      setDonationVerify(true);
+    }
+    if (
       leaderType != 0 &&
       name.trim() != "" &&
       email.trim() != "" &&
-      rfc.trim().length > 11 &&
-      clabe.trim().length > 17 &&
       regex.test(clabe) &&
       phone.trim().length > 9 &&
       regex.test(phone) &&
       project.trim() != "" &&
       volunteers >= 0 &&
       description.trim() != "" &&
-      projectType != 0  &&
-      address.trim() !=""
+      projectType != 0 &&
+      donationVerify == true &&
+      projectTypeVerify == true
     ) {
-      console.log(body);
+      console.log(body)
     } else {
       if (leaderType == 0) {
         Swal.fire({
@@ -115,24 +144,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (rfc.trim().length < 12) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del RFC",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (clabe.trim().length < 18 || regex.test(clabe) == false) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos de la CLABE",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      }
-      else if (project.trim() == "") {
+      } else if (project.trim() == "") {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -140,8 +152,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      }
-      else if (volunteers < 1) {
+      } else if (volunteers < 1) {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -149,30 +160,51 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      }
-      else if (description.trim() == "") {
+      } else if (description.trim() == "") {
         Swal.fire({
-          position: "top-center",
+          position: "top-end",
           icon: "info",
           title: "La descripción del proyecto no puede estar vacía",
           showConfirmButton: false,
           timer: 1000,
         });
-      }
-      else if (projectType == projectType) {
+      } else if (projectType == "" || projectType == "0") {
         Swal.fire({
-          position: "top-center",
+          position: "top-end",
           icon: "info",
           title: "Por favor, seleccione una opción en tipo de proyecto",
           showConfirmButton: false,
           timer: 1000,
         });
-      }
-      else if (address.trim()=="") {
+      } else if (rfc.trim().length < 12 && donation == true) {
         Swal.fire({
           position: "top-end",
           icon: "info",
-          title: "La direccion del proyecto no puede estar vacia",
+          title: "Verifique los datos del RFC",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else if (clabe.trim().length < 18 && regex.test(clabe) == true && donation == true) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Verifique los datos de la CLABE",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else if (zip.trim() < 5 && projectType != "Iniciativa Virtual") {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Verifique los datos del código postal",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else if (address.trim().length<1 && projectType != "Iniciativa Virtual") {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Verifique los datos de la dirección",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -242,11 +274,13 @@ function NewProjectForm() {
         setDescription={setDescription}
         projectType={projectType}
         setProjectType={setProjectType}
+        donation={donation}
+        setDonation={setDonation}
         country={country}
         setCountry={setCountry}
         state={state}
         setState={setState}
-        zip={zip} 
+        zip={zip}
         setZip={setZip}
         city={city}
         setCity={setCity}
@@ -291,9 +325,11 @@ function NewProjectForm() {
         ods17={ods17}
         setOds17={setOds17}
         handleSaveNewProject={handleSaveNewProject}
+        estados={estados}
+        setEstados={setEstados}
       />
     </>
-  )
+  );
 }
 
 export default NewProjectForm;

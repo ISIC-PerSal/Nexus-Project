@@ -104,3 +104,10 @@ blockquote::after {
 a{
   text-decoration: none !important;
 }
+.show{
+  display: block !important;
+}
+
+.no-show{
+  display: none !important;
+}
