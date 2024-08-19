@@ -427,19 +427,6 @@ function NewProjectFormView({
               ></input>
             </div>
             <div className="mb-3">
-              <label htmlFor="cp" className="form-label">
-                Código postal
-              </label>
-              <input
-                type="number"
-                className="form-control"
-                id="cp"
-                rows="2"
-                value={zip}
-                onChange={(e) => setZip(e.target.value)}
-              ></input>
-            </div>
-            <div className="mb-3">
               <label htmlFor="municipio" className="form-label">
                 Municipio
               </label>
@@ -451,8 +438,27 @@ function NewProjectFormView({
                 onChange={(e) => setCity(e.target.value)}
               ></input>
             </div>
-
-            <div className="mb-3">
+            <div
+              className={`mb-3 ${
+                projectType == "Iniciativa Virtual" ? "no-show" : "show"
+              }`}
+            >
+              <label htmlFor="cp" className="form-label">
+                Código postal
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                id="cp"
+                value={zip}
+                onChange={(e) => setZip(e.target.value)}
+              ></input>
+            </div>
+            <div
+              className={`mb-3 ${
+                projectType == "Iniciativa Virtual" ? "no-show" : "show"
+              }`}
+            >
               <label htmlFor="direccion" className="form-label">
                 Dirección
               </label>
