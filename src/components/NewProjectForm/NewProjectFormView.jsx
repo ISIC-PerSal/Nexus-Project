@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Tooltip from '@mui/material/Tooltip';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import Grid from '@mui/material/Grid';
 import PaisesProyecto from '../../util/location/PaisesProyecto';
 import Select from "react-select";
 import Mexico from '../../util/location/Mexico';
+import mex_cities from '../../util/location/mex_cities';
 import Chile from '../../util/location/Chile';
 import Argentina from '../../util/location/Argentina';
 import Belice from '../../util/location/Belice';
 import Bolivia from '../../util/location/Bolivia';
 import Brasil from '../../util/location/Brasil';
+import CostaRica from '../../util/location/CostaRica';
+import Cuba from '../../util/location/Cuba';
+import Colombia from '../../util/location/Colombia';
+import Ecuador from '../../util/location/Ecuador';
+import Guatemala from '../../util/location/Guatemala';
+import ElSalvador from '../../util/location/ElSalvador';
+import Honduras from '../../util/location/Honduras';
+import Uruguay from '../../util/location/Uruguay';
+import Nicaragua from '../../util/location/Nicaragua';
+import Panama from '../../util/location/Panama';
+import Peru from '../../util/location/Peru';
+
+import RepublicaDominicana from '../../util/location/RepublicaDominicana';
+import Venezuela from '../../util/location/Venezuela';
+import Paraguay from '../../util/location/Paraguay';
 function NewProjectFormView({
     leaderType,
     setLeaderType,
@@ -89,9 +105,92 @@ function NewProjectFormView({
     setOds16,
     ods17,
     setOds17,
-    handleSaveNewProject }) {
+    handleSaveNewProject,
+    estados,
+    setEstados
+}) {
     const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
     const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
+
+    const handleCountryChange = (selectedCountry) => {
+        setCountry(selectedCountry.label.props.children[1]);
+
+        switch (selectedCountry.value) {
+            case "0":
+                setEstados([]);
+                break;
+            case "1":
+                setEstados(Argentina);
+                break;
+            case "2":
+                setEstados(Belice);
+            case "3":
+                setEstados(Bolivia);
+                break;
+            case "4":
+                setEstados(Brasil);
+                break;
+            case "5":
+                setEstados(Chile);
+                break;
+            case "6":
+                setEstados(Colombia);
+                break;
+            case "7":
+                setEstados(CostaRica);
+                break;
+            case "8":
+                setEstados(Cuba);
+                break;
+            case "9":
+                setEstados(Ecuador);
+                break;
+            case "10":
+                setEstados(ElSalvador);
+                break;
+            case "11":
+                setEstados(Guatemala);
+                break;
+            case "12":
+                setEstados(Honduras);
+                break;
+            case "13":
+                setEstados(Mexico);
+                break;
+            case "14":
+                setEstados(Nicaragua);
+                break;
+            case "15":
+                setEstados(Panama);
+                break;
+            case "16":
+                setEstados(Paraguay);
+                break;
+            case "17":
+                setEstados(Peru);
+                break;
+            case "18":
+                setEstados([]);
+                break;
+            case "19":
+                setEstados(RepublicaDominicana);
+                break;
+            case "20":
+                setEstados(Uruguay);
+                break;
+            case "21":
+                setEstados(Venezuela);
+                break;
+            default:
+                setEstados([]);
+                break;
+        }
+    };
+    const handleStateChange = (selectedState) => {
+        const selectedStateName = selectedState.label.props.children[1];
+        setState(selectedStateName);
+    };
+
     const ods = [
         {
             url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-01.jpg",
@@ -347,28 +446,25 @@ function NewProjectFormView({
                                 placeholder="--"
                                 options={PaisesProyecto}
                                 defaultValue={country}
-                                onChange={(e) => {
-                                    setCountry(e.label.props.children[1]);  
-                                }}
+                                onChange={handleCountryChange}
                             />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="pais" className="form-label">Estado</label>
+                            <label htmlFor="pais" className="form-label">Estado/Provincia/Región</label>
                             <Select
                                 placeholder="--"
-                                options={Brasil}
+                                options={estados}
                                 defaultValue={state}
-                                onChange={(e) => {
-                                    setState(e.label.props.children[1]);  
-                                }}
+                                onChange={handleStateChange}
                             />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="municipio" className="form-label">Municipio</label>
-                            <input className="form-control" id="municipio"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
-                            ></input>
+                            <Select
+                                placeholder="Selecciona un municipio"
+                                options={mex_cities}
+                             
+                            />
                         </div>
                         <div className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"}`}>
                             <label htmlFor="cp" className="form-label">Código postal</label>

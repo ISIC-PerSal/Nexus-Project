@@ -300,4 +300,4 @@ const Argentina = [
     },
 ]
 
-export default Argentina
+export default Argentina;

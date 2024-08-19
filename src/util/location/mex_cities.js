@@ -1,4 +1,4 @@
-const municipios = [
+const mex_cities = [
     {
         "Aguascalientes": ["Aguascalientes", "Asientos", "Calvillo", "Cosío", "Pabellón de Arteaga", "Rincón de Romos",
             "San José de Gracia", "Tepezalá", "El Llano", "San Francisco de los Romo"]
@@ -297,3 +297,4 @@ const municipios = [
             "Villa González Ortega", "Villa Hidalgo", "Villanueva", "Zacatecas", "Trancoso"]
     }
 ]
+export default mex_cities;

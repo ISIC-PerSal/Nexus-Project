@@ -46,6 +46,7 @@ function NewProjectForm() {
   const [ods17, setOds17] = useState(false);
   const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
+  const [estados, setEstados] = useState([]);
   useEffect(() => {
     if (
       projectType != "Iniciativa Virtual" &&
@@ -324,6 +325,8 @@ function NewProjectForm() {
         ods17={ods17}
         setOds17={setOds17}
         handleSaveNewProject={handleSaveNewProject}
+        estados={estados}
+        setEstados={setEstados}
       />
     </>
   );

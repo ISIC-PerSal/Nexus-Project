@@ -211,4 +211,4 @@ const Chile = [
     },
 ]
 
-export default Chile
+export default Chile;
