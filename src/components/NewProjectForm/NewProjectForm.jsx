@@ -19,7 +19,7 @@ function NewProjectForm() {
   const [description, setDescription] = useState("");
   const [projectType, setProjectType] = useState("");
   const [donation, setDonation] = useState(false);
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("Todos");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");
@@ -46,7 +46,7 @@ function NewProjectForm() {
   const [ods17, setOds17] = useState(false);
   const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
-
+  const [estados, setEstados] = useState([]);
   useEffect(() => {
     if (
       projectType != "Iniciativa Virtual" &&
@@ -62,7 +62,6 @@ function NewProjectForm() {
       setProjectTypeVerify(false);
     }
   }, [projectType]);
-
   const body = {
     leaderType: leaderType,
     name: name,
@@ -111,7 +110,7 @@ function NewProjectForm() {
       donationVerify == true &&
       projectTypeVerify == true
     ) {
-      console.log(body);
+      console.log(body)
     } else {
       if (leaderType == 0) {
         Swal.fire({
@@ -185,11 +184,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (
-        clabe.trim().length < 18 &&
-        regex.test(clabe) == true &&
-        donation == true
-      ) {
+      } else if (clabe.trim().length < 18 && regex.test(clabe) == true && donation == true) {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -205,10 +200,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (
-        address.trim().length < 1 &&
-        projectType != "Iniciativa Virtual"
-      ) {
+      } else if (address.trim().length<1 && projectType != "Iniciativa Virtual") {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -333,6 +325,8 @@ function NewProjectForm() {
         ods17={ods17}
         setOds17={setOds17}
         handleSaveNewProject={handleSaveNewProject}
+        estados={estados}
+        setEstados={setEstados}
       />
     </>
   );
