@@ -19,7 +19,7 @@ function NewProjectForm() {
   const [description, setDescription] = useState("");
   const [projectType, setProjectType] = useState("");
   const [donation, setDonation] = useState(false);
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("Todos");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");
@@ -44,9 +44,9 @@ function NewProjectForm() {
   const [ods15, setOds15] = useState(false);
   const [ods16, setOds16] = useState(false);
   const [ods17, setOds17] = useState(false);
-  const [donationVerify, setDonationVerify] = useState(false)
+  const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
-
+  const [estados, setEstados] = useState([]);
   useEffect(() => {
     if (
       projectType != "Iniciativa Virtual" &&
@@ -62,7 +62,6 @@ function NewProjectForm() {
       setProjectTypeVerify(false);
     }
   }, [projectType]);
-
   const body = {
     leaderType: leaderType,
     name: name,
@@ -97,8 +96,6 @@ function NewProjectForm() {
       setClabe("");
       setDonationVerify(true);
     }
-    
-    
     if (
       leaderType != 0 &&
       name.trim() != "" &&
@@ -110,8 +107,8 @@ function NewProjectForm() {
       volunteers >= 0 &&
       description.trim() != "" &&
       projectType != 0 &&
-      donationVerify== true &&
-      projectTypeVerify==true
+      donationVerify == true &&
+      projectTypeVerify == true
     ) {
       console.log(body)
     } else {
@@ -179,7 +176,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (rfc.trim().length < 12 && donation==true) {
+      } else if (rfc.trim().length < 12 && donation == true) {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -187,7 +184,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (clabe.trim().length < 18 && regex.test(clabe) == true  && donation==true) {
+      } else if (clabe.trim().length < 18 && regex.test(clabe) == true && donation == true) {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -195,7 +192,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (zip.trim() < 5 && projectType!="Iniciativa Virtual") {
+      } else if (zip.trim() < 5 && projectType != "Iniciativa Virtual") {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -203,7 +200,7 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (address.trim().length<1 && projectType!="Iniciativa Virtual") {
+      } else if (address.trim().length<1 && projectType != "Iniciativa Virtual") {
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -328,6 +325,8 @@ function NewProjectForm() {
         ods17={ods17}
         setOds17={setOds17}
         handleSaveNewProject={handleSaveNewProject}
+        estados={estados}
+        setEstados={setEstados}
       />
     </>
   );
