@@ -46,6 +46,7 @@ function NewProjectForm() {
   const [ods17, setOds17] = useState(false);
   const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
+  const [estados, setEstados] = useState([]);
   useEffect(() => {
     if (
       projectType != "Iniciativa Virtual" &&
@@ -287,7 +288,7 @@ function NewProjectForm() {
         setAddress={setAddress}
         startDate={startDate}
         setStartDate={setStartDate}
-        finishDate={finishDate} 
+        finishDate={finishDate}
         setFinishDate={setFinishDate}
         ods1={ods1}
         setOds1={setOds1}
@@ -296,7 +297,7 @@ function NewProjectForm() {
         ods3={ods3}
         setOds3={setOds3}
         ods4={ods4}
-        setOds4={setOds4} 
+        setOds4={setOds4}
         ods5={ods5}
         setOds5={setOds5}
         ods6={ods6}
@@ -324,6 +325,8 @@ function NewProjectForm() {
         ods17={ods17}
         setOds17={setOds17}
         handleSaveNewProject={handleSaveNewProject}
+        estados={estados}
+        setEstados={setEstados}
       />
     </>
   );
