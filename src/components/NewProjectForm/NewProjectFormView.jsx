@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import Grid from "@mui/material/Grid";
-import Select from "react-select";
-import mex_cities from "../../util/location/mex_cities";import SelectCountry from "../SelectCountry/SelectCountry";
+import SelectCountry from "../SelectCountry/SelectCountry";
 import SelectState from "../SelectState/SelectState";
 import ods from "../../util/ods";
+import SelectCity from "../SelectCity/SelectCity";
 function NewProjectFormView({
   leaderType,
   setLeaderType,
@@ -342,20 +342,13 @@ function NewProjectFormView({
               setCountry={setCountry}
               setEstados={setEstados}
             />
-            <SelectState
-              estados={estados}
+            <SelectState estados={estados} state={state} setState={setState} />
+            <SelectCity
+              city={city}
+              setCity={setCity}
+              country={country}
               state={state}
-              setState={setState}
             />
-            <div className="mb-3">
-              <label htmlFor="municipio" className="form-label">
-                Municipio
-              </label>
-              <Select
-                placeholder="Selecciona un municipio"
-                options={mex_cities}
-              />
-            </div>
             <div
               className={`mb-3  ${
                 projectType == "Iniciativa Virtual" ? "no-show" : "show"
