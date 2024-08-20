@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-function SelectStateView() {
+function SelectStateView({estados, state, handleStateChange}) {
   return (
     <>
       <div className="mb-3">
