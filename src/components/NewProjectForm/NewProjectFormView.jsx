@@ -350,15 +350,12 @@ function NewProjectFormView({
               state={state}
               setState={setState}
             />
-            <div className="mb-3">
-              <label htmlFor="municipio" className="form-label">
-                Municipio
-              </label>
-              <Select
-                placeholder="Selecciona un municipio"
-                options={mex_cities}
-              />
-            </div>
+            <SelectCity
+              city={city}
+              setCity={setCity}
+              country={country}
+              state={state}
+            />
             <div
               className={`mb-3  ${
                 projectType == "Iniciativa Virtual" ? "no-show" : "show"

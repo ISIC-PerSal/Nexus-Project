@@ -1,10 +1,21 @@
 import React from 'react'
+import mex_cities from '../../util/location/mex_cities'
 
-function SelectCityView() {
+function SelectCityView({cities, city, setCity}) {
   return (
-    <div>
-      
-    </div>
+    <>
+       <div className="mb-3">
+              <label htmlFor="municipio" className="form-label">
+                Municipio
+              </label>
+              <Select
+                placeholder="Selecciona un municipio"
+                options={cities}
+                defaultValue={city}
+                onChange={(e) => setCity(e.label.props.children[1])}
+              />
+            </div>
+    </>
   )
 }
 
