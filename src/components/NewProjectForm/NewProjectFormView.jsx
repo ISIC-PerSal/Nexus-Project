@@ -3,10 +3,10 @@ import Tooltip from '@mui/material/Tooltip';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import Grid from '@mui/material/Grid';
 import Select from "react-select";
-import mex_cities from '../../util/location/mex_cities';
 import SelectCountry from '../SelectCountry/SelectCountry';
 import SelectState from '../SelectState/SelectState';
 import ods from '../../util/ods';
+import SelectCity from '../SelectCity/SelectCity';
 function NewProjectFormView({
     leaderType,
     setLeaderType,
@@ -272,26 +272,18 @@ function NewProjectFormView({
                                 </label>
                             </div>
                         </div>
-                        <SelectCountry 
-                        country={country}
-                        setCountry={setCountry}
-                        setEstados={setEstados}
+                        <SelectCountry
+                            country={country}
+                            setCountry={setCountry}
+                            setEstados={setEstados}
                         />
 
                         <SelectState
-                        estados={estados}
-                        state={state}
-                        setState={setState}
+                            estados={estados}
+                            state={state}
+                            setState={setState}
                         />
-
-                        <div className="mb-3">
-                            <label htmlFor="municipio" className="form-label">Municipio</label>
-                            <Select
-                                placeholder="Selecciona un municipio"
-                                options={mex_cities}
-                             
-                            />
-                        </div>
+                        <SelectCity city={city} setCity={setCity} country={country} state={state} />
                         <div className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"}`}>
                             <label htmlFor="cp" className="form-label">Código postal</label>
                             <input type="number" className="form-control" id="cp"
