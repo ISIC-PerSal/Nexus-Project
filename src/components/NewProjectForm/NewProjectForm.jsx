@@ -20,33 +20,46 @@ function NewProjectForm() {
   const [projectType, setProjectType] = useState("");
   const [donation, setDonation] = useState(false);
   const [country, setCountry] = useState("Todos");
-  const [state, setState] = useState("");
+  const [state, setState] = useState([]);
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [startDate, setStartDate] = useState("");
   const [finishDate, setFinishDate] = useState("");
 
-  const [ods1, setOds1] = useState(false);
-  const [ods2, setOds2] = useState(false);
-  const [ods3, setOds3] = useState(false);
-  const [ods4, setOds4] = useState(false);
-  const [ods5, setOds5] = useState(false);
-  const [ods6, setOds6] = useState(false);
-  const [ods7, setOds7] = useState(false);
-  const [ods8, setOds8] = useState(false);
-  const [ods9, setOds9] = useState(false);
-  const [ods10, setOds10] = useState(false);
-  const [ods11, setOds11] = useState(false);
-  const [ods12, setOds12] = useState(false);
-  const [ods13, setOds13] = useState(false);
-  const [ods14, setOds14] = useState(false);
-  const [ods15, setOds15] = useState(false);
-  const [ods16, setOds16] = useState(false);
-  const [ods17, setOds17] = useState(false);
+  const [checkedOds, setCheckedOds] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false,
+    9: false,
+    10: false,
+    11: false,
+    12: false,
+    13: false,
+    14: false,
+    15: false,
+    16: false,
+    17: false,
+  });
   const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
   const [estados, setEstados] = useState([]);
+
+  const handleCheckboxChange = (event) => {
+    const { id, checked } = event.target;
+    const odsNumber = id.replace("ods", "");
+
+    setCheckedOds((prevState) => ({
+      ...prevState,
+      [odsNumber]: checked,
+    }));
+  };
+  
   useEffect(() => {
     if (
       projectType != "Iniciativa Virtual" &&
@@ -62,11 +75,12 @@ function NewProjectForm() {
       setProjectTypeVerify(false);
     }
   }, [projectType]);
+
   const body = {
     leaderType: leaderType,
     name: name,
     phone: phone,
-    emai: email,
+    email: email,
     rfc: rfc,
     clabe: clabe,
     project: project,
@@ -81,7 +95,25 @@ function NewProjectForm() {
     address: address,
     startDate: startDate,
     finishDate: finishDate,
+    ods1: checkedOds[1] || false,
+    ods2: checkedOds[2] || false,
+    ods3: checkedOds[3] || false,
+    ods4: checkedOds[4] || false,
+    ods5: checkedOds[5] || false,
+    ods6: checkedOds[6] || false,
+    ods7: checkedOds[7] || false,
+    ods8: checkedOds[8] || false,
+    ods9: checkedOds[9] || false,
+    ods10: checkedOds[10] || false,
+    ods11: checkedOds[11] || false,
+    ods12: checkedOds[12] || false,
+    ods13: checkedOds[13] || false,
+    ods14: checkedOds[14] || false,
+    ods15: checkedOds[15] || false,
+    ods16: checkedOds[16] || false,
+    ods17: checkedOds[17] || false,
   };
+
   const handleSaveNewProject = (e) => {
     e.preventDefault();
     const regex = new RegExp(/^[0-9]*$/);
@@ -108,9 +140,15 @@ function NewProjectForm() {
       description.trim() != "" &&
       projectType != 0 &&
       donationVerify == true &&
-      projectTypeVerify == true
+      projectTypeVerify == true &&
+      country != "" &&
+      country != "Todos" &&
+      state != "" &&
+      city != "" &&
+      startDate != "" &&
+      finishDate != ""
     ) {
-      console.log(body)
+      console.log(body);
     } else {
       if (leaderType == 0) {
         Swal.fire({
@@ -184,11 +222,39 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (clabe.trim().length < 18 && regex.test(clabe) == true && donation == true) {
+      } else if (
+        clabe.trim().length < 18 &&
+        regex.test(clabe) == true &&
+        donation == true
+      ) {
         Swal.fire({
           position: "top-end",
           icon: "info",
           title: "Verifique los datos de la CLABE",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else if (country == "" || country == null || country == "Todos") {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Verifique los datos del país",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else if (state == "" || state == null) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Verifique los datos del estado/provincia/región",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else if (city == "" || city == null) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Verifique los datos del municipio",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -200,11 +266,30 @@ function NewProjectForm() {
           showConfirmButton: false,
           timer: 1000,
         });
-      } else if (address.trim().length<1 && projectType != "Iniciativa Virtual") {
+      } else if (
+        address.trim().length < 1 &&
+        projectType != "Iniciativa Virtual"
+      ) {
         Swal.fire({
           position: "top-end",
           icon: "info",
           title: "Verifique los datos de la dirección",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else if (startDate == "" || startDate == null) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Verifique los datos de la fecha de arranque",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else if (finishDate == "" || finishDate == null) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: "Verifique los datos de la fecha límite de inscripción",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -290,40 +375,8 @@ function NewProjectForm() {
         setStartDate={setStartDate}
         finishDate={finishDate}
         setFinishDate={setFinishDate}
-        ods1={ods1}
-        setOds1={setOds1}
-        ods2={ods2}
-        setOds2={setOds2}
-        ods3={ods3}
-        setOds3={setOds3}
-        ods4={ods4}
-        setOds4={setOds4}
-        ods5={ods5}
-        setOds5={setOds5}
-        ods6={ods6}
-        setOds6={setOds6}
-        ods7={ods7}
-        setOds7={setOds7}
-        ods8={ods8}
-        setOds8={setOds8}
-        ods9={ods9}
-        setOds9={setOds9}
-        ods10={ods10}
-        setOds10={setOds10}
-        ods11={ods11}
-        setOds11={setOds11}
-        ods12={ods12}
-        setOds12={setOds12}
-        ods13={ods13}
-        setOds13={setOds13}
-        ods14={ods14}
-        setOds14={setOds14}
-        ods15={ods15}
-        setOds15={setOds15}
-        ods16={ods16}
-        setOds16={setOds16}
-        ods17={ods17}
-        setOds17={setOds17}
+        checkedOds={checkedOds}
+        handleCheckboxChange={handleCheckboxChange}
         handleSaveNewProject={handleSaveNewProject}
         estados={estados}
         setEstados={setEstados}
