@@ -1041,7 +1041,7 @@ const mex_cities = [
     ],
   },
   {
-    Estado: "Nuevo Leon",
+    Estado: "Nuevo León",
     Ciudades: [
       "Abasolo",
       "Agualeguas",

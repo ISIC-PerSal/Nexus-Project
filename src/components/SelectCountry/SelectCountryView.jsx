@@ -14,6 +14,7 @@ function SelectCountryView({ handleCountryChange, country }) {
           options={PaisesProyecto}
           defaultValue={country}
           onChange={handleCountryChange}
+          isSearchable={true}
         />
       </div>
     </>

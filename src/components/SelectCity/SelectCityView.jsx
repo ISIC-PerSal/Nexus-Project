@@ -1,9 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import Select from "react-select";
 
-function SelectCityView({ cities, city, setCity }) {
-  const ciudades = cities
-  console.log(ciudades)
+function SelectCityView({ cities, city, handleCityChange }) {
   return (
     <>
       <div className="mb-3">
@@ -11,9 +9,11 @@ function SelectCityView({ cities, city, setCity }) {
           Municipio
         </label>
         <Select
+          isSearchable={true}
           placeholder="Selecciona un municipio"
-          options={ciudades}
+          options={cities}
           defaultValue={city}
+          onChange={handleCityChange}
         />
       </div>
     </>

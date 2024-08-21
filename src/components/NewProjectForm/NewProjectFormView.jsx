@@ -51,43 +51,9 @@ function NewProjectFormView({
   setStartDate,
   finishDate,
   setFinishDate,
-  ods1,
-  setOds1,
-  ods2,
-  setOds2,
-  ods3,
-  setOds3,
-  ods4,
-  setOds4,
-  ods5,
-  setOds5,
-  ods6,
-  setOds6,
-  ods7,
-  setOds7,
-  ods8,
-  setOds8,
-  ods9,
-  setOds9,
-  ods10,
-  setOds10,
-  ods11,
-  setOds11,
-  ods12,
-  setOds12,
-  ods13,
-  setOds13,
-  ods14,
-  setOds14,
-  ods15,
-  setOds15,
-  ods16,
-  setOds16,
-  ods17,
-  setOds17,
+  checkedOds,
+  handleCheckboxChange,
   handleSaveNewProject,
-  estados,
-  setEstados,
 }) {
   const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
   const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
@@ -337,12 +303,8 @@ function NewProjectFormView({
                 </label>
               </div>
             </div>
-            <SelectCountry
-              country={country}
-              setCountry={setCountry}
-              setEstados={setEstados}
-            />
-            <SelectState estados={estados} state={state} setState={setState} />
+            <SelectCountry country={country} setCountry={setCountry} />
+            <SelectState state={state} setState={setState} country={country} />
             <SelectCity
               city={city}
               setCity={setCity}
@@ -419,6 +381,8 @@ function NewProjectFormView({
                         className="form-check-input"
                         type="checkbox"
                         id={`ods${item.ods}`}
+                        checked={checkedOds[item.ods] || false}
+                        onChange={handleCheckboxChange}
                       ></input>
                       <label
                         className="form-check-label"
