@@ -4,10 +4,10 @@ function RegisterView({email, setEmail, password, setPassword, nombre, setNombre
 
     return (
         <>
-            <div className="py-5 my-5 w-100 d-flex justify-content-center align-items-center">
+            <div className="py-5 my-5 w-100 d-flex justify-content-center align-items-center bg-danger-subtle">
                 <main className="border bg-white w-50 h-50 p-5 rounded">
                     <form>
-                        <h1>Registro de ususario</h1>
+                        <h1>Registro de usuario</h1>
                         <div className="mb-3">
                             <label htmlFor="nombre_registro" className="form-label">Nombre</label>
                             <input

@@ -1,8 +1,17 @@
 import React from 'react'
+import Select from "react-select";
 
-function SelectStateView() {
+function SelectStateView({estados, state, handleStateChange}) {
   return (
-    <div>SelectStateView</div>
+    <div className="mb-3">
+    <label htmlFor="pais" className="form-label">Estado/Provincia/Región</label>
+    <Select
+        placeholder="--"
+        options={estados}
+        defaultValue={state}
+        onChange={handleStateChange}
+    />
+  </div>
   )
 }
 

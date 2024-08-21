@@ -2,32 +2,12 @@ import React, { useState } from 'react'
 import Tooltip from '@mui/material/Tooltip';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import Grid from '@mui/material/Grid';
-
 import Select from "react-select";
-import Mexico from '../../util/location/Mexico';
-import mex_cities from '../../util/location/mex_cities';
-import Chile from '../../util/location/Chile';
-import Argentina from '../../util/location/Argentina';
-import Belice from '../../util/location/Belice';
-import Bolivia from '../../util/location/Bolivia';
-import Brasil from '../../util/location/Brasil';
-import CostaRica from '../../util/location/CostaRica';
-import Cuba from '../../util/location/Cuba';
-import Colombia from '../../util/location/Colombia';
-import Ecuador from '../../util/location/Ecuador';
-import Guatemala from '../../util/location/Guatemala';
-import ElSalvador from '../../util/location/ElSalvador';
-import Honduras from '../../util/location/Honduras';
-import Uruguay from '../../util/location/Uruguay';
-import Nicaragua from '../../util/location/Nicaragua';
-import Panama from '../../util/location/Panama';
-import Peru from '../../util/location/Peru';
-
-import RepublicaDominicana from '../../util/location/RepublicaDominicana';
-import Venezuela from '../../util/location/Venezuela';
-import Paraguay from '../../util/location/Paraguay';
 import SelectCountry from '../SelectCountry/SelectCountry';
 import SelectCountryView from '../SelectCountry/SelectCountryView';
+import SelectState from '../SelectState/SelectState';
+import ods from '../../util/ods';
+import SelectCity from '../SelectCity/SelectCity';
 function NewProjectFormView({
     leaderType,
     setLeaderType,
@@ -114,155 +94,6 @@ function NewProjectFormView({
     const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
     const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
 
-    const handleCountryChange = (selectedCountry) => {
-        setCountry(selectedCountry.label.props.children[1]);
-
-        switch (selectedCountry.value) {
-            case "0":
-                setEstados([]);
-                break;
-            case "1":
-                setEstados(Argentina);
-                break;
-            case "2":
-                setEstados(Belice);
-            case "3":
-                setEstados(Bolivia);
-                break;
-            case "4":
-                setEstados(Brasil);
-                break;
-            case "5":
-                setEstados(Chile);
-                break;
-            case "6":
-                setEstados(Colombia);
-                break;
-            case "7":
-                setEstados(CostaRica);
-                break;
-            case "8":
-                setEstados(Cuba);
-                break;
-            case "9":
-                setEstados(Ecuador);
-                break;
-            case "10":
-                setEstados(ElSalvador);
-                break;
-            case "11":
-                setEstados(Guatemala);
-                break;
-            case "12":
-                setEstados(Honduras);
-                break;
-            case "13":
-                setEstados(Mexico);
-                break;
-            case "14":
-                setEstados(Nicaragua);
-                break;
-            case "15":
-                setEstados(Panama);
-                break;
-            case "16":
-                setEstados(Paraguay);
-                break;
-            case "17":
-                setEstados(Peru);
-                break;
-            case "18":
-                setEstados([]);
-                break;
-            case "19":
-                setEstados(RepublicaDominicana);
-                break;
-            case "20":
-                setEstados(Uruguay);
-                break;
-            case "21":
-                setEstados(Venezuela);
-                break;
-            default:
-                setEstados([]);
-                break;
-        }
-    };
-    const handleStateChange = (selectedState) => {
-        const selectedStateName = selectedState.label.props.children[1];
-        setState(selectedStateName);
-    };
-
-    const ods = [
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-01.jpg",
-            ods: 1,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-02.jpg",
-            ods: 2,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-03.jpg",
-            ods: 3,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-04.jpg",
-            ods: 4,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-05.jpg",
-            ods: 5,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-06.jpg",
-            ods: 6,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-07.jpg",
-            ods: 7,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-08.jpg",
-            ods: 8,
-        },
-        {
-            url: "https://www.un.org/sustainabledevelopment/wp-content/uploads/sites/3/2015/09/S_SDG_Icons-01-09.jpg",
-            ods: 9,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-10.jpg",
-            ods: 10,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-11.jpg",
-            ods: 11,
-        },
-        {
-            url: "https://www.un.org/sustainabledevelopment/wp-content/uploads/sites/3/2015/09/S_SDG_Icons-01-12.jpg",
-            ods: 12,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-13.jpg",
-            ods: 13,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-14.jpg",
-            ods: 14,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-15.jpg",
-            ods: 15,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-16.jpg",
-            ods: 16,
-        },
-        {
-            url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-17.jpg",
-            ods: 17,
-        }
-    ];
     return (
         <>
             <main className='py-3 bg-img'>
@@ -442,28 +273,17 @@ function NewProjectFormView({
                                 </label>
                             </div>
                         </div>
-                        hola
                         <SelectCountry 
-                        handleCountryChange={handleCountryChange} 
                         country={country}
+                        setCountry={setCountry}
+                        setEstados={setEstados}
                         />
-                        <div className="mb-3">
-                            <label htmlFor="pais" className="form-label">Estado/Provincia/Región</label>
-                            <Select
-                                placeholder="--"
-                                options={estados}
-                                defaultValue={state}
-                                onChange={handleStateChange}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="municipio" className="form-label">Municipio</label>
-                            <Select
-                                placeholder="Selecciona un municipio"
-                                options={mex_cities}
-                             
-                            />
-                        </div>
+                        <SelectState
+                            estados={estados}
+                            state={state}
+                            setState={setState}
+                        />
+
                         <div className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"}`}>
                             <label htmlFor="cp" className="form-label">Código postal</label>
                             <input type="number" className="form-control" id="cp"
