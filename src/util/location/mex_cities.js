@@ -1,11 +1,22 @@
 const mex_cities = [
   {
-        "Aguascalientes": ["Aguascalientes", "Asientos", "Calvillo", "Cosío", "Pabellón de Arteaga", "Rincón de Romos",
-            "San José de Gracia", "Tepezalá", "El Llano", "San Francisco de los Romo"]
+    Estado: "Aguascalientes",
+    Ciudades: [
+      "Aguascalientes",
+      "Asientos",
+      "Calvillo",
+      "Cosío",
+      "Pabellón de Arteaga",
+      "Rincón de Romos",
+      "San José de Gracia",
+      "Tepezalá",
+      "El Llano",
+      "San Francisco de los Romo",
+    ],
   },
   {
-    "Baja California": [
-      "Ensenada",
+    Estado: "Baja California",
+    Ciudades: [
       "Mexicali",
       "Tecate",
       "Tijuana",
@@ -15,16 +26,12 @@ const mex_cities = [
     ],
   },
   {
-    "Baja California Sur": [
-      "Comondú",
-      "Mulegé",
-      "La Paz",
-      "Los Cabos",
-      "Loreto",
-    ],
+    Estado: "Baja California Sur",
+    Ciudades: ["Comondú", "Mulegé", "La Paz", "Los Cabos", "Loreto"],
   },
   {
-    Campeche: [
+    Estado: "Campeche",
+    Ciudades: [
       "Calkiní",
       "Campeche",
       "Carmen",
@@ -41,7 +48,8 @@ const mex_cities = [
     ],
   },
   {
-    "Coahuila de Zaragoza": [
+    Estado: "Coahuila de Zaragoza",
+    Ciudades: [
       "Abasolo",
       "Acuña",
       "Allende",
@@ -84,10 +92,23 @@ const mex_cities = [
     ],
   },
   {
-    Colima: [],
+    Estado: "Colima",
+    Ciudades: [
+      "Armería",
+      "Colima",
+      "Comala",
+      "Coquimatlán",
+      "Cuauhtémoc",
+      "Ixtlahuacán",
+      "Manzanillo",
+      "Minatitlán",
+      "Tecomán",
+      "Villa de Álvarez",
+    ],
   },
   {
-    Chiapas: [
+    Estado: "Chiapas",
+    Ciudades: [
       "Acacoyagua",
       "Acala",
       "Acapetahua",
@@ -211,7 +232,8 @@ const mex_cities = [
     ],
   },
   {
-    Chihuahua: [
+    Estado: "Chihuahua",
+    Ciudades: [
       "Ahumada",
       "Aldama",
       "Allende",
@@ -282,7 +304,8 @@ const mex_cities = [
     ],
   },
   {
-    "Ciudad de México": [
+    Estado: "Ciudad de México",
+    Ciudades: [
       "Álvaro Obregón",
       "Azcapotzalco",
       "Benito Juárez",
@@ -302,7 +325,8 @@ const mex_cities = [
     ],
   },
   {
-    Durango: [
+    Estado: "Durango",
+    Ciudades: [
       "Canatlán",
       "Canelas",
       "Coneto de Comonfort",
@@ -345,7 +369,8 @@ const mex_cities = [
     ],
   },
   {
-    Guanajuato: [
+    Estado: "Guanajuato",
+    Ciudades: [
       "Abasolo",
       "Acámbaro",
       "Apaseo el Alto",
@@ -395,7 +420,8 @@ const mex_cities = [
     ],
   },
   {
-    Guerrero: [
+    Estado: "Guerrero",
+    Ciudades: [
       "Acapulco de Juárez",
       "Acatepec",
       "Ahuacuotzingo",
@@ -484,7 +510,8 @@ const mex_cities = [
     ],
   },
   {
-    Hidalgo: [
+    Estado: "Hidalgo",
+    Ciudades: [
       "Acatlán",
       "Acaxochitlán",
       "Actopan",
@@ -570,7 +597,8 @@ const mex_cities = [
     ],
   },
   {
-    Jalisco: [
+    Estado: "Jalisco",
+    Ciudades: [
       "Acatic",
       "Acatlán de Juárez",
       "Ahualulco de Mercado",
@@ -700,7 +728,7 @@ const mex_cities = [
   },
   {
     Estado: "Estado de México",
-        Ciudades:
+    Ciudades: [
       "Acambay de Ruíz Castañeda",
       "Acolman",
       "Aculco",
@@ -830,7 +858,7 @@ const mex_cities = [
   },
   {
     Estado: "Michoacán de Ocampo",
-        Ciudades:
+    Ciudades: [
       "Acuitzio",
       "Aguililla",
       "Álvaro Obregón",
@@ -948,7 +976,7 @@ const mex_cities = [
   },
   {
     Estado: "Morelos",
-    Ciudades:
+    Ciudades: [
       "Amacuzac",
       "Atlatlahucan",
       "Axochiapan",
@@ -989,7 +1017,7 @@ const mex_cities = [
   },
   {
     Estado: "Nayarit",
-    Ciudades: 
+    Ciudades: [
       "Acaponeta",
       "Ahuacatlán",
       "Amatlán de Cañas",
@@ -1013,8 +1041,8 @@ const mex_cities = [
     ],
   },
   {
-    Estado: "Nuevo Leon",
-        Ciudades: [
+    Estado: "Nuevo León",
+    Ciudades: [
       "Abasolo",
       "Agualeguas",
       "Allende",
@@ -1064,7 +1092,8 @@ const mex_cities = [
     ],
   },
   {
-    Oaxaca: [
+    Estado: "Oaxaca",
+    Ciudades: [
       "Abejones",
       "Acatlán de Pérez Figueroa",
       "Ánimas Trujano",
@@ -1639,7 +1668,8 @@ const mex_cities = [
     ],
   },
   {
-    Puebla: [
+    Estado: "Puebla",
+    Ciudades: [
       "Acajete",
       "Acateno",
       "Acatlán",
@@ -1860,7 +1890,8 @@ const mex_cities = [
     ],
   },
   {
-    Querétaro: [
+    Estado: "Querétaro",
+    Ciudades: [
       "Amealco de Bonfil",
       "Arroyo Seco",
       "Cadereyta de Montes",
@@ -1882,7 +1913,8 @@ const mex_cities = [
     ],
   },
   {
-    "Quintana Roo": [
+    Estado: "Quintana Roo",
+    Ciudades: [
       "Bacalar",
       "Benito Juárez",
       "Cozumel",
@@ -1897,7 +1929,8 @@ const mex_cities = [
     ],
   },
   {
-    "San Luis Potosí": [
+    Estado: "San Luis Potosí",
+    Ciudades: [
       "Ahualulco",
       "Alaquines",
       "Aquismón",
@@ -1956,7 +1989,8 @@ const mex_cities = [
     ],
   },
   {
-    Sinaloa: [
+    Estado: "Sinaloa",
+    Ciudades: [
       "Ahome",
       "Angostura",
       "Badiraguato",
@@ -1979,7 +2013,8 @@ const mex_cities = [
     ],
   },
   {
-    Sonora: [
+    Estado: "Sonora",
+    Ciudades: [
       "Aconchi",
       "Agua Prieta",
       "Álamos",
@@ -2055,7 +2090,8 @@ const mex_cities = [
     ],
   },
   {
-    Tabasco: [
+    Estado: "Tabasco",
+    Ciudades: [
       "Balancán",
       "Cárdenas",
       "Centla",
@@ -2076,7 +2112,8 @@ const mex_cities = [
     ],
   },
   {
-    Tamaulipas: [
+    Estado: "Tamaulipas",
+    Ciudades: [
       "Abasolo",
       "Aldama",
       "Altamira",
@@ -2123,7 +2160,8 @@ const mex_cities = [
     ],
   },
   {
-    Tlaxcala: [
+    Estado: "Tlaxcala",
+    Ciudades: [
       "Acuamanala de Miguel Hidalgo",
       "Amaxac de Guerrero",
       "Apetatitlán de Antonio Carvajal",
@@ -2179,7 +2217,8 @@ const mex_cities = [
     ],
   },
   {
-    "Veracruz Ignacio de la Llave": [
+    Estado: "Veracruz Ignacio de la Llave",
+    Ciudades: [
       "Acajete",
       "Acatlán",
       "Acayucan",
@@ -2390,7 +2429,8 @@ const mex_cities = [
     ],
   },
   {
-    Yucatán: [
+    Estado: "Yucatán",
+    Ciudades: [
       "Abalá",
       "Acanceh",
       "Akil",
@@ -2500,7 +2540,8 @@ const mex_cities = [
     ],
   },
   {
-    Zacatecas: [
+    Estado: "Zacatecas",
+    Ciudades: [
       "Apozol",
       "Apulco",
       "Atolinga",
