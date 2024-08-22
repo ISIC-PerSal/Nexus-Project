@@ -15,6 +15,8 @@ function NewProjectForm() {
   const [checkClabe, setCheckClabe] = useState(false);
 
   const [project, setProject] = useState("");
+  const [image, setImage] = useState("");
+  const [urlProject, setUrlProject] = useState("")
   const [volunteers, setVolunteers] = useState(1);
   const [description, setDescription] = useState("");
   const [projectType, setProjectType] = useState("");
@@ -46,8 +48,8 @@ function NewProjectForm() {
     16: false,
     17: false,
   });
-  const [donationVerify, setDonationVerify] = useState(false);
-  const [projectTypeVerify, setProjectTypeVerify] = useState(false);
+  const [donationVerify, setDonationVerify] = useState(true);
+  const [projectTypeVerify, setProjectTypeVerify] = useState(true);
   const [estados, setEstados] = useState([]);
 
   const handleCheckboxChange = (event) => {
@@ -59,7 +61,7 @@ function NewProjectForm() {
       [odsNumber]: checked,
     }));
   };
-  
+
   useEffect(() => {
     if (
       projectType != "Iniciativa Virtual" &&
@@ -77,6 +79,7 @@ function NewProjectForm() {
   }, [projectType]);
 
   const body = {
+    idUser : sessionStorage.getItem("id_user"),
     leaderType: leaderType,
     name: name,
     phone: phone,
@@ -84,6 +87,8 @@ function NewProjectForm() {
     rfc: rfc,
     clabe: clabe,
     project: project,
+    image: image,
+    urlProject: urlProject,
     volunteers: volunteers,
     description: description,
     projectType: projectType,
@@ -128,6 +133,25 @@ function NewProjectForm() {
       setClabe("");
       setDonationVerify(true);
     }
+    console.log(donation)
+    console.log(rfc.trim().length)
+    console.log(clabe.trim().length)
+    console.log(leaderType != 0)
+    console.log(name.trim() != "")
+    console.log(email.trim() != "")
+    console.log(phone.trim().length > 9)
+    console.log(project.trim() != "")
+    console.log(volunteers >= 0)
+    console.log(description.trim() != "")
+    console.log(projectType != 0)
+    console.log(donationVerify == true)
+    console.log(projectTypeVerify == true)
+    console.log(country != "")
+    console.log(country != "Todos")
+    console.log(state != "")
+    console.log(city != "")
+    console.log(startDate != "")
+    console.log(finishDate != "")
     if (
       leaderType != 0 &&
       name.trim() != "" &&
@@ -353,6 +377,10 @@ function NewProjectForm() {
         setCheckClabe={setCheckClabe}
         project={project}
         setProject={setProject}
+        image={image}
+        setImage={setImage}
+        urlProject={urlProject}
+        setUrlProject={setUrlProject}
         volunteers={volunteers}
         setVolunteers={setVolunteers}
         description={description}
