@@ -29,6 +29,10 @@ function NewProjectFormView({
   setCheckClabe,
   project,
   setProject,
+  image,
+  setImage,
+  urlProject,
+  setUrlProject,
   volunteers,
   setVolunteers,
   description,
@@ -175,6 +179,34 @@ function NewProjectFormView({
               ></input>
             </div>
             <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-earmark-image" viewBox="0 0 16 16">
+                <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1z" />
+              </svg>
+              <label htmlFor="img-proyecto" className="form-label">
+                Imagen descriptiva del proyecto <i>(opcional)</i>
+              </label>
+              <input
+                type="file"
+                className="form-control"
+                id="img-proyecto"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              ></input>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="url-proyecto" className="form-label">
+                URL del proyecto <i>(opcional)</i>
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="url-proyecto"
+                value={urlProject}
+                onChange={(e) => setUrlProject(e.target.value)}
+              ></input>
+            </div>
+            <div>
               <label htmlFor="nombre-proyecto" className="form-label">
                 Número de voluntarios
               </label>
@@ -312,9 +344,8 @@ function NewProjectFormView({
               state={state}
             />
             <div
-              className={`mb-3  ${
-                projectType == "Iniciativa Virtual" ? "no-show" : "show"
-              }`}
+              className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"
+                }`}
             >
               <label htmlFor="cp" className="form-label">
                 Código postal
@@ -328,9 +359,8 @@ function NewProjectFormView({
               ></input>
             </div>
             <div
-              className={`mb-3  ${
-                projectType == "Iniciativa Virtual" ? "no-show" : "show"
-              }`}
+              className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"
+                }`}
             >
               <label htmlFor="direccion" className="form-label">
                 Dirección
