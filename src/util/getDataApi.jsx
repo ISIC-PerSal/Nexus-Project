@@ -12,6 +12,7 @@ async function getDataApi(url, body) {
             options.body = JSON.stringify(body)
         }
         const response = await fetch(url, options)
+        console.log(response)
 
         if (!response.ok) {
             throw new Error("Error en la petición")

@@ -29,8 +29,7 @@ function Register() {
         birthday: fechaNac,
         age: edad,
       };
-      console.log(body);
-      try {
+     try {
         const data = await fetchRegister(body);
         if (data.status == "Creado") {
           Swal.fire({
