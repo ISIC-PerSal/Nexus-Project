@@ -1,22 +1,8 @@
-import React, { useState } from 'react'
-import RegisterView from './RegisterView';
+import React, { useState } from "react";
+import RegisterView from "./RegisterView";
 import fetchRegister from "../../util/user/fetchRegister";
-import NavbarGuest from '../../components/Navbar/NavbarGuest';
+import NavbarGuest from "../../components/Navbar/NavbarGuest";
 import Swal from "sweetalert2";
-
-function calcularEdad(fecha) {
-  let hoy = new Date();
-  let fechaNacimiento = new Date(fecha);
-  let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-  let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth();
-  if (
-    diferenciaMeses < 0 ||
-    (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
-  ) {
-    edad--;
-  }
-  return edad;
-}
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -26,8 +12,8 @@ function Register() {
   const [fechaNac, setFechaNac] = useState("");
 
   async function handleRegister(event) {
-    event.preventDefault()
-    const edad = calcularEdad(fechaNac)
+    event.preventDefault();
+    const edad = calcularEdad(fechaNac);
     if (
       email != "" &&
       password != "" &&
@@ -43,8 +29,7 @@ function Register() {
         birthday: fechaNac,
         age: edad,
       };
-      console.log(body);
-      try {
+     try {
         const data = await fetchRegister(body);
         if (data.status == "Creado") {
           Swal.fire({
@@ -65,7 +50,6 @@ function Register() {
             confirmButtonText: "OK",
           });
         }
-
       } catch (error) {
         Swal.fire({
           title: "Error!",
@@ -82,6 +66,21 @@ function Register() {
       });
     }
   }
+
+  function calcularEdad(fecha) {
+    let hoy = new Date();
+    let fechaNacimiento = new Date(fecha);
+    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+    let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth();
+    if (
+      diferenciaMeses < 0 ||
+      (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
+    ) {
+      edad--;
+    }
+    return edad;
+  }
+
   return (
     <>
       <NavbarGuest />
@@ -96,9 +95,10 @@ function Register() {
         setApellido={setApellido}
         fechaNac={fechaNac}
         setFechaNac={setFechaNac}
-        handleRegister={handleRegister} />
+        handleRegister={handleRegister}
+      />
     </>
   );
 }
 
-export default Register
+export default Register;
