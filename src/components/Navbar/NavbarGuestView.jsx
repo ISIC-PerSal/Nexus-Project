@@ -60,8 +60,8 @@ function NavbarGuestView({selected, setSelected}) {
                             ¡Participa!
                         </button>
                         <ul class="dropdown-menu dropdown-menu-lg-end">
-                            <li><button className="dropdown-item" type="button">Iniciar sesión</button></li>
-                            <li><button className="dropdown-item" type="button">Crear cuenta</button></li>
+                            <li><a href='/login' className="dropdown-item" type="button">Iniciar sesión</a></li>
+                            <li><a href='/register' className="dropdown-item" type="button">Crear cuenta</a></li>
                         </ul>
                     </div>
                 </div>

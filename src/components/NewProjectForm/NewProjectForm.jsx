@@ -79,7 +79,19 @@ function NewProjectForm() {
     } else {
       setProjectTypeVerify(false);
     }
-  }, [projectType]);
+    if (
+      donation == true &&
+      rfc.trim().length > 11 &&
+      clabe.trim().length > 17
+    ) {
+      setDonationVerify(true);
+    } else if (donation == false) {
+      setRfc("");
+      setClabe("");
+      setDonationVerify(true);
+    }
+    handleUpload(selectedFile, setImageURL);
+  }, [projectType, donation, selectedFile]);
   const body = {
     idUser: sessionStorage.getItem("id_user"),
     leaderType: leaderType,
@@ -124,35 +136,7 @@ function NewProjectForm() {
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
     const regex = new RegExp(/^[0-9]*$/);
-    if (
-      donation == true &&
-      rfc.trim().length > 11 &&
-      clabe.trim().length > 17
-    ) {
-      setDonationVerify(true);
-    } else if (donation == false) {
-      setRfc("");
-      setClabe("");
-      setDonationVerify(true);
-    }
-    handleUpload(selectedFile, setImageURL);
-    console.log("donation", donation)
-    console.log("Leader Type is valid:", leaderType != 0);
-    console.log("Name is valid:", name.trim() != "");
-    console.log("Email is valid:", email.trim() != "");
-    console.log("CLABE is valid:", regex.test(clabe));
-    console.log("Phone is valid:", phone.trim().length > 9 && regex.test(phone));
-    console.log("Project Name is valid:", project.trim() != "");
-    console.log("Volunteers is valid:", volunteers >= 0);
-    console.log("Description is valid:", description.trim() != "");
-    console.log("Project Type is valid:", projectType != 0);
-    console.log("Donation Verification is valid:", donationVerify == true);
-    console.log("Project Type Verification is valid:", projectTypeVerify == true);
-    console.log("Country is valid:", country != "" && country != "Todos");
-    console.log("State is valid:", state != "");
-    console.log("City is valid:", city != "");
-    console.log("Start Date is valid:", startDate != "");
-    console.log("Finish Date is valid:", finishDate != "");
+
     if (
       leaderType != 0 &&
       name.trim() != "" &&
