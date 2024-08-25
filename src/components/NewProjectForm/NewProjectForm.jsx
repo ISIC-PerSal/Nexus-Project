@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NewProjectFormView from "./NewProjectFormView";
 import Swal from "sweetalert2";
-
+import { handleImageUpload, handleUpload } from "../../util/files/handleImage";
+import fetchNewProject from "../../util/project/fetchNewProject";
 function NewProjectForm() {
   const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
@@ -15,8 +16,6 @@ function NewProjectForm() {
   const [checkClabe, setCheckClabe] = useState(false);
 
   const [project, setProject] = useState("");
-  const [image, setImage] = useState("");
-  const [urlProject, setUrlProject] = useState("")
   const [volunteers, setVolunteers] = useState(1);
   const [description, setDescription] = useState("");
   const [projectType, setProjectType] = useState("");
@@ -28,6 +27,7 @@ function NewProjectForm() {
   const [address, setAddress] = useState("");
   const [startDate, setStartDate] = useState("");
   const [finishDate, setFinishDate] = useState("");
+  const [urlProject, setUrlProject] = useState("");
 
   const [checkedOds, setCheckedOds] = useState({
     1: false,
@@ -51,6 +51,9 @@ function NewProjectForm() {
   const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
   const [estados, setEstados] = useState([]);
+  const fileInputRef = useRef(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [imageURL, setImageURL] = useState("");
 
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
@@ -77,9 +80,8 @@ function NewProjectForm() {
       setProjectTypeVerify(false);
     }
   }, [projectType]);
-
   const body = {
-    idUser : sessionStorage.getItem("id_user"),
+    idUser: sessionStorage.getItem("id_user"),
     leaderType: leaderType,
     name: name,
     phone: phone,
@@ -87,7 +89,7 @@ function NewProjectForm() {
     rfc: rfc,
     clabe: clabe,
     project: project,
-    image: image,
+    image: imageURL,
     urlProject: urlProject,
     volunteers: volunteers,
     description: description,
@@ -119,7 +121,7 @@ function NewProjectForm() {
     ods17: checkedOds[17] || false,
   };
 
-  const handleSaveNewProject = (e) => {
+  const handleSaveNewProject = async (e) => {
     e.preventDefault();
     const regex = new RegExp(/^[0-9]*$/);
     if (
@@ -133,6 +135,7 @@ function NewProjectForm() {
       setClabe("");
       setDonationVerify(true);
     }
+    handleUpload(selectedFile, setImageURL);
     if (
       leaderType != 0 &&
       name.trim() != "" &&
@@ -153,7 +156,38 @@ function NewProjectForm() {
       startDate != "" &&
       finishDate != ""
     ) {
-      console.log(body);
+      try {
+        const data = await fetchNewProject(body);
+        if (data.status == "Done") {
+          Swal.fire({
+            title: "Exito!",
+            text: "Proyecto registrado!",
+            icon: "success",
+            confirmButtonText: "Ver proyecto",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "/profile";
+            }else{
+              
+              window.location.href = "/new-project";
+            }
+          });
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Ocurrio un error",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        }
+      } catch (err) {
+        Swal.fire({
+          title: "Error!",
+          text: "Ocurrio un error",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
     } else {
       if (leaderType == 0) {
         Swal.fire({
@@ -358,12 +392,10 @@ function NewProjectForm() {
         setCheckClabe={setCheckClabe}
         project={project}
         setProject={setProject}
-        volunteers={volunteers}
-        setVolunteers={setVolunteers}
-        image={image}
-        setImage={setImage}
         urlProject={urlProject}
         setUrlProject={setUrlProject}
+        volunteers={volunteers}
+        setVolunteers={setVolunteers}
         description={description}
         setDescription={setDescription}
         projectType={projectType}
@@ -387,8 +419,9 @@ function NewProjectForm() {
         checkedOds={checkedOds}
         handleCheckboxChange={handleCheckboxChange}
         handleSaveNewProject={handleSaveNewProject}
-        estados={estados}
-        setEstados={setEstados}
+        handleImageUpload={handleImageUpload}
+        setSelectedFile={setSelectedFile}
+        fileInputRef={fileInputRef}
       />
     </>
   );
