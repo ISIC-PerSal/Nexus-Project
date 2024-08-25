@@ -8,9 +8,9 @@ function SelectCity({ city, setCity, country, state }) {
   const [cities, setCities] = useState([]);
   function filterCities(pais, estado) {
     switch (pais) {
-      case "ElSalvador":
+      case "Mexico":
         return (
-          elsalvador_cities.find((item) => item.Estado === estado)?.Ciudades || []
+          mex_cities.find((item) => item.Estado === estado)?.Ciudades || []
         );
       default:
         return [];
