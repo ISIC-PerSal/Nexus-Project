@@ -196,5 +196,4 @@ const Cuba = [
     }
 ]
 
-
 export default Cuba;

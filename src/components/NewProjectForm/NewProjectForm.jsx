@@ -79,7 +79,21 @@ function NewProjectForm() {
     } else {
       setProjectTypeVerify(false);
     }
-  }, [projectType]);
+
+    if (
+      donation == true &&
+      rfc.trim().length > 11 &&
+      clabe.trim().length > 17
+    ) {
+      setDonationVerify(true);
+    } else if (donation == false) {
+      setRfc("");
+      setClabe("");
+      setDonationVerify(true);
+    }
+
+    handleUpload(selectedFile, setImageURL);
+  }, [projectType, donation, selectedFile]);
   const body = {
     idUser: sessionStorage.getItem("id_user"),
     leaderType: leaderType,
@@ -124,18 +138,7 @@ function NewProjectForm() {
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
     const regex = new RegExp(/^[0-9]*$/);
-    if (
-      donation == true &&
-      rfc.trim().length > 11 &&
-      clabe.trim().length > 17
-    ) {
-      setDonationVerify(true);
-    } else if (donation == false) {
-      setRfc("");
-      setClabe("");
-      setDonationVerify(true);
-    }
-    handleUpload(selectedFile, setImageURL);
+    
     if (
       leaderType != 0 &&
       name.trim() != "" &&
