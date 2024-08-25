@@ -6,7 +6,7 @@ import SelectCountry from "../SelectCountry/SelectCountry";
 import SelectState from "../SelectState/SelectState";
 import ods from "../../util/ods";
 import SelectCity from "../SelectCity/SelectCity";
-function NewProjectFormView({ 
+function NewProjectFormView({
   leaderType,
   setLeaderType,
   name,
@@ -29,12 +29,12 @@ function NewProjectFormView({
   setCheckClabe,
   project,
   setProject,
-  volunteers,
-  setVolunteers,
   image,
   setImage,
   urlProject,
   setUrlProject,
+  volunteers,
+  setVolunteers,
   description,
   setDescription,
   projectType,
@@ -58,6 +58,9 @@ function NewProjectFormView({
   checkedOds,
   handleCheckboxChange,
   handleSaveNewProject,
+  handleImageUpload,
+  setSelectedFile,
+  fileInputRef,
 }) {
   const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
   const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
@@ -178,29 +181,27 @@ function NewProjectFormView({
                 onChange={(e) => setProject(e.target.value)}
               ></input>
             </div>
-            <div>
-              <label htmlFor="nombre-proyecto" className="form-label">
-                Número de voluntarios
-              </label>
-              <input
-                type="number"
-                className="form-control"
-                id="nombre-proyecto"
-                min={1}
-                value={volunteers}
-                onChange={(e) => setVolunteers(e.target.value)}
-              ></input>
-            </div>
-            <div>
+            <div className="mb-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                className="bi bi-file-earmark-image"
+                viewBox="0 0 16 16"
+              >
+                <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                <path d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1z" />
+              </svg>
               <label htmlFor="img-proyecto" className="form-label">
-                Imagen descriptiva del proyecto <i>(opcional)</i>
+                Imagen descriptiva del proyecto (JPG) <i>(opcional)</i>
               </label>
               <input
                 type="file"
                 className="form-control"
                 id="img-proyecto"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
+                onChange={(e) => handleImageUpload(e, setSelectedFile)}
+                ref={fileInputRef}
               ></input>
             </div>
             <div className="mb-3">
@@ -213,6 +214,19 @@ function NewProjectFormView({
                 id="url-proyecto"
                 value={urlProject}
                 onChange={(e) => setUrlProject(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="nombre-proyecto" className="form-label">
+                Número de voluntarios
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                id="nombre-proyecto"
+                min={1}
+                value={volunteers}
+                onChange={(e) => setVolunteers(e.target.value)}
               ></input>
             </div>
             <div className="mb-3">
