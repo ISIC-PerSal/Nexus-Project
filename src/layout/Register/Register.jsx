@@ -4,20 +4,6 @@ import fetchRegister from "../../util/user/fetchRegister";
 import NavbarGuest from "../../components/Navbar/NavbarGuest";
 import Swal from "sweetalert2";
 
-function calcularEdad(fecha) {
-  let hoy = new Date();
-  let fechaNacimiento = new Date(fecha);
-  let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-  let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth();
-  if (
-    diferenciaMeses < 0 ||
-    (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
-  ) {
-    edad--;
-  }
-  return edad;
-}
-
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,9 +11,8 @@ function Register() {
   const [apellido, setApellido] = useState("");
   const [fechaNac, setFechaNac] = useState("");
 
-  async function handleRegister(e) {
-    e.preventDefault();
-
+  async function handleRegister(event) {
+    event.preventDefault();
     const edad = calcularEdad(fechaNac);
     if (
       email != "" &&
@@ -44,8 +29,7 @@ function Register() {
         birthday: fechaNac,
         age: edad,
       };
-      console.log(body);
-      try {
+     try {
         const data = await fetchRegister(body);
         if (data.status == "Creado") {
           Swal.fire({
@@ -81,6 +65,20 @@ function Register() {
         icon: "question",
       });
     }
+  }
+
+  function calcularEdad(fecha) {
+    let hoy = new Date();
+    let fechaNacimiento = new Date(fecha);
+    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+    let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth();
+    if (
+      diferenciaMeses < 0 ||
+      (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
+    ) {
+      edad--;
+    }
+    return edad;
   }
 
   return (
