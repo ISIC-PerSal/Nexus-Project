@@ -7,7 +7,7 @@ const Colombia = [
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Escudo_de_Amazonas_%28Colombia%29.svg/300px-Escudo_de_Amazonas_%28Colombia%29.svg.png"
                     alt="Amazonas"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
-                />
+                /> 
                 Amazonas
             </div>
         ),

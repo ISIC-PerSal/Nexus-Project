@@ -1,6 +1,6 @@
 import Select from "react-select";
 import React from "react";
-import PaisesProyecto from "../../util/location/PaisesProyecto";
+import PaisesProyecto from "../../util/Location/PaisesProyecto";
 
 function SelectCountryView({ handleCountryChange, country }) {
   return (

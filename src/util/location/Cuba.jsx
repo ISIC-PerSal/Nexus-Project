@@ -177,7 +177,7 @@ const Cuba = [
                     alt="Santiago"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Santiago
+                Santiago 
             </div>
         ),
     },

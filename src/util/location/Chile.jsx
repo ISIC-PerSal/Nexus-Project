@@ -10,7 +10,7 @@ const Chile = [
                     alt="Antofagasta"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Antofagasta
+                Antofagasta 
             </div>
         ),
     },

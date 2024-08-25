@@ -2563,7 +2563,7 @@ const mex_cities = [
       "Jiménez del Teul",
       "Juan Aldama",
       "Juchipila",
-      "Loreto",
+      "Loreto", 
       "Luis Moya",
       "Mazapil",
       "Melchor Ocampo",

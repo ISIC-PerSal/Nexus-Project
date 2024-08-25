@@ -11,7 +11,7 @@ const PaisesProyecto = [
                 Todos 
             </div> 
         ),   
-    },
+    }, 
     {
         value: "1",
         label: (

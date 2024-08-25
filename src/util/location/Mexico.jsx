@@ -10,7 +10,7 @@ const Mexico = [
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
                 Aguascalientes
-            </div>
+            </div> 
         ),
     },
     {

@@ -231,7 +231,7 @@ const Uruguay = [
                 />
                 Tacuarembó
             </div>
-        ),
+        ), 
     },
     {
         value: "19",

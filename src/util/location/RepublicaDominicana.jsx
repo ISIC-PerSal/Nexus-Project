@@ -11,7 +11,7 @@ const RepublicaDominicana = [
                 Azua
             </div>
         ),
-    },
+    }, 
     {
         value: "2",
         label: (

@@ -56,32 +56,6 @@ const Nicaragua = [
         label: (
             <div className="d-flex align-items-center">
                 <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Seal_of_Region_Autonoma_del_Atlantico_Norte.svg/45px-Seal_of_Region_Autonoma_del_Atlantico_Norte.svg.png"
-                    alt="Costa Caribe Norte"
-                    style={{ width: "30px", height: "30px", marginRight: "8px" }}
-                />
-                Costa Caribe Norte
-            </div>
-        ),
-    },
-    {
-        value: "6",
-        label: (
-            <div className="d-flex align-items-center">
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Seal_of_Region_Autonoma_del_Atlantico_Sur.svg/45px-Seal_of_Region_Autonoma_del_Atlantico_Sur.svg.png"
-                    alt="Costa Caribe Sur"
-                    style={{ width: "30px", height: "30px", marginRight: "8px" }}
-                />
-                Costa Caribe Sur
-            </div>
-        ),
-    },
-    {
-        value: "7",
-        label: (
-            <div className="d-flex align-items-center">
-                <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Seal_of_Esteli.svg/45px-Seal_of_Esteli.svg.png"
                     alt="Estelí"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
@@ -91,7 +65,7 @@ const Nicaragua = [
         ),
     },
     {
-        value: "8",
+        value: "6",
         label: (
             <div className="d-flex align-items-center">
                 <img
@@ -104,7 +78,7 @@ const Nicaragua = [
         ),
     },
     {
-        value: "9",
+        value: "7",
         label: (
             <div className="d-flex align-items-center">
                 <img
@@ -117,7 +91,7 @@ const Nicaragua = [
         ),
     },
     {
-        value: "10",
+        value: "8",
         label: (
             <div className="d-flex align-items-center">
                 <img
@@ -130,7 +104,7 @@ const Nicaragua = [
         ),
     },
     {
-        value: "11",
+        value: "9",
         label: (
             <div className="d-flex align-items-center">
                 <img
@@ -143,7 +117,7 @@ const Nicaragua = [
         ),
     },
     {
-        value: "12",
+        value: "10",
         label: (
             <div className="d-flex align-items-center">
                 <img
@@ -156,7 +130,7 @@ const Nicaragua = [
         ),
     },
     {
-        value: "13",
+        value: "11",
         label: (
             <div className="d-flex align-items-center">
                 <img
@@ -169,7 +143,7 @@ const Nicaragua = [
         ),
     },
     {
-        value: "14",
+        value: "12",
         label: (
             <div className="d-flex align-items-center">
                 <img
@@ -182,7 +156,7 @@ const Nicaragua = [
         ),
     },
     {
-        value: "15",
+        value: "13",
         label: (
             <div className="d-flex align-items-center">
                 <img
@@ -195,7 +169,7 @@ const Nicaragua = [
         ),
     },
     {
-        value: "16",
+        value: "14",
         label: (
             <div className="d-flex align-items-center">
                 <img
@@ -203,7 +177,33 @@ const Nicaragua = [
                     alt="Río San Juan"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
+                Rivas
+            </div>
+        ),
+    },
+    {
+        value: "15",
+        label: (
+            <div className="d-flex align-items-center">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Seal_of_Rivas.svg/33px-Seal_of_Rivas.svg.png"
+                    alt="Rivas"
+                    style={{ width: "30px", height: "30px", marginRight: "8px" }}
+                />
                 Río San Juan
+            </div>
+        ),
+    },
+    {
+        value: "16",
+        label: (
+            <div className="d-flex align-items-center">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Seal_of_Region_Autonoma_del_Atlantico_Norte.svg/45px-Seal_of_Region_Autonoma_del_Atlantico_Norte.svg.png"
+                    alt="Atlántico Norte"
+                    style={{ width:"30px", height: "30px", marginRight: "8px" }}
+                />
+                Atlántico Norte (RAAN)
             </div>
         ),
     },
@@ -212,11 +212,11 @@ const Nicaragua = [
         label: (
             <div className="d-flex align-items-center">
                 <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Seal_of_Rivas.svg/33px-Seal_of_Rivas.svg.png"
-                    alt="Rivas"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Seal_of_Region_Autonoma_del_Atlantico_Sur.svg/45px-Seal_of_Region_Autonoma_del_Atlantico_Sur.svg.png"
+                    alt="Atlántico Sur"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Rivas
+                Atlántico Sur (RAAS)
             </div>
         ),
     },

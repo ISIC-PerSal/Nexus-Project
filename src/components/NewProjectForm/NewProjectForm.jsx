@@ -15,6 +15,8 @@ function NewProjectForm() {
   const [checkClabe, setCheckClabe] = useState(false);
 
   const [project, setProject] = useState("");
+  const [image, setImage] = useState("");
+  const [urlProject, setUrlProject] = useState("")
   const [volunteers, setVolunteers] = useState(1);
   const [description, setDescription] = useState("");
   const [projectType, setProjectType] = useState("");
@@ -59,7 +61,7 @@ function NewProjectForm() {
       [odsNumber]: checked,
     }));
   };
-  
+
   useEffect(() => {
     if (
       projectType != "Iniciativa Virtual" &&
@@ -77,6 +79,7 @@ function NewProjectForm() {
   }, [projectType]);
 
   const body = {
+    idUser : sessionStorage.getItem("id_user"),
     leaderType: leaderType,
     name: name,
     phone: phone,
@@ -84,6 +87,8 @@ function NewProjectForm() {
     rfc: rfc,
     clabe: clabe,
     project: project,
+    image: image,
+    urlProject: urlProject,
     volunteers: volunteers,
     description: description,
     projectType: projectType,
@@ -355,6 +360,10 @@ function NewProjectForm() {
         setProject={setProject}
         volunteers={volunteers}
         setVolunteers={setVolunteers}
+        image={image}
+        setImage={setImage}
+        urlProject={urlProject}
+        setUrlProject={setUrlProject}
         description={description}
         setDescription={setDescription}
         projectType={projectType}

@@ -6,7 +6,7 @@ import SelectCountry from "../SelectCountry/SelectCountry";
 import SelectState from "../SelectState/SelectState";
 import ods from "../../util/ods";
 import SelectCity from "../SelectCity/SelectCity";
-function NewProjectFormView({
+function NewProjectFormView({ 
   leaderType,
   setLeaderType,
   name,
@@ -31,6 +31,10 @@ function NewProjectFormView({
   setProject,
   volunteers,
   setVolunteers,
+  image,
+  setImage,
+  urlProject,
+  setUrlProject,
   description,
   setDescription,
   projectType,
@@ -185,6 +189,30 @@ function NewProjectFormView({
                 min={1}
                 value={volunteers}
                 onChange={(e) => setVolunteers(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="img-proyecto" className="form-label">
+                Imagen descriptiva del proyecto <i>(opcional)</i>
+              </label>
+              <input
+                type="file"
+                className="form-control"
+                id="img-proyecto"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              ></input>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="url-proyecto" className="form-label">
+                URL del proyecto <i>(opcional)</i>
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="url-proyecto"
+                value={urlProject}
+                onChange={(e) => setUrlProject(e.target.value)}
               ></input>
             </div>
             <div className="mb-3">

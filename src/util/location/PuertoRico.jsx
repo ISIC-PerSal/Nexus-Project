@@ -13,7 +13,7 @@ const PuertoRico = [
         ),
     },
     {
-        value: "2",
+        value: "2", 
         label: (
             <div className="d-flex align-items-center">
                 <img

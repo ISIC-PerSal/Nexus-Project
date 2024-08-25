@@ -10,7 +10,7 @@ const Honduras = [
                 />
                 Atlántida
             </div>
-        ),
+        ), 
     },
     {
         value: "2",

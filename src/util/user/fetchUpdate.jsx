@@ -1,4 +1,5 @@
 import React from 'react'
+import getDataApi from '../getDataApi';
 const API_NEXUS_PROJECT= import.meta.env.VITE_API_NEXUS_PROJECT_DATABASE;
 
 async function fetchUpdate(body) {

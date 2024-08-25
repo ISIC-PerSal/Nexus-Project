@@ -9,7 +9,7 @@ const Guatemala = [
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
                 Alta Verapaz
-            </div>
+            </div> 
         ),
     },
     {

@@ -61,7 +61,7 @@ const CostaRica = [
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
                 Limón
-            </div>
+            </div> 
         ),
     },
     {

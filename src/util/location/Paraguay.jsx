@@ -112,7 +112,7 @@ const Paraguay = [
                     alt="Departamento de Concepción"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-               Departamento de Concepción
+            Concepción
             </div>
         ),
     },
@@ -129,19 +129,7 @@ const Paraguay = [
             </div>
         ),
     },
-    {
-        value: "11",
-        label: (
-            <div className="d-flex align-items-center">
-                <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Escudo_de_Asunci%C3%B3n_%28Paraguay%29.svg/80px-Escudo_de_Asunci%C3%B3n_%28Paraguay%29.svg.png"
-                    alt="Asunción"
-                    style={{ width: "30px", height: "30px", marginRight: "8px" }}
-                />
-               Asunción
-            </div>
-        ),
-    },
+  
     {
         value: "12",
         label: (
@@ -235,4 +223,4 @@ const Paraguay = [
     },
 ]
 
-export default Paraguay;
+export default Paraguay; 

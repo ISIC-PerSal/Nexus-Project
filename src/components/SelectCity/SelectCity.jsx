@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import mex_cities from "../../util/location/mex_cities";
+import mex_cities from "../../util/Location/mex_cities";
 import SelectCityView from "./SelectCityView";
+import honduras_cities from "../../util/Location/honduras_cities"
+import elsalvador_cities from "../../util/Location/elsalvador_cities"
 
 function SelectCity({ city, setCity, country, state }) {
   const [cities, setCities] = useState([]);
   function filterCities(pais, estado) {
     switch (pais) {
-      case "México":
+      case "ElSalvador":
         return (
-          mex_cities.find((item) => item.Estado === estado)?.Ciudades || []
+          elsalvador_cities.find((item) => item.Estado === estado)?.Ciudades || []
         );
       default:
         return [];
