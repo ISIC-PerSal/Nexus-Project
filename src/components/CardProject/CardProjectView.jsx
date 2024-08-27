@@ -3,15 +3,22 @@ import React from 'react'
 function CardProjectView({data}) {
     return (
         <>
-            <div className="card w-100 mb-3">
-                <img src={data.imagen} className="card-img-top" alt="..."></img>
-                <div className="card-body">
-                    <h5 className="card-title">{data.project}</h5>
-                    <p className="card-text">{data.description}</p>
-                    <a href={data.url} className="btn btn-primary">Ir a la pagina oficial</a>
-                </div>
-            </div>
-        </>
+  <div className="card w-100 mb-4 shadow-sm border-0 rounded">
+    <img 
+      src={data.imagen} 
+      className="card-img-top rounded-top" 
+      alt={data.project} 
+      style={{objectFit: "cover", height: "200px"}}
+    />
+    <div className="card-body p-4">
+      <h5 className="card-title text-dark fw-bold">{data.project}</h5>
+      <p className="card-text text-muted">{data.description}</p>
+      <a href={data.url} className="btn btn-primary btn-block mt-3" target="_blank" rel="noopener noreferrer">
+        Ir a la página oficial
+      </a>
+    </div>
+  </div>
+</>
     )
 }
 
