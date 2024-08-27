@@ -1,4 +1,5 @@
 import React from 'react'
+import BadgeCountryView from '../BadgeLocation/BadgeCountryView'
 
 function CardProjectView({data}) {
     return (
@@ -12,6 +13,7 @@ function CardProjectView({data}) {
     />
     <div className="card-body p-4">
       <h5 className="card-title text-dark fw-bold">{data.project}</h5>
+      <BadgeCountryView data={data}/>
       <p className="card-text text-muted">{data.description}</p>
       <a href={data.url} className="btn btn-primary btn-block mt-3" target="_blank" rel="noopener noreferrer">
         Ir a la página oficial

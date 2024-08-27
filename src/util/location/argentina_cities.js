@@ -1,7 +1,7 @@
-const mex_cities = [
+const arg_cities = [
     {
-        Estado: "",
-        Ciudades: [" "]
+        Estado: "Buenos Aires",
+        Ciudades: ["hol"]
     },
     {
         Estado: " ",
@@ -24,4 +24,4 @@ const mex_cities = [
         Ciudades: [" "]
     },
 ]
-export default mex_cities;
+export default arg_cities;
