@@ -79,7 +79,21 @@ function NewProjectForm() {
     } else {
       setProjectTypeVerify(false);
     }
-  }, [projectType]);
+
+    if (
+      donation == true &&
+      rfc.trim().length > 11 &&
+      clabe.trim().length > 17
+    ) {
+      setDonationVerify(true);
+    } else if (donation == false) {
+      setRfc("");
+      setClabe("");
+      setDonationVerify(true);
+    }
+
+    handleUpload(selectedFile, setImageURL);
+  }, [projectType, donation, selectedFile]);
   const body = {
     idUser: sessionStorage.getItem("id_user"),
     leaderType: leaderType,
@@ -125,18 +139,6 @@ function NewProjectForm() {
     e.preventDefault();
     const regex = new RegExp(/^[0-9]*$/);
     if (
-      donation == true &&
-      rfc.trim().length > 11 &&
-      clabe.trim().length > 17
-    ) {
-      setDonationVerify(true);
-    } else if (donation == false) {
-      setRfc("");
-      setClabe("");
-      setDonationVerify(true);
-    }
-    handleUpload(selectedFile, setImageURL);
-    if (
       leaderType != 0 &&
       name.trim() != "" &&
       email.trim() != "" &&
@@ -158,6 +160,7 @@ function NewProjectForm() {
     ) {
       try {
         const data = await fetchNewProject(body);
+        console.log(data)
         if (data.status == "Done") {
           Swal.fire({
             title: "Exito!",
@@ -167,8 +170,7 @@ function NewProjectForm() {
           }).then((result) => {
             if (result.isConfirmed) {
               window.location.href = "/profile";
-            }else{
-              
+            } else {
               window.location.href = "/new-project";
             }
           });

@@ -66,7 +66,7 @@ function NavbarView({ logOff, selected, setSelected }) {
               <li className="nav-item">
                 <a
                   className="nav-link text-white fw-bold"
-                  href="#"
+                  href="/explore"
                   onClick={() => setSelected("Explorar")}
                 >
                   Explorar proyectos
