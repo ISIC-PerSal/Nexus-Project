@@ -1,6 +1,7 @@
 import React from "react";
 import odsData from "../../util/odsData";
 import BadgeODSView from "../BadgeODS/BadgeODSView";
+import BadgeCountryView from "../BadgeLocation/BadgeCountryView";
 
 function CardProjectView({ data, ods }) {
   return (
@@ -15,6 +16,7 @@ function CardProjectView({ data, ods }) {
             <BadgeODSView key={index} item={item} />
           ))}
           </div>
+          <BadgeCountryView data={data}/>
           <a href={data.url} className="btn btn-primary">
             Ir a la página oficial
           </a>
