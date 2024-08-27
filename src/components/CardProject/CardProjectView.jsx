@@ -1,4 +1,5 @@
 import React from 'react'
+import BadgeCountryView from '../BadgeLocation/BadgeCountryView';
 
 function CardProjectView({data}) {
     return (
@@ -8,6 +9,7 @@ function CardProjectView({data}) {
                 <div className="card-body">
                     <h5 className="card-title">{data.project}</h5>
                     <p className="card-text">{data.description}</p>
+                    <BadgeCountryView data={data}/>
                     <a href={data.url} className="btn btn-primary">Ir a la pagina oficial</a>
                 </div>
             </div>
