@@ -136,7 +136,7 @@ function NewProjectForm() {
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
     const regex = new RegExp(/^[0-9]*$/);
-
+console.log(body)
     if (
       leaderType != 0 &&
       name.trim() != "" &&
