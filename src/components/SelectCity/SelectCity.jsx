@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import mex_cities from "../../util/location/mex_cities";
+import mex_cities from "../../util/Location/mex_cities"
 import SelectCityView from "./SelectCityView";
 
 function SelectCity({ city, setCity, country, state }) {

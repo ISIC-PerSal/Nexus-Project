@@ -9,4 +9,4 @@ function CardProject({data}) {
   )
 }
 
-export default CardProject
+export default CardProject;

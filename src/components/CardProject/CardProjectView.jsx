@@ -15,4 +15,4 @@ function CardProjectView({data}) {
     )
 }
 
-export default CardProjectView
+export default CardProjectView;

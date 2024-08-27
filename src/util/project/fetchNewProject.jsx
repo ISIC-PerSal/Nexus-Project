@@ -15,4 +15,4 @@ async function fetchNewProject(body) {
     }
 }
 
-export default fetchNewProject
+export default fetchNewProject;
