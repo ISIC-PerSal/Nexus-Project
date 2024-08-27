@@ -1,14 +1,17 @@
-import React from 'react'
-import odsData from '../../util/odsData';
+import React from "react";
+import odsData from "../../util/odsData";
 
-function BadgeODSView({item}) {
+function BadgeODSView({ item }) {
   return (
     <>
-    <span style={{ backgroundColor: odsData[item.id_ods - 1].color }} className="badge">
-              {item.ods}
-            </span>
-    </> 
+        <span
+          style={{ backgroundColor: odsData[item.id_ods - 1].color }}
+          className="badge m-1"
+        >
+          {item.ods}
+        </span>
+    </>
   );
 }
 
-export default BadgeODSView
+export default BadgeODSView;
