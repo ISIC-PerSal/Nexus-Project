@@ -12,28 +12,28 @@ function ProfileComponentView({name, lastName, email, birthday, age}) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="nameUser" class="form-label">
+                    <label htmlFor="nameUser" className="form-label">
                         Nombre completo
                     </label>
-                    <input  disabled={true} type="text" class="form-control" id="nameUser" value={`${name} ${lastName}`}></input>
+                    <input  disabled={true} type="text" className="form-control" id="nameUser" value={`${name} ${lastName}`}></input>
                 </div>
-                <div class="mb-3">
-                    <label htmlFor="emailUser" class="form-label">
+                <div className="mb-3">
+                    <label htmlFor="emailUser" className="form-label">
                         Correo
                     </label>
-                    <input disabled={true} type="email" class="form-control" id="emailUser" value={`${email}`}></input>
+                    <input disabled={true} type="email" className="form-control" id="emailUser" value={`${email}`}></input>
                 </div>
-                <div class="mb-3">
-                    <label htmlFor="birthdayUser" class="form-label">
+                <div className="mb-3">
+                    <label htmlFor="birthdayUser" className="form-label">
                         Fecha de nacimiento
                     </label>
-                    <input disabled={true} type="date" class="form-control" id="birthdayUser" value={`${birthday}`}></input>
+                    <input disabled={true} type="date" className="form-control" id="birthdayUser" value={`${birthday}`}></input>
                 </div>
-                <div class="mb-3">
-                    <label htmlFor="ageUser" class="form-label">
+                <div className="mb-3">
+                    <label htmlFor="ageUser" className="form-label">
                         Edad
                     </label>
-                    <input disabled={true} type="text" class="form-control" id="ageUser" value={`${age}`}></input>
+                    <input disabled={true} type="text" className="form-control" id="ageUser" value={`${age}`}></input>
                 </div>
             </div>
         </>
