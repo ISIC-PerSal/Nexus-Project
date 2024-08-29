@@ -1,16 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 0bc403436f8d6eb448ebe6605fa848e56f26fa8c
-PARA SUBIR CAMBIOS 
-#Verificar su rama
-git add .
-git commit -m "Mensaje"
-git push origin <rama>
-
-TRAER CAMBIOS
-git fetch origin
+<<<<<<<<< Temporary merge branch 1
+=========
 <<<<<<< HEAD
 git pull origin <rama>
 =======

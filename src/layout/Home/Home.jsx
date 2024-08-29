@@ -1,11 +1,18 @@
-import React from 'react'
-import HomeView from './HomeView'
+import React, { useEffect } from "react";
+import HomeView from "./HomeView";
+import { useNexus } from "../../Hooks/useContext";
 
 function Home() {
+  const { setSelected } = useNexus();
+
+  useEffect(() => {
+    setSelected("Noticias");
+  }, [setSelected]);
   return (
-    
-    <HomeView/>
-  )
+    <>
+      <HomeView />
+    </>
+  );
 }
 
-export default Home
+export default Home;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import mex_cities from "../../util/Location/mex_cities";
+import mex_cities from "../../util/location/mex_cities";
 import SelectCityView from "./SelectCityView";
-import arg_cities from "../../util/Location/arg_cities";
+import arg_cities from "../../util/location/arg_cities";
 
 function SelectCity({ city, setCity, country, state }) {
   const [cities, setCities] = useState([]);

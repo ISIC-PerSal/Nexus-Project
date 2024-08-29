@@ -1,12 +1,13 @@
-import React from "react";
-import NavbarGuest from "../../components/Navbar/NavbarGuest";
+import React from 'react'
+import NavbarView from '../../components/Navbar/NavbarView'
+
 
 function MainView() {
   return (
-    <>
-   <NavbarGuest/>
-    </>
-  );
+   <>
+   <NavbarView/>
+   </>
+  )
 }
 
 export default MainView;

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import LoginView from "./LoginView";
 import fetchLogin from "../../util/user/fetchLogin";
-import NavbarGuest from "../../components/Navbar/NavbarGuest";
 import Swal from "sweetalert2";
+import Navbar from "../../components/Navbar/Navbar";
 
 function Login() {
   sessionStorage.clear();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleLogin(e) {
-    e.preventDefault();
+  async function handleLogin(event) {
+    event.preventDefault();
     if (email.trim() != "" && password != "") {
       const body = {
         email: email,
@@ -28,12 +28,11 @@ function Login() {
           sessionStorage.setItem("password", data.password);
           sessionStorage.setItem("rfc", data.rfc);
           sessionStorage.setItem("clabe", data.clabe);
-
           window.location = "/home";
         } else {
           Swal.fire({
             title: "Error!",
-            text: "Ocurrio un error",
+            text: "Revise sus credenciales",
             icon: "error",
             confirmButtonText: "OK",
           });
@@ -49,7 +48,7 @@ function Login() {
   }
   return (
     <>
-      <NavbarGuest />
+      <Navbar />
       <LoginView
         email={email}
         setEmail={setEmail}

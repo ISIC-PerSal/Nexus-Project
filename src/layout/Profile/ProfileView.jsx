@@ -1,6 +1,8 @@
 import React from "react";
+import profileICon from "../../assets/profile.jpg";
 import ProfileComponetView from "../../components/ProfileView/ProfileComponetView";
 import ProfileEditableView from "../../components/ProfileEditable/ProfileEditableView";
+
 function ProfileView({
   name,
   setName,
@@ -15,41 +17,38 @@ function ProfileView({
   setPassword,
   rfc,
   setRfc,
-  clabe, 
+  clabe,
   setClabe,
-  updateUser
+  updateUser,
 }) {
   return (
     <>
-      <main className="py-3 d-flex justify-content-center w-100 ">
-      <div className="w-75 d-flex justify-content-center">
-         <ProfileComponetView
-          name={name}
-          lastName={lastName}
-          email={email}
-          birthday={birthday}
-          age={age}
-          password={password}
-        />
-        <ProfileEditableView
-          name={name}
-          setName={setName}
-          lastName={lastName}
-          setLastName={setLastName}
-          email={email}
-          setEmail={setEmail}
-          birthday={birthday}
-          setBirthday={setBirthday}
-          password={password}
-          setPassword={setPassword}
-          rfc={rfc}
-          setRfc={setRfc}
-          clabe={clabe}
-          setClabe={setClabe}
-          updateUser={updateUser}
-
-
-        />
+      <main className="py-3 d-flex justify-content-center w-100 bg-img ">
+        <div className="w-75 d-flex justify-content-center">
+          <ProfileComponetView
+            name={name}
+            lastName={lastName}
+            email={email}
+            birthday={birthday}
+            age={age}
+          />
+          <ProfileEditableView
+            name={name}
+            setName={setName}
+            lastName={lastName}
+            setLastName={setLastName}
+            email={email}
+            setEmail={setEmail}
+            birthday={birthday}
+            setBirthday={setBirthday}
+            password={password}
+            setPassword={setPassword}
+            rfc={rfc}
+            setRfc={setRfc}
+            clabe={clabe}
+            setClabe={setClabe}
+            updateUser={updateUser}
+          />
         </div>
       </main>
     </>

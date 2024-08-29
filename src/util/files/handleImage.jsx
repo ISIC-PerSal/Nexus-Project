@@ -28,7 +28,6 @@ export const handleUpload = async (selectedFile, setImageURL) => {
 
   try {
     const response = await fetch(url, {
-      // Asegúrate de que `url` esté definido
       method: "POST",
       body: formData,
     });

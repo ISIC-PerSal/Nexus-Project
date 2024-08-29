@@ -1,20 +1,20 @@
-import React from 'react'
-import AllianceView from './AllianceView'
-import Navbar from '../../components/Navbar/Navbar'
-import NavbarGuest from '../../components/Navbar/NavbarGuest'
-import isAuth from '../../util/isAuth'
+import React, { useEffect } from "react";
+import AllianceView from "./AllianceView";
+import Navbar from "../../components/Navbar/Navbar";
+import { useNexus } from "../../Hooks/useContext";
 
 function Alliance() {
-    const isLogin = isAuth()
-    console.log(isLogin)
-    return (
-        <>
-            {
-                isLogin ? (<Navbar />) : (<NavbarGuest />)
-            } 
-            <AllianceView />
-        </>
-    )
+  const { setSelected } = useNexus();
+
+  useEffect(() => {
+    setSelected("Alianza");
+  }, [setSelected]);
+  return (
+    <>
+      <Navbar />
+      <AllianceView />
+    </>
+  );
 }
 
-export default Alliance
+export default Alliance;
