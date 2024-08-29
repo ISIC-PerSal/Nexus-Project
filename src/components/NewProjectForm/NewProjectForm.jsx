@@ -3,6 +3,7 @@ import NewProjectFormView from "./NewProjectFormView";
 import Swal from "sweetalert2";
 import { handleImageUpload, handleUpload } from "../../util/files/handleImage";
 import fetchNewProject from "../../util/project/fetchNewProject";
+import convertToLocalURL from "../../util/paths/convertToLocalURL";
 function NewProjectForm() {
   const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
@@ -50,7 +51,6 @@ function NewProjectForm() {
   });
   const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
-  const [estados, setEstados] = useState([]);
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageURL, setImageURL] = useState("");
@@ -80,6 +80,8 @@ function NewProjectForm() {
       setProjectTypeVerify(false);
     }
 
+    
+
     if (
       donation == true &&
       rfc.trim().length > 11 &&
@@ -93,7 +95,8 @@ function NewProjectForm() {
     }
 
     handleUpload(selectedFile, setImageURL);
-  }, [projectType, donation, selectedFile]);
+  }, [projectType, donation, selectedFile, imageURL]);
+  
   const body = {
     idUser: sessionStorage.getItem("id_user"),
     leaderType: leaderType,
@@ -103,7 +106,7 @@ function NewProjectForm() {
     rfc: rfc,
     clabe: clabe,
     project: project,
-    image: imageURL,
+    image: convertToLocalURL(imageURL),
     urlProject: urlProject,
     volunteers: volunteers,
     description: description,
@@ -138,7 +141,6 @@ function NewProjectForm() {
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
     const regex = new RegExp(/^[0-9]*$/);
-    
     if (
       leaderType != 0 &&
       name.trim() != "" &&
@@ -170,8 +172,7 @@ function NewProjectForm() {
           }).then((result) => {
             if (result.isConfirmed) {
               window.location.href = "/profile";
-            }else{
-              
+            } else {
               window.location.href = "/new-project";
             }
           });

@@ -1,19 +1,27 @@
-import React, { useState } from 'react'
-import ProfileView from './ProfileView'
-import NavbarView from '../../components/Navbar/NavbarView'
-import calcularEdad from '../../util/user/calcularEdad'
+import React, { useEffect, useState } from "react";
+import ProfileView from "./ProfileView";
+import NavbarView from "../../components/Navbar/NavbarView";
+import calcularEdad from "../../util/user/calcularEdad";
+import fetchUpdate from "../../util/user/fetchUpdate";
 import Swal from "sweetalert2";
-import fetchUpdate from '../../util/user/fetchUpdate';
+import Navbar from "../../components/Navbar/Navbar";
+import { useNexus } from "../../Hooks/useContext";
 
 function Profile() {
-  const [name, setName] = useState(sessionStorage.getItem("name"))
-  const [lastName, setLastName] = useState(sessionStorage.getItem("lastName"))
-  const [email, setEmail] = useState(sessionStorage.getItem("email"))
-  const [birthday, setBirthday] = useState(sessionStorage.getItem("birthday"))
-  const [age, setAge] = useState(sessionStorage.getItem("age"))
-  const [password, setPassword] = useState(sessionStorage.getItem("password"))
-  const [rfc, setRfc] = useState(sessionStorage.getItem("rfc"))
-  const [clabe, setClabe] = useState(sessionStorage.getItem("clabe"))
+
+  const { setSelected } = useNexus();
+
+  useEffect(() => {
+    setSelected("Yo");
+  }, [setSelected]);
+  const [name, setName] = useState(sessionStorage.getItem("name"));
+  const [lastName, setLastName] = useState(sessionStorage.getItem("lastName"));
+  const [email, setEmail] = useState(sessionStorage.getItem("email"));
+  const [birthday, setBirthday] = useState(sessionStorage.getItem("birthday"));
+  const [age, setAge] = useState(sessionStorage.getItem("age"));
+  const [password, setPassword] = useState(sessionStorage.getItem("password"));
+  const [rfc, setRfc] = useState(sessionStorage.getItem("rfc"));
+  const [clabe, setClabe] = useState(sessionStorage.getItem("clabe"));
 
   async function updateUser(e) {
     e.preventDefault();
@@ -86,7 +94,7 @@ function Profile() {
   }
   return (
     <>
-      <NavbarView />
+      <Navbar />
       <ProfileView
         name={name}
         setName={setName}
@@ -103,10 +111,10 @@ function Profile() {
         setRfc={setRfc}
         clabe={clabe}
         setClabe={setClabe}
-        updateUser={updateUser} />
+        updateUser={updateUser}
+      />
     </>
-
-  )
+  );
 }
 
-export default Profile
+export default Profile;

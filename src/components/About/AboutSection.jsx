@@ -1,12 +1,13 @@
-import React from 'react'
-import AboutSectionView from './AboutSectionView'
+import React, { useEffect } from "react";
+import AboutSectionView from "./AboutSectionView";
 
 function AboutSection() {
+  
   return (
-   <>
-   <AboutSectionView/>
-   </>
-  )
+    <>
+      <AboutSectionView />
+    </>
+  );
 }
 
-export default AboutSection
+export default AboutSection;

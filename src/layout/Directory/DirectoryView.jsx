@@ -35,7 +35,6 @@ function DirectoryView() {
     }
     fetchData();
   };
-
   return (
     <main className="bg-img py-3">
       <div className="container w-50 p-3 border rounded border-secondary-subtle bg-gral">
@@ -58,9 +57,8 @@ function DirectoryView() {
                 <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z" />
               </svg>
               <blockquote>
-                Nunca subestimes el poder de un grupo de personas
-                comprometidas para cambiar el mundo. De hecho, es lo único que
-                lo ha logrado.
+                Nunca subestimes el poder de un grupo de personas comprometidas
+                para cambiar el mundo. De hecho, es lo único que lo ha logrado.
               </blockquote>
             </div>
             <div className="name">
@@ -71,8 +69,8 @@ function DirectoryView() {
         <div>
           <p className="text-align-justify px-3">
             Nexus Project se fundamenta en los{" "}
-            <b style={{ color: "#A63F52" }}>nexos</b> entre los miembros de
-            una comunidad para lograr objetivos por el bienestar común. En la
+            <b style={{ color: "#A63F52" }}>nexos</b> entre los miembros de una
+            comunidad para lograr objetivos por el bienestar común. En la
             sección <b>Directorio</b> hemos reunido enlaces de contacto a
             aliados poderosos con los que nuestros usuarios podrían amplificar
             el impacto de sus ideas si estos las conocieran.
@@ -84,7 +82,7 @@ function DirectoryView() {
             <Select
               placeholder="--"
               options={paises}
-              defaultValue={pais}
+              defaultValue={paises[0]}
               onChange={(e) => {
                 setPais(e.label.props.children[1]);
                 handleFilter();
@@ -167,13 +165,14 @@ function DirectoryView() {
           </div>
         </div>
         <div>
-          {directoryData.map((item, index) => (
-            <CardODS key={index} item={item} />
-          ))}
+          {directoryData
+            ? directoryData.map((item, index) => (
+                <CardODS key={index} item={item} />
+              ))
+            : "Sin datos"}
         </div>
       </div>
     </main>
   );
 }
 export default DirectoryView;
-
