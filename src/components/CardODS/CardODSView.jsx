@@ -11,7 +11,7 @@ function CardODSView({ item, toggleDescription, isExpanded }) {
             <div className="w-50">
                 <h5 className="fs-5">{item.nombre}</h5>
                 {odsArray.map((item, index) => (
-                    <BadgeODSView key={index} item={item} />
+                    <BadgeODSView key={index} item={item}/>
                 ))}
                 <p>
                     {isExpanded ? item.descripcion : `${item.descripcion.slice(0, 100)}...`}
