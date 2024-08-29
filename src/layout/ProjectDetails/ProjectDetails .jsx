@@ -12,7 +12,7 @@ function ProjectDetails() {
   const { idProject } = useParams();
   const isLogin = isAuth();
   const { setSelected } = useNexus();
-
+ 
   useEffect(() => {
     setSelected("Explorar");
   }, [setSelected]);

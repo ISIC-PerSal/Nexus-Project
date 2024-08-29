@@ -19,6 +19,8 @@ import NewProject from "./layout/NewProject/NewProject";
 import Explore from "./layout/Explore/Explore";
 import ErrorView from "./layout/Error/ErrorView";
 import MyProjects from "./layout/MyProjects/MyProjects";
+import { NexusProvider } from "./Hooks/useContext";
+import ProjectDetails from "./layout/ProjectDetails/ProjectDetails ";
 
 function App() {
   const isLogin = isAuth() != null;
