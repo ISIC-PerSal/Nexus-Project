@@ -1,34 +1,64 @@
 import React, { useEffect, useState } from "react";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 import CardProjectView from "./CardProjectView";
-import odsData from "../../util/odsData";
+import NoDataView from "../NoData/NoDataView";
+import LoadingView from "../Loading/LoadingView";
 
 function CardProject({ data }) {
-  const [odsArray, setOdsArray] = useState([]);
-
-  const renderODS = () => {
-    const activeODS = [];
-
-    for (let i = 1; i <= 17; i++) {
-      const odsKey = `ods${i}`;
-      if (data[odsKey] === "1") {
-        const odsItem = {
-          id_ods: i,
-          ods: odsData[i - 1].title,
-        };
-        activeODS.push(odsItem);
-      }
-    }
-
-    setOdsArray(activeODS);
-  };
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 8;
 
   useEffect(() => {
-    renderODS();
-  }, [data]); 
+    if (data) {
+      setLoading(false);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [data]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
+  if (loading) {
+    return <LoadingView />;
+  }
+
+  if (loading == true && !data) {
+    return <NoDataView />;
+  }
+
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = data.slice(indexOfFirstProject, indexOfLastProject);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   return (
     <>
-      <CardProjectView data={data} ods={odsArray} />
+      <Stack spacing={0}>
+        <Pagination
+          className="d-flex justify-content-center"
+          count={Math.ceil(data.length / projectsPerPage)}
+          page={currentPage}
+          onChange={handlePageChange}
+        />
+        {currentProjects.map((project, index) => (
+          <CardProjectView key={index} data={project} />
+        ))}
+        <Pagination
+          className="d-flex justify-content-center"
+          count={Math.ceil(data.length / projectsPerPage)}
+          page={currentPage}
+          onChange={handlePageChange}
+        />
+      </Stack>
     </>
   );
 }

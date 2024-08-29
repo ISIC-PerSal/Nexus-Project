@@ -15,8 +15,8 @@ function RegisterView({
 }) {
   return (
     <>
-      <div className="py-5 my-5 w-100  h-100 d-flex justify-content-center align-items-center bg-img">
-        <main className="border bg-white w-50 h-50 p-5 rounded">
+      <div className="py-5 w-100 h-100 d-flex justify-content-center align-items-center bg-img border">
+        <main className="border bg-white w-50 h-50 p-5 rounded bg-danger-subtle">
           <form>
             <h1>Registro</h1>
             <div className="mb-3">

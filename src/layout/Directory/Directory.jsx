@@ -1,19 +1,20 @@
-import React from 'react'
-import DirectoryView from './DirectoryView'
-import NavbarGuest from '../../components/Navbar/NavbarGuest'
-import Navbar from '../../components/Navbar/Navbar'
-import isAuth from '../../util/isAuth'
+import React, { useEffect } from "react";
+import DirectoryView from "./DirectoryView";
+import Navbar from "../../components/Navbar/Navbar";
+import isAuth from "../../util/isAuth";
+import { useNexus } from "../../Hooks/useContext";
 function Directory() {
-    const isLogin= isAuth()
-    return (
-        <>
-        {
-           isLogin? (<Navbar />):(<NavbarGuest/>)
-        }
-          
-            <DirectoryView />
-        </>
-    )
+  const { setSelected } = useNexus();
+
+  useEffect(() => {
+    setSelected("Directorio");
+  }, [setSelected]);
+  return (
+    <>
+      <Navbar />
+      <DirectoryView />
+    </>
+  );
 }
 
 export default Directory;
