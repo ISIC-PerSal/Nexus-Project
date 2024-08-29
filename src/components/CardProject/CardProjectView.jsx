@@ -13,7 +13,7 @@ function CardProjectView({ data, ods }) {
           <p className="card-text">{data.description}</p>
           <div className="d-flex flex-wrap">
           {ods.map((item, index) => (
-            <BadgeODSView key={index} item={item} />
+            <BadgeODSView key={index} item={item} idShow={true}/>
           ))}
           </div>
           <BadgeCountryView data={data}/>
