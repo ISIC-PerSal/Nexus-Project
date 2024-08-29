@@ -1,11 +1,11 @@
 import React from 'react'
-import NavbarGuest from '../../components/Navbar/NavbarGuest'
+import NavbarView from '../../components/Navbar/NavbarView'
 
 
 function MainView() {
   return (
    <>
-   <NavbarGuest/>
+   <NavbarView/>
    </>
   )
 }

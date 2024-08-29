@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import RegisterView from "./RegisterView";
 import fetchRegister from "../../util/user/fetchRegister";
-import NavbarGuest from "../../components/Navbar/NavbarGuest";
 import Swal from "sweetalert2";
+import Navbar from "../../components/Navbar/Navbar";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -83,7 +83,7 @@ function Register() {
 
   return (
     <>
-      <NavbarGuest />
+      <Navbar/>
       <RegisterView
         email={email}
         setEmail={setEmail}

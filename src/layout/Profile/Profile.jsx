@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfileView from "./ProfileView";
 import NavbarView from "../../components/Navbar/NavbarView";
 import calcularEdad from "../../util/user/calcularEdad";
 import fetchUpdate from "../../util/user/fetchUpdate";
 import Swal from "sweetalert2";
+import Navbar from "../../components/Navbar/Navbar";
+import { useNexus } from "../../Hooks/useContext";
 
 function Profile() {
+
+  const { setSelected } = useNexus();
+
+  useEffect(() => {
+    setSelected("Yo");
+  }, [setSelected]);
   const [name, setName] = useState(sessionStorage.getItem("name"));
   const [lastName, setLastName] = useState(sessionStorage.getItem("lastName"));
   const [email, setEmail] = useState(sessionStorage.getItem("email"));
@@ -86,7 +94,7 @@ function Profile() {
   }
   return (
     <>
-      <NavbarView />
+      <Navbar />
       <ProfileView
         name={name}
         setName={setName}

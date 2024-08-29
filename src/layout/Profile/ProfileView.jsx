@@ -23,7 +23,7 @@ function ProfileView({
 }) {
   return (
     <>
-      <main className="py-3 d-flex justify-content-center w-100 ">
+      <main className="py-3 d-flex justify-content-center w-100 bg-img ">
         <div className="w-75 d-flex justify-content-center">
           <ProfileComponetView
             name={name}

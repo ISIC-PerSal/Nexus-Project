@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
-import DirectoryView from "./DirectoryView";
+import MyProjectsView from "./MyProjectsView";
 import Navbar from "../../components/Navbar/Navbar";
-import isAuth from "../../util/isAuth";
 import { useNexus } from "../../Hooks/useContext";
-function Directory() {
+
+function MyProjects() {
   const { setSelected } = useNexus();
 
   useEffect(() => {
-    setSelected("Directorio");
+    setSelected("Yo");
   }, [setSelected]);
   return (
     <>
       <Navbar />
-      <DirectoryView />
+      <MyProjectsView />
     </>
   );
 }
 
-export default Directory;
+export default MyProjects;

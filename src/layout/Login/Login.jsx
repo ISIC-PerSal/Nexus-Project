@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import LoginView from "./LoginView";
 import fetchLogin from "../../util/user/fetchLogin";
-import NavbarGuest from "../../components/Navbar/NavbarGuest";
 import Swal from "sweetalert2";
+import Navbar from "../../components/Navbar/Navbar";
 
 function Login() {
   sessionStorage.clear();
@@ -48,7 +48,7 @@ function Login() {
   }
   return (
     <>
-      <NavbarGuest />
+      <Navbar />
       <LoginView
         email={email}
         setEmail={setEmail}
