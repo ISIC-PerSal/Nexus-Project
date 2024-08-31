@@ -1,20 +1,45 @@
-import React, { useState } from 'react'
-import NavbarView from './NavbarView'
+import React, { useState } from "react";
+import NavbarView from "./NavbarView";
+import isAuth from "../../util/isAuth";
+import { useNexus } from "../../Hooks/useContext";
 
 function Navbar() {
-  const selected=()=>{
-    return sessionStorage.getItem("seleccionado");
-  };
-  const setSelected=(opcion)=>{
-    sessionStorage.setItem("seleccionado", opcion);
-  };
-  const logOff=()=>{
-    window.location = "/";
+  const { selected, setSelected } = useNexus();
+  const isLogin = isAuth();
+  const handleOption = (option) => () => {
+    setSelected(option);
+    switch (option) {
+      case "Noticias":
+        window.location = "/home";
+        break;
+      case "Directorio":
+        window.location = "/home";
+        break;
+      case "Registrar":
+        window.location = "/new-project";
+        break;
+      case "Explorar":
+        window.location = "/home";
+        break;
+      case "Alianza":
+        window.location = "/home";
+        break;
+      case "Acerca":
+        window.location = "/about";
+        break;
+      default:
+        break;
+    }
   };
   return (
-   <>
-   <NavbarView logOff={logOff} selected={selected} setSelected={setSelected}/>
-   </>
+    <>
+      <NavbarView
+        handleOption={handleOption()}
+        selected={selected}
+        isLogin={isLogin}
+        setSelected={setSelected}
+      />
+    </>
   );
 }
 

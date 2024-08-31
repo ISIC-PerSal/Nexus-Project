@@ -21,6 +21,7 @@ function ExploreView({
     value: item.label.props.children[1],
     label: item.label,
   }));
+        
   return (
     <>
       <main className="bg-img py-3">

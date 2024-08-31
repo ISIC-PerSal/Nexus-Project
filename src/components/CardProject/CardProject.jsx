@@ -49,6 +49,7 @@ function CardProject({ data }) {
           page={currentPage}
           onChange={handlePageChange}
         />
+        
         {currentProjects.map((project, index) => (
           <CardProjectView key={index} data={project} />
         ))}

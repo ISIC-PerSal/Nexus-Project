@@ -91,9 +91,7 @@ function NewProjectForm() {
       setClabe("");
       setDonationVerify(true);
     }
-
-    handleUpload(selectedFile, setImageURL);
-  }, [projectType, donation, selectedFile]);
+  }, [projectType, donation]);
   const body = {
     idUser: sessionStorage.getItem("id_user"),
     leaderType: leaderType,
@@ -103,7 +101,7 @@ function NewProjectForm() {
     rfc: rfc,
     clabe: clabe,
     project: project,
-    image: imageURL,
+    image: imageURL ? convertToLocalURL(imageURL) : "",
     urlProject: urlProject,
     volunteers: volunteers,
     description: description,
@@ -137,6 +135,12 @@ function NewProjectForm() {
 
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
+    if (selectedFile) {
+      handleUpload(selectedFile, setImageURL);
+    } else {
+      setImageURL("");
+    }
+    handleUpload(selectedFile, setImageURL);
     const regex = new RegExp(/^[0-9]*$/);
     if (
       leaderType != 0 &&
@@ -160,7 +164,7 @@ function NewProjectForm() {
     ) {
       try {
         const data = await fetchNewProject(body);
-        console.log(data)
+        console.log(data);
         if (data.status == "Done") {
           Swal.fire({
             title: "Exito!",
