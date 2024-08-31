@@ -64,15 +64,9 @@ function ProjectDetailsView({
             </label>
             <div className="mb-3">
               <label htmlFor="tipo-lider" className="form-label">
-                Representante
+                Representante: 
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="tipo-lider"
-                value={leaderType}
-                onChange={(e) => setLeaderType(e.target.value)}
-              ></input>
+              <span>{leaderType}</span>
             </div>
             <div className="mb-3">
               <label htmlFor="nombre-lider" className="form-label">
