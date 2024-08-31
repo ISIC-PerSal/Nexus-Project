@@ -11,14 +11,26 @@ function MyProjectsView() {
         <div className="container w-50 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
           <Tabs className="custom-tabs">
             <TabList>
-              <Tab>Mis proyectos</Tab>
-              <Tab>Proyectos incritos</Tab>
+              <Tab>Mis proyectos activos</Tab>
+              <Tab>Mis proyectos terminados</Tab>
+              <Tab>Proyectos incritos activos</Tab>
+              <Tab>Proyectos incritos terminado</Tab>
+              <Tab>Borradores</Tab>
             </TabList>
             <TabPanel>
               <OwnProjects />
             </TabPanel>
             <TabPanel>
+              Mis proyectos terminado
+            </TabPanel>
+            <TabPanel>
               <JoinedProjects />
+            </TabPanel>
+            <TabPanel>
+              Mis proyectos inscritos terminados
+            </TabPanel>
+            <TabPanel>
+              Borradores
             </TabPanel>
           </Tabs>
         </div>

@@ -80,8 +80,6 @@ function NewProjectForm() {
       setProjectTypeVerify(false);
     }
 
-    
-
     if (
       donation == true &&
       rfc.trim().length > 11 &&
@@ -94,8 +92,7 @@ function NewProjectForm() {
       setDonationVerify(true);
     }
 
-    handleUpload(selectedFile, setImageURL);
-  }, [projectType, donation, selectedFile, imageURL]);
+  }, [projectType, donation]);
   
   const body = {
     idUser: sessionStorage.getItem("id_user"),
@@ -106,7 +103,7 @@ function NewProjectForm() {
     rfc: rfc,
     clabe: clabe,
     project: project,
-    image: convertToLocalURL(imageURL),
+    image: imageURL ? convertToLocalURL(imageURL) : "",
     urlProject: urlProject,
     volunteers: volunteers,
     description: description,
@@ -140,6 +137,11 @@ function NewProjectForm() {
 
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
+    if (selectedFile) {
+      handleUpload(selectedFile, setImageURL);
+    }else{
+      setImageURL("")
+    }
     const regex = new RegExp(/^[0-9]*$/);
     if (
       leaderType != 0 &&

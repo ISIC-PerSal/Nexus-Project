@@ -59,6 +59,7 @@ function CardProjectView({ data }) {
           <Link
             to={`/explore/${idProject}`}
             className="btn bg-oficial text-white w-100 p-1"
+            data={data}
           >
             Ver mas detalles
           </Link>

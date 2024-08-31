@@ -303,5 +303,4 @@ const Venezuela = [
         ),
     },
 ]
-
 export default Venezuela;
