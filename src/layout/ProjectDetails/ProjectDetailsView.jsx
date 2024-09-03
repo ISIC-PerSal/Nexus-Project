@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import BadgeODSView from "../../components/BadgeODS/BadgeODSView";
+import imgDefault from "../../assets/Logo.png";
+import Timer from "../../components/Timer/Timer";
+import EnrollProject from "../../components/EnrollProject/EnrollProject";
 
 function ProjectDetailsView({
+  data,
   id,
   leaderType,
   setLeaderType,
@@ -51,55 +55,68 @@ function ProjectDetailsView({
   setStartDate,
   finishDate,
   setFinishDate,
+  background,
 }) {
   const [odsArray, setOdsArray] = useState([]);
+  const backgroundImg = `url(${background})`;
+
+  const profileImg = `url(${image})`;
+  const defaultStyle = {
+    backgroundColor: "white",
+    width: "18vw",
+    height: "18vw",
+    borderRadius: "100%",
+    backgroundSize: "cover",
+  };
+  const dynamicStyle = image ? { backgroundImage: profileImg } : {};
+
   return (
     <>
+      <EnrollProject idProject={data.id_project_pk} idUser={data.id_user_fk} />
       <main className="py-3 bg-img">
         <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
-          <div>
-            <img
-            //src={imagProject ? imagProject : imgDefault}
-            //srcSet={data.image ? data.image : imgDefault}
-            //className="w-100 h-50"
-            ></img>
-          </div>
-
-          <br />
-
-          <div className="d-flex">
-            <div className="w-75 p-2">
-              <div className="mb-3">
-                <label className="form-label fw-bold fs-4">Datos del proyecto</label>
-                <div className="mb-3">
-                  <label className="form-label">Nombre del proyecto:</label>
-                  <span className="form-control">{project}</span>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Nombre del líder o representante:</label>
-                  <span className="form-control">{name}</span>
-                </div>
-                <div className="d-flex">
-                  <div className="mb-3 w-50">
-                    <label className="form-label">Fecha de arranque:</label>
-                    <span className="form-control">{startDate}</span>
-                  </div>
-                  <div className="mb-3 w-50">
-                    <label className="form-label">Fecha límite de inscripción:</label>
-                    <span className="form-control">{finishDate}</span>
-                  </div>
-                </div>
+          <div className="custom-grid-container">
+            <div className="cover-photo">
+              {background ? (
+                <div
+                  className="w-100 h-100 border rounded border-secondary-subtle z-1"
+                  style={{
+                    backgroundImage: backgroundImg,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+              ) : (
+                <div
+                  className="w-100 border rounded border-secondary-subtle z-1"
+                  style={{
+                    backgroundColor: "#ECECEC",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                ></div>
+              )}
+            </div>
+            <div className="profile-photo">
+              <div style={{ ...defaultStyle, ...dynamicStyle }}></div>
+            </div>
+            <div className="project_information">
+              <div className="">
+                <span className="label-title">{project}</span>
+              </div>
+              <div className="">
+                <label className="">Por:</label>
+                <p className="">{name}</p>
               </div>
             </div>
-
-            <div className="w-25 p-2">
-              <div className="mb-3">
-                <label className="form-label fw-bold fs-4">Información adicional</label>
+          </div>
+          <div>
+            <div className="w-100 d-flex">
+              <div className="w-50 ms-3 bg-gral p-3 rounded">
                 <div className="mb-3">
-                  <img src="{countryImage}" alt="Imagen del país" className="img-fluid" />
-                  <span>
-                    {country}
-                  </span>
+                  <label className="form-label">Tipo de representante:</label>
+                  <span className="form-control">{leaderType}</span>
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Tipo de proyecto:</label>
@@ -107,357 +124,153 @@ function ProjectDetailsView({
                 </div>
               </div>
             </div>
-
-          </div>
-
-          <hr />
-          <div>
-            <div className="mb-3">
-              <label className="form-label">Tipo de representante:</label>
-              <span className="form-control">{leaderType}</span>
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Numero de voluntarios:</label>
-              <span className="form-control">{volunteers}</span>
-            </div>
-            <div className="mb-3 text-center">
-              <label className="form-label">Descripcion del proyecto:</label>
-              <span className="form-control">{description}</span>
-            </div>
-            <div className="d-flex flex-wrap">
-              <span className="fw-bold">ODS: </span>
-              {odsArray.map((item, index) => (
-                <BadgeODSView key={index} item={item} idShow={true} />
-              ))}
-            </div>
-          </div>
-
-          <hr />
-          <div className="d-flex">
-            <div className="w-50 p-2">
-              <div className="mb-3">
-                <label className="form-label fw-bold fs-6">Contacto: </label>
-                <div className="mb-3">
-                  <label className="form-label">Telefono:</label>
-                  <span className="form-control">{phone}</span>
+            <div className="w-100 d-flex">
+              <div className="w-50">
+                <div className="mb-3 w-50">
+                  <label className="form-label">Fecha de arranque:</label>
+                  <span className="form-control">{startDate}</span>
                 </div>
+                <Timer date={startDate} />
+              </div>
+              <div className="w-50">
+                <div className="mb-3 w-50">
+                  <label className="form-label">
+                    Fecha límite de inscripción:
+                  </label>
+                  <span className="form-control">{finishDate}</span>
+                </div>
+                <Timer date={finishDate} />
+              </div>
+            </div>
+            <br />
+            <div className="d-flex">
+              <div className="w-75 p-2">
                 <div className="mb-3">
-                  <label className="form-label">Correo:</label>
-                  <span className="form-control">{email}</span>
+                  <label className="form-label fw-bold fs-4">
+                    Datos del proyecto
+                  </label>
+
+                  <div className="d-flex">
+                    <div className="mb-3 w-50">
+                      <label className="form-label">Fecha de arranque:</label>
+                      <span className="form-control">{startDate}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-25 p-2">
+                <div className="mb-3">
+                  <label className="form-label fw-bold fs-4">
+                    Información adicional
+                  </label>
+                  <div className="mb-3">
+                    <img
+                      src="{countryImage}"
+                      alt="Imagen del país"
+                      className="img-fluid"
+                    />
+                    <span>{country}</span>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div className="w-50 p-2">
+            <hr />
+            <div>
               <div className="mb-3">
-                <label className="form-label fw-bold fs-6">Detalles: </label>
+                <label className="form-label">Numero de voluntarios:</label>
+                <span className="form-control">{volunteers}</span>
+              </div>
+              <div className="mb-3 text-center">
+                <label className="form-label">Descripcion del proyecto:</label>
+                <span className="form-control">{description}</span>
+              </div>
+              <div className="d-flex flex-wrap">
+                <span className="fw-bold">ODS: </span>
+                {odsArray.map((item, index) => (
+                  <BadgeODSView key={index} item={item} idShow={true} />
+                ))}
+              </div>
+            </div>
+            <hr />
+            <div className="d-flex">
+              <div className="w-50 p-2">
                 <div className="mb-3">
-                  <img src="{countryImage}" alt="Imagen del país" className="img-fluid" />
-                  <span>
-                    {country}
-                  </span>
+                  <label className="form-label fw-bold fs-6">Contacto: </label>
+                  <div className="mb-3">
+                    <label className="form-label">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-telephone-fill me-2"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"
+                        />
+                      </svg>
+                      Telefono:
+                    </label>
+                    <span className="form-control">{phone}</span>
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-envelope-at-fill me-2"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671" />
+                        <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791" />
+                      </svg>
+                      Correo:
+                    </label>
+                    <span className="form-control">{email}</span>
+                  </div>
                 </div>
+              </div>
+
+              <div className="w-50 p-2">
                 <div className="mb-3">
-                  <img src="{StateImage}" alt="Imagen del Estado" className="img-fluid" />
-                  <span>
-                    {state}
-                  </span>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Municipio:</label>
-                  <span className="form-control">{city}</span>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Direccion:</label>
-                  <span className="form-control">{address}</span>
+                  <label className="form-label fw-bold fs-6">Detalles: </label>
+                  <div className="mb-3">
+                    <img
+                      src="{countryImage}"
+                      alt="Imagen del país"
+                      className="img-fluid"
+                    />
+                    <span>{country}</span>
+                  </div>
+                  <div className="mb-3">
+                    <img
+                      src="{StateImage}"
+                      alt="Imagen del Estado"
+                      className="img-fluid"
+                    />
+                    <span>{state}</span>
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Municipio:</label>
+                    <span className="form-control">{city}</span>
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Direccion:</label>
+                    <span className="form-control">{address}</span>
+                  </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-      </main >
+      </main>
     </>
   );
 }
 
 export default ProjectDetailsView;
-
-/*
-<form
-          action=""
-          className="container w-50 mt-3 p-3 border rounded border-secondary-subtle bg-gral"
-        >
-          <div className="mb-3">
-            <label htmlFor="seccion-lider" className="form-label fw-bold fs-4">
-              Datos del líder
-            </label>
-            <div className="mb-3">
-              <label htmlFor="tipo-lider" className="form-label">
-                Representante
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="tipo-lider"
-                value={leaderType}
-                onChange={(e) => setLeaderType(e.target.value)}
-              ></input>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="nombre-lider" className="form-label">
-                Nombre del líder o representante
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="nombre-lider"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></input>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="telefono-lider" className="form-label">
-                Número telefónico de contacto
-              </label>
-              <input
-                type="tel"
-                maxLength={10}
-                minLength={10}
-                className="form-control"
-                id="nombre-lider"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              ></input>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="correo-lider" className="form-label" required>
-                Dirección email de contacto
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="correo-lider"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></input>
-            </div>
-          </div>
-          <div className="mb-3">
-            <label
-              htmlFor="seccion-proyecto"
-              className="form-label fw-bold fs-4"
-            >
-              Datos del proyecto
-            </label>
-            <div className="mb-3">
-              <label htmlFor="nombre-proyecto" className="form-label">
-                Nombre del proyecto
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="nombre-proyecto"
-                value={project}
-                onChange={(e) => setProject(e.target.value)}
-              ></input>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="url-proyecto" className="form-label">
-                URL del proyecto <i>(opcional)</i>
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="url-proyecto"
-                value={urlProject}
-                onChange={(e) => setUrlProject(e.target.value)}
-              ></input>
-            </div>
-            <div>
-              <label htmlFor="nombre-proyecto" className="form-label">
-                Número de voluntarios
-              </label>
-              <input
-                type="number"
-                className="form-control"
-                id="nombre-proyecto"
-                min={1}
-                value={volunteers}
-                onChange={(e) => setVolunteers(e.target.value)}
-              ></input>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="descripcion" className="form-label">
-                Descripción
-              </label>
-              <textarea
-                className="form-control"
-                id="descripcion"
-                rows="3"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="tipo-proyecto" className="form-label">
-                Proyecto
-              </label>
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                defaultValue={projectType}
-                onChange={(e) => setProjectType(e.target.value)}
-              >
-                <option value={0}>Seleccione su tipo de proyecto</option>
-                <option value={"Campaña Presencial"}>Campaña Presencial</option>
-                <option value={"Iniciativa Virtual"}>Iniciativa Virtual</option>
-                <option value={"Proyecto Hibrido"}>Proyecto Hibrido</option>
-              </select>
-            </div>
-            <div className="mb-3">
-              <div className="form-check">
-                <label
-                  className="form-check-label text-body-secondary"
-                  htmlFor="checkDonations"
-                >
-                  Estoy de acuerdo en recibir donativos para mi proyecto
-                </label>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="checkDonations"
-                  value={donation}
-                  onChange={(e) => setDonation(e.target.checked)}
-                ></input>
-              </div>
-            </div>
-            <div
-              className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
-            >
-              <label htmlFor="RFC-lider" className="form-label me-1">
-                RFC
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="RFC-lider"
-                maxLength={13}
-                minLength={12}
-                value={rfc}
-                onChange={(e) => setRfc(e.target.value)}
-              ></input>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={checkRfc}
-                  onChange={(e) => setCheckRfc(e.target.checked)}
-                  id="checkRfc"
-                ></input>
-                <label
-                  className="form-check-label text-body-secondary"
-                  htmlFor="checkRfc"
-                >
-                  Usar mi RFC
-                </label>
-              </div>
-            </div>
-            <div
-              className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
-            >
-              <label htmlFor="CLABE-lider" className="form-label me-1">
-                CLABE interbancaria
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="CLABE-lider"
-                maxLength={18}
-                minLength={18}
-                value={clabe}
-                onChange={(e) => setClabe(e.target.value)}
-              ></input>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={checkClabe}
-                  onChange={(e) => setCheckClabe(e.target.checked)}
-                  id="checkClabe"
-                ></input>
-                <label
-                  className="form-check-label text-body-secondary"
-                  htmlFor="checkClabe"
-                >
-                  Usar mi CLABE
-                </label>
-              </div>
-            </div>
-
-            <div
-              className={`mb-3  ${
-                projectType == "Iniciativa Virtual" ? "no-show" : "show"
-              }`}
-            >
-              <label htmlFor="cp" className="form-label">
-                Código postal
-              </label>
-              <input
-                type="number"
-                className="form-control"
-                id="cp"
-                value={zip}
-                onChange={(e) => setZip(e.target.value)}
-              ></input>
-            </div>
-            <div
-              className={`mb-3  ${
-                projectType == "Iniciativa Virtual" ? "no-show" : "show"
-              }`}
-            >
-              <label htmlFor="direccion" className="form-label">
-                Dirección
-              </label>
-              <textarea
-                className="form-control"
-                id="direccion"
-                rows="2"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              ></textarea>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="fecha-arranque" className="form-label">
-                Fecha de arranque
-              </label>
-              <input
-                type="date"
-                className="form-control"
-                id="fecha-arranque"
-                rows="2"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-              ></input>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="fecha-inscripcion" className="form-label">
-                Fecha límite de inscripción
-              </label>
-              <input
-                type="date"
-                className="form-control"
-                id="fecha-inscripcion"
-                rows="2"
-                value={finishDate}
-                onChange={(e) => setFinishDate(e.target.value)}
-              ></input>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="ods" className="form-label">
-                ODS (s) que abarca
-              </label>
-            </div>
-          </div>
-        </form>
-*/

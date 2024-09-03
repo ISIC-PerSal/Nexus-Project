@@ -42,9 +42,7 @@ function App() {
             />
             <Route
               path="/my-projects"
-              element={
-                isLogin ? <MyProjects/> : <Navigate to={"/login"} />
-              }
+              element={isLogin ? <MyProjects /> : <Navigate to={"/login"} />}
             />
             <Route
               path="/explore"
