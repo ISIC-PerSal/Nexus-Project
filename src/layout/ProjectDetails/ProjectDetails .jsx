@@ -43,6 +43,7 @@ function ProjectDetails() {
   const [startDate, setStartDate] = useState("");
   const [finishDate, setFinishDate] = useState("");
   const [urlProject, setUrlProject] = useState("");
+  const [image, setImage] = useState("");
 
   const [checkedOds, setCheckedOds] = useState({
     1: false,
@@ -100,16 +101,17 @@ function ProjectDetails() {
       setProject(data.project || "");
       setVolunteers(data.volunteers || 1);
       setDescription(data.description || "");
-      setProjectType(data.projectType || "");
+      setProjectType(data.project_type || "");
       setDonation(data.donation || false);
       setCountry(data.country || "Todos");
       setState(data.state || []);
       setZip(data.zip || "");
       setCity(data.city || "");
       setAddress(data.address || "");
-      setStartDate(data.startDate || "");
-      setFinishDate(data.finishDate || "");
+      setStartDate(data.start_date || "");
+      setFinishDate(data.finish_date || "");
       setUrlProject(data.urlProject || "");
+      setImage(data.image || "");
     }
   }, [data]);
 
@@ -175,6 +177,8 @@ function ProjectDetails() {
             setStartDate={setStartDate}
             finishDate={finishDate}
             setFinishDate={setFinishDate}
+            image={image}
+            setImage={setImage}
           />
         </div>
       ) : (
