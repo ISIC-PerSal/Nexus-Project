@@ -106,7 +106,7 @@ function NewProjectForm() {
     rfc: rfc,
     clabe: clabe,
     project: project,
-    image: convertToLocalURL(imageURL),
+    image: imageURL ? convertToLocalURL(imageURL) : "",
     urlProject: urlProject,
     volunteers: volunteers,
     description: description,
@@ -140,6 +140,11 @@ function NewProjectForm() {
 
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
+    if (selectedFile) {
+      handleUpload(selectedFile, setImageURL);
+    }else{
+      setImageURL("")
+    }
     const regex = new RegExp(/^[0-9]*$/);
     if (
       leaderType != 0 &&

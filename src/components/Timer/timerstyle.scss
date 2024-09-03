@@ -1,0 +1,138 @@
+body {
+  background-color: #f2f1ed;
+}
+
+.wrap {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 310px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 720px;
+}
+
+.bloc-time {
+  margin: 0 20px;
+  text-align: center;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  .count-title {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 0.94em;
+    color: #1a1a1a;
+    text-transform: uppercase;
+  }
+
+  .figure {
+    position: relative;
+    float: left;
+    height: 110px;
+    width: 100px;
+    margin-right: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2), inset 2px 4px rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em;
+    font-weight: 700;
+    color: #de4848;
+
+    .top, .bottom-back {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      overflow: hidden;
+      background-color: #f7f7f7;
+      backface-visibility: hidden;
+
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .top {
+      z-index: 3;
+      top: 0;
+      transform-origin: 50% 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .top-back {
+      z-index: 4;
+      bottom: 0;
+      height: 50%;
+      transform: perspective(200px) rotateX(180deg);
+      transform-origin: 50% 0;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .bottom {
+      z-index: 1;
+      bottom: 0;
+      height: 50%;
+      transform-origin: 50% 0;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+    }
+
+    .bottom-back {
+      z-index: 2;
+      top: 50%;
+      transform-origin: 50% 0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      span {
+        position: absolute;
+        top: -100%;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+    }
+
+    span {
+      display: block;
+      position: relative;
+      z-index: 5;
+    }
+  }
+}

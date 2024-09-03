@@ -438,13 +438,26 @@ function NewProjectFormView({
               </Grid>
             </div>
           </div>
+          <div className="w-100 d-flex">
+          <div className="w-50 pe-2">
           <button
             onClick={handleSaveNewProject}
             type="button"
-            className="btn btn-danger w-100"
+            className="btn btn-danger w-100 "
           >
-            Enviar datos
+            Publicar proyecto
           </button>
+          </div>
+          <div className="w-50 ps-2">
+          <button
+            
+            type="button"
+            className="btn bg-secondary text-white w-100 "
+          >
+            Guardar borrador
+          </button>
+          </div>
+          </div>
         </form>
       </main>
     </>

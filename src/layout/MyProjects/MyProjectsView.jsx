@@ -13,12 +13,24 @@ function MyProjectsView() {
             <TabList>
               <Tab>Mis proyectos</Tab>
               <Tab>Proyectos incritos</Tab>
+              <Tab>Proyectos inscritos activos</Tab>
+              <Tab>Proyectos inscritos terminados</Tab>
+              <Tab>Borradores</Tab>
             </TabList>
             <TabPanel>
               <OwnProjects />
             </TabPanel>
             <TabPanel>
+              Mis proyectos terminados
+            </TabPanel>
+            <TabPanel>
               <JoinedProjects />
+            </TabPanel>
+            <TabPanel>
+              Mis proyectos inscritos terminados
+            </TabPanel>
+            <TabPanel>
+              Borradores
             </TabPanel>
           </Tabs>
         </div>
