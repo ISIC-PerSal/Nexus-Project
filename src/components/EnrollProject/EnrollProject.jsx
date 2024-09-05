@@ -6,6 +6,7 @@ import fetchGetProjectsJoined from "../../util/project/fetchGetProjectsJoined";
 
 async function getProjectsJoined(idUser, idProject) {
   const data = await fetchGetProjectsJoined(idUser);
+console.log(data)
   const unido =
     data.find((projects) => projects.id_project_pk == idProject) || [];
   return unido.length ? false : true;
@@ -18,6 +19,7 @@ function EnrollProject({ idProject, idUser }) {
   useEffect(() => {
     const fetchData = async () => {
       const resul = await getProjectsJoined(idUser, idProject);
+      console.log(resul)
       setIsJoined(resul);
     };
 
@@ -29,7 +31,6 @@ function EnrollProject({ idProject, idUser }) {
       const joinedProject = dataProjects.find(
         (item) => item.id_project_pk == idProject
       );
-      console.log(joinedProject);
       if (joinedProject) {
         setJoinedUser(true);
       } else {

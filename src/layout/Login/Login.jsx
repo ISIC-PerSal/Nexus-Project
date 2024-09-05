@@ -3,6 +3,7 @@ import LoginView from "./LoginView";
 import fetchLogin from "../../util/user/fetchLogin";
 import Swal from "sweetalert2";
 import Navbar from "../../components/Navbar/Navbar";
+import fetchGetProjectsJoined from "../../util/project/fetchGetProjectsJoined";
 
 function Login() {
   sessionStorage.clear();
@@ -28,7 +29,15 @@ function Login() {
           sessionStorage.setItem("password", data.password);
           sessionStorage.setItem("rfc", data.rfc);
           sessionStorage.setItem("clabe", data.clabe);
+          const dataProjects = await fetchGetProjectsJoined(data.id_user);
+          if (dataProjects) {
+            sessionStorage.setItem(
+              "projects_joined",
+              JSON.stringify(dataProjects)
+            );
+          }
           window.location = "/home";
+          
         } else {
           Swal.fire({
             title: "Error!",

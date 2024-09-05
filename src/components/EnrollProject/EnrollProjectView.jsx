@@ -8,9 +8,9 @@ function EnrollProjectView({
   joinedUser,
 }) {
   const currentUser = sessionStorage.getItem("id_user");
-  console.log(idUser);
-  console.log(currentUser);
-
+console.log(idProject == currentUser && joinedUser)
+console.log(joinedUser)
+console.log(show && idUser !== currentUser && !joinedUser)
   if (idProject == currentUser && joinedUser) {
     return (
       <button
@@ -70,6 +70,8 @@ function EnrollProjectView({
 
   if (show && idUser !== currentUser && !joinedUser) {
     return (
+      <>
+      <h1>propio</h1>
       <button className="fixed-footer" onClick={handleEnroll}>
         <div>
           <div className="w-100 d-flex justify-content-center">
@@ -88,6 +90,7 @@ function EnrollProjectView({
           <div className="d-flex justify-content-center">Inscribirme</div>
         </div>
       </button>
+      </>
     );
   }
 
