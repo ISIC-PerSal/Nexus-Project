@@ -29,7 +29,6 @@ function EnrollProject({ idProject, idUser }) {
       const joinedProject = dataProjects.find(
         (item) => item.id_project_pk == idProject
       );
-      console.log(joinedProject);
       if (joinedProject) {
         setJoinedUser(true);
       } else {
