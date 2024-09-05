@@ -11,7 +11,7 @@ function BadgeCountryView({ data }) {
 
   return (
     <>
-      <span className="badge text-bg-secondary ">
+      <span className="">
         <div className="d-flex align-items-center">
           {" "}
           <img
