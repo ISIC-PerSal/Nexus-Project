@@ -7,6 +7,7 @@ import ErrorView from "../Error/ErrorView";
 import LoadingView from "../../components/Loading/LoadingView";
 import isAuth from "../../util/isAuth";
 import { useNexus } from "../../Hooks/useContext";
+import imgDefault from "../../assets/Logo.png";
 
 function ProjectDetails() {
   const { idProject } = useParams();
@@ -44,6 +45,7 @@ function ProjectDetails() {
   const [finishDate, setFinishDate] = useState("");
   const [urlProject, setUrlProject] = useState("");
   const [image, setImage] = useState("");
+  const [background, setBackground] = useState("");
 
   const [checkedOds, setCheckedOds] = useState({
     1: false,
@@ -111,7 +113,8 @@ function ProjectDetails() {
       setStartDate(data.start_date || "");
       setFinishDate(data.finish_date || "");
       setUrlProject(data.urlProject || "");
-      setImage(data.image || "");
+      setImage(data.image || imgDefault);
+      setBackground(data.background_image || "");
     }
   }, [data]);
 
@@ -130,6 +133,7 @@ function ProjectDetails() {
         <div>
           <Navbar />
           <ProjectDetailsView
+            data={data}
             id={idProject}
             leaderType={leaderType}
             setLeaderType={setLeaderType}
@@ -179,6 +183,7 @@ function ProjectDetails() {
             setFinishDate={setFinishDate}
             image={image}
             setImage={setImage}
+            background={background}
           />
         </div>
       ) : (

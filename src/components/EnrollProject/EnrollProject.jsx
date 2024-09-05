@@ -6,12 +6,13 @@ import fetchGetProjectsJoined from "../../util/project/fetchGetProjectsJoined";
 
 async function getProjectsJoined(idUser, idProject) {
   const data = await fetchGetProjectsJoined(idUser);
-  const unido = data.find((projects) => projects.id_project_pk == idProject);
-  return unido ? true : false;
+  const unido = data.find((projects) => projects.id_project_pk == idProject) || [];
+  return unido ? false : true;
 }
 
 function EnrollProject({ idProject, idUser }) {
   const [isJoined, setIsJoined] = useState(false);
+  const [joinedUser, setJoinedUser] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +21,20 @@ function EnrollProject({ idProject, idUser }) {
     };
 
     fetchData();
+    const joined = () => {
+      const dataProjects = JSON.parse(
+        sessionStorage.getItem("projects_joined")
+      );
+      const joinedProject = dataProjects.find(
+        (item) => item.id_project_pk == idProject
+      );
+      if(joinedProject){
+        setJoinedUser(true)
+      }else{
+        setJoinedUser(false)
+      }
+    };
+    joined();
   }, [idUser, idProject]);
   const handleEnroll = async () => {
     const body = {
@@ -34,6 +49,13 @@ function EnrollProject({ idProject, idUser }) {
           text: "Ya eres parte de este proyecto!",
           icon: "success",
         });
+        const data = await fetchGetProjectsJoined(idUser);
+        if (data) {
+          sessionStorage.setItem(
+            "projects_joined",
+            JSON.stringify(data)
+          );
+        }
       } else {
         Swal.fire({
           title: "Error!",
@@ -44,7 +66,7 @@ function EnrollProject({ idProject, idUser }) {
       }
     } catch (error) {}
   };
-
+console.log(isJoined)
   return (
     <>
       <EnrollProjectView
@@ -52,6 +74,7 @@ function EnrollProject({ idProject, idUser }) {
         idUser={idUser}
         handleEnroll={handleEnroll}
         show={isJoined}
+        joinedUser={joinedUser}
       />
     </>
   );
