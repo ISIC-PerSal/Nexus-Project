@@ -6,20 +6,22 @@ function Timer({ date }) {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+
   const getTime = () => {
     if (Date.now() < Date.parse(date)) {
-        const time = Date.now() - Date.parse(date);
-        setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
-        setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
-        setMinutes(Math.floor((time / 1000 / 60) % 60));
-        setSeconds(Math.floor((time / 1000) % 60));
-      } else {
-        setDays(0);
-        setHours(0);
-        setMinutes(0);
-        setSeconds(0);
-      }
+      const time = Date.now() - Date.parse(date);
+      setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
+      setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
+      setMinutes(Math.floor((time / 1000 / 60) % 60));
+      setSeconds(Math.floor((time / 1000) % 60));
+    } else {
+      setDays(0);
+      setHours(0);
+      setMinutes(0);
+      setSeconds(0);
     }
+  };
+
   useEffect(() => {
     const interval = setInterval(() => getTime(date), 1000);
 
@@ -36,10 +38,29 @@ function Timer({ date }) {
         />
       ) : (
         <div className="fs-5 fw-bold text-center alert alert-warning m-1">
-        "La fecha ha concluido"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            className="bi bi-exclamation-diamond-fill me-1"
+            viewBox="0 0 16 16"
+          >
+            <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+          </svg>
+          La vigencia de este evento ha expirado
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            className="bi bi-exclamation-diamond-fill ms-1"
+            viewBox="0 0 16 16"
+          >
+            <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+          </svg>
         </div>
       )}
-      <TimerView />
     </>
   );
 }
