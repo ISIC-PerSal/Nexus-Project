@@ -31,7 +31,10 @@ function Login() {
           sessionStorage.setItem("clabe", data.clabe);
           const dataProjects = await fetchGetProjectsJoined(data.id_user);
           if (dataProjects) {
-            sessionStorage.setItem("projects_joined", JSON.stringify(dataProjects));
+            sessionStorage.setItem(
+              "projects_joined",
+              JSON.stringify(dataProjects)
+            );
           }
 
           window.location = "/home";
