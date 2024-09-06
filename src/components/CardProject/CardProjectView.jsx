@@ -32,6 +32,7 @@ function CardProjectView({ data }) {
   useEffect(() => {
     renderODS();
   }, [idProject]);
+  console.log(odsArray)
 
   return (
     <>
