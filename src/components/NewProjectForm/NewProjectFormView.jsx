@@ -58,6 +58,7 @@ function NewProjectFormView({
   checkedOds,
   handleCheckboxChange,
   handleSaveNewProject,
+  handleSaveDraftProject,
   handleImageUpload,
   setSelectedFile,
   fileInputRef,
@@ -354,8 +355,9 @@ function NewProjectFormView({
               state={state}
             />
             <div
-              className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"
-                }`}
+              className={`mb-3  ${
+                projectType == "Iniciativa Virtual" ? "no-show" : "show"
+              }`}
             >
               <label htmlFor="cp" className="form-label">
                 Código postal
@@ -369,8 +371,9 @@ function NewProjectFormView({
               ></input>
             </div>
             <div
-              className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"
-                }`}
+              className={`mb-3  ${
+                projectType == "Iniciativa Virtual" ? "no-show" : "show"
+              }`}
             >
               <label htmlFor="direccion" className="form-label">
                 Dirección
@@ -448,6 +451,7 @@ function NewProjectFormView({
             </div>
             <div className="w-50 ps-2">
               <button
+                onClick={handleSaveDraftProject}
                 type="button"
                 className="btn bg-secondary w-100 text-white"
               >

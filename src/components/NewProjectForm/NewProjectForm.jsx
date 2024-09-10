@@ -29,6 +29,7 @@ function NewProjectForm() {
   const [startDate, setStartDate] = useState("");
   const [finishDate, setFinishDate] = useState("");
   const [urlProject, setUrlProject] = useState("");
+  const [status, setStatus] = useState("");
 
   const [checkedOds, setCheckedOds] = useState({
     1: false,
@@ -91,9 +92,8 @@ function NewProjectForm() {
       setClabe("");
       setDonationVerify(true);
     }
-
   }, [projectType, donation]);
-  
+
   const body = {
     idUser: sessionStorage.getItem("id_user"),
     leaderType: leaderType,
@@ -135,12 +135,49 @@ function NewProjectForm() {
     ods17: checkedOds[17] || false,
   };
 
+  const handleSaveDraftProject = async (e) => {
+    e.preventDefault();
+    setStatus("Borrador")
+    try {
+      const data = await fetchNewProject({ ...body, status: "Borrador" });
+      if (data.status == "Done") {
+        Swal.fire({
+          title: "Exito!",
+          text: "Se ha guardado el project en borrador!",
+          icon: "success",
+          confirmButtonText: "Ver proyecto",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "/profile";
+          } else {
+            window.location.href = "/new-project";
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Ocurrio un error",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    } catch (err) {
+      Swal.fire({
+        title: "Error!",
+        text: "Ocurrio un error",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  };
+
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
+    setStatus("Publicado")
     if (selectedFile) {
       handleUpload(selectedFile, setImageURL);
-    }else{
-      setImageURL("")
+    } else {
+      setImageURL("");
     }
     const regex = new RegExp(/^[0-9]*$/);
     if (
@@ -164,7 +201,7 @@ function NewProjectForm() {
       finishDate != ""
     ) {
       try {
-        const data = await fetchNewProject(body);
+        const data = await fetchNewProject({ ...body, status: "Publicado" });
         if (data.status == "Done") {
           Swal.fire({
             title: "Exito!",
@@ -425,6 +462,7 @@ function NewProjectForm() {
         checkedOds={checkedOds}
         handleCheckboxChange={handleCheckboxChange}
         handleSaveNewProject={handleSaveNewProject}
+        handleSaveDraftProject={handleSaveDraftProject}
         handleImageUpload={handleImageUpload}
         setSelectedFile={setSelectedFile}
         fileInputRef={fileInputRef}

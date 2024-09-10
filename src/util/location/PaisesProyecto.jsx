@@ -1,6 +1,5 @@
-
 const PaisesProyecto = [
-    {
+    { 
         value: "0",
         label: (
             <div className="d-flex align-items-center">
