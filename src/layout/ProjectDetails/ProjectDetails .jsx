@@ -8,6 +8,8 @@ import LoadingView from "../../components/Loading/LoadingView";
 import isAuth from "../../util/isAuth";
 import { useNexus } from "../../Hooks/useContext";
 import imgDefault from "../../assets/Logo.png";
+import PaisesProyecto from "../../util/location/PaisesProyecto";
+import odsData from "../../util/odsData";
 
 function ProjectDetails() {
   const { idProject } = useParams();
@@ -70,6 +72,7 @@ function ProjectDetails() {
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageURL, setImageURL] = useState("");
+  const [odsArray, setOdsArray] = useState([]);
 
   async function fetchData() {
     setLoading(true);
@@ -83,6 +86,23 @@ function ProjectDetails() {
       setLoading(false);
     }
   }
+
+  const renderODS = () => {
+    const activeODS = [];
+
+    for (let i = 1; i <= 17; i++) {
+      const odsKey = `ods${i}`;
+      if (data[odsKey] === "1") {
+        const odsItem = {
+          id_ods: i,
+          ods: odsData[i - 1].title,
+        };
+        activeODS.push(odsItem);
+      }
+    }
+
+    setOdsArray(activeODS);
+  };
 
   useEffect(() => {
     fetchData();
@@ -115,6 +135,7 @@ function ProjectDetails() {
       setUrlProject(data.urlProject || "");
       setImage(data.image || imgDefault);
       setBackground(data.background_image || "");
+      renderODS();
     }
   }, [data]);
 
@@ -126,6 +147,15 @@ function ProjectDetails() {
       </>
     );
   }
+
+  const bandera = (item) => {
+    const pais = PaisesProyecto.find(
+      (pais) => pais.label.props.children[1] === item
+    );
+
+    const imgSrc = pais.label.props.children[0].props.src;
+    return imgSrc;
+  };
 
   return (
     <>
@@ -184,6 +214,8 @@ function ProjectDetails() {
             image={image}
             setImage={setImage}
             background={background}
+            imgCountry={bandera(country)}
+            odsArray={odsArray}
           />
         </div>
       ) : (

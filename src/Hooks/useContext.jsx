@@ -13,4 +13,3 @@ export const NexusProvider = ({ children }) => {
     </NexusContext.Provider>
   );
 };
- 

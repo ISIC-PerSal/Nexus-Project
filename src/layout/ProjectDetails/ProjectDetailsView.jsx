@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import BadgeODSView from "../../components/BadgeODS/BadgeODSView";
-import imgDefault from "../../assets/Logo.png";
 import Timer from "../../components/Timer/Timer";
 import EnrollProject from "../../components/EnrollProject/EnrollProject";
 
@@ -56,8 +55,9 @@ function ProjectDetailsView({
   finishDate,
   setFinishDate,
   background,
+  imgCountry,
+  odsArray,
 }) {
-  const [odsArray, setOdsArray] = useState([]);
   const backgroundImg = `url(${background})`;
 
   const profileImg = `url(${image})`;
@@ -69,6 +69,7 @@ function ProjectDetailsView({
     backgroundSize: "cover",
   };
   const dynamicStyle = image ? { backgroundImage: profileImg } : {};
+
 
   return (
     <>
@@ -148,34 +149,36 @@ function ProjectDetailsView({
               </div>
             </div>
             <br />
-            <div className="d-flex w-75 p-2">
-              <div className="mb-3">
-                <label className="form-label fw-bold h4 pb-2 text-danger border-bottom border-danger">
+            <div className="mb-3">
+              <div className= "rounded-top bg-info bg-opacity-25 border border-primary">
+                <label className="form-label ms-2 fw-bold fs-4">
                   Datos del proyecto
                 </label>
-                <div>
-                  Pais:
-                  <div className="mb-2">
-                    <img
-                      src="{countryImage}"
-                      alt="Imagen del país"
-                      className="img-fluid"
-                    />
-                    <span>{country}</span>
+              </div>
+              <div className="rounded-bottom border border-primary-subtle">
+                <div className="ms-3 mt-3">
+                  <div className="form-label me-2">ODS:</div>
+                 
+                   <div className="mb-2">
+                     {odsArray.map((item, index) => (
+                       <BadgeODSView key={index} item={item} idShow={true} />
+                     ))}
+                   </div>
+                  
+                </div>
+                <div className="ms-3 d-flex">
+                  <div className="mb-3 w-25">
+                    <label className="form-label">Numero de voluntarios:</label>
+                    <span className="form-control">{volunteers}</span>
+                  </div>
+                  <div className="mb-3 w-75 text-center">
+                    Barra de progreso
                   </div>
                 </div>
-                <div>
-                  ODS:
-                  <div className="mb-2">
-                    <img
-                      src="{countryImage}"
-                      alt="Imagen del país"
-                      className="img-fluid"
-                    />
-                    <span>{country}</span>
-                  </div>
+                <div className="text-center mb-3 ms-3 me-3">
+                  <label className="form-label">Descripción del proyecto:</label>
+                  <span className="form-control">{description}</span>
                 </div>
-                <div className="text-center">Detalles:</div>
               </div>
             </div>
 
@@ -184,14 +187,16 @@ function ProjectDetailsView({
                 <label className="form-label fw-bold fs-5 border-bottom border-dark">
                   Detalles:{" "}
                 </label>
-                <div className="mb-2 fw-bold">
-                  <img
-                    src="{countryImage}"
-                    alt="Imagen del país"
-                    className="img-fluid"
-                  />
-                  <span>{country}</span>
-                </div>
+                <div className="mb-2 d-flex justify-content-start align-items-center">
+                    <img
+                      src={imgCountry}
+                      alt="Imagen del país"
+                      className="img-fluid me-2"
+                      style={{ width: "30px" }}
+                    />
+                    <span>{country}</span>
+                  </div>
+
                 <div className="mb-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -231,7 +236,7 @@ function ProjectDetailsView({
                     width="20"
                     height="20"
                     fill="currentColor"
-                    class="bi bi-signpost-fill me-2"
+                    className="bi bi-signpost-fill me-2"
                     viewBox="0 0 16 16"
                   >
                     <path d="M7.293.707A1 1 0 0 0 7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414A1 1 0 0 0 7.293.707" />

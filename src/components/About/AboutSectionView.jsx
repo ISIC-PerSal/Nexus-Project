@@ -3,14 +3,14 @@ import Poster from "../../assets/Poster.jpg";
 
 function AboutView() {
   return (
-    <main className="px-5 pt-3">
+    <main className="px-5 pt-3 ">
       <div>
-        <div>
+        <div className="rounded-top bg-secondary-subtle border border-primary">
           <div className="d-flex justify-content-center">
             <h1>Acerca de nosotros</h1>
           </div>
-          <hr />
-          <p className="p-3 text-align-justify">
+          
+          <p className="p-3 text-align-justify ">
             La creación de una plataforma que actúe como tablón de anuncios de
             proyectos e iniciativas comunitarias en pro de la Agenda 2030 es de
             gran relevancia para abordar la problemática de la centralización y
@@ -28,7 +28,7 @@ function AboutView() {
             de las iniciativas sostenibles.
           </p>
         </div>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center ">
           <img src={Poster} alt="" style={{ width: "800px" }} />
         </div>
       </div>
