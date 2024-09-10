@@ -19,53 +19,73 @@ import NewProject from "./layout/NewProject/NewProject";
 import Explore from "./layout/Explore/Explore";
 import ErrorView from "./layout/Error/ErrorView";
 import MyProjects from "./layout/MyProjects/MyProjects";
-import { NexusProvider } from "./Hooks/useContext";
-import ProjectDetails from "./layout/ProjectDetails/ProjectDetails ";
+import ProjectActivity from "./layout/ProjectActivity/ProjectActivity";
+import ProjectFeed from "./layout/ProjectFeed/ProjectFeed";
 
 function App() {
   const isLogin = isAuth() != null;
 
   return (
-    <NexusProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route
-            path="/profile"
-            element={isLogin ? <Profile /> : <Navigate to={"/login"} />}
-          />
-          <Route path="/directory" element={<Directory />} />
-          <Route
-            path="/new-project"
-            element={isLogin ? <NewProject /> : <Navigate to={"/login"} />}
-          />
-          <Route
-            path="/my-projects"
-            element={isLogin ? <MyProjects /> : <Navigate to={"/login"} />}
-          />
-          <Route
-            path="/explore"
-            element={isLogin ? <Explore /> : <Navigate to={"/login"} />}
-          />
-          <Route
-            path="/explore/:idProject"
-            element={isLogin ? <ProjectDetails /> : <Navigate to={"/login"} />}
-          />
-          <Route
-            path="/about"
-            element={isLogin ? <About /> : <Navigate to={"/login"} />}
-          />
-          <Route path="/alliance" element={<Alliance />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/home"
-            element={isLogin ? <Home /> : <Navigate to={"/login"} />}
-          />
-          <Route path="*" element={<ErrorView />} />
-        </Routes>
-      </Router>
-    </NexusProvider>
+    <>
+      <NexusProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route
+              path="/profile"
+              element={isLogin ? <Profile /> : <Navigate to={"/login"} />}
+            />
+            <Route path="/directory" element={<Directory />} />
+            <Route
+              path="/new-project"
+              element={isLogin ? <NewProject /> : <Navigate to={"/login"} />}
+            />
+            <Route
+              path="/my-projects"
+              element={isLogin ? <MyProjects /> : <Navigate to={"/login"} />}
+            />
+            <Route
+              path="/add-activity"
+              element={
+                isLogin ? <ProjectActivity /> : <Navigate to={"/login"} />
+              }
+            />
+            <Route
+              path="/add-activity"
+              element={
+                isLogin ? <ProjectActivity /> : <Navigate to={"/login"} />
+              }
+            />
+            <Route
+              path="/explore"
+              element={isLogin ? <Explore /> : <Navigate to={"/login"} />}
+            />
+            <Route
+              path="/explore/:idProject"
+              element={
+                isLogin ? <ProjectDetails /> : <Navigate to={"/login"} />
+              }
+            />
+            <Route
+              path="/feed"
+              element={isLogin ? <ProjectFeed /> : <Navigate to={"/login"} />}
+            />
+            <Route
+              path="/about"
+              element={isLogin ? <About /> : <Navigate to={"/login"} />}
+            />
+            <Route path="/alliance" element={<Alliance />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/home"
+              element={isLogin ? <Home /> : <Navigate to={"/login"} />}
+            />
+            <Route path="*" element={<ErrorView />} />
+          </Routes>
+        </Router>
+      </NexusProvider>
+    </>
   );
 }
 export default App;

@@ -137,7 +137,7 @@ function NewProjectForm() {
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
-    setStatus("Borrador")
+    setStatus("Borrador");
     try {
       const data = await fetchNewProject({ ...body, status: "Borrador" });
       if (data.status == "Done") {
@@ -173,7 +173,7 @@ function NewProjectForm() {
 
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
-    setStatus("Publicado")
+    setStatus("Publicado");
     if (selectedFile) {
       handleUpload(selectedFile, setImageURL);
     } else {
@@ -201,7 +201,7 @@ function NewProjectForm() {
       finishDate != ""
     ) {
       try {
-        const data = await fetchNewProject({ ...body, status: "publicado" });
+        const data = await fetchNewProject({ ...body, status: "Publicado" });
         if (data.status == "Done") {
           Swal.fire({
             title: "Exito!",

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import CardODSView from './CardODSView';
 
-//ItemComponent
 function CardODS({item}) {
     const [isExpanded, setIsExpanded] = useState(false);
 

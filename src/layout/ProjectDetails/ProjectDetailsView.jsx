@@ -1,7 +1,4 @@
 import React from "react";
-import BadgeODSView from "../../components/BadgeODS/BadgeODSView";
-import Timer from "../../components/Timer/Timer";
-import EnrollProject from "../../components/EnrollProject/EnrollProject";
 
 function ProjectDetailsView({
   data,
@@ -54,31 +51,9 @@ function ProjectDetailsView({
   setStartDate,
   finishDate,
   setFinishDate,
-  background,
-  imgCountry,
-  odsArray,
 }) {
-  const backgroundImg = `url(${background})`;
-
-  const profileImg = `url(${image})`;
-  const defaultStyle = {
-    backgroundColor: "white",
-    width: "18vw",
-    height: "18vw",
-    borderRadius: "100%",
-    backgroundSize: "cover",
-  };
-  const dynamicStyle = image ? { backgroundImage: profileImg } : {};
-
-
   return (
     <>
-      <div className="bg-white">
-        <EnrollProject
-          idProject={data.id_project_pk}
-          idUser={data.id_user_fk}
-        />
-      </div>
       <main className="py-3 bg-img">
         <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
           <div className="custom-grid-container">
@@ -150,35 +125,44 @@ function ProjectDetailsView({
             </div>
             <br />
             <div className="mb-3">
-              <div className= "rounded-top bg-info bg-opacity-25 border border-primary">
-                <label className="form-label ms-2 fw-bold fs-4">
-                  Datos del proyecto
+              <div className="form-check">
+                <label
+                  className="form-check-label text-body-secondary"
+                  htmlFor="checkDonations"
+                >
+                  Estoy de acuerdo en recibir donativos para mi proyecto
                 </label>
               </div>
-              <div className="rounded-bottom border border-primary-subtle">
-                <div className="ms-3 mt-3">
-                  <div className="form-label me-2">ODS:</div>
-                 
-                   <div className="mb-2">
-                     {odsArray.map((item, index) => (
-                       <BadgeODSView key={index} item={item} idShow={true} />
-                     ))}
-                   </div>
-                  
-                </div>
-                <div className="ms-3 d-flex">
-                  <div className="mb-3 w-25">
-                    <label className="form-label">Numero de voluntarios:</label>
-                    <span className="form-control">{volunteers}</span>
-                  </div>
-                  <div className="mb-3 w-75 text-center">
-                    Barra de progreso
-                  </div>
-                </div>
-                <div className="text-center mb-3 ms-3 me-3">
-                  <label className="form-label">Descripción del proyecto:</label>
-                  <span className="form-control">{description}</span>
-                </div>
+            </div>
+            <div
+              className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
+            >
+              <label htmlFor="RFC-lider" className="form-label me-1">
+                RFC
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="RFC-lider"
+                maxLength={13}
+                minLength={12}
+                value={rfc}
+                onChange={(e) => setRfc(e.target.value)}
+              ></input>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={checkRfc}
+                  onChange={(e) => setCheckRfc(e.target.checked)}
+                  id="checkRfc"
+                ></input>
+                <label
+                  className="form-check-label text-body-secondary"
+                  htmlFor="checkRfc"
+                >
+                  Usar mi RFC
+                </label>
               </div>
             </div>
 
@@ -187,66 +171,8 @@ function ProjectDetailsView({
                 <label className="form-label fw-bold fs-5 border-bottom border-dark">
                   Detalles:{" "}
                 </label>
-                <div className="mb-2 d-flex justify-content-start align-items-center">
-                    <img
-                      src={imgCountry}
-                      alt="Imagen del país"
-                      className="img-fluid me-2"
-                      style={{ width: "30px" }}
-                    />
-                    <span>{country}</span>
-                  </div>
-
-                <div className="mb-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="bi bi-geo-alt-fill me-2"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                  </svg>
-                  <label className="form-label fw-bold ">Estado:</label>
-                  <span className="form-control bg-body-secondary border border-light">
-                    {state}
-                  </span>
-                </div>
-                <div className=" mb-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="bi bi-geo-alt me-2"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
-                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                  </svg>
-                  <label className="form-label fw-bold ">Municipio:</label>
-                  <span className="form-control bg-body-secondary border border-light">
-                    {city}
-                  </span>
-                </div>
-                <div className="mb-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="bi bi-signpost-fill me-2"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M7.293.707A1 1 0 0 0 7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414A1 1 0 0 0 7.293.707" />
-                  </svg>
-                  <label className="form-label fw-bold ">Direccion:</label>
-                  <span className="form-control bg-body-secondary border border-light">
-                    {address}
-                  </span>
-                </div>
               </div>
+            </div>
 
               <div className="w-50 p-4 ">
                 <label className="form-label fw-bold fs-5 border-bottom border-dark">
