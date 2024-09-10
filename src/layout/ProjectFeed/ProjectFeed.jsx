@@ -1,23 +1,20 @@
 import React, { useEffect } from "react";
-import MyProjectsView from "./MyProjectsView";
 import Navbar from "../../components/Navbar/Navbar";
+import ProjectFeedView from "./ProjectFeedView";
 import { useNexus } from "../../Hooks/useContext";
 
-function MyProjects() {
+function ProjectFeed() {
   const { setSelected } = useNexus();
 
   useEffect(() => {
-    setSelected("Yo");
+    setSelected("Explorar");
   }, [setSelected]);
-
-  const idUser = sessionStorage.getItem("id_user")
-
   return (
     <>
       <Navbar />
-      <MyProjectsView idUser={idUser} />
+      <ProjectFeedView />
     </>
   );
 }
 
-export default MyProjects;
+export default ProjectFeed;

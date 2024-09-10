@@ -39,7 +39,6 @@ function CardProject({ data }) {
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
-
   return (
     <>
       <Stack spacing={0}>
@@ -49,9 +48,13 @@ function CardProject({ data }) {
           page={currentPage}
           onChange={handlePageChange}
         />
-        {currentProjects.map((project, index) => (
-          <CardProjectView key={index} data={project} />
-        ))}
+        {data.length ? (
+          currentProjects.map((project, index) => (
+            <CardProjectView key={index} data={project} />
+          ))
+        ) : (
+          <NoDataView />
+        )}
         <Pagination
           className="d-flex justify-content-center"
           count={Math.ceil(data.length / projectsPerPage)}

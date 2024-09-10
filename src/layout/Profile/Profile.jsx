@@ -40,7 +40,9 @@ function Profile() {
         clabe: clabe.toUpperCase(),
       };
       try {
+        console.log(body)
         const data = await fetchUpdate(body);
+        console.log(data)
         if (data.status == "Done") {
           sessionStorage.setItem("email", body.email);
           sessionStorage.setItem("name", body.name);
