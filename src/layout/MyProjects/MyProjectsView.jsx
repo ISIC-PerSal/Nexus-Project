@@ -8,30 +8,24 @@ function MyProjectsView() {
   return (
     <>
       <main className="py-3 d-flex justify-content-center w-100 bg-img">
-        <div className="container w-50 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
+        <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
           <Tabs className="custom-tabs">
             <TabList>
-              <Tab>Mis proyectos</Tab>
-              <Tab>Proyectos incritos</Tab>
-              <Tab>Proyectos inscritos activos</Tab>
-              <Tab>Proyectos inscritos terminados</Tab>
+              <Tab>Mis proyectos activos</Tab>
+              <Tab>Mis proyectos terminados</Tab>
+              <Tab>Proyectos incritos activos</Tab>
+              <Tab>Proyectos incritos terminados</Tab>
               <Tab>Borradores</Tab>
             </TabList>
             <TabPanel>
               <OwnProjects />
             </TabPanel>
-            <TabPanel>
-              Mis proyectos terminados
-            </TabPanel>
+            <TabPanel>Mis proyectos terminados</TabPanel>
             <TabPanel>
               <JoinedProjects />
             </TabPanel>
-            <TabPanel>
-              Mis proyectos inscritos terminados
-            </TabPanel>
-            <TabPanel>
-              Borradores
-            </TabPanel>
+            <TabPanel>Proyectos incritos terminados</TabPanel>
+            <TabPanel>Borradores</TabPanel>
           </Tabs>
         </div>
       </main>
