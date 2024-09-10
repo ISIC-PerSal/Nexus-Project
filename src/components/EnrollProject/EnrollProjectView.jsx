@@ -6,8 +6,8 @@ function EnrollProjectView({
   handleEnroll,
   show,
   joinedUser,
+  currentUser
 }) {
-  const currentUser = sessionStorage.getItem("id_user");
 
 
   if (idUser == currentUser) {
@@ -39,7 +39,6 @@ function EnrollProjectView({
       </button>
     );
   }
-
   if (joinedUser) {
     return (
       <button

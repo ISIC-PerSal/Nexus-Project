@@ -58,6 +58,7 @@ function NewProjectFormView({
   checkedOds,
   handleCheckboxChange,
   handleSaveNewProject,
+  handleSaveDraftProject,
   handleImageUpload,
   setSelectedFile,
   fileInputRef,
@@ -450,6 +451,7 @@ function NewProjectFormView({
             </div>
             <div className="w-50 ps-2">
               <button
+                onClick={handleSaveDraftProject}
                 type="button"
                 className="btn bg-secondary w-100 text-white"
               >

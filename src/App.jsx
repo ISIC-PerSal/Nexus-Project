@@ -21,6 +21,8 @@ import ProjectDetails from "./layout/ProjectDetails/ProjectDetails ";
 import ErrorView from "./layout/Error/ErrorView";
 import { NexusProvider } from "./Hooks/useContext";
 import MyProjects from "./layout/MyProjects/MyProjects";
+import ProjectActivity from "./layout/ProjectActivity/ProjectActivity";
+import ProjectFeed from "./layout/ProjectFeed/ProjectFeed";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -45,6 +47,18 @@ function App() {
               element={isLogin ? <MyProjects /> : <Navigate to={"/login"} />}
             />
             <Route
+              path="/add-activity"
+              element={
+                isLogin ? <ProjectActivity /> : <Navigate to={"/login"} />
+              }
+            />
+            <Route
+              path="/add-activity"
+              element={
+                isLogin ? <ProjectActivity /> : <Navigate to={"/login"} />
+              }
+            />
+            <Route
               path="/explore"
               element={isLogin ? <Explore /> : <Navigate to={"/login"} />}
             />
@@ -53,6 +67,10 @@ function App() {
               element={
                 isLogin ? <ProjectDetails /> : <Navigate to={"/login"} />
               }
+            />
+            <Route
+              path="/feed"
+              element={isLogin ? <ProjectFeed /> : <Navigate to={"/login"} />}
             />
             <Route
               path="/about"
