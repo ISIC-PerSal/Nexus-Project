@@ -2,7 +2,7 @@ const bra_cities = [
     {
       Estado: "Acre",
       Ciudades: [
-        "Acrelândia",
+        "Acrelândia", 
         "Assis Brasil",
         "Brasiléia",
         "Bujari",
