@@ -134,44 +134,6 @@ function NewProjectForm() {
     ods16: checkedOds[16] || false,
     ods17: checkedOds[17] || false
   };
-
-  const handleSaveDraftProject = async (e) => {
-    e.preventDefault();
-    setStatus("Borrador")
-    console.log(body);
-    try {
-      const data = await fetchNewProject({ ...body, status: "Borrador" });
-      if (data.status == "Done") {
-        Swal.fire({
-          title: "Exito!",
-          text: "Se ha guardado el project en borrador!",
-          icon: "success",
-          confirmButtonText: "Ver proyecto",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.href = "/profile";
-          } else {
-            window.location.href = "/new-project";
-          }
-        });
-      } else {
-        Swal.fire({
-          title: "Error!",
-          text: "Ocurrio un error",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-      }
-    } catch (err) {
-      Swal.fire({
-        title: "Error!",
-        text: "Ocurrio un error",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
-    }
-  };
-
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
     setStatus("Borrador");
