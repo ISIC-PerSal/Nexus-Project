@@ -2,36 +2,28 @@ import React, { useEffect, useState } from "react";
 import GoFeedView from "./GoFeedView";
 import useIsJoined from "../../util/project/isJoined";
 import fetchGetFeedByProject from "../../util/project/fetchGetFeedByProject";
+import { useNavigate } from "react-router-dom";
 
 function GoFeed({ idProject, idUser }) {
-  const [status, setStatus] = useState("")
-  const currentUser = sessionStorage.getItem("id_user")
+  const [status, setStatus] = useState("");
+  const currentUser = sessionStorage.getItem("id_user");
   const isJoined = useIsJoined(idProject);
   const isOwner = currentUser == idUser;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isOwner) {
       setStatus("Privado");
     } else if (isJoined) {
-      setStatust("Miembro");
+      setStatus("Miembro");
     } else {
-      setStatust("Publico");
+      setStatus("Publico");
     }
-  }, [idProject, idUser])
+  }, [idProject, idUser]);
 
   const handleGoFeed = async () => {
-
-    const body = {
-      idProject: idProject,
-      status: status,
-      type: "",
-    };
-    try {
-      const data = await fetchGetFeedByProject(body);
-      console.log(data);
-    } catch { }
+    window.location.href=`/feed/${idProject}`
   };
-  
   return (
     <>
       <GoFeedView handleGoFeed={handleGoFeed} />
