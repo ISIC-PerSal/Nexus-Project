@@ -1,6 +1,6 @@
 import React from "react";
 
-function GoFeedView({handleGoFeed}) {
+function GoFeedView({ handleGoFeed }) {
   return (
     <>
       <button className="fixed-med" onClick={handleGoFeed}>
