@@ -1,9 +1,9 @@
 import React from "react";
 
-function GoFeedView() {
+function GoFeedView({ handleGoFeed }) {
   return (
     <>
-      <button className="fixed-med" disabled>
+      <button className="fixed-med" onClick={handleGoFeed}>
         <div>
           <div className="w-100 d-flex justify-content-center">
             <svg
