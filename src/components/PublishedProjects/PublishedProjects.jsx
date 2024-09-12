@@ -25,7 +25,6 @@ function PublishedProjects({ idUser }) {
     fetchData(idUser, "Publicado", "Propio");
   }, [idUser]);
 
-  // Define las funciones para manejar los botones
   function editProject(id) {
     //console.log("Edit project with ID:", id);
   }
