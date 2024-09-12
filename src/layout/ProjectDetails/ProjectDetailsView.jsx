@@ -78,7 +78,7 @@ function ProjectDetailsView({
           idProject={data.id_project_pk}
           idUser={data.id_user_fk}
         />
-        <GoFeed idProject={data.id_project_pk} />
+        <GoFeed idProject={data.id_project_pk} idUser={data.id_user_fk} />
       </div>
       <main className="py-3 bg-img">
         <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
@@ -155,27 +155,6 @@ function ProjectDetailsView({
                 <label className="form-label ms-2 fw-bold fs-4">
                   Datos del proyecto
                 </label>
-                <div>
-                  Pais:
-                  <div className="mb-2 d-flex justify-content-start align-items-center">
-                    <img
-                      src={imgCountry}
-                      alt="Imagen del país"
-                      className="img-fluid me-2"
-                      style={{ width: "30px" }}
-                    />
-                    <span>{country}</span>
-                  </div>
-                </div>
-                <div>
-                  ODS:
-                  <div className="mb-2">
-                    {odsArray.map((item, index) => (
-                      <BadgeODSView key={index} item={item} idShow={true} />
-                    ))}
-                  </div>
-                </div>
-                <div className="text-center">Detalles:</div>
               </div>
               <div className="rounded-bottom border border-primary-subtle">
                 <div className="ms-3 mt-3">
