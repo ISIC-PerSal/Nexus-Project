@@ -2,6 +2,7 @@ import React from "react";
 import BadgeODSView from "../../components/BadgeODS/BadgeODSView";
 import Timer from "../../components/Timer/Timer";
 import EnrollProject from "../../components/EnrollProject/EnrollProject";
+import GoFeed from "../../components/GoFeed/GoFeed";
 
 function ProjectDetailsView({
   data,
@@ -70,7 +71,6 @@ function ProjectDetailsView({
   };
   const dynamicStyle = image ? { backgroundImage: profileImg } : {};
 
-
   return (
     <>
       <div className="bg-white">
@@ -78,6 +78,7 @@ function ProjectDetailsView({
           idProject={data.id_project_pk}
           idUser={data.id_user_fk}
         />
+        <GoFeed idProject={data.id_project_pk} idUser={data.id_user_fk}/>
       </div>
       <main className="py-3 bg-img">
         <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
@@ -149,32 +150,35 @@ function ProjectDetailsView({
               </div>
             </div>
             <br />
-            <div className="d-flex">
-              <div className="mb-3">
-                <label className="form-label fw-bold h4 pb-2 text-danger border-bottom border-danger">
+            <div className="mb-3">
+              <div className="rounded-top bg-info bg-opacity-25 border border-primary">
+                <label className="form-label ms-2 fw-bold fs-4">
                   Datos del proyecto
                 </label>
-                <div>
-                  Pais:
-                  <div className="mb-2 d-flex justify-content-start align-items-center">
-                    <img
-                      src={imgCountry}
-                      alt="Imagen del país"
-                      className="img-fluid me-2"
-                      style={{ width: "30px" }}
-                    />
-                    <span>{country}</span>
-                  </div>
-                </div>
-                <div>
-                  ODS:
+              </div>
+              <div className="rounded-bottom border border-primary-subtle">
+                <div className="ms-3 mt-3">
+                  <div className="form-label me-2">ODS:</div>
+
                   <div className="mb-2">
                     {odsArray.map((item, index) => (
                       <BadgeODSView key={index} item={item} idShow={true} />
                     ))}
                   </div>
                 </div>
-                <div className="text-center">Detalles:</div>
+                <div className="ms-3 d-flex">
+                  <div className="mb-3 w-25">
+                    <label className="form-label">Numero de voluntarios:</label>
+                    <span className="form-control">{volunteers}</span>
+                  </div>
+                  <div className="mb-3 w-75 text-center">Barra de progreso</div>
+                </div>
+                <div className="text-center mb-3 ms-3 me-3">
+                  <label className="form-label">
+                    Descripción del proyecto:
+                  </label>
+                  <span className="form-control">{description}</span>
+                </div>
               </div>
             </div>
 
@@ -183,14 +187,16 @@ function ProjectDetailsView({
                 <label className="form-label fw-bold fs-5 border-bottom border-dark">
                   Detalles:{" "}
                 </label>
-                <div className="mb-2 fw-bold">
+                <div className="mb-2 d-flex justify-content-start align-items-center">
                   <img
-                    src="{countryImage}"
+                    src={imgCountry}
                     alt="Imagen del país"
-                    className="img-fluid"
+                    className="img-fluid me-2"
+                    style={{ width: "30px" }}
                   />
                   <span>{country}</span>
                 </div>
+
                 <div className="mb-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -17,7 +17,6 @@ function EnrollProject({ idProject, idUser }) {
   const currentUser = sessionStorage.getItem("id_user");
   const joinedProjects = async () => {
     const dataProjectsJoined = await fetchGetProjectsJoined(currentUser);
-    console.log(dataProjectsJoined);
     if (dataProjectsJoined) {
       sessionStorage.setItem(
         "projects_joined",
