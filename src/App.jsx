@@ -17,12 +17,12 @@ import Alliance from "./layout/Alliance/Alliance";
 import Profile from "./layout/Profile/Profile";
 import NewProject from "./layout/NewProject/NewProject";
 import Explore from "./layout/Explore/Explore";
+import ProjectDetails from "./layout/ProjectDetails/ProjectDetails ";
 import ErrorView from "./layout/Error/ErrorView";
+import { NexusProvider } from "./Hooks/useContext";
 import MyProjects from "./layout/MyProjects/MyProjects";
 import ProjectActivity from "./layout/ProjectActivity/ProjectActivity";
 import ProjectFeed from "./layout/ProjectFeed/ProjectFeed";
-import { NexusProvider } from "./Hooks/useContext";
-import ProjectDetails from "./layout/ProjectDetails/ProjectDetails ";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -69,8 +69,8 @@ function App() {
               }
             />
             <Route
-              path="/feed"
-              element={isLogin ? <ProjectFeed /> : <Navigate to={"/login"} />}
+              path="/feed/:idProject"
+              element={isLogin ? <ProjectFeed /> : <Navigate to="/login" />}
             />
             <Route
               path="/about"
