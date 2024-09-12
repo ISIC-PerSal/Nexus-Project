@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import GoFeedView from "./GoFeedView";
-import fetchGetProjectsJoined from "../../util/project/fetchGetProjectsJoined";
-import isJoined from "../../util/project/isJoined";
 import useIsJoined from "../../util/project/isJoined";
 import fetchGetFeedByProject from "../../util/project/fetchGetFeedByProject";
+import { useNavigate } from "react-router-dom";
 
 function GoFeed({ idProject, idUser }) {
   const [status, setStatus] = useState("");
   const currentUser = sessionStorage.getItem("id_user");
   const isJoined = useIsJoined(idProject);
-  const isOwner = currentUser == idUser
+  const isOwner = currentUser == idUser;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isOwner) {
@@ -21,21 +21,12 @@ function GoFeed({ idProject, idUser }) {
     }
   }, [idProject, idUser]);
 
-  const handleGoFeed = async () => { 
-  const body = {
-    idProject: idProject,
-    status: status,
-    type: "",
+  const handleGoFeed = async () => {
+    window.location.href=`/feed/${idProject}`
   };
-  try{
-    const data = await fetchGetFeedByProject(body);
-    console.log(data)
-  }catch{}
-};
   return (
     <>
-      <GoFeedView
-        handleGoFeed={handleGoFeed} />
+      <GoFeedView handleGoFeed={handleGoFeed} />
     </>
   );
 }
