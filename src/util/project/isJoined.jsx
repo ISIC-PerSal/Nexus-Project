@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import fetchGetProjectsJoined from "./fetchGetProjectsJoined";
 
 function useIsJoined(idProject) {
   const [isJoined, setIsJoined] = useState(false);
