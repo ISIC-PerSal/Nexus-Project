@@ -7,80 +7,153 @@ import ErrorView from "../Error/ErrorView";
 
 function EditProject() {
   const { idProject } = useParams();
+  const [data, setData] = useState([]);
 
-  const [projectData, setProjectData] = useState({
-    address: "",
-    background_image: "",
-    city: "",
-    clabe: "",
-    country: "",
-    created_at: "",
-    description: "",
-    donation: "",
-    email: "",
-    finish_date: "",
-    id_project_pk: "",
-    id_user_fk: "",
-    image: "",
-    leader_type: "",
-    name: "",
-    ods1: "",
-    ods2: "",
-    ods3: "",
-    ods4: "",
-    ods5: "",
-    ods6: "",
-    ods7: "",
-    ods8: "",
-    ods9: "",
-    ods10: "",
-    ods11: "",
-    ods12: "",
-    ods13: "",
-    ods14: "",
-    ods15: "",
-    ods16: "",
-    ods17: "",
-    phone: "",
-    project: "",
-    project_type: "",
-    rfc: "",
-    start_date: "",
-    state: "",
-    status: "",
-    url: "",
-    volunteers: "",
-    zip: "",
-  });
-
-  const updateProjectData = (field, value) => {
-    setProjectData((prevData) => ({
-      ...prevData,
-      [field]: value,
-    }));
-  };
+  const [project, setProject] = useState("");
+  const [image, setImage] = useState("");
+  const [leader_type, setLeader_type] = useState("");
+  const [name, setName] = useState("");
+  const [ods1, setOds1] = useState("");
+  const [ods2, setOds2] = useState("");
+  const [ods3, setOds3] = useState("");
+  const [ods4, setOds4] = useState("");
+  const [ods5, setOds5] = useState("");
+  const [ods6, setOds6] = useState("");
+  const [ods7, setOds7] = useState("");
+  const [ods8, setOds8] = useState("");
+  const [ods9, setOds9] = useState("");
+  const [ods10, setOds10] = useState("");
+  const [ods11, setOds11] = useState("");
+  const [ods12, setOds12] = useState("");
+  const [ods13, setOds13] = useState("");
+  const [ods14, setOds14] = useState("");
+  const [ods15, setOds15] = useState("");
+  const [ods16, setOds16] = useState("");
+  const [ods17, setOds17] = useState("");
+  const [phone, setPhone] = useState("");
+  const [projectType, setProjectType] = useState("");
+  const [rfc, setRfc] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [state, setState] = useState("");
+  const [status, setStatus] = useState("");
+  const [url, setUrl] = useState("");
+  const [volunteers, setVolunteers] = useState("");
+  const [zip, setZip] = useState("");
 
   useEffect(() => {
     const getDataProject = async () => {
       const currentUser = sessionStorage.getItem("id_user");
       try {
         const data = await fetchGetProject(idProject, currentUser, "", "", "");
-        setProjectData(data);
-      } catch (error) {
-        console.error("Error fetching project data:", error);
-      }
+        setData(data);
+      } catch {}
     };
     getDataProject();
   }, [idProject]);
- console.log(projectData);
+
+  useEffect(() => {
+    if (data && data.project) {
+      setProject(data.project);
+      setImage(data.image);
+      setLeader_type(data.leader_type);
+      setName(data.name);
+      setOds1(data.ods1);
+      setOds2(data.ods2);
+      setOds3(data.ods3);
+      setOds4(data.ods4);
+      setOds5(data.ods5);
+      setOds6(data.ods6);
+      setOds7(data.ods7);
+      setOds8(data.ods8);
+      setOds9(data.ods9);
+      setOds10(data.ods10 || "");
+      setOds11(data.ods11 || "");
+      setOds12(data.ods12 || "");
+      setOds13(data.ods13 || "");
+      setOds14(data.ods14 || "");
+      setOds15(data.ods15 || "");
+      setOds16(data.ods16 || "");
+      setOds17(data.ods17 || "");
+      setPhone(data.phone || "");
+      setProject(data.project || "");
+      setProjectType(data.project_type || "");
+      setRfc(data.rfc || "");
+      setStartDate(data.start_date || "");
+      setState(data.state || "");
+      setStatus(data.status || "");
+      setUrl(data.url || "");
+      setVolunteers(data.volunteers || "");
+      setZip(data.zip || "");
+    }
+  }, [data]);
+
   return (
     <>
-      {projectData ? (
+      {data && data.project ? (
         <>
           <Navbar />
           <EditProjectView
-            data={projectData}
-            updateProjectData={updateProjectData}
+            data={data}
+            project={project}
+            setProject={setProject}
+            image={image}
+            setImage={setImage}
+            leader_type={leader_type}
+            setLeader_type={setLeader_type}
+            name={name}
+            setName={setName}
+            ods1={ods1}
+            setOds1={setOds1}
+            ods2={ods2}
+            setOds2={setOds2}
+            ods3={ods3}
+            setOds3={setOds3}
+            ods4={ods4}
+            setOds4={setOds4}
+            ods5={ods5}
+            setOds5={setOds5}
+            ods6={ods6}
+            setOds6={setOds6}
+            ods7={ods7}
+            setOds7={setOds7}
+            ods8={ods8}
+            setOds8={setOd8}
+            ods9={ods9}
+            setOds9={setOds9}
+            ods10={ods10}
+            setOds10={setOds10}
+            ods11={ods11}
+            setOds11={setOds11}
+            ods12={ods12}
+            setOds12={setOds12}
+            ods13={ods13}
+            setOds13={setOds13}
+            ods14={ods14}
+            setOds14={setOds14}
+            ods15={ods15}
+            setOds15={setOds15}
+            ods16={ods16}
+            setOds16={setOds16}
+            ods17={ods17}
+            setOds17={setOds17}
+            phone={phone}
+            setPhone={setPhone}
+            projectType={projectType}
+            setProjectType={setProjectType}
+            rfc={rfc}
+            setRfc={setRfc}
+            startDate={startDate}
+            setStartDate={setStartDate}
+            state={state}
+            setState={setState}
+            status={status}
+            setStatus={setStatus}
+            url={url}
+            setUrl={setUrl}
+            volunteers={volunteers}
+            setVolunteers={setVolunteers}
+            zip={zip}
+            setZip={setZip}
           />
         </>
       ) : (
