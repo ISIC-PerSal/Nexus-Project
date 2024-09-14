@@ -16,7 +16,7 @@ function CarruselFadeView({ images }) {
             key={index}
             data-bs-interval="10000"
           >
-            <img src={item.url} className="d-block w-100" alt="..." />
+            <img src={item.url} className="d-block" alt="..." />
           </div>
         ))}
       </div>
