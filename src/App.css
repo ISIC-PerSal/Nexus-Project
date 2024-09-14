@@ -256,14 +256,73 @@ a {
   -webkit-box-orient: vertical;
 }
 
-.bg-azul-1{
+.bg-azul-1 {
   background-color: #152056;
 }
 
-.bg-azul-2{
-  background-color: #4D82BC;
+.bg-azul-2 {
+  background-color: #4d82bc;
 }
 
-.bg-azul-3{
-  background-color: #2898EE;
+.bg-azul-3 {
+  background-color: #2898ee;
+}
+#carouselExampleIndicators {
+  height: 50vh !important;
+  position: relative;
+}
+
+#carouselExampleIndicators .carousel-inner {
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+}
+
+#carouselExampleIndicators .carousel-item {
+  height: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#carouselExampleIndicators .carousel-item > img {
+  height: 100% !important;
+  width: auto !important;
+  object-fit: cover; /* Ensure the image covers the area */
+}
+
+.carousel-custom {
+  height: 50vh;
+  overflow: hidden;
+}
+
+.carousel-custom .carousel-item {
+  height: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background-color: white !important ;
+  padding: 5px;
+}
+
+.carousel-custom .d-block.w-100 {
+  height: 100% !important;
+  width: auto !important;
+}
+
+.carousel-custom .carousel-control-prev-icon,
+.carousel-custom .carousel-control-next-icon {
+  background-color: #393B3D;
+  border-radius: 100%;
+  padding: 6px;
+}
+
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #F3F4F7; 
+}
+
+.dropdown-menu .dropdown-item:active {
+  background-color: #c13b6c !important ; 
+  color: white !important; 
 }
