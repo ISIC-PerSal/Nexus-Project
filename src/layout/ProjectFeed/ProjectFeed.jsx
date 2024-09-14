@@ -41,7 +41,7 @@ function ProjectFeed() {
     const fetchData = async () => {
       const body = {
         idProject: idProject,
-        status: status,
+        status: permissions,
         type: "",
       };
       const feedProject = await getFeedProject(body);
