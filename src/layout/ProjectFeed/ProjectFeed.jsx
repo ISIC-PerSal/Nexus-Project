@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import useProjectPermissions from "../../Hooks/useProjectPermissions";
 import fetchGetFeedByProject from "../../util/project/fetchGetFeedByProject";
 import fetchGetProject from "../../util/project/fetchGetProject";
+import useIsJoined from "../../util/project/isJoined";
 
 function ProjectFeed() {
   const { setSelected } = useNexus();
@@ -41,7 +42,7 @@ function ProjectFeed() {
     const fetchData = async () => {
       const body = {
         idProject: idProject,
-        status: status,
+        status: permission,
         type: "",
       };
       const feedProject = await getFeedProject(body);
