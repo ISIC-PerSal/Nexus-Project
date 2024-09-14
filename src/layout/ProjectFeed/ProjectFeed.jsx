@@ -12,7 +12,7 @@ function ProjectFeed() {
   const { idProject } = useParams();
   const permission = useProjectPermissions(idProject);
   const [data, setData] = useState([]);
-const [dataProject, setDataProject] = useState({});
+  const [dataProject, setDataProject] = useState({});
 
   const getFeedProject = async (body) => {
     try {
@@ -29,19 +29,19 @@ const [dataProject, setDataProject] = useState({});
   }, [setSelected]);
 
   useEffect(() => {
+    const getDataProject = async () => {
+      try {
+        const dataP = await fetchGetProject(idProject, "", "", "");
+        setDataProject(dataP);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getDataProject();
     const fetchData = async () => {
-      const getDataProject = async () => {
-        try {
-          const dataP = await fetchGetProject(idProject, "", "", "");
-          setDataProject(dataP);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      getDataProject();
       const body = {
         idProject: idProject,
-        status: "Privado",
+        status: status,
         type: "",
       };
       const feedProject = await getFeedProject(body);
