@@ -14,7 +14,7 @@ function ProjectFeed() {
   const [data, setData] = useState([]);
   const [dataProject, setDataProject] = useState({});
 
-  const getFeedProject= async (body) => {
+  const getFeedProject = async (body) => {
     try {
       const data = await fetchGetFeedByProject(body);
       return data;
@@ -41,7 +41,7 @@ function ProjectFeed() {
     const fetchData = async () => {
       const body = {
         idProject: idProject,
-        status: "Privado",
+        status: status,
         type: "",
       };
       const feedProject = await getFeedProject(body);
