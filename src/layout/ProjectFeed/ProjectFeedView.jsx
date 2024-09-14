@@ -6,8 +6,8 @@ import NoDataView from "../../components/NoData/NoDataView";
 function ProjectFeedView({ data = [], project }) {
   const background = project.background_image || "";
   const image = project.image || "";
-  const title = project.project || ""
-  const owner = project.name || ""
+  const title = project.project || "";
+  const owner = project.name || "";
 
   const backgroundImg = `url(${background})`;
 
@@ -20,7 +20,6 @@ function ProjectFeedView({ data = [], project }) {
     backgroundSize: "cover",
   };
   const dynamicStyle = image ? { backgroundImage: profileImg } : {};
-
   return (
     <>
       <main className="container w-75 p-3  my-3 border rounded border-secondary-subtle bg-gral">
