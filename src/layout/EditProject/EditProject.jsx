@@ -72,7 +72,7 @@ function EditProject() {
     };
     getDataProject();
   }, [idProject]);
-
+ console.log(projectData);
   return (
     <>
       {projectData ? (

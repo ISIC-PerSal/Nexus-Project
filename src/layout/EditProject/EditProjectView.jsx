@@ -2,7 +2,7 @@ function EditProjectView({ data, updateProjectData }) {
   const handleChange = (field) => (event) => {
     updateProjectData(field, event.target.value);
   };
-  console.log(data);
+  
   return (
     <>
       <main className="py-3 container w-50 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
