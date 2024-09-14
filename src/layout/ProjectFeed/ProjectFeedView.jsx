@@ -6,8 +6,9 @@ import NoDataView from "../../components/NoData/NoDataView";
 function ProjectFeedView({ data = [], project }) {
   const background = project.background_image || "";
   const image = project.image || "";
-  const title = project.project || ""
-  const owner = project.name || ""
+  const title = project.project || "";
+  const owner = project.name || "";
+
   const backgroundImg = `url(${background})`;
 
   const profileImg = `url(${image})`;
