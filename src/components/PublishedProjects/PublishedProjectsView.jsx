@@ -5,7 +5,7 @@ import "datatables.net-select-dt";
 import "datatables.net-responsive-dt";
 
 DataTable.use(DT);
-function PublishedProjectsView({ dataProject, edit, activity, status }) {
+function PublishedProjectsView({ dataProject, edit, activity, explore }) {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
@@ -13,8 +13,47 @@ function PublishedProjectsView({ dataProject, edit, activity, status }) {
       logoProject(project.image),
       project.project,
       project.project_type,
-      `<button class="btn-edit btn bg-oficial text-white w-auto py-1 px-3" data-id="${project.id_project_pk}">Editar</button>`,
-      `<button class="btn-activity btn bg-azul text-white w-auto py-1 px-3" data-id="${project.id_project_pk}" data-project="${project.project}">Nueva</button>`,
+      `<div class="dropdown">
+  <button
+    class="btn bg-oficial text-white dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Herramientas
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li>
+      <button
+        class="btn-edit btn dropdown-item"
+        data-id="${project.id_project_pk}"
+        data-project="${project.project}"
+      >
+        Editar
+      </button>
+    </li>
+    <li>
+      <button
+        class="btn-activity btn dropdown-item"
+        data-id="${project.id_project_pk}"
+        data-project="${project.project}"
+      >
+        Nueva actividad
+      </button>
+    </li>
+    <li>
+      <button
+        class="btn-explore btn dropdown-item"
+        data-id="${project.id_project_pk}"
+        data-project="${project.project}"
+      >
+        Ver
+      </button>
+    </li>
+  </ul>
+</div>
+`,
     ]);
 
     setTableData(formattedData);
@@ -35,9 +74,9 @@ function PublishedProjectsView({ dataProject, edit, activity, status }) {
       if (target.matches(".btn-edit")) {
         edit(id);
       } else if (target.matches(".btn-activity")) {
-        activity(id, project)
-      } else if (target.matches(".btn-status")) {
-        status(id);
+        activity(id, project);
+      } else if (target.matches(".btn-explore")) {
+        explore(id);
       }
     };
 
@@ -63,8 +102,7 @@ function PublishedProjectsView({ dataProject, edit, activity, status }) {
       { title: "Logo" },
       { title: "Proyecto" },
       { title: "Tipo" },
-      { title: "Editar" },
-      { title: "Actividad" },
+      { title: "Herramientas" },
     ],
   };
 
