@@ -1,12 +1,17 @@
 import React from "react";
 import CarruselFade from "../CarruselFade/CarruselFade";
 
-function CardNewsView({ item }) {
+function CardNewsView({ item, getStatusIcon}) {
   return (
     <div className="card w-100">
       {item.files.length > 0 ? <CarruselFade images={item.files} /> : ""}
       <div className="card-body">
-        <h5 className="card-title">{item.type || "Card title"}</h5>
+        {item.type == "Noticia" ? (
+          <span className="badge text-bg-success">{item.type}</span>
+        ) : (
+          <span className="badge text-bg-warning">{item.type}</span>
+        )}
+        <span className="badge text-bg-primary">{getStatusIcon(item.status)}</span>
         <div
           className="card-text truncated-text"
           dangerouslySetInnerHTML={{

@@ -118,6 +118,7 @@ function ProjectDetailsView({
               </div>
             </div>
           </div>
+
           <div>
             <div className="w-100 d-flex">
               <div className="w-50 ms-3 bg-gral p-3 rounded">
