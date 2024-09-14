@@ -1,6 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function EditProjectView() {
+function EditProjectView({ data, project, setProject }) {
+  console.log(data);
   return (
     <>
       <main className="py-3 container w-50 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
@@ -12,7 +13,7 @@ function EditProjectView() {
             <label htmlFor="nombre-proyecto" className="form-label">
               Nombre del líder o representante
             </label>
-<input
+            <input
               type="text"
               className="form-control"
               id="nombre-proyecto"
@@ -23,7 +24,7 @@ function EditProjectView() {
         </form>
       </main>
     </>
-  )
+  );
 }
 
-export default EditProjectView
+export default EditProjectView;
