@@ -33,8 +33,8 @@ function PublishedProjects({ idUser }) {
     navigate(`/add-activity?project=${id}`, { state: { data: project } });
   }
 
-  function changeStatus(id) {
-    //console.log("Change status for project with ID:", id);
+  function explore(id) {
+    navigate(`/explore/${id}`);
   }
 
   return (
@@ -43,7 +43,7 @@ function PublishedProjects({ idUser }) {
         dataProject={dataProject}
         edit={editProject}
         activity={addActivity}
-        status={changeStatus}
+        explore={explore}
       />
     </>
   );
