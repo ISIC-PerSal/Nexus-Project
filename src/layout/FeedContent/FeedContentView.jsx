@@ -76,7 +76,7 @@ function FeedContentView({ data, statusIcon, time, date }) {
           </span>
         </div>
         <div
-          className="card-text truncated-text"
+          className="card-text mt-3"
           dangerouslySetInnerHTML={{
             __html: data.activity_content || "No content available",
           }}

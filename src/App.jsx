@@ -24,6 +24,7 @@ import MyProjects from "./layout/MyProjects/MyProjects";
 import ProjectActivity from "./layout/ProjectActivity/ProjectActivity";
 import ProjectFeed from "./layout/ProjectFeed/ProjectFeed";
 import FeedContent from "./layout/FeedContent/FeedContent";
+import EditProject from "./layout/EditProject/EditProject";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -68,6 +69,10 @@ function App() {
               element={
                 isLogin ? <ProjectDetails /> : <Navigate to={"/login"} />
               }
+            />
+            <Route
+              path="/edit/:idProject"
+              element={isLogin ? <EditProject /> : <Navigate to={"/login"} />}
             />
             <Route
               path="/feed/:idProject"
