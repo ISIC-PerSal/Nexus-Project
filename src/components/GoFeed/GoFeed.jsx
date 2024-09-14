@@ -4,7 +4,7 @@ import useIsJoined from "../../util/project/isJoined";
 import fetchGetFeedByProject from "../../util/project/fetchGetFeedByProject";
 import { useNavigate } from "react-router-dom";
 
-function GoFeed({ idProject, idUser }) {
+function GoFeed({ idProject, idUser}) {
   const [status, setStatus] = useState("");
   const currentUser = sessionStorage.getItem("id_user");
   const isJoined = useIsJoined(idProject);

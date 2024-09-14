@@ -78,7 +78,7 @@ function ProjectDetailsView({
           idProject={data.id_project_pk}
           idUser={data.id_user_fk}
         />
-        <GoFeed idProject={data.id_project_pk} idUser={data.id_user_fk} />
+        <GoFeed idProject={data.id_project_pk} idUser={data.id_user_fk}/>
       </div>
       <main className="py-3 bg-img">
         <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
