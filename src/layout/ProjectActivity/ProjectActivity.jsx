@@ -36,7 +36,7 @@ function ProjectActivity() {
     if (data) {
       setProject(data);
     }
-  }, [data]);
+  }, [id]);
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
@@ -92,7 +92,6 @@ function ProjectActivity() {
 
       try {
         const data = await fetchAddActivity(body);
-        console.log(body)
         if (data.status == "Done") {
           Swal.fire({
             title: "Exito!",

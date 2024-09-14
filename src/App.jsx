@@ -23,6 +23,7 @@ import { NexusProvider } from "./Hooks/useContext";
 import MyProjects from "./layout/MyProjects/MyProjects";
 import ProjectActivity from "./layout/ProjectActivity/ProjectActivity";
 import ProjectFeed from "./layout/ProjectFeed/ProjectFeed";
+import FeedContent from "./layout/FeedContent/FeedContent";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -71,6 +72,10 @@ function App() {
             <Route
               path="/feed/:idProject"
               element={isLogin ? <ProjectFeed /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/feed/:idProject/:feed"
+              element={isLogin ? <FeedContent /> : <Navigate to="/login" />}
             />
             <Route
               path="/about"
