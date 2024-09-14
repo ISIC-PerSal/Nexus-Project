@@ -73,6 +73,10 @@ function App() {
               element={isLogin ? <ProjectFeed /> : <Navigate to="/login" />}
             />
             <Route
+              path="/feed/:idProject/:feed"
+              element={isLogin ? <FeedContent /> : <Navigate to="/login" />}
+            />
+            <Route
               path="/about"
               element={isLogin ? <About /> : <Navigate to={"/login"} />}
             />

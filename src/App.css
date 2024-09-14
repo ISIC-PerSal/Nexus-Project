@@ -255,3 +255,14 @@ a {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+.bg-azul-1{
+  background-color: #152056;
+}
+
+.bg-azul-2{
+  background-color: #4D82BC;
+}
+
+.bg-azul-3{
+  background-color: #2898EE;
+}

@@ -19,7 +19,6 @@ export const handleImageUpload = (e, setSelectedFile) => {
 };
 
 export const handleUpload = async (selectedFile, setImageURL) => {
-  console.log(selectedFile)
   if (!selectedFile) {
     return;
   }
