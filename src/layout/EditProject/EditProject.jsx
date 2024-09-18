@@ -10,13 +10,6 @@ function EditProject() {
   const [data, setData] = useState([]);
 
   const [project, setProject] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [clabe, setClabe] = useState("");
-  const [country, setCountry] = useState("");
-  const [email, setEmail] = useState("");
-  const [id_project_pk, setId_project_pk] = useState("");
-  const [id_user_fk, setId_user_fk] = useState("");
   const [image, setImage] = useState("");
   const [leader_type, setLeader_type] = useState("");
   const [name, setName] = useState("");
@@ -63,7 +56,6 @@ function EditProject() {
       setProject(data.project);
       setImage(data.image);
       setLeader_type(data.leader_type);
-
       setName(data.name);
       setOds1(data.ods1);
       setOds2(data.ods2);

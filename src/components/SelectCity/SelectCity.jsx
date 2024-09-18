@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import mex_cities from "../../util/location/mex_cities";
 import SelectCityView from "./SelectCityView";
 import arg_cities from "../../util/location/arg_cities";
+import belice_cities from "../../util/location/belice_cities";
+import bra_cities from "../../util/location/bra_cities";
+import bolivia_cities from "../../util/location/bolivia_cities";
+import Chile_cities from "../../util/location/Chile_cities";
+import colombia_cities from "../../util/location/colombia_cities";
 
 function SelectCity({ city, setCity, country, state }) {
   const [cities, setCities] = useState([]);
@@ -10,6 +15,26 @@ function SelectCity({ city, setCity, country, state }) {
       case "Argentina":
         return (
           arg_cities.find((item) => item.Estado === estado)?.Ciudades || []
+        );
+      case "Belice":
+        return (
+          belice_cities.find((item) => item.Estado === estado)?.Ciudades || []
+        );
+      case "Bolivia":
+        return (
+          bolivia_cities.find((item) => item.Estado === estado)?.Ciudades || []
+        );
+      case "Brasil":
+        return (
+          bra_cities.find((item) => item.Estado === estado)?.Ciudades || []
+        );
+      case "Chile":
+        return (
+          Chile_cities.find((item) => item.Estado === estado)?.Ciudades || []
+        );
+        case "Colombia":
+        return (
+          colombia_cities.find((item) => item.Estado === estado)?.Ciudades || []
         );
       case "México":
         return (

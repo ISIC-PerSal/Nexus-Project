@@ -118,7 +118,6 @@ function ProjectDetailsView({
               </div>
             </div>
           </div>
-
           <div>
             <div className="w-100 d-flex">
               <div className="w-50 ms-3 bg-gral p-3 rounded">
@@ -152,12 +151,12 @@ function ProjectDetailsView({
             </div>
             <br />
             <div className="mb-3">
-              <div className="rounded-top bg-info bg-opacity-25 border border-primary">
-                <label className="form-label ms-2 fw-bold fs-4">
-                  Datos del proyecto
-                </label>
-              </div>
-              <div className="rounded-bottom border border-primary-subtle">
+            <div className="rounded-top bg-secondary bg-opacity-25 borderp-3 shadow-sm text-center">
+  <label className="form-label ms-2 fw-bold fs-4">
+    Datos del proyecto
+  </label>
+</div>
+              <div className="rounded-bottom border">
                 <div className="ms-3 mt-3">
                   <div className="form-label me-2">ODS:</div>
 
@@ -167,13 +166,20 @@ function ProjectDetailsView({
                     ))}
                   </div>
                 </div>
-                <div className="ms-3 d-flex">
-                  <div className="mb-3 w-25">
-                    <label className="form-label">Numero de voluntarios:</label>
-                    <span className="form-control">{volunteers}</span>
-                  </div>
-                  <div className="mb-3 w-75 text-center">Barra de progreso</div>
-                </div>
+                <div className="ms-3 d-flex align-items-center">
+  <div className="mb-3 w-25">
+    <label className="form-label">Número de voluntarios:</label>
+    <span className="form-control">{volunteers}</span>
+  </div>
+  <div className="w-75">
+    <div className="mb-3">
+      <label className="form-label">Barra de progreso</label>
+      <div className="progress">
+        <div className="progress-bar" role="progressbar" style={{}} aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
+      </div>
+    </div>
+  </div>
+</div>
                 <div className="text-center mb-3 ms-3 me-3">
                   <label className="form-label">
                     Descripción del proyecto:
