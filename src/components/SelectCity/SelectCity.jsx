@@ -7,6 +7,8 @@ import bra_cities from "../../util/location/bra_cities";
 import bolivia_cities from "../../util/location/bolivia_cities";
 import Chile_cities from "../../util/location/Chile_cities";
 import colombia_cities from "../../util/location/colombia_cities";
+import costa_rica_cities from "../../util/location/costa_rica_cities";
+
 
 function SelectCity({ city, setCity, country, state }) {
   const [cities, setCities] = useState([]);
@@ -39,6 +41,10 @@ function SelectCity({ city, setCity, country, state }) {
       case "México":
         return (
           mex_cities.find((item) => item.Estado === estado)?.Ciudades || []
+        );
+        case "México":
+        return (
+          costa_rica_cities.find((item) => item.Estado === estado)?.Ciudades || []
         );
       default:
         return [];
