@@ -117,7 +117,7 @@ function EditProject() {
             ods7={ods7}
             setOds7={setOds7}
             ods8={ods8}
-            setOds8={setOd8}
+            setOds8={setOds8}
             ods9={ods9}
             setOds9={setOds9}
             ods10={ods10}
