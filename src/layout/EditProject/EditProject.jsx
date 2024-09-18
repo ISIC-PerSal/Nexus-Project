@@ -63,6 +63,7 @@ function EditProject() {
       setProject(data.project);
       setImage(data.image);
       setLeader_type(data.leader_type);
+
       setName(data.name);
       setOds1(data.ods1);
       setOds2(data.ods2);
