@@ -4,11 +4,13 @@ import fetchLogin from "../../util/user/fetchLogin";
 import Swal from "sweetalert2";
 import Navbar from "../../components/Navbar/Navbar";
 import fetchGetProjectsJoined from "../../util/project/fetchGetProjectsJoined";
+import { useNexus } from "../../Hooks/useContext";
 
 function Login() {
   sessionStorage.clear();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -29,6 +31,7 @@ function Login() {
           sessionStorage.setItem("password", data.password);
           sessionStorage.setItem("rfc", data.rfc);
           sessionStorage.setItem("clabe", data.clabe);
+          sessionStorage.setItem("type", data.type);
           const dataProjects = await fetchGetProjectsJoined(data.id_user);
           if (dataProjects) {
             sessionStorage.setItem(
