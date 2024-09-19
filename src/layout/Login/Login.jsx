@@ -39,8 +39,8 @@ function Login() {
               JSON.stringify(dataProjects)
             );
           }
-
           window.location = "/home";
+          
         } else {
           Swal.fire({
             title: "Error!",

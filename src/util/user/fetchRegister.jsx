@@ -14,4 +14,4 @@ async function fetchRegister(body) {
     }
 }
 
-export default fetchRegister
+export default fetchRegister;

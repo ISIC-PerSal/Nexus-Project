@@ -3,9 +3,7 @@ import PaisesProyecto from "../../util/location/PaisesProyecto";
 
 function BadgeCountryView({ data }) {
   const bandera = (item) => {
-    const pais = PaisesProyecto.find(
-      (pais) => pais.label.props.children[1] === item
-    );
+    const pais = PaisesProyecto.find((pais) => pais.label.props.children[1] === item);
 
     const imgSrc = pais.label.props.children[0].props.src;
     return imgSrc;
@@ -13,7 +11,7 @@ function BadgeCountryView({ data }) {
 
   return (
     <>
-      <span className="badge text-black">
+      <span className="">
         <div className="d-flex align-items-center">
           {" "}
           <img

@@ -11,8 +11,7 @@ function About() {
   }, [setSelected]);
   return (
     <>
-    <Navbar/>
-    <AboutView />
+      <AboutView />
     </>
   );
 }

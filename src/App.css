@@ -330,16 +330,17 @@ a {
 
 .carousel-custom .carousel-control-prev-icon,
 .carousel-custom .carousel-control-next-icon {
-  background-color: #393b3d;
+  background-color: #393B3D;
   border-radius: 100%;
   padding: 6px;
 }
 
+
 .dropdown-menu .dropdown-item:hover {
-  background-color: #f3f4f7;
+  background-color: #F3F4F7; 
 }
 
 .dropdown-menu .dropdown-item:active {
-  background-color: #c13b6c !important ;
-  color: white !important;
+  background-color: #c13b6c !important ; 
+  color: white !important; 
 }

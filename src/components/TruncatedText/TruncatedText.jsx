@@ -10,3 +10,4 @@ function TruncatedText({ text = "", long = 50, size = "15" }) {
 }
 
 export default TruncatedText;
+ 

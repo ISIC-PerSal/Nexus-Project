@@ -4,30 +4,15 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useParams } from "react-router-dom";
 import fetchGetProject from "../../util/project/fetchGetProject";
 import ErrorView from "../Error/ErrorView";
-import ods from "../../util/ods";
 
 function EditProject() {
   const { idProject } = useParams();
   const [data, setData] = useState([]);
 
   const [project, setProject] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [clabe, setClabe] = useState("");
-  const [country, setCountry] = useState("");
-  const [email, setEmail] = useState("");
-  const [id_project_pk, setId_project_pk] = useState("");
-  const [id_user_fk, setId_user_fk] = useState("");
   const [image, setImage] = useState("");
   const [leader_type, setLeader_type] = useState("");
   const [name, setName] = useState("");
-  const [checkName, setCheckName] = useState(false);
-  const [checkEmail, setCheckEmail] = useState(false);
-  const [checkRfc, setCheckRfc] = useState(false);
-  const [checkClabe, setCheckClabe] = useState(false);
-  const [description, setDescription] = useState("");
-  const [donation, setDonation] = useState(false);
-  const [donationVerify, setDonationVerify] = useState(false);
   const [ods1, setOds1] = useState("");
   const [ods2, setOds2] = useState("");
   const [ods3, setOds3] = useState("");
@@ -49,49 +34,11 @@ function EditProject() {
   const [projectType, setProjectType] = useState("");
   const [rfc, setRfc] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [finishDate, setFinishDate] = useState("");
   const [state, setState] = useState("");
   const [status, setStatus] = useState("");
   const [url, setUrl] = useState("");
   const [volunteers, setVolunteers] = useState("");
   const [zip, setZip] = useState("");
-  const [checkedOds, setCheckedOds] = useState({
-    ods1: false,
-    ods2: false,
-    ods3: false,
-    ods4: false,
-    ods5: false,
-    ods6: false,
-    ods7: false,
-    ods8: false,
-    ods9: false,
-    ods10: false,
-    ods11: false,
-    ods12: false,
-    ods13: false,
-    ods14: false,
-    ods15: false,
-    ods16: false,
-    ods17: false,
-  });
-
-  const handleCheckboxChange = (event) => {
-    const { id, checked } = event.target;
-    setCheckedOds((prevState) => ({
-      ...prevState,
-      [id]: checked,
-    }));
-  };
-
-  const handleSetOds = (id, value) => {
-    console.log(id);
-    console.log(first);
-    const odsNumber = `ods${id}`;
-    setCheckedOds((prevState) => ({
-      ...prevState,
-      [odsNumber]: value == 1 ? true : false,
-    }));
-  };
 
   useEffect(() => {
     const getDataProject = async () => {
@@ -106,15 +53,27 @@ function EditProject() {
 
   useEffect(() => {
     if (data && data.project) {
-      setProject(data.project || "");
+      setProject(data.project);
       setImage(data.image);
-      setLeader_type(data.leader_type || "");
-      setName(data.name || "");
-      setCheckedOds((prev) => ({
-        ...prev,
-        [`ods1`]: data.ods1 == 1,
-        [`ods2`]: data.ods2 == 1,
-      }));
+      setLeader_type(data.leader_type);
+      setName(data.name);
+      setOds1(data.ods1);
+      setOds2(data.ods2);
+      setOds3(data.ods3);
+      setOds4(data.ods4);
+      setOds5(data.ods5);
+      setOds6(data.ods6);
+      setOds7(data.ods7);
+      setOds8(data.ods8);
+      setOds9(data.ods9);
+      setOds10(data.ods10 || "");
+      setOds11(data.ods11 || "");
+      setOds12(data.ods12 || "");
+      setOds13(data.ods13 || "");
+      setOds14(data.ods14 || "");
+      setOds15(data.ods15 || "");
+      setOds16(data.ods16 || "");
+      setOds17(data.ods17 || "");
       setPhone(data.phone || "");
       setProject(data.project || "");
       setProjectType(data.project_type || "");
@@ -125,7 +84,6 @@ function EditProject() {
       setUrl(data.url || "");
       setVolunteers(data.volunteers || "");
       setZip(data.zip || "");
-      console.log(checkedOds);
     }
   }, [data]);
 
@@ -144,28 +102,6 @@ function EditProject() {
             setLeader_type={setLeader_type}
             name={name}
             setName={setName}
-            checkName={checkName}
-            setCheckName={setCheckName}
-            email={email}
-            setEmail={setEmail}
-            checkEmail={checkEmail}
-            setCheckEmail={setCheckEmail}
-            checkRfc={checkRfc}
-            setCheckRfc={setCheckRfc}
-            clabe={clabe}
-            setClabe={setClabe}
-            checkClabe={checkClabe}
-            setCheckClabe={setCheckClabe}
-            description={description}
-            setDescription={setDescription}
-            donation={donation}
-            setDonation={setDonation}
-            country={country}
-            setCountry={setCountry}
-            city={city}
-            setCity={setCity}
-            address={address}
-            setAddress={setAddress}
             ods1={ods1}
             setOds1={setOds1}
             ods2={ods2}
@@ -208,8 +144,6 @@ function EditProject() {
             setRfc={setRfc}
             startDate={startDate}
             setStartDate={setStartDate}
-            finishDate={finishDate}
-            setFinishDate={setFinishDate}
             state={state}
             setState={setState}
             status={status}
@@ -220,8 +154,6 @@ function EditProject() {
             setVolunteers={setVolunteers}
             zip={zip}
             setZip={setZip}
-            checkedOds={checkedOds}
-            handleCheckboxChange={handleCheckboxChange}
           />
         </>
       ) : (

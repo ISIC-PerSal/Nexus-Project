@@ -1,12 +1,17 @@
 import React from 'react'
-import AboutSection from '../../components/About/AboutSection'
+import Poster from "../../assets/Poster.jpg";
+import Navbar from '../../components/Navbar/Navbar';
+import AboutSection from '../../components/About/AboutSection';
 
 function AboutView() {
   return (
     <>
-    <AboutSection/>
+     <Navbar/>
+     <AboutSection/>
+    
     </>
   )
+
 }
 
-export default AboutView
+export default AboutView

@@ -23,7 +23,6 @@ function useProjectPermissions(idProject) {
 
   useEffect(() => {
     const determinePermission = async () => {
-      console.log(data.id_user_fk)
       const isOwner = currentUser == data.id_user_fk;
 
       if (isOwner) {

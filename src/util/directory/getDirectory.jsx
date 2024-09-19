@@ -7,7 +7,7 @@ async function getDirectory(pais, ods) {
         const data = await getDataApi(url, "");
         return data
     } catch (error) {
-        console.error("Error: ", error.message)
+        console.error("Error: ", error.message) 
         return null
     }
 }
