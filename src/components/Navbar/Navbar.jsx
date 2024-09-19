@@ -6,6 +6,7 @@ import isAuth from "../../util/isAuth";
 function Navbar() {
   const { selected, setSelected } = useNexus();
   const isLogin = isAuth();
+  const typeUser = sessionStorage.getItem("type") || "General";
 
   const handleOption = (option) => () => {
     setSelected(option);
