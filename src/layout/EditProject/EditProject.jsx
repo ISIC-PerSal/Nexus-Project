@@ -13,6 +13,20 @@ function EditProject() {
   const [image, setImage] = useState("");
   const [leader_type, setLeader_type] = useState("");
   const [name, setName] = useState("");
+  const [checkName, setCheckName] = useState(false);
+  const [email, setEmail] = useState("");
+  const [checkEmail, setCheckEmail] = useState(false);
+  const [checkRfc, setCheckRfc] = useState(false);
+  const [clabe, setClabe] = useState(false);
+  const [checkClabe, setCheckClabe] = useState(false);
+  const [description, setDescription] = useState("");
+  const [donation, setDonation] = useState(false);
+  const [donationVerify, setDonationVerify] = useState(false);
+  const [country, setCountry] = useState("Todos");
+  const [city, setCity] = useState("Todos");
+  const [address, setAddress] = useState("Todos");
+  const [startDate, setStartDate] = useState("");
+  const [finishDate, setFinishDate] = useState("");
   const [ods1, setOds1] = useState("");
   const [ods2, setOds2] = useState("");
   const [ods3, setOds3] = useState("");
@@ -33,12 +47,46 @@ function EditProject() {
   const [phone, setPhone] = useState("");
   const [projectType, setProjectType] = useState("");
   const [rfc, setRfc] = useState("");
-  const [startDate, setStartDate] = useState("");
   const [state, setState] = useState("");
   const [status, setStatus] = useState("");
   const [url, setUrl] = useState("");
   const [volunteers, setVolunteers] = useState("");
   const [zip, setZip] = useState("");
+  const [checkedOds, setCheckedOds] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false,
+    9: false,
+    10: false,
+    11: false,
+    12: false,
+    13: false,
+    14: false,
+    15: false,
+    16: false,
+    17: false,
+  });
+  const handleCheckboxChange = (event) => {
+    const { id, checked } = event.target;
+    const odsNumber = id.replace("ods", "");
+    setCheckedOds((prevState) => ({
+      ...prevState,
+      [odsNumber]: checked,
+    }));
+  };
+  const handleSetOds = (id, value) => {
+    const odsNumber = `ods${id}`;
+
+    setCheckedOds((prevState) => ({
+      ...prevState,
+      [odsNumber]: value,
+    }));
+  };
 
   useEffect(() => {
     const getDataProject = async () => {
@@ -46,34 +94,34 @@ function EditProject() {
       try {
         const data = await fetchGetProject(idProject, currentUser, "", "", "");
         setData(data);
-      } catch {}
+      } catch { }
     };
     getDataProject();
   }, [idProject]);
 
   useEffect(() => {
     if (data && data.project) {
-      setProject(data.project);
-      setImage(data.image);
-      setLeader_type(data.leader_type);
-      setName(data.name);
-      setOds1(data.ods1);
-      setOds2(data.ods2);
-      setOds3(data.ods3);
-      setOds4(data.ods4);
-      setOds5(data.ods5);
-      setOds6(data.ods6);
-      setOds7(data.ods7);
-      setOds8(data.ods8);
-      setOds9(data.ods9);
-      setOds10(data.ods10 || "");
-      setOds11(data.ods11 || "");
-      setOds12(data.ods12 || "");
-      setOds13(data.ods13 || "");
-      setOds14(data.ods14 || "");
-      setOds15(data.ods15 || "");
-      setOds16(data.ods16 || "");
-      setOds17(data.ods17 || "");
+      setProject(data.project || "");
+      setImage(data.image || "");
+      setLeader_type(data.leader_type || "");
+      setName(data.name || "");
+      handleSetOds(1, data.ods1);
+      handleSetOds(2, data.ods2);
+      handleSetOds(3, data.ods3);
+      handleSetOds(4, data.ods4);
+      handleSetOds(5, data.ods5);
+      handleSetOds(6, data.ods6);
+      handleSetOds(7, data.ods7);
+      handleSetOds(8, data.ods8);
+      handleSetOds(9, data.ods9);
+      handleSetOds(10, data.ods10);
+      handleSetOds(11, data.ods11);
+      handleSetOds(12, data.ods12);
+      handleSetOds(13, data.ods13);
+      handleSetOds(14, data.ods14);
+      handleSetOds(15, data.ods15);
+      handleSetOds(16, data.ods16);
+      handleSetOds(17, data.ods17);
       setPhone(data.phone || "");
       setProject(data.project || "");
       setProjectType(data.project_type || "");
@@ -84,6 +132,7 @@ function EditProject() {
       setUrl(data.url || "");
       setVolunteers(data.volunteers || "");
       setZip(data.zip || "");
+
     }
   }, [data]);
 
@@ -102,6 +151,32 @@ function EditProject() {
             setLeader_type={setLeader_type}
             name={name}
             setName={setName}
+            checkName={checkName}
+            setCheckName={setCheckName}
+            email={email}
+            setEmail={setEmail}
+            checkEmail={checkEmail}
+            setCheckEmail={setCheckEmail}
+            checkRfc={checkRfc}
+            setCheckRfc={setCheckRfc}
+            clabe={clabe}
+            setClabe={setClabe}
+            checkClabe={checkClabe}
+            setCheckClabe={setCheckClabe}
+            description={description}
+            setDescription={setDescription}
+            donation={donation}
+            setDonation={setDonation}
+            country={country}
+            setCountry={setCountry}
+            city={city}
+            setCity={setCity}
+            address={address}
+            setAddress={setAddress}
+            startDate={startDate}
+            setStartDate={setStartDate}
+            finishDate={finishDate}
+            setFinishDate={setFinishDate}
             ods1={ods1}
             setOds1={setOds1}
             ods2={ods2}
@@ -142,8 +217,6 @@ function EditProject() {
             setProjectType={setProjectType}
             rfc={rfc}
             setRfc={setRfc}
-            startDate={startDate}
-            setStartDate={setStartDate}
             state={state}
             setState={setState}
             status={status}
@@ -154,6 +227,8 @@ function EditProject() {
             setVolunteers={setVolunteers}
             zip={zip}
             setZip={setZip}
+            checkedOds={checkedOds}
+            handleCheckboxChange={handleCheckboxChange}
           />
         </>
       ) : (
