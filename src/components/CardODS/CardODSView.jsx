@@ -3,7 +3,10 @@ import odsData from "../../util/odsData";
 import BadgeODSView from "../BadgeODS/BadgeODSView";
 
 function CardODSView({ item, toggleDescription, isExpanded }) {
-  const odsArray = item.ods;
+const hanldeOpenUrl=()=>{
+window.open(item.link, '_blank')
+}  
+const odsArray = item.ods;
   return (
     <div key={item.id} className="d-flex justify-content-center my-1">
       <div className="w-50 h-auto">
@@ -26,7 +29,7 @@ function CardODSView({ item, toggleDescription, isExpanded }) {
           {isExpanded ? "Ver menos" : "Ver más"}
         </button>
         <a
-          href={item.link}
+          onClick={hanldeOpenUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-primary"
