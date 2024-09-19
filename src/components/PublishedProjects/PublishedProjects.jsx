@@ -26,7 +26,7 @@ function PublishedProjects({ idUser }) {
   }, [idUser]);
 
   function editProject(id) {
-    navigate(`/edit/${id}`)
+    navigate(`/edit/${id}`);
   }
 
   function addActivity(id, project) {
