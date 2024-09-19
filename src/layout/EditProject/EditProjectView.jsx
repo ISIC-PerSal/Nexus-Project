@@ -7,7 +7,7 @@ import SelectState from "../../components/SelectState/SelectState";
 import ods from "../../util/ods";
 import SelectCity from "../../components/SelectCity/SelectCity";
 
-function EditProjectView({ 
+function EditProjectView({
   data,
   project,
   setProject,
@@ -33,6 +33,12 @@ function EditProjectView({
   setDescription,
   donation,
   setDonation,
+  country,
+  setCountry,
+  city,
+  setCity,
+  address,
+  setAddress,
   ods1,
   setOds1,
   ods2,
@@ -77,14 +83,8 @@ function EditProjectView({
   setStartDate,
   finishDate,
   setFinishDate,
-  country,
-  setCountry,
   state,
   setState,
-  city,
-  setCity,
-  address,
-  setAddress,
   status,
   setStatus,
   url,
@@ -103,9 +103,7 @@ function EditProjectView({
       <main className="py-3 container w-50 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
         <h1>Editar Proyecto</h1>
         <hr />
-        <form
-          action=""
-        >
+        <form action="">
           <div className="mb-3">
             <label htmlFor="seccion-lider" className="form-label fw-bold fs-4">
               Datos del líder
@@ -126,7 +124,7 @@ function EditProjectView({
                 <option value={"Empresa"}>Empresa</option>
                 <option value={"Organización"}>Organización</option>
               </select>
-            {/* </div>
+            </div>
             <div className="mb-3">
               <label htmlFor="nombre-lider" className="form-label">
                 Nombre del líder o representante
@@ -215,7 +213,7 @@ function EditProjectView({
                 onChange={(e) => setProject(e.target.value)}
               ></input>
             </div>
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -236,8 +234,8 @@ function EditProjectView({
                 id="img-proyecto"
                 onChange={(e) => handleImageUpload(e, setSelectedFile)}
                 ref={fileInputRef}
-              ></input> */}
-            </div>
+              ></input>
+            </div> */}
             {/* <div className="mb-3">
               <label htmlFor="url-proyecto" className="form-label">
                 URL del proyecto <i>(opcional)</i>
@@ -263,7 +261,7 @@ function EditProjectView({
                 onChange={(e) => setVolunteers(e.target.value)}
               ></input>
             </div>
-            {/* <div className="mb-3">
+            <div className="mb-3">
               <label htmlFor="descripcion" className="form-label">
                 Descripción
               </label>
@@ -274,7 +272,7 @@ function EditProjectView({
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
-            </div> */}
+            </div>
             <div className="mb-3">
               <label htmlFor="tipo-proyecto" className="form-label">
                 Proyecto
@@ -388,8 +386,9 @@ function EditProjectView({
               state={state}
             />
             <div
-              className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"
-                }`}
+              className={`mb-3  ${
+                projectType == "Iniciativa Virtual" ? "no-show" : "show"
+              }`}
             >
               <label htmlFor="cp" className="form-label">
                 Código postal
@@ -403,8 +402,9 @@ function EditProjectView({
               ></input>
             </div>
             <div
-              className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"
-                }`}
+              className={`mb-3  ${
+                projectType == "Iniciativa Virtual" ? "no-show" : "show"
+              }`}
             >
               <label htmlFor="direccion" className="form-label">
                 Dirección
@@ -450,19 +450,19 @@ function EditProjectView({
               <Grid container spacing={2}>
                 {ods.map((item, index) => (
                   <Grid key={index} item xs={3}>
-                    <div key={index} className="form-check">
+                    <div className="form-check">
                       <input
                         className="form-check-input"
                         type="checkbox"
                         id={`ods${item.ods}`}
-                        checked={checkedOds[item.ods] || false}
+                        checked={checkedOds[`ods${item.ods}`] || false}
                         onChange={handleCheckboxChange}
-                      ></input>
+                      />
                       <label
                         className="form-check-label"
                         htmlFor={`ods${item.ods}`}
                       >
-                        <img src={item.url} className="w-100" alt=""></img>
+                        <img src={item.url} className="w-100" alt="" />
                       </label>
                     </div>
                   </Grid>
@@ -472,17 +472,12 @@ function EditProjectView({
           </div>
           <div className="w-100 d-flex">
             <div className="w-50 pe-2">
-              <button
-                
-                type="button"
-                className="btn btn-danger w-100"
-              >
+              <button type="button" className="btn btn-danger w-100">
                 Publicar proyecto
               </button>
             </div>
             <div className="w-50 ps-2">
               <button
-                
                 type="button"
                 className="btn bg-secondary w-100 text-white"
               >
