@@ -2,10 +2,15 @@ import React from "react";
 import logo from "../../assets/Logo.png";
 import { Link } from "react-router-dom";
 
-function NavbarView({ handleOption, selected, isLogin = false, setSelected }) {
+function NavbarView({
+  handleOption,
+  selected,
+  isLogin = false,
+  type = "General",
+}) {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-principal sticky-top z-99">
+      <nav className={`navbar navbar-expand-lg ${type =="General"?'bg-principal': 'bg-juvenil'} sticky-top z-99`}>
         <div className="container-fluid">
           <a
             className="navbar-brand d-flex justify-content-center align-items-center text-white fw-bold fs-2"
@@ -76,18 +81,22 @@ function NavbarView({ handleOption, selected, isLogin = false, setSelected }) {
                   ></div>
                 </a>
               </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link text-white fw-bold"
-                  href="/alliance"
-                  onClick={() => handleOption("Alianza")}
-                >
-                  Alianza juvenil e infantil
-                  <div
-                    className={selected === "Alianza" ? "color-block" : ""}
-                  ></div>
-                </a>
-              </li>
+              {type == "General" ? (
+                <li className="nav-item">
+                  <a
+                    className="nav-link text-white fw-bold"
+                    href="/alliance"
+                    onClick={() => handleOption("Alianza")}
+                  >
+                    Alianza juvenil e infantil
+                    <div
+                      className={selected === "Alianza" ? "color-block" : ""}
+                    ></div>
+                  </a>
+                </li>
+              ) : (
+                ""
+              )}
               <li className="nav-item">
                 <a
                   className="nav-link text-white fw-bold"
