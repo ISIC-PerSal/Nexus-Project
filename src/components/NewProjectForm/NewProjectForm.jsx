@@ -132,8 +132,9 @@ function NewProjectForm() {
     ods14: checkedOds[14] || false,
     ods15: checkedOds[15] || false,
     ods16: checkedOds[16] || false,
-    ods17: checkedOds[17] || false
+    ods17: checkedOds[17] || false,
   };
+
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
     setStatus("Borrador");
