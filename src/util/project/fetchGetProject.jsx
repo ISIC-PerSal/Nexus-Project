@@ -7,9 +7,10 @@ async function fetchGetProject(
   idUser = "",
   title = "",
   ods = "",
-  country = ""
+  country = "",
+  people = ""
 ) {
-  const url = `${API_NEXUS_PROJECT}/project/getProject.php?id=${id}&&idUser=${idUser}&&title=${title}&&ods=${ods}&&country=${country}`;
+  const url = `${API_NEXUS_PROJECT}/project/getProject.php?id=${id}&&idUser=${idUser}&&title=${title}&&ods=${ods}&&country=${country}&&people=${people}`;
   try {
     const data = await getDataApi(url, "");
     return data;

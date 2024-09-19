@@ -31,7 +31,7 @@ function ExploreView({
             </label>
             <button
               type="button"
-              className="btn bg-oficial text-white h-auto"
+              className="btn bg-oficial-juvenil  text-white h-auto"
               onClick={handleReset}
             >
               <svg
