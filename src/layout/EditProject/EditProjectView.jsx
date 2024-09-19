@@ -6,7 +6,9 @@ import SelectCountry from "../../components/SelectCountry/SelectCountry";
 import SelectState from "../../components/SelectState/SelectState";
 import ods from "../../util/ods";
 import SelectCity from "../../components/SelectCity/SelectCity";
-function EditProjectView({ data,
+
+function EditProjectView({
+  data,
   project,
   setProject,
   image,
@@ -37,10 +39,6 @@ function EditProjectView({ data,
   setCity,
   address,
   setAddress,
-  startDate,
-  setStartDate,
-  finishDate,
-  setFinishDate,
   ods1,
   setOds1,
   ods2,
@@ -81,6 +79,10 @@ function EditProjectView({ data,
   setProjectType,
   rfc,
   setRfc,
+  startDate,
+  setStartDate,
+  finishDate,
+  setFinishDate,
   state,
   setState,
   status,
@@ -92,17 +94,16 @@ function EditProjectView({ data,
   zip,
   setZip,
   checkedOds,
-  handleCheckboxChange, }) {
-    const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
-    const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
+  handleCheckboxChange,
+}) {
+  const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
+  const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
   return (
     <>
       <main className="py-3 container w-50 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
         <h1>Editar Proyecto</h1>
-        <hr/>
-        <form
-          action=""
-        >
+        <hr />
+        <form action="">
           <div className="mb-3">
             <label htmlFor="seccion-lider" className="form-label fw-bold fs-4">
               Datos del líder
@@ -385,8 +386,9 @@ function EditProjectView({ data,
               state={state}
             />
             <div
-              className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"
-                }`}
+              className={`mb-3  ${
+                projectType == "Iniciativa Virtual" ? "no-show" : "show"
+              }`}
             >
               <label htmlFor="cp" className="form-label">
                 Código postal
@@ -400,8 +402,9 @@ function EditProjectView({ data,
               ></input>
             </div>
             <div
-              className={`mb-3  ${projectType == "Iniciativa Virtual" ? "no-show" : "show"
-                }`}
+              className={`mb-3  ${
+                projectType == "Iniciativa Virtual" ? "no-show" : "show"
+              }`}
             >
               <label htmlFor="direccion" className="form-label">
                 Dirección
@@ -447,19 +450,19 @@ function EditProjectView({ data,
               <Grid container spacing={2}>
                 {ods.map((item, index) => (
                   <Grid key={index} item xs={3}>
-                    <div key={index} className="form-check">
+                    <div className="form-check">
                       <input
                         className="form-check-input"
                         type="checkbox"
                         id={`ods${item.ods}`}
-                        checked={checkedOds[item.ods] || false}
+                        checked={checkedOds[`ods${item.ods}`] || false}
                         onChange={handleCheckboxChange}
-                      ></input>
+                      />
                       <label
                         className="form-check-label"
                         htmlFor={`ods${item.ods}`}
                       >
-                        <img src={item.url} className="w-100" alt=""></img>
+                        <img src={item.url} className="w-100" alt="" />
                       </label>
                     </div>
                   </Grid>
@@ -469,17 +472,12 @@ function EditProjectView({ data,
           </div>
           <div className="w-100 d-flex">
             <div className="w-50 pe-2">
-              <button
-                
-                type="button"
-                className="btn btn-danger w-100"
-              >
+              <button type="button" className="btn btn-danger w-100">
                 Publicar proyecto
               </button>
             </div>
             <div className="w-50 ps-2">
               <button
-               
                 type="button"
                 className="btn bg-secondary w-100 text-white"
               >
