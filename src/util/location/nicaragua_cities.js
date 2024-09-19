@@ -200,32 +200,5 @@ const nicaragua_cities = [
       "San Miguelito",
     ],
   },
-  {
-    Departamento: "Atlántico Norte (RAAN)",
-    Ciudades: [
-      "Bilwi (Puerto Cabezas)",
-      "Bonanza",
-      "Mulukukú",
-      "Prinzapolka",
-      "Rosita",
-      "Siuna",
-      "Waslala",
-      "Waspam",
-    ],
-  },
-  {
-    Departamento: "Atlántico Sur (RAAS)",
-    Ciudades: [
-      "Bluefields",
-      "Corn Island",
-      "Desembocadura de Río Grande",
-      "Kukra Hill",
-      "Laguna de Perlas",
-      "Muelle de los Bueyes",
-      "El Rama",
-      "La Cruz de Río Grande",
-      "Paiwas",
-    ],
-  },
 ];
 export default nicaragua_cities;
