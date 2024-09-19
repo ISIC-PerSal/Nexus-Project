@@ -6,6 +6,7 @@ import { useNexus } from "../../Hooks/useContext";
 function Navbar() {
   const { selected, setSelected } = useNexus();
   const isLogin = isAuth();
+  const typeUser = sessionStorage.getItem("type") || "General";
   const handleOption = (option) => () => {
     setSelected(option);
     switch (option) {
