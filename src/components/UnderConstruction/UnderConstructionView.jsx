@@ -3,7 +3,7 @@ import React from "react";
 function UnderConstructionView() {
   return (
     <>
-      <main className="bg-img py-3">
+      <main className="py-3">
         <div className="container w-50 p-3 border rounded border-secondary-subtle bg-gral">
           <div className="text-center">
             <h1 className="text-dark">Estamos trabajando en ello</h1>
