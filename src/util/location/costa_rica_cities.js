@@ -1,45 +1,32 @@
 const costa_rica_cities = [
     {
         Estado: "Alajuela",
-        Ciudades: [
-            "Alajuela", "San Ramón", "Grecia", "San Carlos", "Zarcero", "Naranjo", "Sarchí", "Upala", "Los Chiles", "Guatuso", "Río Cuarto"
-        ]
+        Ciudades: [" "]
     },
     {
         Estado: "Cartago",
-        Ciudades: [
-            "Cartago", "Paraíso", "La Unión", "El Guarco", "Alvarado", "Oreamuno", "Jiménez", "Turrialba", "Alajuela de Oreamuno", "Tierra Blanca"
-        ]
+        Ciudades: [" "]
     },
     {
         Estado: "Guanacaste",
-        Ciudades: [
-            "Liberia", "Nicoya", "Santa Cruz", "Bagaces", "Carrillo", "Cañas", "Abangares", "Tilarán", "Nandayure", "La Cruz", "Hojancha"
-        ]
+        Ciudades: [" "]
     },
     {
         Estado: "Heredia",
-        Ciudades: [
-            "Heredia", "San Rafael", "San Isidro", "Belén", "Flores", "Barva", "Santo Domingo", "Santa Bárbara", "San Pablo", "Sarapiquí"
-        ]
+        Ciudades: [" "]
     },
     {
         Estado: "Limón",
-        Ciudades: [
-            "Limón", "Pococí", "Siquirres", "Talamanca", "Matina", "Sixaola", "Guácimo", "Limón Centro"
-        ]
+        Ciudades: [" "]
     },
     {
         Estado: "Puntarenas",
-        Ciudades: [
-            "Puntarenas", "Quepos", "Golfito", "Buenos Aires", "Montes de Oro", "Osa", "Aguirre", "Corredores", "Coto Brus", "Parrita"
-        ]
+        Ciudades: [" "]
     },
+    ,
     {
         Estado: "San José",
-        Ciudades: [
-            "San José", "Escazú", "Desamparados", "Puriscal", "Tarrazú", "Aserrí", "Mora", "Goicoechea", "Santa Ana", "Alajuelita", "Vázquez de Coronado", "Acosta", "Tibás", "Moravia", "Montes de Oca", "Curridabat", " Pérez Zeledón"
-        ]
+        Ciudades: [" "]
     },
 ]
 export default costa_rica_cities;

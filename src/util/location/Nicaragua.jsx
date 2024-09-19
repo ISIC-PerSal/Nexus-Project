@@ -57,10 +57,10 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Seal_of_Region_Autonoma_del_Atlantico_Norte.svg/45px-Seal_of_Region_Autonoma_del_Atlantico_Norte.svg.png"
-                    alt="Estelí"
+                    alt="Costa Caribe Norte"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Estelí
+                Costa Caribe Norte
             </div>
         ),
     },
@@ -70,10 +70,10 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Seal_of_Region_Autonoma_del_Atlantico_Sur.svg/45px-Seal_of_Region_Autonoma_del_Atlantico_Sur.svg.png"
-                    alt="Granada"
+                    alt="Costa Caribe Sur"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Granada
+                Costa Caribe Sur
             </div>
         ),
     },
@@ -83,10 +83,10 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Seal_of_Esteli.svg/45px-Seal_of_Esteli.svg.png"
-                    alt="Jinotega"
+                    alt="Estelí"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Jinotega
+                Estelí
             </div>
         ),
     },
@@ -96,10 +96,10 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Seal_of_Granada%2C_Nicaragua.svg/34px-Seal_of_Granada%2C_Nicaragua.svg.png"
-                    alt="León"
+                    alt="Granada"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-               León
+               Granada
             </div>
         ),
     },
@@ -109,10 +109,10 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Escudo_de_Jinotega.svg/40px-Escudo_de_Jinotega.svg.png"
-                    alt="Madriz"
+                    alt="Jinotega"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Madriz
+                Jinotega
             </div>
         ),
     },
@@ -122,10 +122,10 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Seal_of_Leon%2C_Nicaragua.svg/35px-Seal_of_Leon%2C_Nicaragua.svg.png"
-                    alt="Managua"
+                    alt="León"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-               Managua
+               León
             </div>
         ),
     },
@@ -135,10 +135,10 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Seal_of_Madriz.svg/45px-Seal_of_Madriz.svg.png"
-                    alt="Masaya"
+                    alt="Madriz"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Masaya
+                Madriz
             </div>
         ),
     },
@@ -148,10 +148,10 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Coat_of_Arms_of_Managua.svg/37px-Coat_of_Arms_of_Managua.svg.png"
-                    alt="Matagalpa"
+                    alt="Managua"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Matagalpa
+                Managua
             </div>
         ),
     },
@@ -161,10 +161,10 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Seal_of_Masaya.svg/33px-Seal_of_Masaya.svg.png"
-                    alt="Nueva Segovia"
+                    alt="Masaya"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Nueva Segovia
+                Masaya
             </div>
         ),
     },
@@ -174,10 +174,10 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Seal_of_Matagalpa.svg/33px-Seal_of_Matagalpa.svg.png"
-                    alt="Rivas"
+                    alt="Matagalpa"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
-                Rivas
+                Matagalpa
             </div>
         ),
     },
@@ -187,13 +187,39 @@ const Nicaragua = [
             <div className="d-flex align-items-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Seal_of_Nueva_Segovia.svg/35px-Seal_of_Nueva_Segovia.svg.png"
+                    alt="Nueva Segovia"
+                    style={{ width: "30px", height: "30px", marginRight: "8px" }}
+                />
+                Nueva Segovia
+            </div>
+        ),
+    },
+    {
+        value: "16",
+        label: (
+            <div className="d-flex align-items-center">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Seal_of_San_Carlos%2C_Nicaragua.svg/45px-Seal_of_San_Carlos%2C_Nicaragua.svg.png"
                     alt="Río San Juan"
                     style={{ width: "30px", height: "30px", marginRight: "8px" }}
                 />
                 Río San Juan
             </div>
         ),
-    }
+    },
+    {
+        value: "17",
+        label: (
+            <div className="d-flex align-items-center">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Seal_of_Rivas.svg/33px-Seal_of_Rivas.svg.png"
+                    alt="Rivas"
+                    style={{ width: "30px", height: "30px", marginRight: "8px" }}
+                />
+                Rivas
+            </div>
+        ),
+    },
 ]
 
 export default Nicaragua;
