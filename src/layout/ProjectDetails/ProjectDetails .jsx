@@ -74,10 +74,12 @@ function ProjectDetails() {
   const [imageURL, setImageURL] = useState("");
   const [odsArray, setOdsArray] = useState([]);
 
+  const typeUser = sessionStorage.getItem("type")
+
   async function fetchData() {
     setLoading(true);
     try {
-      const dataP = await fetchGetProject(idProject, "", "", "");
+      const dataP = await fetchGetProject(idProject, "", "", "","",typeUser);
       setData(dataP);
     } catch (error) {
       console.error(error);
