@@ -24,12 +24,26 @@ body {
   );
 }
 
+.bg-juvenil {
+  background: rgb(8, 134, 52);
+  background: linear-gradient(
+    90deg,
+    rgba(8, 134, 52, 1) 0%,
+    rgba(52, 175, 176, 1) 35%,
+    rgba(164, 255, 207, 1) 100%
+  );
+}
+
 .bg-gral {
   background-color: #f8f9fa;
 }
 
 .color-block {
   background: white;
+
+
+
+  
   height: 5px;
   width: 100%;
 }
@@ -110,8 +124,19 @@ blockquote::after {
   background-attachment: fixed;
   width: 100%;
 }
+.bg-img-juvenil {
+  background-image: url("assets/Fondo-Juvenil.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  width: 100%;
+}
 .bg-oficial {
   background-color: #c13b6c !important;
+}
+
+.bg-oficial-juvenil {
+  background-color: #088634 !important;
 }
 
 .bg-azul {

@@ -37,7 +37,7 @@ function Navbar() {
         handleOption={handleOption()}
         selected={selected}
         isLogin={isLogin}
-        setSelected={setSelected}
+        type = {typeUser}
       />
     </>
   );

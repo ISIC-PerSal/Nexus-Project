@@ -4,7 +4,9 @@ import Swal from "sweetalert2";
 import { handleImageUpload, handleUpload } from "../../util/files/handleImage";
 import fetchNewProject from "../../util/project/fetchNewProject";
 import convertToLocalURL from "../../util/paths/convertToLocalURL";
+import { useNavigate } from "react-router-dom";
 function NewProjectForm() {
+  const navigate = useNavigate();
   const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
@@ -148,7 +150,7 @@ function NewProjectForm() {
           confirmButtonText: "Ver proyecto",
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = "/profile";
+            navigate(`/my-projects`);
           } else {
             window.location.href = "/new-project";
           }
@@ -174,6 +176,7 @@ function NewProjectForm() {
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
     setStatus("Publicado");
+    console.log(body);
     if (selectedFile) {
       handleUpload(selectedFile, setImageURL);
     } else {
@@ -210,7 +213,7 @@ function NewProjectForm() {
             confirmButtonText: "Ver proyecto",
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = "/profile";
+              navigate(`/explore/${data.new_id}`);
             } else {
               window.location.href = "/new-project";
             }
