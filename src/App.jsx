@@ -72,9 +72,7 @@ function App() {
             />
             <Route
               path="/edit/:idProject"
-              element={
-                isLogin ? <EditProject /> : <Navigate to={"/login"} />
-              }
+              element={isLogin ? <EditProject /> : <Navigate to={"/login"} />}
             />
             <Route
               path="/feed/:idProject"

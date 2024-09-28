@@ -7,7 +7,7 @@ function AboutView() {
       <div className="container bg-light bg-gradient p-5 rounded shadow-lg">
         <div className="row">
           <div className="col text-center">
-            <h1 className="display-4 fw-bold mb-4">Acerca de nosotros</h1>
+            <h1 className="display-4 text-primary mb-4">Acerca de nosotros</h1>
             <hr className="w-50 mx-auto" />
             <p className="p-3 text-justify lead">
               La creación de una plataforma que actúe como tablón de anuncios de
