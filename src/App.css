@@ -7,7 +7,7 @@
   height: 100%;
 }
 
-body{
+body {
   background-color: white;
 }
 
@@ -53,9 +53,6 @@ body{
 .color-block {
   background: white;
 
-
-
-  
   height: 5px;
   width: 100%;
 }
@@ -76,6 +73,16 @@ body{
 
 .quote {
   background-color: #c13b6c;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: #fff;
+  margin: 0;
+  padding: 15px;
+  font-size: 23px;
+}
+
+.quote-juvenil {
+  background-color: #088634 !important;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   color: #fff;
@@ -111,6 +118,18 @@ blockquote::after {
   position: relative;
 }
 
+.blockquote-juvenil::after {
+  border-color: transparent #088634 transparent transparent !important;
+  border-image: none;
+  border-style: solid;
+  border-width: 25px;
+  top: 55px;
+  content: " ";
+  display: block;
+  right: 75%;
+  position: relative;
+}
+
 .edu-au-vic-wa-nt-hand {
   font-family: "Edu AU VIC WA NT Hand", cursive;
   font-optical-sizing: auto;
@@ -130,11 +149,7 @@ blockquote::after {
   height: auto;
 }
 .bg-img {
-  background-image: url("assets/Fondo-main.png");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  width: 100%;
+  background-color: transparent;
 }
 
 .bg-oficial {

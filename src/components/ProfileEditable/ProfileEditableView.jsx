@@ -102,40 +102,46 @@ function ProfileEditableView({
             onChange={(e) => setPassword(e.target.value)}
           ></input>
         </div>
-        <div className="mb-3">
-          <label htmlFor="rfcUser" className="form-label">
-            RFC{" "}
-            <Tooltip title={textCLABE}>
-              <HelpCenterIcon />
-            </Tooltip>
-          </label>
-          <input
-            value={rfc}
-            onChange={(e) => setRfc(e.target.value)}
-            type="text"
-            className="form-control text-uppercase"
-            id="rfcUser"
-            maxLength={13}
-            minLength={12}
-          ></input>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="clabeUser" className="form-label">
-            CLABE{" "}
-            <Tooltip title={textCLABE}>
-              <HelpCenterIcon />
-            </Tooltip>
-          </label>
-          <input
-            value={clabe}
-            onChange={(e) => setClabe(e.target.value)}
-            type="text"
-            className="form-control text-uppercase"
-            id="clabeUser"
-            maxLength={18}
-            minLength={18}
-          ></input>
-        </div>
+        {sessionStorage.getItem("type") == "General" ? (
+          <>
+            <div className="mb-3">
+              <label htmlFor="rfcUser" className="form-label">
+                RFC{" "}
+                <Tooltip title={textCLABE}>
+                  <HelpCenterIcon />
+                </Tooltip>
+              </label>
+              <input
+                value={rfc}
+                onChange={(e) => setRfc(e.target.value)}
+                type="text"
+                className="form-control text-uppercase"
+                id="rfcUser"
+                maxLength={13}
+                minLength={12}
+              ></input>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="clabeUser" className="form-label">
+                CLABE{" "}
+                <Tooltip title={textCLABE}>
+                  <HelpCenterIcon />
+                </Tooltip>
+              </label>
+              <input
+                value={clabe}
+                onChange={(e) => setClabe(e.target.value)}
+                type="text"
+                className="form-control text-uppercase"
+                id="clabeUser"
+                maxLength={18}
+                minLength={18}
+              ></input>
+            </div>
+          </>
+        ) : (
+          ""
+        )}
         <input
           onClick={updateUser}
           className="btn btn-primary w-100"
