@@ -7,18 +7,17 @@ import { useNexus } from "../../Hooks/useContext";
 
 function Explore() {
   const { setSelected } = useNexus();
+  const typeUser = sessionStorage.getItem("type");
 
   useEffect(() => {
     setSelected("Explorar");
   }, [setSelected]);
 
-  
   const [dataProject, setDataProject] = useState([]);
   const [title, setTitle] = useState("");
   const [ods, setOds] = useState("0");
   const [country, setCountry] = useState("Todos");
   const [countrySearch, setCountrySearch] = useState("");
-
 
   const updatedOdsData = [
     { value: "0", label: "Todos" },
@@ -60,12 +59,13 @@ function Explore() {
         "",
         projectInput,
         odsInput,
-        countryInput
+        countryInput,
+        typeUser
       );
       setDataProject(data);
     } catch (error) {
       console.error(error);
-    } 
+    }
   }
 
   useEffect(() => {

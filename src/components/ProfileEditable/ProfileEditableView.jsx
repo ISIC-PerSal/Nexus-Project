@@ -102,6 +102,8 @@ function ProfileEditableView({
             onChange={(e) => setPassword(e.target.value)}
           ></input>
         </div>
+        {sessionStorage.getItem("type")=="General"?(
+        <>
         <div className="mb-3">
           <label htmlFor="rfcUser" className="form-label">
             RFC{" "}
@@ -135,7 +137,7 @@ function ProfileEditableView({
             maxLength={18}
             minLength={18}
           ></input>
-        </div>
+        </div></>):""}
         <input
           onClick={updateUser}
           className="btn btn-primary w-100"

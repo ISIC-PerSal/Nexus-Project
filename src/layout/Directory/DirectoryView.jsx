@@ -45,7 +45,11 @@ function DirectoryView() {
         </div>
         <div className="container-cita p-3">
           <div className="quote-box">
-            <div className="quote edu-au-vic-wa-nt-hand">
+            <div className={`${
+                sessionStorage.getItem("type") == "General"
+                  ? "quote"
+                  : "quote-juvenil"
+              }  edu-au-vic-wa-nt-hand`}>
               <svg
                 className="mt-2 bi bi-quote"
                 xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +60,12 @@ function DirectoryView() {
               >
                 <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z" />
               </svg>
-              <blockquote>
+              <blockquote
+              className={`${
+                sessionStorage.getItem("type") == "General"
+                  ? ""
+                  : "blockquote-juvenil"
+              }`}>
                 Nunca subestimes el poder de un grupo de personas
                 comprometidas para cambiar el mundo. De hecho, es lo único que
                 lo ha logrado.
@@ -94,8 +103,8 @@ function DirectoryView() {
         <div>
           <div>
             <label
-              className="w-100 p-1 fw-bold"
-              style={{ backgroundColor: "#C13B6C", color: "white" }}
+              className={`${sessionStorage.getItem("type")=="General"?"bg-oficial":"bg-oficial-juvenil"} text-white w-100 p-1 fw-bold`}
+              
             >
               Filtrar por letra inicial
             </label>
@@ -156,12 +165,20 @@ function DirectoryView() {
         <div className="d-flex">
           <div className="me-3">
             <h5>
-              País: <span className="ms-1 badge bg-oficial">{pais}</span>
+              País: <span className={`${
+                  sessionStorage.getItem("type") == "General"
+                    ? "bg-oficial"
+                    : "bg-oficial-juvenil"
+                } ms-1 badge`}>{pais}</span>
             </h5>
           </div>
           <div className="me-3">
             <h5>
-              ODS: <span className="ms-1 badge bg-oficial">{ods}</span>
+              ODS: <span className={`${
+                  sessionStorage.getItem("type") == "General"
+                    ? "bg-oficial"
+                    : "bg-oficial-juvenil"
+                } ms-1 badge`}>{ods}</span>
             </h5>
           </div>
         </div>
