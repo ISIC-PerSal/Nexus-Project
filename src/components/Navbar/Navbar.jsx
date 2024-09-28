@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import NavbarView from "./NavbarView";
 import isAuth from "../../util/isAuth";
+import { useNavigate } from "react-router-dom";
 import { useNexus } from "../../Hooks/useContext";
 
 function Navbar() {
   const { selected, setSelected } = useNexus();
   const isLogin = isAuth();
   const typeUser = sessionStorage.getItem("type") || "General";
+
+  const navigate = useNavigate();
+
   const handleOption = (option) => () => {
     setSelected(option);
     switch (option) {
@@ -32,13 +36,18 @@ function Navbar() {
         break;
     }
   };
+
+  const handleLogOut = () => {
+    window.location.replace("/")
+  };
   return (
     <>
       <NavbarView
         handleOption={handleOption()}
         selected={selected}
         isLogin={isLogin}
-        type = {typeUser}
+        type={typeUser}
+        handleLogOut={handleLogOut}
       />
     </>
   );

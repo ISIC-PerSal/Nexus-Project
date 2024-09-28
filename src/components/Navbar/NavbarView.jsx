@@ -7,10 +7,15 @@ function NavbarView({
   selected,
   isLogin = false,
   type = "General",
+  handleLogOut,
 }) {
   return (
     <>
-      <nav className={`navbar navbar-expand-lg ${type =="General"?'bg-principal': 'bg-juvenil'} sticky-top z-99`}>
+      <nav
+        className={`navbar navbar-expand-lg ${
+          type == "General" ? "bg-principal" : "bg-juvenil"
+        } sticky-top z-99`}
+      >
         <div className="container-fluid">
           <a
             className="navbar-brand d-flex justify-content-center align-items-center text-white fw-bold fs-2"
@@ -155,9 +160,9 @@ function NavbarView({
                       </a>
                     </li>
                     <li>
-                      <a className="dropdown-item" type="button" href="/">
+                      <Link to={"/"} className="dropdown-item" type="button">
                         Cerrar sesión
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>
