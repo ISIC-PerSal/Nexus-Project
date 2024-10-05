@@ -78,7 +78,11 @@ function ProjectDetailsView({
         <div className="fixed-badge">
           <div className="fixed-badge-items">
             <StatusProject status={data.status} />
-            <GoFeed idProject={data.id_project_pk} idUser={data.id_user_fk} />
+            <GoFeed
+              idProject={data.id_project_pk}
+              idUser={data.id_user_fk}
+              statusProject={data.status}
+            />
             <EnrollProject
               idProject={data.id_project_pk}
               idUser={data.id_user_fk}
@@ -143,9 +147,7 @@ function ProjectDetailsView({
                   <label className="form-label">Fecha de arranque:</label>
                   <span className="form-control">{startDate}</span>
                 </div>
-                <label className="form-label">
-                  Faltan:
-                </label>
+                <label className="form-label">Faltan:</label>
                 <div className="w-100 px-2">
                   <Timer date={startDate} />
                 </div>
@@ -157,9 +159,7 @@ function ProjectDetailsView({
                   </label>
                   <span className="form-control">{finishDate}</span>
                 </div>
-                <label className="form-label">
-                  Faltan:
-                </label>
+                <label className="form-label">Faltan:</label>
                 <div className="w-100 px-2">
                   <Timer date={finishDate} />
                 </div>

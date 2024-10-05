@@ -5,7 +5,7 @@ import BadgeCountryView from "../BadgeLocation/BadgeCountryView";
 import TruncatedText from "../TruncatedText/TruncatedText";
 import { Link } from "react-router-dom";
 import imgDefault from "../../assets/Logo.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function CardProjectView({ data }) {
   const [odsArray, setOdsArray] = useState([]);
@@ -60,6 +60,7 @@ function CardProjectView({ data }) {
 
           <Link
             to={`/explore/${idProject}`}
+            state={{ statusProject: data.status }}
             className="btn bg-oficial text-white w-100 p-1"
           >
             Ver mas detalles

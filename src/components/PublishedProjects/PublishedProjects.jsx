@@ -26,7 +26,7 @@ function PublishedProjects({ idUser, status, type }) {
   }, [idUser]);
 
   function editProject(id) {
-    navigate(`/edit/${id}`);
+    navigate(`/edit/${id}`, { state: { statusProject: status } });
   }
 
   function addActivity(id, project) {
@@ -34,7 +34,7 @@ function PublishedProjects({ idUser, status, type }) {
   }
 
   function explore(id) {
-    navigate(`/explore/${id}`);
+    navigate(`/explore/${id}`, { state: { statusProject: status } });
   }
 
   return (

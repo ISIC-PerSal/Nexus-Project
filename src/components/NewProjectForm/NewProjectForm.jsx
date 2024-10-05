@@ -139,23 +139,35 @@ function NewProjectForm() {
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
-    setStatus("Borrador");
-    try {
-      const data = await fetchNewProject({ ...body, status: "Borrador" });
-      if (data.status == "Done") {
-        Swal.fire({
-          title: "Exito!",
-          text: "Se ha guardado el project en borrador!",
-          icon: "success",
-          confirmButtonText: "Ver proyecto",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            navigate(`/my-projects`);
-          } else {
-            window.location.href = "/new-project";
-          }
-        });
-      } else {
+    console.log(project.trim() != "");
+    if (project.trim() != "") {
+      setStatus("Borrador");
+      try {
+        const data = await fetchNewProject({ ...body, status: "Borrador" });
+        if (data.status == "Done") {
+          Swal.fire({
+            title: "Exito!",
+            text: "Se ha guardado el proyecto en borrador!",
+            icon: "success",
+            confirmButtonText: "Ver proyecto",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate(`/explore/${data.new_id}`, {
+                state: { statusProject: "Borrador" },
+              });
+            } else {
+              window.location.href = "/new-project";
+            }
+          });
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Ocurrio un error",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        }
+      } catch (err) {
         Swal.fire({
           title: "Error!",
           text: "Ocurrio un error",
@@ -163,12 +175,13 @@ function NewProjectForm() {
           confirmButtonText: "OK",
         });
       }
-    } catch (err) {
+    } else {
       Swal.fire({
-        title: "Error!",
-        text: "Ocurrio un error",
-        icon: "error",
-        confirmButtonText: "OK",
+        position: "top-end",
+        icon: "info",
+        title: "Introduzca un título al proyecto",
+        showConfirmButton: false,
+        timer: 1000,
       });
     }
   };
@@ -212,7 +225,9 @@ function NewProjectForm() {
             confirmButtonText: "Ver proyecto",
           }).then((result) => {
             if (result.isConfirmed) {
-              navigate(`/explore/${data.new_id}`);
+              navigate(`/explore/${data.new_id}`, {
+                state: { statusProject: "Publicado" },
+              });
             } else {
               window.location.href = "/new-project";
             }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useIsJoined from "../util/project/isJoined";
-import fetchGetProject from "../util/project/fetchGetProject"
-function useProjectPermissions(idProject) {
+import fetchGetProject from "../util/project/fetchGetProject";
+function useProjectPermissions(idProject, status) {
   const [permission, setPermission] = useState("");
   const [data, setData] = useState({});
   const currentUser = sessionStorage.getItem("id_user");
@@ -11,7 +11,15 @@ function useProjectPermissions(idProject) {
   useEffect(() => {
     const getDataproject = async () => {
       try {
-        const dataProject = await fetchGetProject(idProject, "", "", "", "");
+        const dataProject = await fetchGetProject(
+          idProject,
+          "",
+          "",
+          "",
+          "",
+          "",
+          status ? status : "Publicado,Activo,Finalizado"
+        );
         setData(dataProject);
       } catch (error) {
         console.error("Error fetching project data:", error);
@@ -23,7 +31,7 @@ function useProjectPermissions(idProject) {
 
   useEffect(() => {
     const determinePermission = async () => {
-      console.log(data.id_user_fk)
+      console.log(data.id_user_fk);
       const isOwner = currentUser == data.id_user_fk;
 
       if (isOwner) {
