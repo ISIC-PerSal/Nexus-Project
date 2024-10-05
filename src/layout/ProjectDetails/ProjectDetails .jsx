@@ -15,6 +15,7 @@ function ProjectDetails() {
   const { idProject } = useParams();
   const isLogin = isAuth();
   const { setSelected } = useNexus();
+  const currentUser = sessionStorage.getItem("id_user");
 
   useEffect(() => {
     setSelected("Explorar");
@@ -79,7 +80,7 @@ function ProjectDetails() {
   async function fetchData() {
     setLoading(true);
     try {
-      const dataP = await fetchGetProject(idProject, "", "", "","",typeUser);
+      const dataP = await fetchGetProject(idProject, currentUser, "", "","",typeUser, "Todos");
       setData(dataP);
     } catch (error) {
       console.error(error);

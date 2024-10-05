@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import PublishedProjects from "../../components/PublishedProjects/PublishedProjects";
 
+
 function MyProjectsView({ idUser }) {
   return (
     <>
@@ -20,15 +21,25 @@ function MyProjectsView({ idUser }) {
               <Tab>Borradores</Tab>
             </TabList>
             <TabPanel>
-              <PublishedProjects idUser={idUser}/>
+              <PublishedProjects idUser={idUser} status={"Publicado"}
+                type={"Propio"}/>
             </TabPanel>
-            <TabPanel>Mis proyectos publicados</TabPanel>
-            <TabPanel>Mis proyectos terminados</TabPanel>
+            <TabPanel>
+               <PublishedProjects idUser={idUser} status={"Activo"}
+                type={"Propio"}/>
+            </TabPanel>
+            <TabPanel>
+            <PublishedProjects idUser={idUser} status={"Finalizado"}
+                type={"Propio"}/>
+            </TabPanel>
             <TabPanel>
               <JoinedProjects />
             </TabPanel>
-            <TabPanel>Proyectos incritos terminados</TabPanel>
-            <TabPanel>Borradores</TabPanel>
+            <TabPanel>Proyectos inscritos terminados</TabPanel>
+            <TabPanel>
+            <PublishedProjects idUser={idUser} status={"Borrador"}
+                type={"Propio"}/>
+            </TabPanel>
           </Tabs>
         </div>
       </main>

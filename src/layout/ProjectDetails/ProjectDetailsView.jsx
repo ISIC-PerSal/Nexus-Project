@@ -3,6 +3,7 @@ import BadgeODSView from "../../components/BadgeODS/BadgeODSView";
 import Timer from "../../components/Timer/Timer";
 import EnrollProject from "../../components/EnrollProject/EnrollProject";
 import GoFeed from "../../components/GoFeed/GoFeed";
+import StatusProject from "../../components/StatusProject/StatusProject";
 
 function ProjectDetailsView({
   data,
@@ -79,6 +80,7 @@ function ProjectDetailsView({
           idUser={data.id_user_fk}
         />
         <GoFeed idProject={data.id_project_pk} idUser={data.id_user_fk} />
+        <StatusProject status={data.status}/>
       </div>
       <main className="py-3 bg-img">
         <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">

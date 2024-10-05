@@ -6,7 +6,8 @@ function EnrollProjectView({
   handleEnroll,
   show,
   joinedUser,
-  currentUser
+  currentUser,
+  handleEditProject
 }) {
 
 
@@ -15,7 +16,7 @@ function EnrollProjectView({
       <button
         className="fixed-footer"
         style={{ backgroundColor: "#AE2C3A" }}
-        disabled
+        onClick={handleEditProject}
       >
         <div>
           <div className="w-100 d-flex justify-content-center">

@@ -107,6 +107,17 @@ blockquote {
   padding: 0;
   margin: 0;
 }
+.blockquote-juvenil::after {
+  border-color: transparent #088634 transparent transparent !important;
+  border-image: none;
+  border-style: solid;
+  border-width: 25px;
+  top: 55px;
+  content: " ";
+  display: block;
+  right: 75%;
+  position: relative;
+}
 
 blockquote::after {
   border-color: transparent #c13b6c transparent transparent;
@@ -269,6 +280,24 @@ a {
   border-radius: 100%;
   padding: 10px;
   background-color: #276b96;
+  border: 6px solid #ffffff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.fixed-start {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 50vh;
+  right: 0;
+  margin-right: 3vw;
+  width: 8vw;
+  height: 8vw;
+  border-radius: 100%;
+  padding: 10px;
   border: 6px solid #ffffff;
   color: white;
   display: flex;
