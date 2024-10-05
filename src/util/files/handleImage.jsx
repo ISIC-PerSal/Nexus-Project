@@ -37,6 +37,7 @@ export const handleUpload = async (selectedFile, setImageURL) => {
     }
 
     const data = await response.json();
+    console.log(data);
 
     if (data.url) {
       setImageURL(data.url);

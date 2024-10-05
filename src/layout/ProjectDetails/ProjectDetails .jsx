@@ -15,6 +15,7 @@ function ProjectDetails() {
   const { idProject } = useParams();
   const isLogin = isAuth();
   const { setSelected } = useNexus();
+  const currentUser = sessionStorage.getItem("id_user");
 
   useEffect(() => {
     setSelected("Explorar");
@@ -74,12 +75,20 @@ function ProjectDetails() {
   const [imageURL, setImageURL] = useState("");
   const [odsArray, setOdsArray] = useState([]);
 
-  const typeUser = sessionStorage.getItem("type")
+  const typeUser = sessionStorage.getItem("type");
 
   async function fetchData() {
     setLoading(true);
     try {
-      const dataP = await fetchGetProject(idProject, "", "", "","",typeUser);
+      const dataP = await fetchGetProject(
+        idProject,
+        "",
+        "",
+        "",
+        "",
+        typeUser,
+        "Publicado,Activo,Finalizado"
+      );
       setData(dataP);
     } catch (error) {
       console.error(error);

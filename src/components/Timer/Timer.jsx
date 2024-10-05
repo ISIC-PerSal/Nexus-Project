@@ -10,10 +10,10 @@ function Timer({ date }) {
   const getTime = () => {
     if (Date.now() < Date.parse(date)) {
       const time = Date.now() - Date.parse(date);
-      setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
-      setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
-      setMinutes(Math.floor((time / 1000 / 60) % 60));
-      setSeconds(Math.floor((time / 1000) % 60));
+      setDays(Math.abs(Math.floor(time / (1000 * 60 * 60 * 24))));
+      setHours(Math.abs(Math.floor((time / (1000 * 60 * 60)) % 24)));
+      setMinutes(Math.abs(Math.floor((time / 1000 / 60) % 60)));
+      setSeconds(Math.abs(Math.floor((time / 1000) % 60)));
     } else {
       setDays(0);
       setHours(0);
