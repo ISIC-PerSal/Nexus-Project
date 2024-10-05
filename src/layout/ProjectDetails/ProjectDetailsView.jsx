@@ -3,6 +3,7 @@ import BadgeODSView from "../../components/BadgeODS/BadgeODSView";
 import Timer from "../../components/Timer/Timer";
 import EnrollProject from "../../components/EnrollProject/EnrollProject";
 import GoFeed from "../../components/GoFeed/GoFeed";
+import StatusProject from "../../components/StatusProject/StatusProject";
 
 function ProjectDetailsView({
   data,
@@ -79,6 +80,7 @@ function ProjectDetailsView({
           idUser={data.id_user_fk}
         />
         <GoFeed idProject={data.id_project_pk} idUser={data.id_user_fk} />
+        <StatusProject status={data.status}/>
       </div>
       <main className="py-3 bg-img">
         <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
@@ -151,11 +153,11 @@ function ProjectDetailsView({
             </div>
             <br />
             <div className="mb-3">
-            <div className="rounded-top bg-secondary bg-opacity-25 borderp-3 shadow-sm text-center">
-  <label className="form-label ms-2 fw-bold fs-4">
-    Datos del proyecto
-  </label>
-</div>
+              <div className="rounded-top bg-secondary bg-opacity-25 borderp-3 shadow-sm text-center">
+                <label className="form-label ms-2 fw-bold fs-4">
+                  Datos del proyecto
+                </label>
+              </div>
               <div className="rounded-bottom border">
                 <div className="ms-3 mt-3">
                   <div className="form-label me-2">ODS:</div>
@@ -167,19 +169,19 @@ function ProjectDetailsView({
                   </div>
                 </div>
                 <div className="ms-3 d-flex align-items-center">
-  <div className="mb-3 w-25">
-    <label className="form-label">Número de voluntarios:</label>
-    <span className="form-control">{volunteers}</span>
-  </div>
-  <div className="w-75">
-    <div className="mb-3">
-      <label className="form-label">Barra de progreso</label>
-      <div className="progress">
-        <div className="progress-bar" role="progressbar" style={{}} aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
-      </div>
-    </div>
-  </div>
-</div>
+                  <div className="mb-3 w-25">
+                    <label className="form-label">Número de voluntarios:</label>
+                    <span className="form-control">{volunteers}</span>
+                  </div>
+                  <div className="w-75">
+                    <div className="mb-3">
+                      <label className="form-label">Barra de progreso</label>
+                      <div className="progress">
+                        <div className="progress-bar" role="progressbar" style={{}} aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div className="text-center mb-3 ms-3 me-3">
                   <label className="form-label">
                     Descripción del proyecto:

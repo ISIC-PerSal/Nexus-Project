@@ -372,3 +372,22 @@ a {
   background-color: #c13b6c !important ;
   color: white !important;
 }
+
+.fixed-start {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 50vh;
+  right: 0;
+  margin-right: 3vw;
+  width: 8vw;
+  height: 8vw;
+  border-radius: 100%;
+  padding: 10px;
+  border: 6px solid #ffffff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
