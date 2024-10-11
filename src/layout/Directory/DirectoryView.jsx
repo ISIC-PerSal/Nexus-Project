@@ -45,13 +45,11 @@ function DirectoryView() {
         </div>
         <div className="container-cita p-3">
           <div className="quote-box">
-            <div
-              className={`${
+            <div className={`${
                 sessionStorage.getItem("type") == "General"
                   ? "quote"
                   : "quote-juvenil"
-              }  edu-au-vic-wa-nt-hand`}
-            >
+              }  edu-au-vic-wa-nt-hand`}>
               <svg
                 className="mt-2 bi bi-quote"
                 xmlns="http://www.w3.org/2000/svg"

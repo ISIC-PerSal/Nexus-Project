@@ -31,7 +31,11 @@ function ExploreView({
             </label>
             <button
               type="button"
-              className="btn bg-oficial-juvenil  text-white h-auto"
+              className={`${
+                sessionStorage.getItem("type") == "General"
+                  ? "bg-oficial"
+                  : "bg-oficial-juvenil"
+              } btn text-white h-auto`}
               onClick={handleReset}
             >
               <svg

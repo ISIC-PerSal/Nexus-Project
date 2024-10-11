@@ -176,7 +176,7 @@ function NewProjectForm() {
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
     setStatus("Publicado");
-    console.log(body);
+
     if (selectedFile) {
       handleUpload(selectedFile, setImageURL);
     } else {

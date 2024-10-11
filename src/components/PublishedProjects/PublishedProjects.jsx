@@ -3,7 +3,7 @@ import fetchGetProjectsByUser from "../../util/project/fetchGetProjectsByUser";
 import PublishedProjectsView from "./PublishedProjectsView";
 import { Navigate, useNavigate } from "react-router-dom";
 
-function PublishedProjects({ idUser }) {
+function PublishedProjects({ idUser, status, type }) {
   const [dataProject, setDataProject] = useState([]);
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function PublishedProjects({ idUser }) {
   }
 
   useEffect(() => {
-    fetchData(idUser, "Publicado", "Propio");
+    fetchData(idUser, status, type);
   }, [idUser]);
 
   function editProject(id) {
