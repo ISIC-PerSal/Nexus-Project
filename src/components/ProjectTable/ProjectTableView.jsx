@@ -6,7 +6,13 @@ import "datatables.net-responsive-dt";
 import logoDefault from "../../assets/nexus.png";
 
 DataTable.use(DT);
-function PublishedProjectsView({ dataProject, edit, activity, explore }) {
+function ProjectTableView({
+  title = "",
+  dataProject,
+  edit,
+  activity,
+  explore,
+}) {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
@@ -111,10 +117,10 @@ function PublishedProjectsView({ dataProject, edit, activity, explore }) {
 
   return (
     <div className="dataTable">
-      <label className="form-label fw-bold fs-2">Proyectos publicados</label>
+      <label className="form-label fw-bold fs-2">{title}</label>
       <DataTable data={tableData} options={tableOptions} className="display" />
     </div>
   );
 }
 
-export default PublishedProjectsView;
+export default ProjectTableView;

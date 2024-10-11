@@ -12,7 +12,7 @@ async function getProjectsJoined(idUser, idProject) {
   return unido.length ? false : true;
 }
 
-function EnrollProject({ idProject, idUser }) {
+function EnrollProject({ idProject, idUser, status }) {
   const [isJoined, setIsJoined] = useState(false);
   const [joinedUser, setJoinedUser] = useState(false);
   const currentUser = sessionStorage.getItem("id_user");
@@ -89,7 +89,7 @@ function EnrollProject({ idProject, idUser }) {
   };
 
   const handleEditProject = () => {
-    navigate(`/edit/${idProject}`);
+    navigate(`/edit/${idProject}`, { state: { statusProject: status } });
   };
 
   return (

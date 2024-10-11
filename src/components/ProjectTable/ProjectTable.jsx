@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import fetchGetProjectsByUser from "../../util/project/fetchGetProjectsByUser";
-import PublishedProjectsView from "./PublishedProjectsView";
 import { useNavigate } from "react-router-dom";
+import ProjectTableView from "./ProjectTableView";
 
-function PublishedProjects({ idUser, status, type }) {
+function ProjectTable({ title = "", idUser, status, type }) {
   const [dataProject, setDataProject] = useState([]);
   const navigate = useNavigate();
 
@@ -39,7 +39,8 @@ function PublishedProjects({ idUser, status, type }) {
 
   return (
     <>
-      <PublishedProjectsView
+      <ProjectTableView
+        title={title}
         dataProject={dataProject}
         edit={editProject}
         activity={addActivity}
@@ -49,4 +50,4 @@ function PublishedProjects({ idUser, status, type }) {
   );
 }
 
-export default PublishedProjects;
+export default ProjectTable;

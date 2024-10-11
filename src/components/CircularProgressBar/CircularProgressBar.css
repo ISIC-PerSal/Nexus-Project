@@ -1,0 +1,70 @@
+.circular-progress {
+  position: relative;
+  display: inline-block;
+}
+
+.circular-progress svg {
+  transform: rotate(-90deg);
+}
+
+.circular-progress-bg {
+  fill: none;
+  stroke: #e6e6e6;
+  background-color: coral;
+}
+
+.circular-progress-bar {
+  fill: none;
+  stroke: #c13b6c;
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(0turn);
+  transform-origin: center;
+}
+
+.circular-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 100%;
+}
+
+.no-select {
+  user-select: none; /* Deshabilita la selección de texto */
+  -webkit-user-select: none; /* Deshabilita la selección de texto en navegadores WebKit (Chrome, Safari) */
+  -moz-user-select: none; /* Deshabilita la selección de texto en Firefox */
+  -ms-user-select: none; /* Deshabilita la selección de texto en Internet Explorer y Edge */
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
