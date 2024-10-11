@@ -3,8 +3,9 @@ import GoFeedView from "./GoFeedView";
 import useIsJoined from "../../util/project/isJoined";
 import fetchGetFeedByProject from "../../util/project/fetchGetFeedByProject";
 import { useNavigate } from "react-router-dom";
+import StatusProject from "../StatusProject/StatusProject";
 
-function GoFeed({ idProject, idUser }) {
+function GoFeed({ idProject, idUser, statusProject }) {
   const [status, setStatus] = useState("");
   const currentUser = sessionStorage.getItem("id_user");
   const isJoined = useIsJoined(idProject);
@@ -22,7 +23,7 @@ function GoFeed({ idProject, idUser }) {
   }, [idProject, idUser]);
 
   const handleGoFeed = async () => {
-    window.location.href=`/feed/${idProject}`
+    navigate(`/feed/${idProject}`, {state:{statusProject: statusProject}})
   };
   return (
     <>

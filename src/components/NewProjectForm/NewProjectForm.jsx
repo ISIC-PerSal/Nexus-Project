@@ -139,18 +139,21 @@ function NewProjectForm() {
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
+    if (project.trim() != "") {
     setStatus("Borrador");
     try {
       const data = await fetchNewProject({ ...body, status: "Borrador" });
       if (data.status == "Done") {
         Swal.fire({
           title: "Exito!",
-          text: "Se ha guardado el project en borrador!",
+          text: "¡Se ha guardado el proyecto en borrador!",
           icon: "success",
           confirmButtonText: "Ver proyecto",
         }).then((result) => {
           if (result.isConfirmed) {
-            navigate(`/my-projects`);
+            navigate(`/explore/${data.new_id}`, {
+              state: { statusProject: "Borrador" },
+            });
           } else {
             window.location.href = "/new-project";
           }
@@ -171,12 +174,20 @@ function NewProjectForm() {
         confirmButtonText: "OK",
       });
     }
+  }else{
+    Swal.fire({
+      position: "top-end",
+      icon: "info",
+      title: "Introduzca un título al proyecto",
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  }
   };
 
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
     setStatus("Publicado");
-
     if (selectedFile) {
       handleUpload(selectedFile, setImageURL);
     } else {
@@ -213,7 +224,8 @@ function NewProjectForm() {
             confirmButtonText: "Ver proyecto",
           }).then((result) => {
             if (result.isConfirmed) {
-              navigate(`/explore/${data.new_id}`);
+              navigate(`/explore/${data.new_id}`,{state: { statusProject: "Borrador" },
+              });
             } else {
               window.location.href = "/new-project";
             }

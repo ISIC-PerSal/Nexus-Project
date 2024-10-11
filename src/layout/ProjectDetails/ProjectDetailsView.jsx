@@ -75,12 +75,16 @@ function ProjectDetailsView({
   return (
     <>
       <div className="bg-white">
-        <EnrollProject
-          idProject={data.id_project_pk}
-          idUser={data.id_user_fk}
-        />
-        <GoFeed idProject={data.id_project_pk} idUser={data.id_user_fk} />
-        <StatusProject status={data.status}/>
+        <div className="fixed-badge">
+          <div className="fixed-badge-items">
+            <StatusProject status={data.status} />
+            <GoFeed idProject={data.id_project_pk} idUser={data.id_user_fk} statusProject={data.status} />
+            <EnrollProject
+              idProject={data.id_project_pk}
+              idUser={data.id_user_fk}
+            />
+          </div>
+        </div>
       </div>
       <main className="py-3 bg-img">
         <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
@@ -139,7 +143,12 @@ function ProjectDetailsView({
                   <label className="form-label">Fecha de arranque:</label>
                   <span className="form-control">{startDate}</span>
                 </div>
-                <Timer date={startDate} />
+                <label className="form-label">
+                  Faltan:
+                </label>
+                <div className="w-100 px-2">
+                  <Timer date={startDate} />
+                </div>
               </div>
               <div className="w-50">
                 <div className="mb-3 w-50">
@@ -148,16 +157,21 @@ function ProjectDetailsView({
                   </label>
                   <span className="form-control">{finishDate}</span>
                 </div>
-                <Timer date={finishDate} />
+                <label className="form-label">
+                  Faltan:
+                </label>
+                <div className="w-100 px-2">
+                  <Timer date={finishDate} />
+                </div>
               </div>
             </div>
             <br />
             <div className="mb-3">
-            <div className="rounded-top bg-secondary bg-opacity-25 borderp-3 shadow-sm text-center">
-  <label className="form-label ms-2 fw-bold fs-4">
-    Datos del proyecto
-  </label>
-</div>
+              <div className="rounded-top bg-secondary bg-opacity-25 borderp-3 shadow-sm text-center">
+                <label className="form-label ms-2 fw-bold fs-4">
+                  Datos del proyecto
+                </label>
+              </div>
               <div className="rounded-bottom border">
                 <div className="ms-3 mt-3">
                   <div className="form-label me-2">ODS:</div>
@@ -169,19 +183,26 @@ function ProjectDetailsView({
                   </div>
                 </div>
                 <div className="ms-3 d-flex align-items-center">
-  <div className="mb-3 w-25">
-    <label className="form-label">Número de voluntarios:</label>
-    <span className="form-control">{volunteers}</span>
-  </div>
-  <div className="w-75">
-    <div className="mb-3">
-      <label className="form-label">Barra de progreso</label>
-      <div className="progress">
-        <div className="progress-bar" role="progressbar" style={{}} aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
-      </div>
-    </div>
-  </div>
-</div>
+                  <div className="mb-3 w-25">
+                    <label className="form-label">Número de voluntarios:</label>
+                    <span className="form-control">{volunteers}</span>
+                  </div>
+                  <div className="w-75">
+                    <div className="mb-3">
+                      <label className="form-label">Barra de progreso</label>
+                      <div className="progress">
+                        <div
+                          className="progress-bar"
+                          role="progressbar"
+                          style={{}}
+                          aria-valuenow="20"
+                          aria-valuemin="0"
+                          aria-valuemax="20"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div className="text-center mb-3 ms-3 me-3">
                   <label className="form-label">
                     Descripción del proyecto:

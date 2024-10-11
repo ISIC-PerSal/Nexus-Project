@@ -2,6 +2,9 @@ import React from "react";
 import PaisesProyecto from "../../util/location/PaisesProyecto";
 
 function BadgeCountryView({ data }) {
+  if (!data) {
+    return null;
+  }
   const bandera = (item) => {
     const pais = PaisesProyecto.find(
       (pais) => pais.label.props.children[1] === item

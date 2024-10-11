@@ -61,7 +61,7 @@ function ProjectFeedView({ data = [], project }) {
         </div>
         <div className="mt-5">
           {data.length > 0 ? (
-            <Masonry columnsCount={3} gutter="10px">
+            <Masonry columnsCount={2} gutter="10px">
               {data.map((item, index) => (
                 <CardNews item={item} key={index} />
               ))}

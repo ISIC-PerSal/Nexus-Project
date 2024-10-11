@@ -87,9 +87,11 @@ function EnrollProject({ idProject, idUser }) {
       console.error("Error:", error);
     }
   };
+
   const handleEditProject = () => {
     navigate(`/edit/${idProject}`);
   };
+
   return (
     <>
       <EnrollProjectView
