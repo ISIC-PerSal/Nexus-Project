@@ -2,7 +2,7 @@ import React from "react";
 import CardProject from "../../components/CardProject/CardProject";
 import Select from "react-select";
 import PaisesProyecto from "../../util/location/PaisesProyecto";
-import NoDataView from "../../components/NoData/NoDataView";
+import { statusArray } from "../../util/values/statusArray";
 
 function ExploreView({
   dataProject,
@@ -13,6 +13,7 @@ function ExploreView({
   odsArray,
   country,
   setCountry,
+  handleStatusChange,
   handleODSChange,
   handleCountryChange,
   handleReset,
@@ -31,7 +32,11 @@ function ExploreView({
             </label>
             <button
               type="button"
-              className="btn bg-oficial-juvenil  text-white h-auto"
+              className={`${
+                sessionStorage.getItem("type") == "General"
+                  ? "bg-oficial"
+                  : "bg-oficial-juvenil"
+              } btn text-white h-auto`}
               onClick={handleReset}
             >
               <svg
@@ -72,6 +77,19 @@ function ExploreView({
                 placeholder="Buscar proyecto por nombre..."
               ></input>
             </div>
+            <span className="fw-bold">Estado del proyecto:</span>
+            <div className="mb-3">
+              <Select
+                defaultValue={[statusArray[2]]}
+                isMulti
+                name="status"
+                options={statusArray}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                placeholder="Selecione el estado del proyecto..."
+                onChange={handleStatusChange}
+              />
+            </div>
           </div>
           <div className="d-flex mb-3">
             <div className="w-50 pe-2">
@@ -94,7 +112,7 @@ function ExploreView({
               />
             </div>
           </div>
-          <CardProject data={dataProject}/>
+          <CardProject data={dataProject} />
         </div>
       </main>
     </>

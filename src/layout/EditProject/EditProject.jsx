@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import EditProjectView from "./EditProjectView";
 import Navbar from "../../components/Navbar/Navbar";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import fetchGetProject from "../../util/project/fetchGetProject";
 import ErrorView from "../Error/ErrorView";
 
 function EditProject() {
   const { idProject } = useParams();
   const [data, setData] = useState([]);
+  const location = useLocation();
+  const statusProject =
+    location.state != null ? location.state.statusProject : "";
 
   const [project, setProject] = useState("");
   const [image, setImage] = useState("");
@@ -44,7 +47,15 @@ function EditProject() {
     const getDataProject = async () => {
       const currentUser = sessionStorage.getItem("id_user");
       try {
-        const data = await fetchGetProject(idProject, currentUser, "", "", "");
+        const data = await fetchGetProject(
+          idProject,
+          currentUser,
+          "",
+          "",
+          "",
+          "",
+          statusProject
+        );
         setData(data);
       } catch {}
     };

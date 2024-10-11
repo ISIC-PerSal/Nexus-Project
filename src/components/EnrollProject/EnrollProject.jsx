@@ -3,6 +3,7 @@ import EnrollProjectView from "./EnrollProjectView";
 import fetchAddMemeber from "../../util/project/fetchAddMemeber";
 import Swal from "sweetalert2";
 import fetchGetProjectsJoined from "../../util/project/fetchGetProjectsJoined";
+import { useNavigate } from "react-router-dom";
 
 async function getProjectsJoined(idUser, idProject) {
   const data = await fetchGetProjectsJoined(idUser);
@@ -11,10 +12,11 @@ async function getProjectsJoined(idUser, idProject) {
   return unido.length ? false : true;
 }
 
-function EnrollProject({ idProject, idUser }) {
+function EnrollProject({ idProject, idUser, status }) {
   const [isJoined, setIsJoined] = useState(false);
   const [joinedUser, setJoinedUser] = useState(false);
   const currentUser = sessionStorage.getItem("id_user");
+  const navigate = useNavigate();
   const joinedProjects = async () => {
     const dataProjectsJoined = await fetchGetProjectsJoined(currentUser);
     if (dataProjectsJoined) {
@@ -86,6 +88,10 @@ function EnrollProject({ idProject, idUser }) {
     }
   };
 
+  const handleEditProject = () => {
+    navigate(`/edit/${idProject}`, { state: { statusProject: status } });
+  };
+
   return (
     <>
       <EnrollProjectView
@@ -95,6 +101,7 @@ function EnrollProject({ idProject, idUser }) {
         show={isJoined}
         joinedUser={joinedUser}
         currentUser={currentUser}
+        handleEditProject={handleEditProject}
       />
     </>
   );

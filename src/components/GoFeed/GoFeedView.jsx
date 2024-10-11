@@ -3,7 +3,7 @@ import React from "react";
 function GoFeedView({ handleGoFeed }) {
   return (
     <>
-      <button className="fixed-med" onClick={handleGoFeed}>
+      <button className="badge-go-feed" onClick={handleGoFeed}>
         <div>
           <div className="w-100 d-flex justify-content-center">
             <svg
