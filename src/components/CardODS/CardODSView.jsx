@@ -13,11 +13,11 @@ const odsArray = item.ods;
         <img src={item.imagen} className="img-fluid" alt="..." />
       </div>
       <div className="w-50">
-        <h5 className="fs-5">{item.nombre}</h5>
+        <h5 className="ms-2 fs-5">{item.nombre}</h5>
         {odsArray.map((item, index) => (
           <BadgeODSView key={index} item={item} />
         ))}
-        <p>
+        <p className="ms-2">
           {isExpanded
             ? item.descripcion
             : `${item.descripcion.slice(0, 100)}...`}

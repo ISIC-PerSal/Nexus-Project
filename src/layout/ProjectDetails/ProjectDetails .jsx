@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProjectDetailsView from "./ProjectDetailsView";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import fetchGetProject from "../../util/project/fetchGetProject";
 import ErrorView from "../Error/ErrorView";
@@ -14,6 +14,9 @@ import odsData from "../../util/odsData";
 function ProjectDetails() {
   const { idProject } = useParams();
   const isLogin = isAuth();
+  const location = useLocation();
+  const statusProject =
+    location.state != null ? location.state.statusProject : "";
   const { setSelected } = useNexus();
   const currentUser = sessionStorage.getItem("id_user");
 
@@ -75,12 +78,20 @@ function ProjectDetails() {
   const [imageURL, setImageURL] = useState("");
   const [odsArray, setOdsArray] = useState([]);
 
-  const typeUser = sessionStorage.getItem("type")
+  const typeUser = sessionStorage.getItem("type");
 
   async function fetchData() {
     setLoading(true);
     try {
-      const dataP = await fetchGetProject(idProject, currentUser, "", "","",typeUser,"Todos");
+      const dataP = await fetchGetProject(
+        idProject,
+        "",
+        "",
+        "",
+        "",
+        typeUser,
+        statusProject ? statusProject : "Publicado,Activo,Finalizado"
+      );
       setData(dataP);
     } catch (error) {
       console.error(error);

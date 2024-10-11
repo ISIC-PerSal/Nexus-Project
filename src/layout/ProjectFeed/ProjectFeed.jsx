@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import ProjectFeedView from "./ProjectFeedView";
 import { useNexus } from "../../Hooks/useContext";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import useProjectPermissions from "../../Hooks/useProjectPermissions";
 import fetchGetFeedByProject from "../../util/project/fetchGetFeedByProject";
 import fetchGetProject from "../../util/project/fetchGetProject";
@@ -11,7 +11,10 @@ import useIsJoined from "../../util/project/isJoined";
 function ProjectFeed() {
   const { setSelected } = useNexus();
   const { idProject } = useParams();
-  const permission = useProjectPermissions(idProject);
+  const location = useLocation();
+  const statusProject =
+    location.state != null ? location.state.statusProject : "";
+  const permission = useProjectPermissions(idProject, statusProject);
   const [data, setData] = useState([]);
   const [dataProject, setDataProject] = useState({});
 
@@ -32,7 +35,7 @@ function ProjectFeed() {
   useEffect(() => {
     const getDataProject = async () => {
       try {
-        const dataP = await fetchGetProject(idProject, "", "", "");
+        const dataP = await fetchGetProject(idProject, "", "", "", "", "", statusProject ? statusProject : "Publicado,Activo,Finalizado");
         setDataProject(dataP);
       } catch (error) {
         console.error(error);

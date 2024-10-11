@@ -3,6 +3,7 @@ import DataTable from "datatables.net-react";
 import DT from "datatables.net-dt";
 import "datatables.net-select-dt";
 import "datatables.net-responsive-dt";
+import logoDefault from "../../assets/nexus.png";
 
 DataTable.use(DT);
 function PublishedProjectsView({ dataProject, edit, activity, explore }) {
@@ -60,7 +61,9 @@ function PublishedProjectsView({ dataProject, edit, activity, explore }) {
   }, [dataProject]);
 
   const logoProject = (imageUrl) => {
-    return `<img src="${imageUrl}" alt="" style="width: 120px; height: auto;" />`;
+    return imageUrl
+      ? `<img src="${imageUrl}" alt="" style="width: 120px; height: auto;" />`
+      : `<img src="${logoDefault}" alt="" style="width: 120px; height: auto;" />`;
   };
 
   useEffect(() => {

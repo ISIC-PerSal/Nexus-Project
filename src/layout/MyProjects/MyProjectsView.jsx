@@ -20,20 +20,36 @@ function MyProjectsView({ idUser }) {
               <Tab>Borradores</Tab>
             </TabList>
             <TabPanel>
-              <PublishedProjects idUser={idUser} status={"Publicado"} type={"Propio"}/>
+              <PublishedProjects
+                idUser={idUser}
+                status={"Publicado"}
+                type={"Propio"}
+              />
             </TabPanel>
             <TabPanel>
-              <PublishedProjects idUser={idUser} status={"Activo"} type={"Propio"}/>
+              <PublishedProjects
+                idUser={idUser}
+                status={"Activo"}
+                type={"Propio"}
+              />
             </TabPanel>
             <TabPanel>
-              <PublishedProjects idUser={idUser} status={"Finalizado"} type={"Propio"}/>
+              <PublishedProjects
+                idUser={idUser}
+                status={"Finalizado"}
+                type={"Propio"}
+              />
             </TabPanel>
             <TabPanel>
               <JoinedProjects />
             </TabPanel>
             <TabPanel>Proyectos incritos terminados</TabPanel>
             <TabPanel>
-              <PublishedProjects idUser={idUser} status={"Borrador"} type={"Propio"}/>
+              <PublishedProjects
+                idUser={idUser}
+                status={"Borrador"}
+                type={"Propio"}
+              />
             </TabPanel>
           </Tabs>
         </div>
