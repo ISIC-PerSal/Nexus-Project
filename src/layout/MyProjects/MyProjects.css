@@ -12,6 +12,7 @@
 .tabs:hover {
   background-color: #a03055;
   color: white;
+  transition: background-color 0.3s;
 }
 .tabs:active {
   color: white;
@@ -20,8 +21,34 @@
 .tabs:focus {
   background-color: #f8f9fa;
   color: #c13b6c;
+  transition: background-color 0.3s;
 }
 .tab-active {
   background-color: #f8f9fa;
   color: #c13b6c;
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 700ms;
+  animation-duration: 700ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

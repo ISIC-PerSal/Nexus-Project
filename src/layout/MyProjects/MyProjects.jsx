@@ -3,10 +3,16 @@ import MyProjectsView from "./MyProjectsView";
 import Navbar from "../../components/Navbar/Navbar";
 import { useNexus } from "../../Hooks/useContext";
 import ProjectTable from "../../components/ProjectTable/ProjectTable";
+import NoDataView from "../../components/NoData/NoDataView";
 
 function MyProjects() {
   const { setSelected } = useNexus();
   const [selectedTab, setSelectedTab] = useState("Publicado");
+  const [component, setComponent] = useState(
+    <div className="animation">
+      <NoDataView />
+    </div>
+  );
 
   useEffect(() => {
     setSelected("Yo");
@@ -16,11 +22,19 @@ function MyProjects() {
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
-    console.log(renderContent(tab))
   };
 
-  const renderContent = () => {
-    switch (selectedTab) {
+  useEffect(() => {
+    const render = (
+      <div key={selectedTab} className="fadeIn">
+        {renderContent(selectedTab)}
+      </div>
+    );
+    setComponent(render);
+  }, [selectedTab]);
+
+  const renderContent = (value) => {
+    switch (value) {
       case "Publicado":
         return (
           <ProjectTable
@@ -62,8 +76,8 @@ function MyProjects() {
           <ProjectTable
             title="Incritos Publicados"
             idUser={idUser}
-            status={"Inscrito-Publicado"}
-            type={"Inscrito"}
+            status={"Publicado"}
+            type={"Miembro"}
           />
         );
       case "Inscrito-Activo":
@@ -71,8 +85,8 @@ function MyProjects() {
           <ProjectTable
             title="Incritos Activos"
             idUser={idUser}
-            status={"Inscrito-Activo"}
-            type={"Inscrito"}
+            status={"Activo"}
+            type={"Miembro"}
           />
         );
       case "Inscrito-Finalizado":
@@ -80,8 +94,8 @@ function MyProjects() {
           <ProjectTable
             title="Incritos Finalizados"
             idUser={idUser}
-            status={"Inscrito-Finalizado"}
-            type={"Inscrito"}
+            status={"Finalizado"}
+            type={"Miembro"}
           />
         );
       default:
@@ -96,6 +110,7 @@ function MyProjects() {
         idUser={idUser}
         selectedTab={selectedTab}
         handleTabClick={handleTabClick}
+        component={component}
       />
     </>
   );
