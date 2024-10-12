@@ -4,6 +4,7 @@ import ExploreView from "./ExploreView";
 import fetchGetProject from "../../util/project/fetchGetProject";
 import odsData from "../../util/odsData";
 import { useNexus } from "../../Hooks/useContext";
+import { statusArray } from "../../util/values/statusArray";
 
 function Explore() {
   const { setSelected } = useNexus();
@@ -18,6 +19,11 @@ function Explore() {
   const [ods, setOds] = useState("0");
   const [country, setCountry] = useState("Todos");
   const [countrySearch, setCountrySearch] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState([statusArray[2]]);
+
+  const handleStatusChange = (selectedOptions) => {
+    setSelectedStatus(selectedOptions);
+  };
 
   const updatedOdsData = [
     { value: "0", label: "Todos" },
@@ -60,7 +66,8 @@ function Explore() {
         projectInput,
         odsInput,
         countryInput,
-        typeUser
+        typeUser,
+        selectedStatus ? selectedStatus.map((option) => option.value) : []
       );
       setDataProject(data);
     } catch (error) {
@@ -70,8 +77,7 @@ function Explore() {
 
   useEffect(() => {
     fetchData(title, ods, countrySearch);
-  }, [title, ods, countrySearch]);
-
+  }, [title, ods, countrySearch, selectedStatus]);
   return (
     <>
       <Navbar />
@@ -84,6 +90,7 @@ function Explore() {
         odsArray={updatedOdsData}
         country={country}
         setCountry={setCountry}
+        handleStatusChange={handleStatusChange}
         handleODSChange={handleODSChange}
         handleCountryChange={handleCountryChange}
         handleReset={handleReset}

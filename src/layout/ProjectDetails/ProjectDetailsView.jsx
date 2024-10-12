@@ -1,67 +1,15 @@
-import React from "react";
+import { CircularProgress } from "@mui/material";
 import BadgeODSView from "../../components/BadgeODS/BadgeODSView";
-import Timer from "../../components/Timer/Timer";
 import EnrollProject from "../../components/EnrollProject/EnrollProject";
 import GoFeed from "../../components/GoFeed/GoFeed";
+import StatusProject from "../../components/StatusProject/StatusProject";
+import Timer from "../../components/Timer/Timer";
+import CircularProgressBar from "../../components/CircularProgressBar/CircularProgressBar";
 
-function ProjectDetailsView({
-  data,
-  id,
-  leaderType,
-  setLeaderType,
-  name,
-  setName,
-  checkName,
-  setCheckName,
-  phone,
-  setPhone,
-  email,
-  setEmail,
-  checkEmail,
-  setCheckEmail,
-  rfc,
-  setRfc,
-  checkRfc,
-  setCheckRfc,
-  clabe,
-  setClabe,
-  checkClabe,
-  setCheckClabe,
-  project,
-  setProject,
-  image,
-  setImage,
-  urlProject,
-  setUrlProject,
-  volunteers,
-  setVolunteers,
-  description,
-  setDescription,
-  projectType,
-  setProjectType,
-  donation,
-  setDonation,
-  country,
-  setCountry,
-  state,
-  setState,
-  zip,
-  setZip,
-  city,
-  setCity,
-  address,
-  setAddress,
-  startDate,
-  setStartDate,
-  finishDate,
-  setFinishDate,
-  background,
-  imgCountry,
-  odsArray,
-}) {
-  const backgroundImg = `url(${background})`;
+function ProjectDetailsView({ data, id, formData, setFormData, imgCountry }) {
+  const backgroundImg = `url(${formData.background})`;
 
-  const profileImg = `url(${image})`;
+  const profileImg = `url(${formData.image})`;
   const defaultStyle = {
     backgroundColor: "white",
     width: "18vw",
@@ -69,22 +17,32 @@ function ProjectDetailsView({
     borderRadius: "100%",
     backgroundSize: "cover",
   };
-  const dynamicStyle = image ? { backgroundImage: profileImg } : {};
+  const dynamicStyle = formData.image ? { backgroundImage: profileImg } : {};
 
   return (
     <>
       <div className="bg-white">
-        <EnrollProject
-          idProject={data.id_project_pk}
-          idUser={data.id_user_fk}
-        />
-        <GoFeed idProject={data.id_project_pk} idUser={data.id_user_fk} />
+        <div className="fixed-badge">
+          <div className="fixed-badge-items">
+            <StatusProject status={data.status} />
+            <GoFeed
+              idProject={data.id_project_pk}
+              idUser={data.id_user_fk}
+              statusProject={data.status}
+            />
+            <EnrollProject
+              idProject={data.id_project_pk}
+              idUser={data.id_user_fk}
+              status = {data.status}
+            />
+          </div>
+        </div>
       </div>
       <main className="py-3 bg-img">
         <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
           <div className="custom-grid-container">
             <div className="cover-photo">
-              {background ? (
+              {formData.background ? (
                 <div
                   className="w-100 h-100 border rounded border-secondary-subtle z-1"
                   style={{
@@ -110,11 +68,11 @@ function ProjectDetailsView({
             </div>
             <div className="project_information">
               <div className="">
-                <span className="label-title">{project}</span>
+                <span className="label-title">{formData.project}</span>
               </div>
               <div className="">
                 <label className="">Por:</label>
-                <p className="">{name}</p>
+                <p className="">{formData.name}</p>
               </div>
             </div>
           </div>
@@ -123,11 +81,11 @@ function ProjectDetailsView({
               <div className="w-50 ms-3 bg-gral p-3 rounded">
                 <div className="mb-3">
                   <label className="form-label">Tipo de representante:</label>
-                  <span className="form-control">{leaderType}</span>
+                  <span className="form-control">{formData.leaderType}</span>
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Tipo de proyecto:</label>
-                  <span className="form-control">{projectType}</span>
+                  <span className="form-control">{formData.projectType}</span>
                 </div>
               </div>
             </div>
@@ -135,56 +93,69 @@ function ProjectDetailsView({
               <div className="w-50">
                 <div className="mb-3 w-50">
                   <label className="form-label">Fecha de arranque:</label>
-                  <span className="form-control">{startDate}</span>
+                  <span className="form-control">{formData.startDate}</span>
                 </div>
-                <Timer date={startDate} />
+                <label className="form-label">Faltan:</label>
+                <div className="w-100 px-2">
+                  <Timer date={formData.startDate} />
+                </div>
               </div>
               <div className="w-50">
                 <div className="mb-3 w-50">
                   <label className="form-label">
                     Fecha límite de inscripción:
                   </label>
-                  <span className="form-control">{finishDate}</span>
+                  <span className="form-control">{formData.finishDate}</span>
                 </div>
-                <Timer date={finishDate} />
+                <label className="form-label">Faltan:</label>
+                <div className="w-100 px-2">
+                  <Timer date={formData.finishDate} />
+                </div>
               </div>
             </div>
             <br />
             <div className="mb-3">
-            <div className="rounded-top bg-secondary bg-opacity-25 borderp-3 shadow-sm text-center">
-  <label className="form-label ms-2 fw-bold fs-4">
-    Datos del proyecto
-  </label>
-</div>
+              <div className="rounded-top bg-secondary bg-opacity-25 borderp-3 shadow-sm text-center">
+                <label className="form-label ms-2 fw-bold fs-4">
+                  Datos del proyecto
+                </label>
+              </div>
               <div className="rounded-bottom border">
                 <div className="ms-3 mt-3">
                   <div className="form-label me-2">ODS:</div>
 
-                  <div className="mb-2">
-                    {odsArray.map((item, index) => (
-                      <BadgeODSView key={index} item={item} idShow={true} />
-                    ))}
+                  <div className="d-flex justify-content-center">
+                    <div className="mb-2 d-flex flex-wrap justify-content-center">
+                      {formData.odsArray.map((item, index) => (
+                        <BadgeODSView
+                          key={index}
+                          item={item}
+                          idShow={true}
+                          showImage={true}
+                          showText={false}
+                          column={5}
+                          spacing={1}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <div className="ms-3 d-flex align-items-center">
-  <div className="mb-3 w-25">
-    <label className="form-label">Número de voluntarios:</label>
-    <span className="form-control">{volunteers}</span>
-  </div>
-  <div className="w-75">
-    <div className="mb-3">
-      <label className="form-label">Barra de progreso</label>
-      <div className="progress">
-        <div className="progress-bar" role="progressbar" style={{}} aria-valuenow="20" aria-valuemin="0" aria-valuemax="20"></div>
-      </div>
-    </div>
-  </div>
-</div>
-                <div className="text-center mb-3 ms-3 me-3">
+                <div className="ms-3">
+                  <div className="mb-3">
+                    <label className="form-label">Voluntarios incritos: </label>
+                    <div className="p-3 w-100 d-flex justify-content-center">
+                      <CircularProgressBar
+                        idProject={data.id_project_pk}
+                        volunteers={formData.volunteers}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="mb-3 ms-3 me-3">
                   <label className="form-label">
                     Descripción del proyecto:
                   </label>
-                  <span className="form-control">{description}</span>
+                  <span className="form-control">{formData.description}</span>
                 </div>
               </div>
             </div>
@@ -201,7 +172,7 @@ function ProjectDetailsView({
                     className="img-fluid me-2"
                     style={{ width: "30px" }}
                   />
-                  <span>{country}</span>
+                  <span>{formData.country}</span>
                 </div>
 
                 <div className="mb-2">
@@ -217,7 +188,7 @@ function ProjectDetailsView({
                   </svg>
                   <label className="form-label fw-bold ">Estado:</label>
                   <span className="form-control bg-body-secondary border border-light">
-                    {state}
+                    {formData.state}
                   </span>
                 </div>
                 <div className=" mb-2">
@@ -234,7 +205,7 @@ function ProjectDetailsView({
                   </svg>
                   <label className="form-label fw-bold ">Municipio:</label>
                   <span className="form-control bg-body-secondary border border-light">
-                    {city}
+                    {formData.city}
                   </span>
                 </div>
                 <div className="mb-2">
@@ -250,7 +221,7 @@ function ProjectDetailsView({
                   </svg>
                   <label className="form-label fw-bold ">Direccion:</label>
                   <span className="form-control bg-body-secondary border border-light">
-                    {address}
+                    {formData.address}
                   </span>
                 </div>
               </div>
@@ -275,7 +246,7 @@ function ProjectDetailsView({
                   </svg>
                   <label className="form-label fw-bold ">Telefono:</label>
                   <span className="form-control bg-body-secondary border border-light">
-                    {phone}
+                    {formData.phone}
                   </span>
                 </div>
                 <div className="mb-2">
@@ -292,7 +263,7 @@ function ProjectDetailsView({
                   </svg>
                   <label className="form-label fw-bold ">Correo:</label>
                   <span className="form-control bg-body-secondary border border-light">
-                    {email}
+                    {formData.email}
                   </span>
                 </div>
               </div>

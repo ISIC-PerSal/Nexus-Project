@@ -1,0 +1,28 @@
+.tabs {
+  background-color: #c13b6c;
+  border: 0px;
+  padding: 5px;
+  margin: 5px;
+  margin-left: 2px;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.tabs:hover {
+  background-color: #a03055;
+  color: white;
+}
+.tabs:active {
+  color: white;
+}
+
+.tabs:focus {
+  background-color: #f8f9fa;
+  color: #c13b6c;
+}
+.tab-active {
+  background-color: #f8f9fa;
+  color: #c13b6c;
+}
+

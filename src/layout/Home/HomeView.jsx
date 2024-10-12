@@ -4,7 +4,7 @@ import fondoNexus from '../../assets/nexus.png';
 
 function HomeView() {
   return (
-    <>
+  <>
       <div className="m-3 p-5 rounded shadow-lg d-flex align-items-center justify-content-center" style={{ backgroundColor: 'rgb(253, 229, 230)' }}>
         <div className="text-center">
           <img

@@ -9,12 +9,10 @@ function EnrollProjectView({
   currentUser,
   handleEditProject,
 }) {
-
-
   if (idUser == currentUser) {
     return (
       <button
-        className="fixed-footer"
+        className="badge-enroll"
         style={{ backgroundColor: "#AE2C3A" }}
         onClick={handleEditProject}
       >
@@ -43,7 +41,7 @@ function EnrollProjectView({
   if (joinedUser) {
     return (
       <button
-        className="fixed-footer"
+        className="badge-enroll"
         style={{ backgroundColor: "#009C71" }}
         disabled
       >
@@ -69,7 +67,7 @@ function EnrollProjectView({
 
   if (idUser !== currentUser && !joinedUser) {
     return (
-      <button className="fixed-footer" onClick={handleEnroll}>
+      <button className="badge-enroll" onClick={handleEnroll}>
         <div>
           <div className="w-100 d-flex justify-content-center">
             <svg
