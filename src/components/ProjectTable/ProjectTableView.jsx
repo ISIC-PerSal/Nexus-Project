@@ -6,7 +6,14 @@ import "datatables.net-responsive-dt";
 import logoDefault from "../../assets/nexus.png";
 
 DataTable.use(DT);
-function PublishedProjectsView({ dataProject, edit, activity, explore }) {
+function ProjectTableView({
+  title = "",
+  type="",
+  dataProject,
+  edit,
+  activity,
+  explore,
+}) {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
@@ -25,7 +32,7 @@ function PublishedProjectsView({ dataProject, edit, activity, explore }) {
     Herramientas
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <li>
+    ${type == "Propio" ? `<li>
       <button
         class="btn-edit btn dropdown-item"
         data-id="${project.id_project_pk}"
@@ -33,16 +40,20 @@ function PublishedProjectsView({ dataProject, edit, activity, explore }) {
       >
         Editar
       </button>
-    </li>
-    <li>
-      <button
-        class="btn-activity btn dropdown-item"
-        data-id="${project.id_project_pk}"
-        data-project="${project.project}"
-      >
-        Nueva actividad
-      </button>
-    </li>
+    </li>` : ""}
+      
+    ${type == "Propio"
+        ? `<li>
+        <button
+          class="btn-activity btn dropdown-item"
+          data-id="${project.id_project_pk}"
+          data-project="${project.project}"
+        >
+          Nueva actividad
+        </button>
+      </li>`
+        : ""
+      }
     <li>
       <button
         class="btn-explore btn dropdown-item"
@@ -111,10 +122,10 @@ function PublishedProjectsView({ dataProject, edit, activity, explore }) {
 
   return (
     <div className="dataTable">
-      <label className="form-label fw-bold fs-2">Proyectos publicados</label>
+      <label className="form-label fw-bold fs-2">{title}</label>
       <DataTable data={tableData} options={tableOptions} className="display" />
     </div>
   );
 }
 
-export default PublishedProjectsView;
+export default ProjectTableView;

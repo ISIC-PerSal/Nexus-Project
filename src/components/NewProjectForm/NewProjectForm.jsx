@@ -139,6 +139,7 @@ function NewProjectForm() {
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
+    console.log(project.trim() != "");
     if (project.trim() != "") {
       setStatus("Borrador");
       try {
@@ -146,12 +147,12 @@ function NewProjectForm() {
         if (data.status == "Done") {
           Swal.fire({
             title: "Exito!",
-            text: "Se ha guardado el projecto en borrador!",
+            text: "Se ha guardado el proyecto en borrador!",
             icon: "success",
             confirmButtonText: "Ver proyecto",
           }).then((result) => {
             if (result.isConfirmed) {
-              navigate(`/explore/${data.new_id}`,{
+              navigate(`/explore/${data.new_id}`, {
                 state: { statusProject: "Borrador" },
               });
             } else {

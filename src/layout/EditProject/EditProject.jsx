@@ -107,7 +107,8 @@ function EditProject() {
           "",
           "",
           "",
-          statusProject);
+          statusProject
+        );
         setData(data);
       } catch {}
     };
@@ -135,7 +136,6 @@ function EditProject() {
       setUrl(data.url || "");
       setVolunteers(data.volunteers || "");
       setZip(data.zip || "");
-      console.log(checkedOds);
     }
   }, [data]);
 

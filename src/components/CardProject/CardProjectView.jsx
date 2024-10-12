@@ -5,7 +5,7 @@ import BadgeCountryView from "../BadgeLocation/BadgeCountryView";
 import TruncatedText from "../TruncatedText/TruncatedText";
 import { Link } from "react-router-dom";
 import imgDefault from "../../assets/Logo.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function CardProjectView({ data }) {
   const [odsArray, setOdsArray] = useState([]);
@@ -20,7 +20,7 @@ function CardProjectView({ data }) {
 
     for (let i = 1; i <= 17; i++) {
       const odsKey = `ods${i}`;
-      if (data[odsKey] === "1") {
+      if (data[odsKey] == "1") {
         const odsItem = {
           id_ods: i,
           ods: odsData[i - 1].title,
@@ -34,7 +34,6 @@ function CardProjectView({ data }) {
   useEffect(() => {
     renderODS();
   }, [idProject]);
-
   return (
     <>
       <div className="w-100 mb-3 pb-3 d-flex justify-content-between border-bottom  border-2">

@@ -12,7 +12,6 @@ async function fetchGetProject(
   status = ""
 ) {
   const url = `${API_NEXUS_PROJECT}/project/getProject.php?id=${id}&&idUser=${idUser}&&title=${title}&&ods=${ods}&&country=${country}&&people=${people}&&status=${status}`;
-  console.log(url)
   try {
     const data = await getDataApi(url, "");
     return data;

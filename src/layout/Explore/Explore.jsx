@@ -78,7 +78,6 @@ function Explore() {
   useEffect(() => {
     fetchData(title, ods, countrySearch);
   }, [title, ods, countrySearch, selectedStatus]);
-
   return (
     <>
       <Navbar />

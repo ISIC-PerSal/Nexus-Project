@@ -35,7 +35,15 @@ function ProjectFeed() {
   useEffect(() => {
     const getDataProject = async () => {
       try {
-        const dataP = await fetchGetProject(idProject, "", "", "", "", "", statusProject ? statusProject : "Publicado,Activo,Finalizado");
+        const dataP = await fetchGetProject(
+          idProject,
+          "",
+          "",
+          "",
+          "",
+          "",
+          statusProject ? statusProject : "Publicado,Activo,Finalizado"
+        );
         setDataProject(dataP);
       } catch (error) {
         console.error(error);
@@ -55,6 +63,7 @@ function ProjectFeed() {
     if (permission) {
       fetchData();
     }
+    console.log(permission)
   }, [idProject, permission]);
 
   return (
