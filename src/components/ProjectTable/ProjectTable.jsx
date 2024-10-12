@@ -23,14 +23,18 @@ function ProjectTable({ title = "", idUser, status, type }) {
 
   useEffect(() => {
     fetchData(idUser, status, type);
-  }, [idUser]);
+  }, [idUser, status, type]);
 
   function editProject(id) {
-    navigate(`/edit/${id}`, { state: { statusProject: status } });
+    navigate(`/edit/${id}`, {
+      state: { statusProject: status },
+    });
   }
 
   function addActivity(id, project) {
-    navigate(`/add-activity?project=${id}`, { state: { data: project } });
+    navigate(`/add-activity?project=${id}`, {
+      state: { data: project, typeProject: type },
+    });
   }
 
   function explore(id) {
@@ -41,6 +45,7 @@ function ProjectTable({ title = "", idUser, status, type }) {
     <>
       <ProjectTableView
         title={title}
+        type={type}
         dataProject={dataProject}
         edit={editProject}
         activity={addActivity}

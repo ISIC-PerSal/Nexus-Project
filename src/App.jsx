@@ -25,6 +25,7 @@ import ProjectActivity from "./layout/ProjectActivity/ProjectActivity";
 import ProjectFeed from "./layout/ProjectFeed/ProjectFeed";
 import FeedContent from "./layout/FeedContent/FeedContent";
 import EditProject from "./layout/EditProject/EditProject";
+import Support from "./layout/Support/Support";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -87,6 +88,10 @@ function App() {
               element={isLogin ? <About /> : <Navigate to={"/login"} />}
             />
             <Route path="/alliance" element={<Alliance />} />
+            <Route
+              path="/support"
+              element={isLogin ? <Support /> : <Navigate to={"/login"} />}
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route

@@ -1,12 +1,11 @@
 import React from "react";
-import ProjectTable from "../../components/ProjectTable/ProjectTable";
 import "./MyProjects.css";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import ProjectTable from "../../components/ProjectTable/ProjectTable";
 
-function MyProjectsView({ idUser, selectedTab, handleTabClick }) {
-  
-
+function MyProjectsView({ idUser, selectedTab, handleTabClick, component }) {
   return (
-    <main className="py-3 d-flex justify-content-center w-100 bg-img">
+    <main className="pb-3 d-flex justify-content-center w-100 bg-img">
       <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
         <div className="d-flex justify-content-evenly bg-oficial">
           <button
@@ -62,6 +61,7 @@ function MyProjectsView({ idUser, selectedTab, handleTabClick }) {
             Incritos Finalizados
           </button>
         </div>
+        <div>{component}</div>
       </div>
     </main>
   );
