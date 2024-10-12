@@ -156,6 +156,15 @@ function NavbarView({
                       </a>
                     </li>
                     <li>
+                      <a
+                        className="dropdown-item"
+                        type="button"
+                        href="/support"
+                      >
+                        Soporte
+                      </a>
+                    </li>
+                    <li>
                       <a className="dropdown-item" type="button" onClick={handleLogOut}>
                         Cerrar sesión
                       </a>

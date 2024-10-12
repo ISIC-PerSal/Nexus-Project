@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import fetchGetProjectsByUser from "../../util/project/fetchGetProjectsByUser";
-import PublishedProjectsView from "./PublishedProjectsView";
+import PublishedProjectsView from "./OwnProjectsView";
 import { useNavigate } from "react-router-dom";
+import OwnProjectsView from "../ProjectTable/ProjectTableView";
 
 function PublishedProjects({ idUser, status, type }) {
   const [dataProject, setDataProject] = useState([]);
@@ -39,7 +40,7 @@ function PublishedProjects({ idUser, status, type }) {
 
   return (
     <>
-      <PublishedProjectsView
+      <OwnProjectsView
         dataProject={dataProject}
         edit={editProject}
         activity={addActivity}

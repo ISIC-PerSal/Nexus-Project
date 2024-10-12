@@ -11,8 +11,8 @@ function EditProject() {
   const { idProject } = useParams();
   const [data, setData] = useState([]);
   const location = useLocation();
-  const statusProject =location.state != null ? location.state.statusProject : "";
-  const { setSelected } = useNexus();
+  const statusProject =
+    location.state != null ? location.state.statusProject : "";
 
   const [project, setProject] = useState("");
   const [address, setAddress] = useState("");
@@ -101,13 +101,15 @@ function EditProject() {
     const getDataProject = async () => {
       const currentUser = sessionStorage.getItem("id_user");
       try {
-        const data = await fetchGetProject(idProject,
+        const data = await fetchGetProject(
+          idProject,
           currentUser,
           "",
           "",
           "",
           "",
-          statusProject);
+          statusProject
+        );
         setData(data);
       } catch {}
     };
@@ -135,7 +137,6 @@ function EditProject() {
       setUrl(data.url || "");
       setVolunteers(data.volunteers || "");
       setZip(data.zip || "");
-      console.log(checkedOds);
     }
   }, [data]);
 

@@ -23,7 +23,7 @@ function GoFeed({ idProject, idUser, statusProject }) {
   }, [idProject, idUser]);
 
   const handleGoFeed = async () => {
-    navigate(`/feed/${idProject}`, {state:{statusProject: statusProject}})
+    navigate(`/feed/${idProject}`, { state: { statusProject: statusProject } });
   };
   return (
     <>

@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { handleUpload } from "../../util/files/handleImage";
 import fetchAddActivity from "../../util/project/fetchAddActivity";
+import ErrorView from "../Error/ErrorView";
 
 function ProjectActivity() {
   const { search } = useLocation();
@@ -13,6 +14,9 @@ function ProjectActivity() {
 
   const location = useLocation();
   const { data } = location.state || { data: "" };
+  const type =
+    location.state != null ? location.state.typeProject : "";
+
 
   const [project, setProject] = useState("");
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -156,25 +160,32 @@ function ProjectActivity() {
 
   return (
     <>
-      <Navbar />
-      <ProjectActivityView
-        project={project}
-        setProject={setProject}
-        typeProjects={typeProjects}
-        setTypeProjects={setTypeProjects}
-        statusProject={statusProject}
-        setStatusProject={setStatusProject}
-        contentProject={contentProject}
-        setContentProject={setContentProject}
-        activityType={activityType}
-        activityStatus={activityStatus}
-        selectedFiles={selectedFiles}
-        handleSaveActivity={handleSaveActivity}
-        handleFileChange={handleFileChange}
-        removeFile={removeFile}
-      />
-    </>
-  );
+      {
+        type == "Propio" && data !="" ? (
+          <>
+            <Navbar />
+            <ProjectActivityView
+              project={project}
+              setProject={setProject}
+              typeProjects={typeProjects}
+              setTypeProjects={setTypeProjects}
+              statusProject={statusProject}
+              setStatusProject={setStatusProject}
+              contentProject={contentProject}
+              setContentProject={setContentProject}
+              activityType={activityType}
+              activityStatus={activityStatus}
+              selectedFiles={selectedFiles}
+              handleSaveActivity={handleSaveActivity}
+              handleFileChange={handleFileChange}
+              removeFile={removeFile}
+            />
+            </>
+            ) : (
+            <ErrorView />
+      )}
+          </>
+        );
 }
 
-export default ProjectActivity;
+      export default ProjectActivity;
