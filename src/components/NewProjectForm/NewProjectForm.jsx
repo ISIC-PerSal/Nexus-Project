@@ -5,12 +5,23 @@ import { handleImageUpload, handleUpload } from "../../util/files/handleImage";
 import fetchNewProject from "../../util/project/fetchNewProject";
 import convertToLocalURL from "../../util/paths/convertToLocalURL";
 import { useNavigate } from "react-router-dom";
+import { useNexusContext } from "../../Hooks/useNexusContext";
 function NewProjectForm() {
   const navigate = useNavigate();
+  const { userId, userData } = useNexusContext();
+  console.log(userId);
+  console.log(userData);
+  const [dataForm, setDataForm] = useState({
+    leaderType: "",
+    name: "",
+    phone: "",
+    email: "",
+  });
+
   const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
-  const [phone, setPhone] = useState("")
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [checkEmail, setCheckEmail] = useState(false);
   const [rfc, setRfc] = useState("");
@@ -139,51 +150,52 @@ function NewProjectForm() {
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
-    console.log(project.trim() != "");
-    if (project.trim() != "") {
-      setStatus("Borrador");
-      try {
-        const data = await fetchNewProject({ ...body, status: "Borrador" });
-        if (data.status == "Done") {
-          Swal.fire({
-            title: "Exito!",
-            text: "Se ha guardado el proyecto en borrador!",
-            icon: "success",
-            confirmButtonText: "Ver proyecto",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate(`/explore/${data.new_id}`, {
-                state: { statusProject: "Borrador" },
-              });
-            } else {
-              window.location.href = "/new-project";
-            }
-          });
-        } else {
-          Swal.fire({
-            title: "Error!",
-            text: "Ocurrio un error",
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-        }
-      } catch (err) {
-        Swal.fire({
-          title: "Error!",
-          text: "Ocurrio un error",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-      }
-    } else {
-      Swal.fire({
-        position: "top-end",
-        icon: "info",
-        title: "Introduzca un título al proyecto",
-        showConfirmButton: false,
-        timer: 1000,
-      });
-    }
+    console.log(dataForm);
+    console.log(body);
+    // if (project.trim() != "") {
+    //   setStatus("Borrador");
+    //   try {
+    //     const data = await fetchNewProject({ ...body, status: "Borrador" });
+    //     if (data.status == "Done") {
+    //       Swal.fire({
+    //         title: "Exito!",
+    //         text: "Se ha guardado el proyecto en borrador!",
+    //         icon: "success",
+    //         confirmButtonText: "Ver proyecto",
+    //       }).then((result) => {
+    //         if (result.isConfirmed) {
+    //           navigate(`/explore/${data.new_id}`, {
+    //             state: { statusProject: "Borrador" },
+    //           });
+    //         } else {
+    //           window.location.href = "/new-project";
+    //         }
+    //       });
+    //     } else {
+    //       Swal.fire({
+    //         title: "Error!",
+    //         text: "Ocurrio un error",
+    //         icon: "error",
+    //         confirmButtonText: "OK",
+    //       });
+    //     }
+    //   } catch (err) {
+    //     Swal.fire({
+    //       title: "Error!",
+    //       text: "Ocurrio un error",
+    //       icon: "error",
+    //       confirmButtonText: "OK",
+    //     });
+    //   }
+    // } else {
+    //   Swal.fire({
+    //     position: "top-end",
+    //     icon: "info",
+    //     title: "Introduzca un título al proyecto",
+    //     showConfirmButton: false,
+    //     timer: 1000,
+    //   });
+    // }
   };
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
@@ -426,6 +438,42 @@ function NewProjectForm() {
       setClabe("");
     }
   }, [checkClabe]);
+
+  const handleChangeDataForm = (value, name) => {
+    setDataForm((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleChangeCheckBox = (value, setCheckFunction, propertyName) => {
+    setCheckFunction(value);
+    if (value) {
+      switch (propertyName) {
+        case "name":
+          handleChangeDataForm(
+            `${sessionStorage.getItem("name")} ${sessionStorage.getItem(
+              "lastName"
+            )}`,
+            "name"
+          );
+          break;
+
+        default:
+          break;
+      }
+    }
+    // if (checkName) {
+    //   setName(
+    //     `${sessionStorage.getItem("name")} ${sessionStorage.getItem(
+    //       "lastName"
+    //     )}`
+    //   );
+    // } else {
+    //   setName("");
+    // }
+  };
+
   return (
     <>
       <NewProjectFormView
@@ -482,6 +530,9 @@ function NewProjectForm() {
         handleImageUpload={handleImageUpload}
         setSelectedFile={setSelectedFile}
         fileInputRef={fileInputRef}
+        dataForm={dataForm}
+        handleChangeDataForm={handleChangeDataForm}
+        handleChangeCheckBox={handleChangeCheckBox}
       />
     </>
   );

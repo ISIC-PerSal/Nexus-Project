@@ -3,16 +3,16 @@ import Navbar from "../../components/Navbar/Navbar";
 import ExploreView from "./ExploreView";
 import fetchGetProject from "../../util/project/fetchGetProject";
 import odsData from "../../util/odsData";
-import { useNexus } from "../../Hooks/useContext";
 import { statusArray } from "../../util/values/statusArray";
+import { useNexusContext } from "../../Hooks/useNexusContext";
 
 function Explore() {
-  const { setSelected } = useNexus();
-  const typeUser = sessionStorage.getItem("type");
-
+  const { changeNavbarItem } = useNexusContext();
   useEffect(() => {
-    setSelected("Explorar");
-  }, [setSelected]);
+    changeNavbarItem("Explorar");
+  }, [changeNavbarItem]);
+
+  const typeUser = sessionStorage.getItem("type");
 
   const [dataProject, setDataProject] = useState([]);
   const [title, setTitle] = useState("");
