@@ -1,8 +1,10 @@
 import React from "react";
+import "./EnrollProject.css";
 
 function EnrollProjectView({
   idProject,
   idUser,
+  volunteerSlotsFilled,
   handleEnroll,
   show,
   joinedUser,
@@ -65,7 +67,7 @@ function EnrollProjectView({
     );
   }
 
-  if (idUser !== currentUser && !joinedUser) {
+  if (idUser !== currentUser && !joinedUser && volunteerSlotsFilled == false) {
     return (
       <button className="badge-enroll" onClick={handleEnroll}>
         <div>
@@ -83,6 +85,28 @@ function EnrollProjectView({
             </svg>
           </div>
           <div className="d-flex justify-content-center">Inscribirme</div>
+        </div>
+      </button>
+    );
+  }
+  if (idUser !== currentUser && !joinedUser && volunteerSlotsFilled == true) {
+    return (
+      <button className="badge-enroll badge-enroll-disable" disabled>
+        <div>
+          <div className="w-100 d-flex justify-content-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="3vw"
+              height="3vw"
+              fill="currentColor"
+              className="bi bi-person-fill-x"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+              <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m-.646-4.854.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 0 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 .708-.708" />
+            </svg>
+          </div>
+          <div className="d-flex justify-content-center">Cupo lleno</div>
         </div>
       </button>
     );
