@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-import React from 'react';
-import NavbarView from '../../components/Navbar/NavbarView';
-import fondoNexus from '../../assets/nexus.png';
-import SocialMediaView from '../../components/SocialMedia/SocialMediaView';
-=======
 import React from "react";
 import fondoNexus from "../../assets/nexus.png";
 import SocialMediaView from "../../components/SocialMedia/SocialMediaView";
 import Navbar from "../../components/Navbar/Navbar";
->>>>>>> luisa
 
 function MainView() {
   return (
@@ -68,11 +61,7 @@ function MainView() {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-      <SocialMediaView/>
-=======
       <SocialMediaView />
->>>>>>> luisa
     </>
   );
 }
