@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <div>
+        <div>
+          <label for="Entrada">Entrada</label>
+        </div>
+        <textarea cols="100" rows="10" name="" id="entrada"></textarea>
+        <input type="button" value="Convertir" onclick="convertir()" />
+      </div>
+      <div>
+        <div>
+          <label for="Salida">Salida</label>
+        </div>
+        <textarea cols="100" rows="10" name="" id="salida"></textarea>
+      </div>
+    </form>
+    <script>
+      function convertir() {
+        const entrada = document.getElementById("entrada").value;
+        const salida = document.getElementById("salida");
+
+        try {
+          const json = JSON.parse(entrada);
+
+          // Verificar si json es un array
+          if (Array.isArray(json)) {
+            const transformado = json.map((item) => ({
+              value: item.value,
+              label:
+                typeof item.label === "string"
+                  ? item.label
+                  : "Label no disponible",
+            }));
+
+            const jsonString = JSON.stringify(transformado, null, 2);
+            salida.value = jsonString;
+          } else {
+            salida.value = "La entrada no es un array de objetos válido.";
+          }
+        } catch (error) {
+          salida.value = "Error al parsear JSON: " + error.message;
+        }
+      }
+    </script>
+  </body>
+</html>

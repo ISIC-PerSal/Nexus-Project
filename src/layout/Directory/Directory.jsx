@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import DirectoryView from "./DirectoryView";
 import Navbar from "../../components/Navbar/Navbar";
-import isAuth from "../../util/isAuth";
-import { useNexus } from "../../Hooks/useContext";
+import { useNexusContext } from "../../Hooks/useNexusContext";
 function Directory() {
-  const { setSelected } = useNexus();
-
+  const { changeNavbarItem } = useNexusContext();
   useEffect(() => {
-    setSelected("Directorio");
-  }, [setSelected]);
+    changeNavbarItem("Directorio");
+  }, [changeNavbarItem]);
   return (
     <>
       <Navbar />

@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginView from "./LoginView";
 import fetchLogin from "../../util/user/fetchLogin";
 import Swal from "sweetalert2";
 import Navbar from "../../components/Navbar/Navbar";
 import fetchGetProjectsJoined from "../../util/project/fetchGetProjectsJoined";
-import { useNexus } from "../../Hooks/useContext";
+import { useNexusContext } from "../../Hooks/useNexusContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  sessionStorage.clear();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
+  const {
+    changeNavbarItem,
+    userId,
+    updateUserId,
+    updateUserType,
+    updateUserData,
+  } = useNexusContext();
+
+  useEffect(() => {
+    changeNavbarItem("Yo");
+  }, [changeNavbarItem]);
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -22,6 +35,8 @@ function Login() {
       try {
         const data = await fetchLogin(body);
         if (data.id_user) {
+          updateUserId(data.id_user);
+          updateUserType(data.type);
           sessionStorage.setItem("id_user", data.id_user);
           sessionStorage.setItem("email", data.email);
           sessionStorage.setItem("name", data.name);
@@ -32,6 +47,12 @@ function Login() {
           sessionStorage.setItem("rfc", data.rfc);
           sessionStorage.setItem("clabe", data.clabe);
           sessionStorage.setItem("type", data.type);
+          updateUserData(data.name, "name");
+          updateUserData(data.lastName, "lastName");
+          updateUserData(data.birthday, "birthday");
+          updateUserData(data.age, "age");
+          updateUserData(data.rfc, "rfc");
+          updateUserData(data.clabe, "clabe");
           const dataProjects = await fetchGetProjectsJoined(data.id_user);
           if (dataProjects) {
             sessionStorage.setItem(
@@ -39,8 +60,7 @@ function Login() {
               JSON.stringify(dataProjects)
             );
           }
-          window.location = "/home";
-          
+          navigate("/home");
         } else {
           Swal.fire({
             title: "Error!",

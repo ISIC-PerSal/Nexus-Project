@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react'
-import NewProjectView from './NewProjectView'
-import { useNexus } from '../../Hooks/useContext';
+import React, { useEffect } from "react";
+import NewProjectView from "./NewProjectView";
+import { useNexusContext } from "../../Hooks/useNexusContext";
 
 function NewProject() {
-  const { setSelected } = useNexus();
-
+  const { changeNavbarItem } = useNexusContext();
   useEffect(() => {
-    setSelected("Registrar");
-  }, [setSelected]);
+    changeNavbarItem("Registrar");
+  }, [changeNavbarItem]);
   return (
     <>
-    <NewProjectView/>
+      <NewProjectView />
     </>
-  )
+  );
 }
 
-export default NewProject
+export default NewProject;

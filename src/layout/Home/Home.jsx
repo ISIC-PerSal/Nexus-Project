@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import HomeView from "./HomeView";
-import { useNexus } from "../../Hooks/useContext";
 import Navbar from "../../components/Navbar/Navbar";
 import UnderConstructionView from "../../components/UnderConstruction/UnderConstructionView";
+import { useNexusContext } from "../../Hooks/useNexusContext";
 
 function Home() {
-  const { setSelected } = useNexus();
   const typeUser = sessionStorage.getItem("type");
+  const { changeNavbarItem } = useNexusContext();
 
   useEffect(() => {
-    setSelected("Noticias");
-  }, [setSelected]);
+    changeNavbarItem("Noticias");
+  }, [changeNavbarItem]);
   return (
     <>
       <Navbar />
