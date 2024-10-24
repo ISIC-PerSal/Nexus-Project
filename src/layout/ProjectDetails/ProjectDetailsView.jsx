@@ -33,7 +33,8 @@ function ProjectDetailsView({ data, id, formData, setFormData, imgCountry }) {
             <EnrollProject
               idProject={data.id_project_pk}
               idUser={data.id_user_fk}
-              status = {data.status}
+              status={data.status}
+              volunteers={data.volunteers}
             />
           </div>
         </div>

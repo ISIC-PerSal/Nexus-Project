@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import fondoNexus from '../../assets/nexus.png';
+import SocialMedia from '../../components/SocialMedia/SocialMedia';
 
 function HomeView() {
   return (
@@ -54,6 +55,7 @@ function HomeView() {
       <div className='justify-content-center'>
       "<video src="../assets/7.Feed.mp4" loop controls></video>
       </div>
+     <SocialMedia/> 
     </>
   );
 }

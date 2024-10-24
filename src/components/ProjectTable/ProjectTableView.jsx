@@ -4,11 +4,12 @@ import DT from "datatables.net-dt";
 import "datatables.net-select-dt";
 import "datatables.net-responsive-dt";
 import logoDefault from "../../assets/nexus.png";
+import "./ProjectTable.css"
 
 DataTable.use(DT);
 function ProjectTableView({
   title = "",
-  type= "",
+  type = "",
   dataProject,
   edit,
   activity,
@@ -32,7 +33,9 @@ function ProjectTableView({
     Herramientas
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  ${type == "Propio" ? `<li>
+  ${
+    type == "Propio"
+      ? `<li>
       <button
         class="btn-edit btn dropdown-item"
         data-id="${project.id_project_pk}"
@@ -40,20 +43,22 @@ function ProjectTableView({
       >
         Editar
       </button>
-    </li>` : ""}
-    ${
-      type == "Propio"
-        ? `<li>
-        <button
-          class="btn-activity btn dropdown-item"
-          data-id="${project.id_project_pk}"
-          data-project="${project.project}"
-        >
-          Nueva actividad
-        </button>
-      </li>`
-        : ""
-    }
+    </li>`
+      : ""
+  }
+  ${
+    type == "Propio"
+      ? `<li>
+      <button
+        class="btn-activity btn dropdown-item"
+        data-id="${project.id_project_pk}"
+        data-project="${project.project}"
+      >
+        Nueva actividad
+      </button>
+    </li>`
+      : ""
+  }
     <li>
       <button
         class="btn-explore btn dropdown-item"
@@ -121,10 +126,18 @@ function ProjectTableView({
   };
 
   return (
-    <div className="dataTable">
-      <label className="form-label fw-bold fs-2">{title}</label>
-      <DataTable data={tableData} options={tableOptions} className="display" />
-    </div>
+    <>
+      <div className="dataTable-custom">
+        <div className="dataTable">
+          <label className="form-label fw-bold fs-2">{title}</label>
+          <DataTable
+            data={tableData}
+            options={tableOptions}
+            className="display"
+          />
+        </div>
+      </div>
+    </>
   );
 }
 

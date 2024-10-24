@@ -10,7 +10,7 @@ function NewProjectForm() {
   const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("")
   const [email, setEmail] = useState("");
   const [checkEmail, setCheckEmail] = useState(false);
   const [rfc, setRfc] = useState("");
@@ -185,7 +185,6 @@ function NewProjectForm() {
       });
     }
   };
-
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
     setStatus("Publicado");

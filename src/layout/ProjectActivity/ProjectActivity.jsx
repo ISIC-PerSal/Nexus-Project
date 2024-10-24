@@ -14,10 +14,7 @@ function ProjectActivity() {
 
   const location = useLocation();
   const { data } = location.state || { data: "" };
-  const type =
-    location.state != null ? location.state.typeProject : "";
-
-
+  const type = location.state != null ? location.state.typeProject : "";
   const [project, setProject] = useState("");
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [typeProjects, setTypeProjects] = useState("");
@@ -160,32 +157,31 @@ function ProjectActivity() {
 
   return (
     <>
-      {
-        type == "Propio" && data !="" ? (
-          <>
-            <Navbar />
-            <ProjectActivityView
-              project={project}
-              setProject={setProject}
-              typeProjects={typeProjects}
-              setTypeProjects={setTypeProjects}
-              statusProject={statusProject}
-              setStatusProject={setStatusProject}
-              contentProject={contentProject}
-              setContentProject={setContentProject}
-              activityType={activityType}
-              activityStatus={activityStatus}
-              selectedFiles={selectedFiles}
-              handleSaveActivity={handleSaveActivity}
-              handleFileChange={handleFileChange}
-              removeFile={removeFile}
-            />
-            </>
-            ) : (
-            <ErrorView />
+      {type == "Propio" && data != "" ? (
+        <>
+          <Navbar />
+          <ProjectActivityView
+            project={project}
+            setProject={setProject}
+            typeProjects={typeProjects}
+            setTypeProjects={setTypeProjects}
+            statusProject={statusProject}
+            setStatusProject={setStatusProject}
+            contentProject={contentProject}
+            setContentProject={setContentProject}
+            activityType={activityType}
+            activityStatus={activityStatus}
+            selectedFiles={selectedFiles}
+            handleSaveActivity={handleSaveActivity}
+            handleFileChange={handleFileChange}
+            removeFile={removeFile}
+          />
+        </>
+      ) : (
+        <ErrorView />
       )}
-          </>
-        );
+    </>
+  );
 }
 
       export default ProjectActivity;

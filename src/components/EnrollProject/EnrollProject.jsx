@@ -4,6 +4,7 @@ import fetchAddMemeber from "../../util/project/fetchAddMemeber";
 import Swal from "sweetalert2";
 import fetchGetProjectsJoined from "../../util/project/fetchGetProjectsJoined";
 import { useNavigate } from "react-router-dom";
+import getRealVolunteers from "../../util/data/getRealVolunteers";
 
 async function getProjectsJoined(idUser, idProject) {
   const data = await fetchGetProjectsJoined(idUser);
@@ -12,10 +13,13 @@ async function getProjectsJoined(idUser, idProject) {
   return unido.length ? false : true;
 }
 
-function EnrollProject({ idProject, idUser, status }) {
+function EnrollProject({ idProject, idUser, status, volunteers }) {
   const [isJoined, setIsJoined] = useState(false);
   const [joinedUser, setJoinedUser] = useState(false);
   const currentUser = sessionStorage.getItem("id_user");
+  const [realVolunteers, setRealVolunteers] = useState(0);
+  const [volunteerSlotsFilled, setVolunteerSlotsFilled] = useState(false);
+
   const navigate = useNavigate();
   const joinedProjects = async () => {
     const dataProjectsJoined = await fetchGetProjectsJoined(currentUser);
@@ -24,6 +28,20 @@ function EnrollProject({ idProject, idUser, status }) {
         "projects_joined",
         JSON.stringify(dataProjectsJoined)
       );
+    }
+  };
+
+  const fetchRealVolunteers = async (id) => {
+    try {
+      const response = await getRealVolunteers(id);
+      const data = response.real_volunteers;
+      if (data < volunteers) {
+        setVolunteerSlotsFilled(false);
+      } else {
+        setVolunteerSlotsFilled(true);
+      }
+    } catch (error) {
+      console.error("Error fetching real volunteers:", error);
     }
   };
 
@@ -55,6 +73,10 @@ function EnrollProject({ idProject, idUser, status }) {
     joined();
   }, [idUser, idProject]);
 
+  useEffect(() => {
+    fetchRealVolunteers(idProject);
+  }, [realVolunteers]);
+
   const handleEnroll = async () => {
     const body = {
       idUser: currentUser,
@@ -63,7 +85,16 @@ function EnrollProject({ idProject, idUser, status }) {
 
     try {
       const data = await fetchAddMemeber(body);
-      if (data.status == "Done") {
+      if (data.status == "Full") {
+        Swal.fire({
+          title: "Cupo lleno!",
+          text: "El número de voluntarios para este proyecto esta completo!",
+          icon: "info",
+          willClose: () => {
+            window.location.href = `/explore/${idProject}`;
+          },
+        });
+      } else if (data.status == "Done") {
         joinedProjects();
         Swal.fire({
           position: "top-end",
@@ -97,6 +128,7 @@ function EnrollProject({ idProject, idUser, status }) {
       <EnrollProjectView
         idProject={idProject}
         idUser={idUser}
+        volunteerSlotsFilled={volunteerSlotsFilled}
         handleEnroll={handleEnroll}
         show={isJoined}
         joinedUser={joinedUser}
