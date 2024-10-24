@@ -160,7 +160,7 @@ function ProjectActivity() {
   return (
     <>
       {
-        type == "Propio" ? (
+        type == "Propio" && data!="" ? (
           <>
             <Navbar />
             <ProjectActivityView

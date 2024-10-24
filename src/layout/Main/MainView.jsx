@@ -1,6 +1,7 @@
 import React from 'react';
 import NavbarView from '../../components/Navbar/NavbarView';
 import fondoNexus from '../../assets/nexus.png';
+import SocialMediaView from '../../components/SocialMedia/SocialMediaView';
 
 function MainView() {
   return (
@@ -52,6 +53,7 @@ function MainView() {
           </div>
         </div>
       </div>
+      <SocialMediaView/>
     </>
   );
 }

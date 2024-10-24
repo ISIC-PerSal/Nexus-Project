@@ -1,14 +1,13 @@
-import React from 'react'
-import Navbar from '../../components/Navbar/Navbar'
-import SupportView from './SupportView'
+import React from "react";
+import Navbar from "../../components/Navbar/Navbar";
 
 function Support() {
   return (
     <>
-    <Navbar/>
-    <SupportView/>
+      <Navbar />
+      <h1>Suporte</h1>
     </>
-  )
+  );
 }
 
-export default Support
+export default Support;
