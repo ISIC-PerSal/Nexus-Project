@@ -6,6 +6,8 @@ import SelectCountry from "../SelectCountry/SelectCountry";
 import SelectState from "../SelectState/SelectState";
 import ods from "../../util/ods";
 import SelectCity from "../SelectCity/SelectCity";
+import InputForm from "../FormControl/InputForm/InputForm";
+import SelectForm from "../FormControl/SelectForm/SelectForm";
 function NewProjectFormView({
   leaderType,
   setLeaderType,
@@ -62,6 +64,9 @@ function NewProjectFormView({
   handleImageUpload,
   setSelectedFile,
   fileInputRef,
+  dataForm,
+  handleChangeDataForm,
+  handleChangeCheckBox,
 }) {
   const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
   const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
@@ -77,64 +82,48 @@ function NewProjectFormView({
             <label htmlFor="seccion-lider" className="form-label fw-bold fs-4">
               Datos del líder
             </label>
-            <div className="mb-3">
-              <label htmlFor="tipo-lider" className="form-label">
-                Representante
-              </label>
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                defaultValue={leaderType}
-                onChange={(e) => setLeaderType(e.target.value)}
+            <SelectForm
+              label="Representante"
+              getValue={(value) => handleChangeDataForm(value, "leaderType")}
+              options={[
+                "Seleccione una opción",
+                "Individuo",
+                "Institución",
+                "Empresa",
+                "Organización",
+              ]}
+            />
+            <InputForm
+              label="Nombre del líder o representante"
+              type={"text"}
+              setValue={dataForm.name}
+              getValue={(value) => handleChangeDataForm(value, "leaderType")}
+            />
+            <div className="form-check" style={{ marginTop: "-1rem" }}>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                checked={checkName}
+                onChange={(e) =>
+                  handleChangeCheckBox(e.target.checked, setCheckName, "name")
+                }
+                id="flexCheckDefault"
+              ></input>
+              <label
+                className="form-check-label text-body-secondary"
+                htmlFor="flexCheckDefault"
               >
-                <option value={0}>Seleccione su tipo de representación </option>
-                <option value={"Individuo"}>Individuo</option>
-                <option value={"Institución"}>Institución</option>
-                <option value={"Empresa"}>Empresa</option>
-                <option value={"Organización"}>Organización</option>
-              </select>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="nombre-lider" className="form-label">
-                Nombre del líder o representante
+                Usar mi nombre completo
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="nombre-lider"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></input>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={checkName}
-                  onChange={(e) => setCheckName(e.target.checked)}
-                  id="flexCheckDefault"
-                ></input>
-                <label
-                  className="form-check-label text-body-secondary"
-                  htmlFor="flexCheckDefault"
-                >
-                  Usar mi nombre completo
-                </label>
-              </div>
             </div>
-            <div className="mb-3">
-              <label htmlFor="telefono-lider" className="form-label">
-                Número telefónico de contacto
-              </label>
-              <input
-                type="tel"
-                maxLength={10}
-                minLength={10}
-                className="form-control"
-                id="nombre-lider"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              ></input>
-            </div>
+
+            <InputForm
+              label={"Número telefónico de contacto"}
+              value={phone}
+              getValue={setPhone}
+              type={"tel"}
+              maxLength={10}
+            />
             <div className="mb-3">
               <label htmlFor="correo-lider" className="form-label" required>
                 Dirección email de contacto
@@ -170,18 +159,13 @@ function NewProjectFormView({
             >
               Datos del proyecto
             </label>
-            <div className="mb-3">
-              <label htmlFor="nombre-proyecto" className="form-label">
-                Nombre del proyecto
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="nombre-proyecto"
-                value={project}
-                onChange={(e) => setProject(e.target.value)}
-              ></input>
-            </div>
+            <InputForm
+              label={"Nombre del proyecto"}
+              value={project}
+              getValue={setProject}
+              type={"tel"}
+              maxLength={10}
+            />
             <div className="mb-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

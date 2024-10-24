@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import AboutView from "./AboutView";
 import Navbar from "../../components/Navbar/Navbar";
-import { useNexus } from "../../Hooks/useContext";
+import { useNexusContext } from "../../Hooks/useNexusContext";
 
 function About() {
-  const { setSelected } = useNexus();
-
+  const { changeNavbarItem } = useNexusContext();
   useEffect(() => {
-    setSelected("Acerca");
-  }, [setSelected]);
+    changeNavbarItem("Acerca");
+  }, [changeNavbarItem]);
   return (
     <>
     <Navbar/>
