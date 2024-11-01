@@ -2,12 +2,12 @@ import Select from "react-select";
 import React from "react";
 import PaisesProyecto from "../../util/location/PaisesProyecto";
 
-function SelectCountryView({ handleCountryChange, country, countryOptions }) {
+function SelectCountryView({ label, handleCountryChange, country, countryOptions }) {
   return (
     <>
       <div className="mb-3">
         <label htmlFor="pais" className="form-label">
-          País
+          {label}
         </label>
         <Select
           placeholder="--"

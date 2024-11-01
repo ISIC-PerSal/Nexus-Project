@@ -60,7 +60,7 @@ function Login() {
               JSON.stringify(dataProjects)
             );
           }
-          navigate("/home");
+          window.location.href="/home"
         } else {
           Swal.fire({
             title: "Error!",

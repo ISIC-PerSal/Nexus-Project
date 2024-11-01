@@ -18,11 +18,7 @@ function NavbarView({
         <div className="container-fluid">
           <a
             className="navbar-brand d-flex justify-content-center align-items-center text-white fw-bold fs-2"
-<<<<<<< HEAD
-            href="/"
-=======
             onClick={() => handleOption("Noticias")}
->>>>>>> luisa
           >
             <img src={logo} alt="" style={{ width: "50px" }} />
             <span className="p-2">Nexus Project</span>

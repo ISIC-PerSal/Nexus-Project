@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-import React from 'react'
-import Navbar from '../../components/Navbar/Navbar'
-import fondoNexus from '../../assets/nexus.png';
-import SocialMediaView from '../../components/SocialMedia/SocialMediaView';
-=======
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import fondoNexus from "../../assets/nexus.png";
->>>>>>> luisa
 
 function HomeView() {
   return (
