@@ -1,6 +1,6 @@
-const ods = [
+const ods_en = [
   {
-    url: "http://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2016/01/S_SDG_Icons-01-01.jpg",
+    url: "https://migration4development.org/sites/default/files/2021-10/E-WEB-Goal-01.png",
     ods: 1,
   },
   {
@@ -69,4 +69,4 @@ const ods = [
   },
 ];
 
-export default ods;
+export default ods_en;

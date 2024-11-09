@@ -3,34 +3,55 @@ import NavbarView from "./NavbarView";
 import { useNexus } from "../../Hooks/useContext";
 import isAuth from "../../util/isAuth";
 import { useNavigate } from "react-router-dom";
+import { useNexusContext } from "../../Hooks/useNexusContext";
 
 function Navbar() {
-  const { selected, setSelected } = useNexus();
   const isLogin = isAuth();
   const typeUser = sessionStorage.getItem("type") || "General";
 
   const navigate = useNavigate();
+  const { selectedOption, changeNavbarItem } = useNexusContext();
 
-  const handleOption = (option) => () => {
-    setSelected(option);
+  const handleOption = (option) => {
+    changeNavbarItem(option);
     switch (option) {
       case "Noticias":
-        window.location = "/home";
+        navigate("/home");
         break;
       case "Directorio":
-        window.location = "/home";
+        navigate("/directory");
         break;
       case "Registrar":
-        window.location = "/new-project";
+        navigate("/new-project");
         break;
       case "Explorar":
-        window.location = "/home";
+        navigate("/explore");
         break;
       case "Alianza":
-        window.location = "/home";
+        navigate("/alliance");
         break;
       case "Acerca":
-        window.location = "/about";
+        navigate("/about");
+        break;
+      case "Mi perfil":
+        changeNavbarItem("Yo");
+        navigate("/profile");
+        break;
+      case "Mis proyectos":
+        changeNavbarItem("Yo");
+        navigate("/my-projects");
+        break;
+      case "Soporte":
+        changeNavbarItem("Yo");
+        navigate("/support");
+        break;
+      case "Login":
+        changeNavbarItem("Yo");
+        navigate("/login");
+        break;
+      case "Register":
+        changeNavbarItem("Yo");
+        navigate("/register");
         break;
       default:
         break;
@@ -38,13 +59,14 @@ function Navbar() {
   };
 
   const handleLogOut = () => {
-    window.location.replace("/")
+    changeNavbarItem("Noticias");
+    window.location.replace("/");
   };
   return (
     <>
       <NavbarView
-        handleOption={handleOption()}
-        selected={selected}
+        handleOption={handleOption}
+        selectedOption={selectedOption}
         isLogin={isLogin}
         type={typeUser}
         handleLogOut={handleLogOut}

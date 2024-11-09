@@ -1,0 +1,17 @@
+.container-operator-btn {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+.operator-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+.operator-btn > svg {
+  fill: #c13b6c;
+}

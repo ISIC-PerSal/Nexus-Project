@@ -26,6 +26,7 @@ import ProjectFeed from "./layout/ProjectFeed/ProjectFeed";
 import FeedContent from "./layout/FeedContent/FeedContent";
 import EditProject from "./layout/EditProject/EditProject";
 import Support from "./layout/Support/Support";
+import Prueba from "./layout/Prueba/Prueba";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -36,6 +37,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Main />} />
+            <Route path="/prueba" element={<Prueba />} />
             <Route
               path="/profile"
               element={isLogin ? <Profile /> : <Navigate to={"/login"} />}
@@ -48,12 +50,6 @@ function App() {
             <Route
               path="/my-projects"
               element={isLogin ? <MyProjects /> : <Navigate to={"/login"} />}
-            />
-            <Route
-              path="/add-activity"
-              element={
-                isLogin ? <ProjectActivity /> : <Navigate to={"/login"} />
-              }
             />
             <Route
               path="/add-activity"
@@ -87,10 +83,7 @@ function App() {
               path="/feed/:idProject/:feed"
               element={isLogin ? <FeedContent /> : <Navigate to="/login" />}
             />
-            <Route
-              path="/about"
-              element={isLogin ? <About /> : <Navigate to={"/login"} />}
-            />
+            <Route path="/about" element={<About />} />
             <Route path="/alliance" element={<Alliance />} />
             <Route
               path="/support"
@@ -100,7 +93,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route
               path="/home"
-              element={isLogin ? <Home /> : <Navigate to={"/login"} />}
+              element={isLogin ? <Home /> : <Navigate to={"/"} />}
             />
             <Route path="*" element={<ErrorView />} />
           </Routes>

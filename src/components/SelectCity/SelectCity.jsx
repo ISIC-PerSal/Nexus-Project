@@ -22,7 +22,7 @@ import uruguay_cities from "../../util/location/uruguay_cities";
 import venezuela_cities from "../../util/location/venezuela_cities";
 import puerto_rico_cities from "../../util/Location/puerto_rico_cities";
 
-function SelectCity({ city, setCity, country, state }) {
+function SelectCity({ label, city, setCity, country, state }) {
   const [cities, setCities] = useState([]);
   function filterCities(pais, estado) {
     switch (pais) {
@@ -98,10 +98,10 @@ function SelectCity({ city, setCity, country, state }) {
         return (
           peru_cities.find((item) => item.Estado === estado)?.Ciudades || []
         );
-        case "Puerto Rico":
-          return (
-            puerto_rico_cities.find((item) => item.Estado === estado)?.Ciudades || []
-          );
+      case "Puerto Rico":
+        return (
+          puerto_rico_cities.find((item) => item.Estado === estado)?.Ciudades || []
+        );
       case "República Dominicana":
         return (
           republica_dominicana_cities.find((item) => item.Estado === estado)
@@ -138,6 +138,7 @@ function SelectCity({ city, setCity, country, state }) {
   return (
     <>
       <SelectCityView
+        label={label}
         cities={cities}
         city={city}
         handleCityChange={handleCityChange}

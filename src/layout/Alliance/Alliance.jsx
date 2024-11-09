@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import AllianceView from "./AllianceView";
 import Navbar from "../../components/Navbar/Navbar";
-import { useNexus } from "../../Hooks/useContext";
+import { useNexusContext } from "../../Hooks/useNexusContext";
 
 function Alliance() {
-  const { setSelected } = useNexus();
-
+  const { changeNavbarItem } = useNexusContext();
   useEffect(() => {
-    setSelected("Alianza");
-  }, [setSelected]);
+    changeNavbarItem("Alianza");
+  }, [changeNavbarItem]);
   return (
     <>
       <Navbar />

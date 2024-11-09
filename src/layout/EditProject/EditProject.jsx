@@ -4,7 +4,6 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useLocation, useParams } from "react-router-dom";
 import fetchGetProject from "../../util/project/fetchGetProject";
 import ErrorView from "../Error/ErrorView";
-import ods from "../../util/ods";
 import { useNexus } from "../../Hooks/useContext";
 
 function EditProject() {

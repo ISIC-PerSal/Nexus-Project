@@ -4,7 +4,6 @@ import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import Grid from "@mui/material/Grid";
 import SelectCountry from "../../components/SelectCountry/SelectCountry";
 import SelectState from "../../components/SelectState/SelectState";
-import ods from "../../util/ods";
 import SelectCity from "../../components/SelectCity/SelectCity";
 
 function EditProjectView({

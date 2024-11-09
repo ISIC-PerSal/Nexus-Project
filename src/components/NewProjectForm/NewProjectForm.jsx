@@ -5,12 +5,68 @@ import { handleImageUpload, handleUpload } from "../../util/files/handleImage";
 import fetchNewProject from "../../util/project/fetchNewProject";
 import convertToLocalURL from "../../util/paths/convertToLocalURL";
 import { useNavigate } from "react-router-dom";
+import { useNexusContext } from "../../Hooks/useNexusContext";
+import NewProjectFormTranslator from "./NewProjectFormTranslator";
+import ods_es from "../../util/ods_es";
+import ods_en from "../../util/ods_en";
+
 function NewProjectForm() {
   const navigate = useNavigate();
+  const { userId, userData } = useNexusContext();
+  const [language, setLanguage] = useState("english");
+
+  const [dataForm, setDataForm] = useState({
+    idUser: sessionStorage.getItem("id_user"),
+    leaderType: "",
+    leaderName: "",
+    phone: "",
+    email: "",
+    rfc: "",
+    clabe: "",
+    project: "",
+    image: "",
+    urlProject: "",
+    volunteers: 0,
+    description: "",
+    projectType: "",
+    donation: "",
+    country: "",
+    state: "",
+    zip: "",
+    city: "",
+    address: "",
+    startDate: "",
+    finishDate: "",
+    ods1: "",
+    ods2: "",
+    ods3: "",
+    ods4: "",
+    ods5: "",
+    ods6: "",
+    ods7: "",
+    ods8: "",
+    ods9: "",
+    ods10: "",
+    ods11: "",
+    ods12: "",
+    ods13: "",
+    ods14: "",
+    ods15: "",
+    ods16: "",
+    ods17: "",
+  });
+  const [odsArray, setOdsArray] = useState([]);
+
+  const defaultName =
+    sessionStorage.getItem("name") + " " + sessionStorage.getItem("lastName");
+
+  const defaultEmail = sessionStorage.getItem("email");
+  const defaultRfc = sessionStorage.getItem("rfc");
+  const defaultClabe = sessionStorage.getItem("clabe");
   const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
-  const [phone, setPhone] = useState("")
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [checkEmail, setCheckEmail] = useState(false);
   const [rfc, setRfc] = useState("");
@@ -19,7 +75,7 @@ function NewProjectForm() {
   const [checkClabe, setCheckClabe] = useState(false);
 
   const [project, setProject] = useState("");
-  const [volunteers, setVolunteers] = useState(1);
+  const [volunteers, setVolunteers] = useState(0);
   const [description, setDescription] = useState("");
   const [projectType, setProjectType] = useState("");
   const [donation, setDonation] = useState(false);
@@ -139,51 +195,51 @@ function NewProjectForm() {
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
-    console.log(project.trim() != "");
-    if (project.trim() != "") {
-      setStatus("Borrador");
-      try {
-        const data = await fetchNewProject({ ...body, status: "Borrador" });
-        if (data.status == "Done") {
-          Swal.fire({
-            title: "Exito!",
-            text: "Se ha guardado el proyecto en borrador!",
-            icon: "success",
-            confirmButtonText: "Ver proyecto",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate(`/explore/${data.new_id}`, {
-                state: { statusProject: "Borrador" },
-              });
-            } else {
-              window.location.href = "/new-project";
-            }
-          });
-        } else {
-          Swal.fire({
-            title: "Error!",
-            text: "Ocurrio un error",
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-        }
-      } catch (err) {
-        Swal.fire({
-          title: "Error!",
-          text: "Ocurrio un error",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-      }
-    } else {
-      Swal.fire({
-        position: "top-end",
-        icon: "info",
-        title: "Introduzca un título al proyecto",
-        showConfirmButton: false,
-        timer: 1000,
-      });
-    }
+    console.log(dataForm);
+    // if (project.trim() != "") {
+    //   setStatus("Borrador");
+    //   try {
+    //     const data = await fetchNewProject({ ...body, status: "Borrador" });
+    //     if (data.status == "Done") {
+    //       Swal.fire({
+    //         title: "Exito!",
+    //         text: "Se ha guardado el proyecto en borrador!",
+    //         icon: "success",
+    //         confirmButtonText: "Ver proyecto",
+    //       }).then((result) => {
+    //         if (result.isConfirmed) {
+    //           navigate(`/explore/${data.new_id}`, {
+    //             state: { statusProject: "Borrador" },
+    //           });
+    //         } else {
+    //           window.location.href = "/new-project";
+    //         }
+    //       });
+    //     } else {
+    //       Swal.fire({
+    //         title: "Error!",
+    //         text: "Ocurrio un error",
+    //         icon: "error",
+    //         confirmButtonText: "OK",
+    //       });
+    //     }
+    //   } catch (err) {
+    //     Swal.fire({
+    //       title: "Error!",
+    //       text: "Ocurrio un error",
+    //       icon: "error",
+    //       confirmButtonText: "OK",
+    //     });
+    //   }
+    // } else {
+    //   Swal.fire({
+    //     position: "top-end",
+    //     icon: "info",
+    //     title: "Introduzca un título al proyecto",
+    //     showConfirmButton: false,
+    //     timer: 1000,
+    //   });
+    // }
   };
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
@@ -394,38 +450,162 @@ function NewProjectForm() {
       }
     }
   };
-  useEffect(() => {
-    if (checkName) {
-      setName(
-        `${sessionStorage.getItem("name")} ${sessionStorage.getItem(
-          "lastName"
-        )}`
-      );
+
+  const handleChangeDataForm = (value, name) => {
+    setDataForm((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleLanguage = (field, position) => {
+    const item = NewProjectFormTranslator[language];
+    if (position == undefined) {
+      return item[field];
     } else {
-      setName("");
+      const positionValue = item[field];
+      return positionValue[position];
     }
+  };
+
+  const handleCheckboxNameChangeCheck = (value) => {
+    setCheckName(value);
+    if (value) {
+      setName(defaultName);
+    }
+  };
+
+  const handleCheckboxEmailChangeCheck = (value) => {
+    setCheckEmail(value);
+    if (value) {
+      setEmail(defaultEmail);
+    }
+  };
+  const handleCheckboxRfcChangeCheck = (value) => {
+    setCheckRfc(value);
+    if (value) {
+      setRfc(defaultRfc);
+    }
+  };
+  const handleCheckboxClabeChangeCheck = (value) => {
+    setCheckClabe(value);
+    if (value) {
+      setClabe(defaultClabe);
+    }
+  };
+
+  useEffect(() => {
+    const resetName = () => {
+      if (checkName) {
+        setName(defaultName);
+      }
+    };
+    resetName();
   }, [checkName]);
+
   useEffect(() => {
-    if (checkEmail) {
-      setEmail(`${sessionStorage.getItem("email")}`);
-    } else {
-      setEmail("");
-    }
+    const resetEmail = () => {
+      if (checkEmail) {
+        setEmail(defaultEmail);
+      }
+    };
+    resetEmail();
   }, [checkEmail]);
+
   useEffect(() => {
-    if (checkRfc) {
-      setRfc(`${sessionStorage.getItem("rfc")}`);
-    } else {
-      setRfc("");
-    }
+    const resetRfc = () => {
+      if (checkRfc) {
+        setRfc(defaultRfc);
+      }
+    };
+    resetRfc();
   }, [checkRfc]);
+
   useEffect(() => {
-    if (checkClabe) {
-      setClabe(`${sessionStorage.getItem("clabe")}`);
-    } else {
-      setClabe("");
-    }
+    const resetClabe = () => {
+      if (checkClabe) {
+        setClabe(defaultClabe);
+      }
+    };
+    resetClabe();
   }, [checkClabe]);
+
+
+  const handleInputNameChange = (value) => {
+    if (checkName) {
+      setCheckName(false);
+    }
+    setName(value);
+  };
+
+  const handleInputEmailChange = (value) => {
+    if (checkEmail) {
+      setCheckEmail(false);
+    }
+    setEmail(value);
+  };
+
+  const handleInputRfcChange = (value) => {
+    if (checkRfc) {
+      setCheckRfc(false);
+    }
+    setRfc(value);
+  };
+
+  const handleInputClabeChange = (value) => {
+    if (checkClabe) {
+      setCheckClabe(false);
+    }
+    setClabe(value);
+  };
+
+  useEffect(() => {
+    handleChangeDataForm(name, "leaderName");
+  }, [name]);
+
+  useEffect(() => {
+    handleChangeDataForm(email, "email");
+  }, [email]);
+
+  useEffect(() => {
+    handleChangeDataForm(rfc, "rfc");
+  }, [rfc]);
+
+  useEffect(() => {
+    handleChangeDataForm(clabe, "clabe");
+  }, [clabe]);
+
+  useEffect(() => {
+    handleChangeDataForm(volunteers, "volunteers");
+  }, [volunteers]);
+
+  useEffect(() => {
+    switch (language){
+      case "spanish":
+        setOdsArray(ods_es);
+        break;
+      case "english":
+        setOdsArray(ods_en);
+        default:
+          setOdsArray([]);
+          break;
+    }
+  }, [language])
+
+  useEffect(() => {
+    const switchOdsArray = (language) => {
+      switch (language) {
+        case "spanish":
+          return ods_es;
+        case "english":
+          return ods_en;
+        default:
+          return [];
+      }
+    };
+    setOdsArray(switchOdsArray(language));
+  }, [language]);
+  
   return (
     <>
       <NewProjectFormView
@@ -476,12 +656,23 @@ function NewProjectForm() {
         finishDate={finishDate}
         setFinishDate={setFinishDate}
         checkedOds={checkedOds}
-        handleCheckboxChange={handleCheckboxChange}
         handleSaveNewProject={handleSaveNewProject}
         handleSaveDraftProject={handleSaveDraftProject}
         handleImageUpload={handleImageUpload}
         setSelectedFile={setSelectedFile}
         fileInputRef={fileInputRef}
+        dataForm={dataForm}
+        handleChangeDataForm={handleChangeDataForm}
+        handleLanguage={handleLanguage}
+        handleCheckboxNameChangeCheck={handleCheckboxNameChangeCheck}
+        handleInputNameChange={handleInputNameChange}
+        handleCheckboxEmailChangeCheck={handleCheckboxEmailChangeCheck}
+        handleInputEmailChange={handleInputEmailChange}
+        handleCheckboxRfcChangeCheck={handleCheckboxRfcChangeCheck}
+        handleInputRfcChange={handleInputRfcChange}
+        handleCheckboxClabeChangeCheck={handleCheckboxClabeChangeCheck}
+        handleInputClabeChange={handleInputClabeChange}
+        odsArray={odsArray}
       />
     </>
   );

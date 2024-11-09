@@ -1,6 +1,7 @@
 import React from "react";
 import odsData from "../../util/odsData";
-import ods from "../../util/ods";
+import ods_en from "../../util/ods_en";
+
 
 function BadgeODSView({
   item = {},
@@ -64,7 +65,7 @@ function BadgeODSView({
                 {item.ods}
               </span>
             )}
-            {showImage && <img src={ods[idOds].url} alt={item.ods} />}
+            {showImage && <img src={ods_en[idOds].url} alt={item.ods} />}
           </>
         )}
       </div>

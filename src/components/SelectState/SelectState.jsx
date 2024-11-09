@@ -21,9 +21,9 @@ import Peru from "../../util/location/Peru";
 import RepublicaDominicana from "../../util/location/RepublicaDominicana";
 import Uruguay from "../../util/location/Uruguay";
 import Venezuela from "../../util/location/Venezuela";
+import restructureSelect from "../../util/data/restructureSelect";
 
-
-function SelectState({ state, setState, country }) {
+function SelectState({ label, state, setState, country }) {
   const [estadosArray, setEstadosArray] = useState([]);
 
   const countryArray = [
@@ -40,7 +40,7 @@ function SelectState({ state, setState, country }) {
     { Pais: "Guatemala", Estados: Guatemala },
     { Pais: "Honduras", Estados: Honduras },
     { Pais: "México", Estados: Mexico },
-    { Pais: "Nicaragua", Estados:Nicaragua },
+    { Pais: "Nicaragua", Estados: Nicaragua },
     { Pais: "Panamá", Estados: Panama },
     { Pais: "Paraguay", Estados: Paraguay },
     { Pais: "Perú", Estados: Peru },
@@ -59,12 +59,13 @@ function SelectState({ state, setState, country }) {
     setState("");
     const countryData = countryArray.find((item) => item.Pais === country);
     const estados = countryData ? countryData.Estados : [];
-    setEstadosArray(estados);
+    setEstadosArray(restructureSelect(estados));
   }, [country]);
 
   return (
     <>
       <SelectStateView
+        label={label}
         estados={estadosArray}
         state={state}
         handleStateChange={handleStateChange}

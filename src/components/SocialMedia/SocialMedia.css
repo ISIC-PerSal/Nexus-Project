@@ -1,41 +1,42 @@
 .container-social {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    position: fixed;
-    z-index: 99;
-    height: 100vh;
-    top: 0px;
-    left: 0px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  z-index: 99;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+}
+
+.container-back {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin: 5px;
 }
 
 .container-each {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-
-}
-.container-back{
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    margin: 5px;
-}
-.container-each hover{
-    opacity: 0.8;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
-.container-each svg {
-    fill: white;
+.container-each:hover{
+  opacity: 0.8;
+}
+
+.container-each > svg {
+  fill: white;
 }

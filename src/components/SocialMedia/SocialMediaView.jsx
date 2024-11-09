@@ -1,27 +1,31 @@
-import React from 'react'
-import "./SocialMedia.css"
-import { Link } from 'react-router-dom'
-import socialMedia from '../../util/socialMedia'
-
+import React from "react";
+import "./SocialMedia.css";
+import socialMedia from "../../util/socialMedia";
+import { Link } from "react-router-dom";
 
 function SocialMediaView() {
-   
-    return (
-        <>
-            <div className="container-social">
-                {socialMedia.map((item, index) => (
-                    <Link target='_blank' className="container-back" key={item.socialMedia}>
-                        <button
-                            name={item.socialMedia}
-                            className="container-each"
-                            style={{ backgroundColor: item.color }}
-                        >
-                            {item.icon}
-                        </button>
-                    </Link>
-                ))}
-            </div>
-        </>
-    )
+  return (
+    <>
+      <div className="container-social">
+        {socialMedia.map((item, index) => (
+          <Link
+            target="_blank"
+            to={item.link}
+            className="container-back"
+            key={index}
+          >
+            <button
+              name={item.socialMedia}
+              className="container-each"
+              style={{ backgroundColor: item.color }}
+            >
+              {item.icon}
+            </button>
+          </Link>
+        ))}
+      </div>
+    </>
+  );
 }
-export default SocialMediaView
+
+export default SocialMediaView;

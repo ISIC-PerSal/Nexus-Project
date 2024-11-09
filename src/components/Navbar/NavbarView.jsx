@@ -1,10 +1,9 @@
 import React from "react";
 import logo from "../../assets/Logo.png";
-import { Link } from "react-router-dom";
-
+import "./Navbar.css";
 function NavbarView({
-  handleOption,
-  selected,
+  handleOption = () => {},
+  selectedOption,
   isLogin = false,
   type = "General",
   handleLogOut,
@@ -19,7 +18,7 @@ function NavbarView({
         <div className="container-fluid">
           <a
             className="navbar-brand d-flex justify-content-center align-items-center text-white fw-bold fs-2"
-            href="/"
+            onClick={() => handleOption("Noticias")}
           >
             <img src={logo} alt="" style={{ width: "50px" }} />
             <span className="p-2">Nexus Project</span>
@@ -41,48 +40,52 @@ function NavbarView({
                 <a
                   className="nav-link text-white fw-bold"
                   aria-current="page"
-                  href="/Home"
                   onClick={() => handleOption("Noticias")}
                 >
                   Noticias
                   <div
-                    className={selected === "Noticias" ? "color-block" : ""}
+                    className={
+                      selectedOption == "Noticias" ? "color-block" : ""
+                    }
                   ></div>
                 </a>
               </li>
               <li className="nav-item">
                 <a
                   className="nav-link text-white fw-bold"
-                  href="/directory"
                   onClick={() => handleOption("Directorio")}
                 >
                   Directorio
                   <div
-                    className={selected === "Directorio" ? "color-block" : ""}
+                    className={
+                      selectedOption == "Directorio" ? "color-block" : ""
+                    }
                   ></div>
                 </a>
               </li>
               <li className="nav-item">
                 <a
                   className="nav-link text-white fw-bold"
-                  href="/new-project"
                   onClick={() => handleOption("Registrar")}
                 >
                   Registrar proyecto
                   <div
-                    className={selected === "Registrar" ? "color-block" : ""}
+                    className={
+                      selectedOption == "Registrar" ? "color-block" : ""
+                    }
                   ></div>
                 </a>
               </li>
               <li className="nav-item">
                 <a
                   className="nav-link text-white fw-bold"
-                  href="/explore"
                   onClick={() => handleOption("Explorar")}
                 >
                   Explorar proyectos
                   <div
-                    className={selected === "Explorar" ? "color-block" : ""}
+                    className={
+                      selectedOption == "Explorar" ? "color-block" : ""
+                    }
                   ></div>
                 </a>
               </li>
@@ -90,12 +93,13 @@ function NavbarView({
                 <li className="nav-item">
                   <a
                     className="nav-link text-white fw-bold"
-                    href="/alliance"
                     onClick={() => handleOption("Alianza")}
                   >
                     Alianza juvenil e infantil
                     <div
-                      className={selected === "Alianza" ? "color-block" : ""}
+                      className={
+                        selectedOption == "Alianza" ? "color-block" : ""
+                      }
                     ></div>
                   </a>
                 </li>
@@ -105,12 +109,11 @@ function NavbarView({
               <li className="nav-item">
                 <a
                   className="nav-link text-white fw-bold"
-                  href="/about"
                   onClick={() => handleOption("Acerca")}
                 >
                   Acerca de nosotros
                   <div
-                    className={selected === "Acerca" ? "color-block" : ""}
+                    className={selectedOption == "Acerca" ? "color-block" : ""}
                   ></div>
                 </a>
               </li>
@@ -118,7 +121,6 @@ function NavbarView({
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle text-white fw-bold"
-                    href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -139,13 +141,15 @@ function NavbarView({
                     </svg>
                     Yo
                   </a>
-                  <div className={selected == "Yo" ? "color-block" : ""}></div>{" "}
+                  <div
+                    className={selectedOption == "Yo" ? "color-block" : ""}
+                  ></div>{" "}
                   <ul className="dropdown-menu dropdown-menu-end bg-gral">
                     <li>
                       <a
-                        href="/profile"
                         className="dropdown-item"
                         type="button"
+                        onClick={() => handleOption("Mi perfil")}
                       >
                         Mi perfil
                       </a>
@@ -154,7 +158,7 @@ function NavbarView({
                       <a
                         className="dropdown-item"
                         type="button"
-                        href="/my-projects"
+                        onClick={() => handleOption("Mis proyectos")}
                       >
                         Mis proyectos
                       </a>
@@ -163,7 +167,7 @@ function NavbarView({
                       <a
                         className="dropdown-item"
                         type="button"
-                        href="/support"
+                        onClick={() => handleOption("Soporte")}
                       >
                         Soporte
                       </a>
@@ -183,16 +187,22 @@ function NavbarView({
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle text-white fw-bold"
-                    href="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     ¡Participa!
                   </a>
+                  <div
+                    className={selectedOption == "Yo" ? "color-block" : ""}
+                  ></div>{" "}
                   <ul className="dropdown-menu dropdown-menu-end bg-gral">
                     <li>
-                      <a className="dropdown-item" type="button" href="/login">
+                      <a
+                        className="dropdown-item"
+                        type="button"
+                        onClick={() => handleOption("Login")}
+                      >
                         Iniciar sesión
                       </a>
                     </li>
@@ -200,7 +210,7 @@ function NavbarView({
                       <a
                         className="dropdown-item"
                         type="button"
-                        href="/register"
+                        onClick={() => handleOption("Register")}
                       >
                         Crear cuenta
                       </a>
