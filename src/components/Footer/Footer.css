@@ -1,0 +1,15 @@
+.bg-footer {
+    background: linear-gradient(
+      to bottom right,
+      #b62f3d 44%,
+      #e783b8 69%,
+      #ffccfb 87%
+    );
+  }
+  footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 5px;
+    z-index: 99; 
+  }
