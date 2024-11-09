@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavbarView from "./NavbarView";
 import { useNexus } from "../../Hooks/useContext";
 import isAuth from "../../util/isAuth";
 import { useNavigate } from "react-router-dom";
 import { useNexusContext } from "../../Hooks/useNexusContext";
+import Cookies from "js-cookie";
 
 function Navbar() {
   const isLogin = isAuth();
   const typeUser = sessionStorage.getItem("type") || "General";
 
   const navigate = useNavigate();
-  const { selectedOption, changeNavbarItem } = useNexusContext();
+  const { selectedOption, changeNavbarItem, language, changeLanguage } =
+    useNexusContext();
 
   const handleOption = (option) => {
     changeNavbarItem(option);
@@ -70,6 +72,8 @@ function Navbar() {
         isLogin={isLogin}
         type={typeUser}
         handleLogOut={handleLogOut}
+        language={language}
+        setLanguage={changeLanguage}
       />
     </>
   );

@@ -1,12 +1,12 @@
 import React from "react";
 import Select from "react-select";
 
-function SelectStateView({ estados, state, handleStateChange }) {
+function SelectStateView({ label, estados, state, handleStateChange }) {
   return (
     <>
       <div className="mb-3">
         <label htmlFor="pais" className="form-label">
-          Estado/Provincia/Región
+          {label}
         </label>
         <Select
           placeholder="--"

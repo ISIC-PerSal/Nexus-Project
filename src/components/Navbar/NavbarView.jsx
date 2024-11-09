@@ -1,12 +1,15 @@
 import React from "react";
 import logo from "../../assets/Logo.png";
 import "./Navbar.css";
+import SelectLanguage from "../SelectLanguage/SelectLanguage";
 function NavbarView({
   handleOption = () => {},
   selectedOption,
   isLogin = false,
   type = "General",
   handleLogOut,
+  language,
+  setLanguage,
 }) {
   return (
     <>
@@ -220,6 +223,10 @@ function NavbarView({
               )}
             </ul>
           </div>
+          <SelectLanguage
+            language={language}
+            setLanguage={setLanguage}
+          />
         </div>
       </nav>
     </>

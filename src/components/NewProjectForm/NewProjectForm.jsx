@@ -6,17 +6,71 @@ import fetchNewProject from "../../util/project/fetchNewProject";
 import convertToLocalURL from "../../util/paths/convertToLocalURL";
 import { useNavigate } from "react-router-dom";
 import { useNexusContext } from "../../Hooks/useNexusContext";
-function NewProjectForm() {
+import NewProjectFormTranslator from "./NewProjectFormTranslator";
+import ods_en from "../../util/ods_en";
+import ods_es from "../../util/ods_es";
+
+function NewProjectForm({ dataEdit = {} }) {
   const navigate = useNavigate();
-  const { userId, userData } = useNexusContext();
-  console.log(userId);
-  console.log(userData);
+  const { language } = useNexusContext();
+
   const [dataForm, setDataForm] = useState({
+    idUser: sessionStorage.getItem("id_user"),
     leaderType: "",
-    name: "",
+    leaderName: "",
     phone: "",
     email: "",
+    rfc: "",
+    clabe: "",
+    project: "",
+    image: "",
+    urlProject: "",
+    volunteers: 0,
+    description: "",
+    projectType: "",
+    donation: "",
+    country: "",
+    state: "",
+    zip: "",
+    city: "",
+    address: "",
+    startDate: "",
+    finishDate: "",
+    ods1: false,
+    ods2: false,
+    ods3: false,
+    ods4: false,
+    ods5: false,
+    ods6: false,
+    ods7: false,
+    ods8: false,
+    ods9: false,
+    ods10: false,
+    ods11: false,
+    ods12: false,
+    ods13: false,
+    ods14: false,
+    ods15: false,
+    ods16: false,
+    ods17: false,
   });
+
+  useEffect(() => {
+    if (Object.keys(dataEdit).length > 0) {
+      setDataForm((prevDataForm) => ({
+        ...prevDataForm,
+        ...dataEdit, // Sobrescribe valores en dataForm con los de dataEdit
+      }));
+    }
+  }, [dataEdit]);
+  const [odsArray, setOdsArray] = useState([]);
+
+  const defaultName =
+    sessionStorage.getItem("name") + " " + sessionStorage.getItem("lastName");
+
+  const defaultEmail = sessionStorage.getItem("email");
+  const defaultRfc = sessionStorage.getItem("rfc");
+  const defaultClabe = sessionStorage.getItem("clabe");
 
   const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
@@ -30,7 +84,7 @@ function NewProjectForm() {
   const [checkClabe, setCheckClabe] = useState(false);
 
   const [project, setProject] = useState("");
-  const [volunteers, setVolunteers] = useState(1);
+  const [volunteers, setVolunteers] = useState(0);
   const [description, setDescription] = useState("");
   const [projectType, setProjectType] = useState("");
   const [donation, setDonation] = useState(false);
@@ -73,39 +127,41 @@ function NewProjectForm() {
     const { id, checked } = event.target;
     const odsNumber = id.replace("ods", "");
 
-    setCheckedOds((prevState) => ({
+    // Actualiza el estado de dataForm para el ODS correspondiente
+    setDataForm((prevState) => ({
       ...prevState,
-      [odsNumber]: checked,
+      [`ods${odsNumber}`]: checked,
     }));
   };
 
   useEffect(() => {
-    if (
-      projectType != "Iniciativa Virtual" &&
-      zip.trim().length > 4 &&
-      address.trim().length > 0
-    ) {
+    if (dataForm.projectType != handleLanguage("projectArray", 2)) {
+      if (
+        dataForm.zip.trim().length > 4 &&
+        dataForm.address.trim().length > 0
+      ) {
+        setProjectTypeVerify(true);
+      } else {
+        setProjectTypeVerify(false);
+      }
+    } else if (dataForm.projectType == handleLanguage("projectArray", 2)) {
       setProjectTypeVerify(true);
-    } else if (projectType == "Iniciativa Virtual") {
-      setZip("");
-      setAddress("");
-      setProjectTypeVerify(true);
-    } else {
-      setProjectTypeVerify(false);
+      handleChangeDataForm("", "zip");
+      handleChangeDataForm("", "address");
     }
+  }, [dataForm.projectType, dataForm.zip, dataForm.address]);
 
-    if (
-      donation == true &&
-      rfc.trim().length > 11 &&
-      clabe.trim().length > 17
-    ) {
-      setDonationVerify(true);
-    } else if (donation == false) {
-      setRfc("");
-      setClabe("");
+  useEffect(() => {
+    if (dataForm.donation === true) {
+      if (dataForm.rfc.length > 11 && dataForm.clabe.length > 17) {
+        setDonationVerify(true);
+      } else {
+        setDonationVerify(false);
+      }
+    } else {
       setDonationVerify(true);
     }
-  }, [projectType, donation]);
+  }, [dataForm.donation, dataForm.rfc, dataForm.clabe]);
 
   const body = {
     idUser: sessionStorage.getItem("id_user"),
@@ -150,8 +206,7 @@ function NewProjectForm() {
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
-    console.log(dataForm);
-    console.log(body);
+    console.log(validationDataForm())
     // if (project.trim() != "") {
     //   setStatus("Borrador");
     //   try {
@@ -406,38 +461,6 @@ function NewProjectForm() {
       }
     }
   };
-  useEffect(() => {
-    if (checkName) {
-      setName(
-        `${sessionStorage.getItem("name")} ${sessionStorage.getItem(
-          "lastName"
-        )}`
-      );
-    } else {
-      setName("");
-    }
-  }, [checkName]);
-  useEffect(() => {
-    if (checkEmail) {
-      setEmail(`${sessionStorage.getItem("email")}`);
-    } else {
-      setEmail("");
-    }
-  }, [checkEmail]);
-  useEffect(() => {
-    if (checkRfc) {
-      setRfc(`${sessionStorage.getItem("rfc")}`);
-    } else {
-      setRfc("");
-    }
-  }, [checkRfc]);
-  useEffect(() => {
-    if (checkClabe) {
-      setClabe(`${sessionStorage.getItem("clabe")}`);
-    } else {
-      setClabe("");
-    }
-  }, [checkClabe]);
 
   const handleChangeDataForm = (value, name) => {
     setDataForm((prevState) => ({
@@ -446,85 +469,225 @@ function NewProjectForm() {
     }));
   };
 
-  const handleChangeCheckBox = (value, setCheckFunction, propertyName) => {
-    setCheckFunction(value);
-    if (value) {
-      switch (propertyName) {
-        case "name":
-          handleChangeDataForm(
-            `${sessionStorage.getItem("name")} ${sessionStorage.getItem(
-              "lastName"
-            )}`,
-            "name"
-          );
-          break;
-
-        default:
-          break;
-      }
+  const handleLanguage = (field, position) => {
+    const item = NewProjectFormTranslator[language];
+    if (position == undefined) {
+      return item[field];
+    } else {
+      const positionValue = item[field];
+      return positionValue[position];
     }
-    // if (checkName) {
-    //   setName(
-    //     `${sessionStorage.getItem("name")} ${sessionStorage.getItem(
-    //       "lastName"
-    //     )}`
-    //   );
-    // } else {
-    //   setName("");
-    // }
+  };
+
+  const handleCheckboxNameChangeCheck = (value) => {
+    setCheckName(value);
+    if (value) {
+      setName(defaultName);
+    }
+  };
+
+  const handleCheckboxEmailChangeCheck = (value) => {
+    setCheckEmail(value);
+    if (value) {
+      setEmail(defaultEmail);
+    }
+  };
+
+  const handleCheckboxRfcChangeCheck = (value) => {
+    setCheckRfc(value);
+    if (value) {
+      setRfc(defaultRfc);
+    }
+  };
+  const handleCheckboxClabeChangeCheck = (value) => {
+    setCheckClabe(value);
+    if (value) {
+      setClabe(defaultClabe);
+    }
+  };
+
+  useEffect(() => {
+    const resetName = () => {
+      if (checkName) {
+        setName(defaultName);
+      }
+    };
+    resetName();
+  }, [checkName]);
+
+  useEffect(() => {
+    const resetEmail = () => {
+      if (checkEmail) {
+        setEmail(defaultEmail);
+      }
+    };
+    resetEmail();
+  }, [checkEmail]);
+
+  useEffect(() => {
+    const resetRfc = () => {
+      if (checkRfc) {
+        setRfc(defaultRfc);
+      }
+    };
+    resetRfc();
+  }, [checkRfc]);
+
+  useEffect(() => {
+    const resetClabe = () => {
+      if (checkClabe) {
+        setClabe(defaultClabe);
+      }
+    };
+    resetClabe();
+  }, [checkClabe]);
+
+  const handleInputNameChange = (value) => {
+    if (checkName) {
+      setCheckName(false);
+    }
+    setName(value);
+  };
+
+  const handleInputEmailChange = (value) => {
+    if (checkEmail) {
+      setCheckEmail(false);
+    }
+    setEmail(value);
+  };
+
+  const handleInputRfcChange = (value) => {
+    if (checkRfc) {
+      setCheckRfc(false);
+    }
+    setRfc(value);
+  };
+
+  const handleInputClabeChange = (value) => {
+    if (checkClabe) {
+      setCheckClabe(false);
+    }
+    setClabe(value);
+  };
+
+  useEffect(() => {
+    handleChangeDataForm(name, "leaderName");
+  }, [name]);
+
+  useEffect(() => {
+    handleChangeDataForm(email, "email");
+  }, [email]);
+
+  useEffect(() => {
+    handleChangeDataForm(rfc, "rfc");
+  }, [rfc]);
+  useEffect(() => {
+    handleChangeDataForm(clabe, "clabe");
+  }, [clabe]);
+  useEffect(() => {
+    handleChangeDataForm(volunteers, "volunteers");
+  }, [volunteers]);
+
+  useEffect(() => {
+    const switchOdsArray = (language) => {
+      switch (language) {
+        case "spanish":
+          return ods_es;
+        case "english":
+          return ods_en;
+        default:
+          return [];
+      }
+    };
+    setOdsArray(switchOdsArray(language));
+  }, [language]);
+
+  useEffect(() => {
+    handleChangeDataForm(donation, "donation");
+  }, [donation]);
+
+  const validationDataForm = () => {
+    const regex = new RegExp(/^[0-9]*$/);
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const odsValues = [
+      dataForm.ods1,
+      dataForm.ods2,
+      dataForm.ods3,
+      dataForm.ods4,
+      dataForm.ods5,
+      dataForm.ods6,
+      dataForm.ods7,
+      dataForm.ods8,
+      dataForm.ods9,
+      dataForm.ods10,
+      dataForm.ods11,
+      dataForm.ods12,
+      dataForm.ods13,
+      dataForm.ods14,
+      dataForm.ods15,
+      dataForm.ods16,
+      dataForm.ods17,
+    ];
+
+    const oneOds = odsValues.some((value) => value === true);
+
+    const leaderTypeVerification =
+      dataForm.leaderType !== "" &&
+      dataForm.leaderType !== handleLanguage("representativeArray", 0);
+    const leaderNameVerification = dataForm.leaderName.trim() !== "";
+
+    const emailVerification =
+      emailRegex.test(dataForm.email) && dataForm.email.trim() !== "";
+
+    const donationVerification = donationVerify;
+    const phoneVerification =
+      dataForm.phone.trim().length > 9 && regex.test(dataForm.phone);
+
+    const projectVerification = dataForm.project.trim() !== "";
+    const descriptionVerification = dataForm.description.trim() !== "";
+    const projectTypeVerification =
+      dataForm.projectType !== "" &&
+      dataForm.projectType !== handleLanguage("projectArray", 0);
+    const countryStateCityVerification =
+      dataForm.country !== "" &&
+      dataForm.country !== "Todos" &&
+      dataForm.state !== "" &&
+      dataForm.city !== "";
+    const datesVerification =
+      dataForm.startDate !== "" && dataForm.finishDate !== "";
+    return (
+      leaderTypeVerification &&
+      leaderNameVerification &&
+      projectTypeVerification &&
+      emailVerification &&
+      phoneVerification &&
+      donationVerification &&
+      projectVerification &&
+      descriptionVerification &&
+      countryStateCityVerification &&
+      datesVerification &&
+      oneOds
+    );
   };
 
   return (
     <>
       <NewProjectFormView
-        leaderType={leaderType}
-        setLeaderType={setLeaderType}
-        name={name}
-        setName={setName}
         checkName={checkName}
         setCheckName={setCheckName}
-        phone={phone}
-        setPhone={setPhone}
-        email={email}
-        setEmail={setEmail}
         checkEmail={checkEmail}
         setCheckEmail={setCheckEmail}
-        rfc={rfc}
-        setRfc={setRfc}
         checkRfc={checkRfc}
         setCheckRfc={setCheckRfc}
         clabe={clabe}
         setClabe={setClabe}
         checkClabe={checkClabe}
         setCheckClabe={setCheckClabe}
-        project={project}
-        setProject={setProject}
-        urlProject={urlProject}
-        setUrlProject={setUrlProject}
         volunteers={volunteers}
         setVolunteers={setVolunteers}
-        description={description}
-        setDescription={setDescription}
-        projectType={projectType}
-        setProjectType={setProjectType}
         donation={donation}
         setDonation={setDonation}
-        country={country}
-        setCountry={setCountry}
-        state={state}
-        setState={setState}
-        zip={zip}
-        setZip={setZip}
-        city={city}
-        setCity={setCity}
-        address={address}
-        setAddress={setAddress}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        finishDate={finishDate}
-        setFinishDate={setFinishDate}
         checkedOds={checkedOds}
-        handleCheckboxChange={handleCheckboxChange}
         handleSaveNewProject={handleSaveNewProject}
         handleSaveDraftProject={handleSaveDraftProject}
         handleImageUpload={handleImageUpload}
@@ -532,7 +695,17 @@ function NewProjectForm() {
         fileInputRef={fileInputRef}
         dataForm={dataForm}
         handleChangeDataForm={handleChangeDataForm}
-        handleChangeCheckBox={handleChangeCheckBox}
+        handleLanguage={handleLanguage}
+        handleCheckboxNameChangeCheck={handleCheckboxNameChangeCheck}
+        handleInputNameChange={handleInputNameChange}
+        handleCheckboxEmailChangeCheck={handleCheckboxEmailChangeCheck}
+        handleInputEmailChange={handleInputEmailChange}
+        handleCheckboxRfcChangeCheck={handleCheckboxRfcChangeCheck}
+        handleInputRfcChange={handleInputRfcChange}
+        handleCheckboxClabeChangeCheck={handleCheckboxClabeChangeCheck}
+        handleInputClabeChange={handleInputClabeChange}
+        odsArray={odsArray}
+        handleCheckboxChange={handleCheckboxChange}
       />
     </>
   );
