@@ -127,7 +127,6 @@ function NewProjectForm({ dataEdit = {} }) {
     const { id, checked } = event.target;
     const odsNumber = id.replace("ods", "");
 
-    // Actualiza el estado de dataForm para el ODS correspondiente
     setDataForm((prevState) => ({
       ...prevState,
       [`ods${odsNumber}`]: checked,
@@ -206,7 +205,7 @@ function NewProjectForm({ dataEdit = {} }) {
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
-    console.log(validationDataForm())
+    console.log(validationDataForm());
     // if (project.trim() != "") {
     //   setStatus("Borrador");
     //   try {
