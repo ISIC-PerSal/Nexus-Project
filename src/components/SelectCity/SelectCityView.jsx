@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-function SelectCityView({ label,cities, city, handleCityChange }) {
+function SelectCityView({ label, cities, city, handleCityChange }) {
   return (
     <>
       <div className="mb-3">

@@ -11,15 +11,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-
-  const {
-    changeNavbarItem,
-    userId,
-    updateUserId,
-    updateUserType,
-    updateUserData,
-  } = useNexusContext();
+  const { changeNavbarItem } = useNexusContext();
 
   useEffect(() => {
     changeNavbarItem("Yo");
@@ -35,24 +27,15 @@ function Login() {
       try {
         const data = await fetchLogin(body);
         if (data.id_user) {
-          updateUserId(data.id_user);
-          updateUserType(data.type);
           sessionStorage.setItem("id_user", data.id_user);
           sessionStorage.setItem("email", data.email);
           sessionStorage.setItem("name", data.name);
           sessionStorage.setItem("lastName", data.lastName);
           sessionStorage.setItem("birthday", data.birthday);
           sessionStorage.setItem("age", data.age);
-          sessionStorage.setItem("password", data.password);
           sessionStorage.setItem("rfc", data.rfc);
           sessionStorage.setItem("clabe", data.clabe);
           sessionStorage.setItem("type", data.type);
-          updateUserData(data.name, "name");
-          updateUserData(data.lastName, "lastName");
-          updateUserData(data.birthday, "birthday");
-          updateUserData(data.age, "age");
-          updateUserData(data.rfc, "rfc");
-          updateUserData(data.clabe, "clabe");
           const dataProjects = await fetchGetProjectsJoined(data.id_user);
           if (dataProjects) {
             sessionStorage.setItem(
@@ -60,7 +43,7 @@ function Login() {
               JSON.stringify(dataProjects)
             );
           }
-          window.location.href="/home";
+          window.location.href = "/home";
         } else {
           Swal.fire({
             title: "Error!",

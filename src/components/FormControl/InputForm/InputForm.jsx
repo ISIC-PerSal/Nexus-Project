@@ -96,7 +96,7 @@ function InputForm({
         <div className={`mb-3 ${classNameInput}`}>
           {showLabel ? (
             <label htmlFor={label} className="form-label">
-              {label}{""}
+              {label}{" "}
               {tooltip ? <Tooltip title={tooltipText}>{icon}</Tooltip> : ""}
             </label>
           ) : (

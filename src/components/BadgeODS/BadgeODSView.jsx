@@ -2,7 +2,6 @@ import React from "react";
 import odsData from "../../util/odsData";
 import ods_en from "../../util/ods_en";
 
-
 function BadgeODSView({
   item = {},
   idShow = false,

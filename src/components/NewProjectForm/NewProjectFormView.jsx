@@ -10,55 +10,14 @@ import SelectForm from "../FormControl/SelectForm/SelectForm";
 import "./NewProjectForm.css";
 
 function NewProjectFormView({
-  leaderType,
-  setLeaderType,
-  name,
-  setName,
   checkName,
-  setCheckName,
-  phone,
-  setPhone,
-  email,
-  setEmail,
   checkEmail,
-  setCheckEmail,
-  rfc,
-  setRfc,
   checkRfc,
-  setCheckRfc,
-  clabe,
-  setClabe,
   checkClabe,
-  setCheckClabe,
-  project,
-  setProject,
-  image,
-  setImage,
-  urlProject,
-  setUrlProject,
   volunteers,
   setVolunteers,
-  description,
-  setDescription,
-  projectType,
-  setProjectType,
   donation,
   setDonation,
-  country,
-  setCountry,
-  state,
-  setState,
-  zip,
-  setZip,
-  city,
-  setCity,
-  address,
-  setAddress,
-  startDate,
-  setStartDate,
-  finishDate,
-  setFinishDate,
-  checkedOds,
   handleCheckboxChange,
   handleSaveNewProject,
   handleSaveDraftProject,
@@ -77,7 +36,6 @@ function NewProjectFormView({
   handleCheckboxClabeChangeCheck,
   handleInputClabeChange,
   odsArray,
-
 }) {
   const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
   const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
@@ -252,7 +210,6 @@ function NewProjectFormView({
               getValue={(value) => handleChangeDataForm(value, "projectType")}
               options={handleLanguage("projectArray")}
             />
-
             <div className="mb-3">
               <div className="form-check">
                 <label
@@ -311,7 +268,7 @@ function NewProjectFormView({
             >
               <InputForm
                 label={handleLanguage("clabe")}
-                type={"text"}
+                type={"number"}
                 value={dataForm.clabe}
                 getValue={(value) => handleInputClabeChange(value)}
                 minLength={18}
@@ -357,8 +314,11 @@ function NewProjectFormView({
               state={dataForm.state}
             />
             <div
-              className={`${dataForm.projectType == handleLanguage("projectArray", 2) ? "no-show" : "show"
-                }`}
+              className={`${
+                dataForm.projectType == handleLanguage("projectArray", 2)
+                  ? "no-show"
+                  : "show"
+              }`}
             >
               <InputForm
                 label={handleLanguage("zip")}
@@ -367,22 +327,26 @@ function NewProjectFormView({
                 getValue={(value) => handleChangeDataForm(value, "zip")}
                 minLength={5}
                 maxLength={5}
-              >
-              </InputForm>
+              />
             </div>
             <div
-              className={`mb-3  ${dataForm.projectType == handleLanguage("projectArray", 2) ? "no-show" : "show"
-                }`}
+              className={`mb-3  ${
+                dataForm.projectType == handleLanguage("projectArray", 2)
+                  ? "no-show"
+                  : "show"
+              }`}
             >
               <label htmlFor="direccion" className="form-label">
-                {handleLanguage("address")}
+                {handleLanguage("address")}{" "}
               </label>
               <textarea
                 className="form-control"
                 id="direccion"
                 rows="2"
                 value={dataForm.address}
-                onChange={(e) => handleChangeDataForm(e.target.value, "address")}
+                onChange={(e) =>
+                  handleChangeDataForm(e.target.value, "address")
+                }
               ></textarea>
             </div>
             <div className="mb-3">
@@ -395,12 +359,14 @@ function NewProjectFormView({
                 id="fecha-arranque"
                 rows="2"
                 value={dataForm.startDate}
-                onChange={(e) => handleChangeDataForm(e.target.value, "startDate")}
+                onChange={(e) =>
+                  handleChangeDataForm(e.target.value, "startDate")
+                }
               ></input>
             </div>
             <div className="mb-3">
               <label htmlFor="fecha-inscripcion" className="form-label">
-              {handleLanguage("finishDate")}
+                {handleLanguage("finishDate")}
               </label>
               <input
                 type="date"
@@ -408,7 +374,9 @@ function NewProjectFormView({
                 id="fecha-inscripcion"
                 rows="2"
                 value={dataForm.finishDate}
-                onChange={(e) => handleChangeDataForm(e.target.value, "finishDate")}
+                onChange={(e) =>
+                  handleChangeDataForm(e.target.value, "finishDate")
+                }
               ></input>
             </div>
             <div className="mb-3">
@@ -422,9 +390,9 @@ function NewProjectFormView({
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        id={`ods${item.odsArray}`}
-                        checked={checkedOds[item.odsArray] || false}
-                        onChange={(e) => handleCheckboxChange}
+                        id={`ods${item.ods}`}
+                        checked={dataForm[`ods${item.ods}`] || false}
+                        onChange={handleCheckboxChange}
                       ></input>
                       <label
                         className="form-check-label"

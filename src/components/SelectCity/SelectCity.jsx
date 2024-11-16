@@ -100,7 +100,8 @@ function SelectCity({ label, city, setCity, country, state }) {
         );
       case "Puerto Rico":
         return (
-          puerto_rico_cities.find((item) => item.Estado === estado)?.Ciudades || []
+          puerto_rico_cities.find((item) => item.Estado === estado)?.Ciudades ||
+          []
         );
       case "República Dominicana":
         return (

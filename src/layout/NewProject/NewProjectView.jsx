@@ -8,7 +8,6 @@ function NewProjectView() {
     <>
       <Navbar />
       <NewProjectForm/>
-      <FooterView/>
     </>
   )
 }
