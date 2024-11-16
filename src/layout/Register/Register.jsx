@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RegisterView from "./RegisterView";
 import fetchRegister from "../../util/user/fetchRegister";
 import Swal from "sweetalert2";
 import Navbar from "../../components/Navbar/Navbar";
+import { useNexusContext } from "../../Hooks/useNexusContext";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -10,6 +11,11 @@ function Register() {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [fechaNac, setFechaNac] = useState("");
+
+  const { changeNavbarItem } = useNexusContext();
+  useEffect(() => {
+    changeNavbarItem("Yo");
+  }, [changeNavbarItem]);
 
   async function handleRegister(event) {
     event.preventDefault();
@@ -29,7 +35,7 @@ function Register() {
         birthday: fechaNac,
         age: edad,
       };
-     try {
+      try {
         const data = await fetchRegister(body);
         if (data.status == "Creado") {
           Swal.fire({
@@ -83,7 +89,7 @@ function Register() {
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <RegisterView
         email={email}
         setEmail={setEmail}
