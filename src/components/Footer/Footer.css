@@ -1,0 +1,35 @@
+footer {
+  background: linear-gradient(
+    to bottom right,
+    #b62f3d 44%,
+    #e783b8 69%,
+    #ffccfb 87%
+  );
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 99;
+  display: flex;
+  color: white;
+}
+
+
+footer > div {
+  width: 25%;
+  display: flex;
+}
+
+
+li {
+  list-style: none;
+}
+
+
+a {
+  text-decoration: none !important;
+  color: white !important;
+}
+
+
+

@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import SelectCountry from "../../components/SelectCountry/SelectCountry";
 import SelectState from "../../components/SelectState/SelectState";
 import SelectCity from "../../components/SelectCity/SelectCity";
-import ods_en from "../../util/ods_en";
+import ods_es from "../../util/ods_es";
 
 function EditProjectView({
   data,
@@ -448,7 +448,7 @@ function EditProjectView({
                 ODS (s) que abarca
               </label>
               <Grid container spacing={2}>
-                {ods_en.map((item, index) => (
+                {ods_es.map((item, index) => (
                   <Grid key={index} item xs={3}>
                     <div className="form-check">
                       <input

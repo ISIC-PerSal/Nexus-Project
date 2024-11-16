@@ -4,63 +4,21 @@ import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import Grid from "@mui/material/Grid";
 import SelectCountry from "../SelectCountry/SelectCountry";
 import SelectState from "../SelectState/SelectState";
-import ods from "../../util/ods_es";
 import SelectCity from "../SelectCity/SelectCity";
 import InputForm from "../FormControl/InputForm/InputForm";
 import SelectForm from "../FormControl/SelectForm/SelectForm";
 import "./NewProjectForm.css";
-import ods_en from "../../util/ods_en";
+
 
 function NewProjectFormView({
-  leaderType,
-  setLeaderType,
-  name,
-  setName,
   checkName,
-  setCheckName,
-  phone,
-  setPhone,
-  email,
-  setEmail,
   checkEmail,
-  setCheckEmail,
-  rfc,
-  setRfc,
   checkRfc,
-  setCheckRfc,
-  clabe,
-  setClabe,
   checkClabe,
-  setCheckClabe,
-  project,
-  setProject,
-  image,
-  setImage,
-  urlProject,
-  setUrlProject,
   volunteers,
   setVolunteers,
-  description,
-  setDescription,
-  projectType,
-  setProjectType,
   donation,
   setDonation,
-  country,
-  setCountry,
-  state,
-  setState,
-  zip,
-  setZip,
-  city,
-  setCity,
-  address,
-  setAddress,
-  startDate,
-  setStartDate,
-  finishDate,
-  setFinishDate,
-  checkedOds,
   handleCheckboxChange,
   handleSaveNewProject,
   handleSaveDraftProject,
@@ -82,20 +40,8 @@ function NewProjectFormView({
 }) {
   const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
   const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
-  const helpIcon = (
-    <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        className="bi bi-info-square-fill"
-        viewBox="0 0 16 16"
-      >
-        <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
-      </svg>
-    </>
-  );
+
+
   return (
     <>
       <main className="py-3 bg-img">
@@ -273,27 +219,28 @@ function NewProjectFormView({
                 ></input>
               </div>
             </div>
-            
             <div
               className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
-              label={handleLanguage("rfc")}
-              type={"text"}
-              value={dataForm.rfc}
-              getValue={(value) => handleInputRfcChange(value)}
-              minLength={11}
-              maxLength={13}
-              icon={<HelpCenterIcon />}
-              tooltip={true}
-              tooltipText={longText}
-            />
+                label={handleLanguage("rfc")}
+                type={"text"}
+                value={dataForm.rfc}
+                getValue={(value) => handleInputRfcChange(value)}
+                minLength={11}
+                maxLength={13}
+                icon={<HelpCenterIcon />}
+                tooltip={true}
+                tooltipText={longText}
+              />
               <div className="form-check" style={{ marginTop: "-1rem" }}>
                 <input
                   className="form-check-input"
                   type="checkbox"
                   checked={checkRfc}
-                  onChange={(e) => handleCheckboxRfcChangeCheck(e.target.checked)}
+                  onChange={(e) =>
+                    handleCheckboxRfcChangeCheck(e.target.checked)
+                  }
                   id="checkRfc"
                 ></input>
                 <label
@@ -308,22 +255,24 @@ function NewProjectFormView({
               className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
-              label={handleLanguage("clabe")}
-              type={"number"}
-              value={dataForm.clabe}
-              getValue={(value) => handleInputClabeChange(value)}
-              minLength={18}
-              maxLength={18}
-              icon={<HelpCenterIcon />}
-              tooltip={true}
-              tooltipText={longText}
-            />
-              <div className="form-check " style={{ marginTop: "-1rem" }}>
+                label={handleLanguage("clabe")}
+                type={"number"}
+                value={dataForm.clabe}
+                getValue={(value) => handleInputClabeChange(value)}
+                minLength={18}
+                maxLength={18}
+                icon={<HelpCenterIcon />}
+                tooltip={true}
+                tooltipText={longText}
+              />
+              <div className="form-check" style={{ marginTop: "-1rem" }}>
                 <input
                   className="form-check-input"
                   type="checkbox"
                   checked={checkClabe}
-                  onChange={(e) => handleCheckboxClabeChangeCheck(e.target.checked)}
+                  onChange={(e) =>
+                    handleCheckboxClabeChangeCheck(e.target.checked)
+                  }
                   id="checkClabe"
                 ></input>
                 <label
@@ -334,48 +283,58 @@ function NewProjectFormView({
                 </label>
               </div>
             </div>
-            <SelectCountry 
-            label={handleLanguage("country")}
-            country={dataForm.country} setCountry={(value)=> handleChangeDataForm(value, "country")} />
-            <SelectState 
-            label={handleLanguage("state")}
-            state={dataForm.state} setState={(value)=> handleChangeDataForm(value, "state")} country={dataForm.country} />
+            <SelectCountry
+              label={handleLanguage("country")}
+              country={dataForm.country}
+              setCountry={(value) => handleChangeDataForm(value, "country")}
+            />
+            <SelectState
+              label={handleLanguage("state")}
+              state={dataForm.state}
+              setState={(value) => handleChangeDataForm(value, "state")}
+              country={dataForm.country}
+            />
             <SelectCity
-            label={handleLanguage("city")}
+              label={handleLanguage("city")}
               city={dataForm.city}
-              setCity={(value)=> handleChangeDataForm(value, "city")}
+              setCity={(value) => handleChangeDataForm(value, "city")}
               country={dataForm.country}
               state={dataForm.state}
             />
             <div
               className={`${
-                dataForm.projectType == handleLanguage("projectArray", 2) ? "no-show" : "show"
+                dataForm.projectType == handleLanguage("projectArray", 2)
+                  ? "no-show"
+                  : "show"
               }`}
             >
               <InputForm
-              label={handleLanguage("zip")}
-              type="number"
-              value={dataForm.zip}
-              getValue={(value) => handleChangeDataForm(value, "zip")}
-              minLength={5}
-              maxLength={5}
+                label={handleLanguage("zip")}
+                type="number"
+                value={dataForm.zip}
+                getValue={(value) => handleChangeDataForm(value, "zip")}
+                minLength={5}
+                maxLength={5}
               />
             </div>
             <div
-              className={`mb-3 ${
+              className={`mb-3  ${
                 dataForm.projectType == handleLanguage("projectArray", 2)
-                ? "no-show" : "show"
+                  ? "no-show"
+                  : "show"
               }`}
             >
               <label htmlFor="direccion" className="form-label">
-                {handleLanguage("address")}
+                {handleLanguage("address")}{" "}
               </label>
               <textarea
                 className="form-control"
                 id="direccion"
                 rows="2"
                 value={dataForm.address}
-                onChange={(e) => handleChangeDataForm(e.target.value, "addres")}
+                onChange={(e) =>
+                  handleChangeDataForm(e.target.value, "address")
+                }
               ></textarea>
             </div>
             <div className="mb-3">
@@ -388,7 +347,9 @@ function NewProjectFormView({
                 id="fecha-arranque"
                 rows="2"
                 value={dataForm.startDate}
-                onChange={(e) => handleChangeDataForm(e.target.value, "startDate")}
+                onChange={(e) =>
+                  handleChangeDataForm(e.target.value, "startDate")
+                }
               ></input>
             </div>
             <div className="mb-3">
@@ -401,7 +362,9 @@ function NewProjectFormView({
                 id="fecha-inscripcion"
                 rows="2"
                 value={dataForm.finishDate}
-                onChange={(e) => handleChangeDataForm(e.target.value, "finishDate")}
+                onChange={(e) =>
+                  handleChangeDataForm(e.target.value, "finishDate")
+                }
               ></input>
             </div>
             <div className="mb-3">
@@ -416,8 +379,8 @@ function NewProjectFormView({
                         className="form-check-input"
                         type="checkbox"
                         id={`ods${item.ods}`}
-                        checked={checkedOds[item.ods] || false}
-                        onChange={(e) => handleCheckboxChange}
+                        checked={dataForm[`ods${item.ods}`] || false}
+                        onChange={handleCheckboxChange}
                       ></input>
                       <label
                         className="form-check-label"
@@ -457,4 +420,8 @@ function NewProjectFormView({
   );
 }
 
+
 export default NewProjectFormView;
+
+
+

@@ -1,8 +1,12 @@
 import Select from "react-select";
 import React from "react";
-import PaisesProyecto from "../../util/location/PaisesProyecto";
 
-function SelectCountryView({ label, handleCountryChange, country, countryOptions }) {
+function SelectCountryView({
+  label,
+  handleCountryChange,
+  country,
+  countryOptions,
+}) {
   return (
     <>
       <div className="mb-3">

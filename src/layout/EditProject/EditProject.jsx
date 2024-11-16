@@ -5,7 +5,6 @@ import { useLocation, useParams } from "react-router-dom";
 import fetchGetProject from "../../util/project/fetchGetProject";
 import ErrorView from "../Error/ErrorView";
 
-
 function EditProject() {
   const { idProject } = useParams();
   const [data, setData] = useState([]);

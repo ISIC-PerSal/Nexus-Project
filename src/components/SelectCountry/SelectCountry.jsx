@@ -8,7 +8,7 @@ function SelectCountry({ label, country, setCountry }) {
   const handleCountryChange = (selectedCountry) => {
     setCountry(selectedCountry.label.props.children[1]);
   };
-  
+
   useEffect(() => {
     const paises = restructureSelect(PaisesProyecto);
     setCountryOptions(paises);

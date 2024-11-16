@@ -9,11 +9,14 @@ import { useNexusContext } from "../../Hooks/useNexusContext";
 import NewProjectFormTranslator from "./NewProjectFormTranslator";
 import ods_en from "../../util/ods_en";
 import ods_es from "../../util/ods_es";
+import FooterView from "../Footer/FooterView";
 
-function NewProjectForm() {
+
+function NewProjectForm({ dataEdit = {} }) {
   const navigate = useNavigate();
-  const { userId, userData } = useNexusContext();
-  const [language, setLanguage] = useState("english");
+  const { language } = useNexusContext();
+
+const [messageError, setMessageError] = useState("")
 
   const [dataForm, setDataForm] = useState({
     idUser: sessionStorage.getItem("id_user"),
@@ -37,38 +40,48 @@ function NewProjectForm() {
     address: "",
     startDate: "",
     finishDate: "",
-    ods1: "",
-    ods2: "",
-    ods3: "",
-    ods4: "",
-    ods5: "",
-    ods6: "",
-    ods7: "",
-    ods8: "",
-    ods9: "",
-    ods10: "",
-    ods11: "",
-    ods12: "",
-    ods13: "",
-    ods14: "",
-    ods15: "",
-    ods16: "",
-    ods17: "",
+    ods1: false,
+    ods2: false,
+    ods3: false,
+    ods4: false,
+    ods5: false,
+    ods6: false,
+    ods7: false,
+    ods8: false,
+    ods9: false,
+    ods10: false,
+    ods11: false,
+    ods12: false,
+    ods13: false,
+    ods14: false,
+    ods15: false,
+    ods16: false,
+    ods17: false,
+    status: " ",
   });
 
-  const [osdArray, setOdsArray] = useState({})
+
+  useEffect(() => {
+    if (Object.keys(dataEdit).length > 0) {
+      setDataForm((prevDataForm) => ({
+        ...prevDataForm,
+        ...dataEdit,
+      }));
+    }
+  }, [dataEdit]);
+  const [odsArray, setOdsArray] = useState([]);
+
 
   const defaultName =
     sessionStorage.getItem("name") + " " + sessionStorage.getItem("lastName");
+
 
   const defaultEmail = sessionStorage.getItem("email");
   const defaultRfc = sessionStorage.getItem("rfc");
   const defaultClabe = sessionStorage.getItem("clabe");
 
-  const [leaderType, setLeaderType] = useState(0);
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
-  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [checkEmail, setCheckEmail] = useState(false);
   const [rfc, setRfc] = useState("");
@@ -76,128 +89,62 @@ function NewProjectForm() {
   const [clabe, setClabe] = useState("");
   const [checkClabe, setCheckClabe] = useState(false);
 
-  const [project, setProject] = useState("");
   const [volunteers, setVolunteers] = useState(0);
-  const [description, setDescription] = useState("");
-  const [projectType, setProjectType] = useState("");
   const [donation, setDonation] = useState(false);
-  const [country, setCountry] = useState("Todos");
-  const [state, setState] = useState([]);
-  const [zip, setZip] = useState("");
-  const [city, setCity] = useState("");
-  const [address, setAddress] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [finishDate, setFinishDate] = useState("");
-  const [urlProject, setUrlProject] = useState("");
   const [status, setStatus] = useState("");
 
-  const [checkedOds, setCheckedOds] = useState({
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
-    6: false,
-    7: false,
-    8: false,
-    9: false,
-    10: false,
-    11: false,
-    12: false,
-    13: false,
-    14: false,
-    15: false,
-    16: false,
-    17: false,
-  });
   const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageURL, setImageURL] = useState("");
 
+
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
     const odsNumber = id.replace("ods", "");
 
-    setCheckedOds((prevState) => ({
+
+    setDataForm((prevState) => ({
       ...prevState,
-      [odsNumber]: checked,
+      [`ods${odsNumber}`]: checked,
     }));
   };
 
+
   useEffect(() => {
-    if (
-      projectType != "Iniciativa Virtual" &&
-      zip.trim().length > 4 &&
-      address.trim().length > 0
-    ) {
+    if (dataForm.projectType != handleLanguage("projectArray", 2)) {
+      if (
+        dataForm.zip.trim().length > 4 &&
+        dataForm.address.trim().length > 0
+      ) {
+        setProjectTypeVerify(true);
+      } else {
+        setProjectTypeVerify(false);
+      }
+    } else if (dataForm.projectType == handleLanguage("projectArray", 2)) {
       setProjectTypeVerify(true);
-    } else if (projectType == "Iniciativa Virtual") {
-      setZip("");
-      setAddress("");
-      setProjectTypeVerify(true);
+      handleChangeDataForm("", "zip");
+      handleChangeDataForm("", "address");
+    }
+  }, [dataForm.projectType, dataForm.zip, dataForm.address]);
+
+
+  useEffect(() => {
+    if (dataForm.donation === true) {
+      if (dataForm.rfc.length > 11 && dataForm.clabe.length > 17) {
+        setDonationVerify(true);
+      } else {
+        setDonationVerify(false);
+      }
     } else {
-      setProjectTypeVerify(false);
-    }
-
-    if (
-      donation == true &&
-      rfc.trim().length > 11 &&
-      clabe.trim().length > 17
-    ) {
-      setDonationVerify(true);
-    } else if (donation == false) {
-      setRfc("");
-      setClabe("");
       setDonationVerify(true);
     }
-  }, [projectType, donation]);
-
-  const body = {
-    idUser: sessionStorage.getItem("id_user"),
-    leaderType: leaderType,
-    name: name,
-    phone: phone,
-    email: email,
-    rfc: rfc,
-    clabe: clabe,
-    project: project,
-    image: imageURL ? convertToLocalURL(imageURL) : "",
-    urlProject: urlProject,
-    volunteers: volunteers,
-    description: description,
-    projectType: projectType,
-    donation: donation,
-    country: country,
-    state: state,
-    zip: zip,
-    city: city,
-    address: address,
-    startDate: startDate,
-    finishDate: finishDate,
-    ods1: checkedOds[1] || false,
-    ods2: checkedOds[2] || false,
-    ods3: checkedOds[3] || false,
-    ods4: checkedOds[4] || false,
-    ods5: checkedOds[5] || false,
-    ods6: checkedOds[6] || false,
-    ods7: checkedOds[7] || false,
-    ods8: checkedOds[8] || false,
-    ods9: checkedOds[9] || false,
-    ods10: checkedOds[10] || false,
-    ods11: checkedOds[11] || false,
-    ods12: checkedOds[12] || false,
-    ods13: checkedOds[13] || false,
-    ods14: checkedOds[14] || false,
-    ods15: checkedOds[15] || false,
-    ods16: checkedOds[16] || false,
-    ods17: checkedOds[17] || false,
-  };
+  }, [dataForm.donation, dataForm.rfc, dataForm.clabe]);
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
-    console.log(dataForm);
+    console.log(validationDataForm());
     // if (project.trim() != "") {
     //   setStatus("Borrador");
     //   try {
@@ -245,35 +192,18 @@ function NewProjectForm() {
   };
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
-    setStatus("Publicado");
+    handleChangeDataForm("Publicado", "status")
     if (selectedFile) {
       handleUpload(selectedFile, setImageURL);
     } else {
       setImageURL("");
     }
-    const regex = new RegExp(/^[0-9]*$/);
+    handleChangeDataForm(imageURL, "image")
     if (
-      leaderType != 0 &&
-      name.trim() != "" &&
-      email.trim() != "" &&
-      regex.test(clabe) &&
-      phone.trim().length > 9 &&
-      regex.test(phone) &&
-      project.trim() != "" &&
-      volunteers >= 0 &&
-      description.trim() != "" &&
-      projectType != 0 &&
-      donationVerify == true &&
-      projectTypeVerify == true &&
-      country != "" &&
-      country != "Todos" &&
-      state != "" &&
-      city != "" &&
-      startDate != "" &&
-      finishDate != ""
+      validationDataForm()
     ) {
       try {
-        const data = await fetchNewProject({ ...body, status: "Publicado" });
+        //const data = await fetchNewProject({ ...body, status: "Publicado" });
         if (data.status == "Done") {
           Swal.fire({
             title: "Exito!",
@@ -306,152 +236,16 @@ function NewProjectForm() {
         });
       }
     } else {
-      if (leaderType == 0) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Seleccione una opción para el tipo de representante",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (name.trim() == "") {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del nombre del líder o representante",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (phone.trim().length < 10 || regex.test(phone) == false) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del numero telefónico",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (email.trim() == "") {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del correo del líder o representante",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (project.trim() == "") {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del nombre del proyecto",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (volunteers < 1) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "El número de voluntarios no admite números negativos",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (description.trim() == "") {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "La descripción del proyecto no puede estar vacía",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (projectType == "" || projectType == "0") {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Por favor, seleccione una opción en tipo de proyecto",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (rfc.trim().length < 12 && donation == true) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del RFC",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (
-        clabe.trim().length < 18 &&
-        regex.test(clabe) == true &&
-        donation == true
-      ) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos de la CLABE",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (country == "" || country == null || country == "Todos") {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del país",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (state == "" || state == null) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del estado/provincia/región",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (city == "" || city == null) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del municipio",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (zip.trim() < 5 && projectType != "Iniciativa Virtual") {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos del código postal",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (
-        address.trim().length < 1 &&
-        projectType != "Iniciativa Virtual"
-      ) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos de la dirección",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (startDate == "" || startDate == null) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos de la fecha de arranque",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      } else if (finishDate == "" || finishDate == null) {
-        Swal.fire({
-          position: "top-end",
-          icon: "info",
-          title: "Verifique los datos de la fecha límite de inscripción",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      }
+      Swal.fire({
+        position: "top-end",
+        icon: "info",
+        title: messageError,
+        showConfirmButton: false,
+        timer: 1000,
+      });
     }
   };
+
 
   const handleChangeDataForm = (value, name) => {
     setDataForm((prevState) => ({
@@ -459,6 +253,7 @@ function NewProjectForm() {
       [name]: value,
     }));
   };
+
 
   const handleLanguage = (field, position) => {
     const item = NewProjectFormTranslator[language];
@@ -470,12 +265,14 @@ function NewProjectForm() {
     }
   };
 
+
   const handleCheckboxNameChangeCheck = (value) => {
     setCheckName(value);
     if (value) {
       setName(defaultName);
     }
   };
+
 
   const handleCheckboxEmailChangeCheck = (value) => {
     setCheckEmail(value);
@@ -484,19 +281,20 @@ function NewProjectForm() {
     }
   };
 
+
   const handleCheckboxRfcChangeCheck = (value) => {
     setCheckRfc(value);
     if (value) {
       setRfc(defaultRfc);
     }
   };
-
   const handleCheckboxClabeChangeCheck = (value) => {
     setCheckClabe(value);
     if (value) {
       setClabe(defaultClabe);
     }
   };
+
 
   useEffect(() => {
     const resetName = () => {
@@ -507,6 +305,7 @@ function NewProjectForm() {
     resetName();
   }, [checkName]);
 
+
   useEffect(() => {
     const resetEmail = () => {
       if (checkEmail) {
@@ -515,6 +314,7 @@ function NewProjectForm() {
     };
     resetEmail();
   }, [checkEmail]);
+
 
   useEffect(() => {
     const resetRfc = () => {
@@ -525,6 +325,7 @@ function NewProjectForm() {
     resetRfc();
   }, [checkRfc]);
 
+
   useEffect(() => {
     const resetClabe = () => {
       if (checkClabe) {
@@ -534,12 +335,14 @@ function NewProjectForm() {
     resetClabe();
   }, [checkClabe]);
 
+
   const handleInputNameChange = (value) => {
     if (checkName) {
       setCheckName(false);
     }
     setName(value);
   };
+
 
   const handleInputEmailChange = (value) => {
     if (checkEmail) {
@@ -548,6 +351,7 @@ function NewProjectForm() {
     setEmail(value);
   };
 
+
   const handleInputRfcChange = (value) => {
     if (checkRfc) {
       setCheckRfc(false);
@@ -555,40 +359,35 @@ function NewProjectForm() {
     setRfc(value);
   };
 
+
   const handleInputClabeChange = (value) => {
     if (checkClabe) {
       setCheckClabe(false);
     }
     setClabe(value);
   };
+      
 
   useEffect(() => {
     handleChangeDataForm(name, "leaderName");
   }, [name]);
 
+
   useEffect(() => {
     handleChangeDataForm(email, "email");
   }, [email]);
 
+
   useEffect(() => {
     handleChangeDataForm(rfc, "rfc");
   }, [rfc]);
-
   useEffect(() => {
     handleChangeDataForm(clabe, "clabe");
   }, [clabe]);
+  useEffect(() => {
+    handleChangeDataForm(volunteers, "volunteers");
+  }, [volunteers]);
 
-  const handleVolunteersIncrement = () => {
-    setVolunteers(volunteers + 1);
-  };
-
-  const handleVolunteersDecrement = () => {
-    if (volunteers == 0) {
-      setVolunteers(0);
-    } else {
-      setVolunteers(volunteers - 1);
-    }
-  };
 
   useEffect(() => {
     const switchOdsArray = (language) => {
@@ -602,60 +401,173 @@ function NewProjectForm() {
       }
     };
     setOdsArray(switchOdsArray(language));
-    console.log(osdArray)
   }, [language]);
-  
-  
+
+
+  useEffect(() => {
+    handleChangeDataForm(donation, "donation");
+  }, [donation]);
+
+  const messageErrorSwal = (message) => {
+      setMessageError(message);
+  };
+
+  const validationDataForm = () => {
+    const regex = new RegExp(/^[0-9]*$/);
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const odsValues = [
+      dataForm.ods1,
+      dataForm.ods2,
+      dataForm.ods3,
+      dataForm.ods4,
+      dataForm.ods5,
+      dataForm.ods6,
+      dataForm.ods7,
+      dataForm.ods8,
+      dataForm.ods9,
+      dataForm.ods10,
+      dataForm.ods11,
+      dataForm.ods12,
+      dataForm.ods13,
+      dataForm.ods14,
+      dataForm.ods15,
+      dataForm.ods16,
+      dataForm.ods17,
+    ];
+
+
+    const oneOds = odsValues.some((value) => value === true);
+
+
+    const leaderTypeVerification =
+      dataForm.leaderType !== "" &&
+      dataForm.leaderType !== handleLanguage("representativeArray", 0);
+      if (leaderTypeVerification==false) {
+        
+      }
+    const leaderNameVerification = dataForm.leaderName.trim() !== "";
+
+
+    const emailVerification =
+      emailRegex.test(dataForm.email) && dataForm.email.trim() !== "";
+
+
+    const donationVerification = donationVerify;
+    const phoneVerification =
+      dataForm.phone.trim().length > 9 && regex.test(dataForm.phone);
+
+
+    const projectVerification = dataForm.project.trim() !== "";
+    const descriptionVerification = dataForm.description.trim() !== "";
+    const projectTypeVerification =
+      dataForm.projectType !== "" &&
+      dataForm.projectType !== handleLanguage("projectArray", 0);
+      const countryVerification =
+      dataForm.country !== "" && dataForm.country !== "Todos";
+    const stateVerification = dataForm.state !== "";
+    const cityVerification = dataForm.city !== "";
+    const startDateVerification = dataForm.startDate !== "";
+    const finishDateVerification = dataForm.finishDate !== "";
+
+    switch (true) {
+      case leaderTypeVerification == false:
+        setMessageError("Seleccione una opción para el tipo de representante");
+        break;
+      case leaderNameVerification == false:
+        setMessageError(
+          "Verifique los datos del nombre del líder o representante"
+        );
+        break;
+      case phoneVerification == false:
+        setMessageError("Verifique los datos del numero telefónico");
+        break;
+      case emailVerification == false:
+        setMessageError(
+          "Verifique los datos del correo del líder o representante"
+        );
+        break;
+      case projectVerification == false:
+        setMessageError("Verifique los datos del nombre del proyecto");
+        break;
+      case descriptionVerification == false:
+        setMessageError("La descripción del proyecto no puede estar vacía");
+        break;
+      case projectTypeVerification == false:
+        setMessageError("Por favor, seleccione una opción en tipo de proyecto");
+        break;
+      case donationVerification == false:
+        setMessageError("Verifique los datos del RFC y/o CLABE");
+        break;
+      case countryVerification == false:
+        setMessageError("Verifique los datos del país");
+        break;
+      case stateVerification == false:
+        setMessageError("Verifique los datos del estado/provincia/región");
+        break;
+      case cityVerification == false:
+        setMessageError("Verifique los datos del municipio");
+        break;
+      case dataForm.projectType == handleLanguage("projectArray", 1) ||
+        dataForm.projectType ==
+          handleLanguage("projectArray", 3 && dataForm.zip.trim() == ""):
+        setMessageError("Verifique los datos del código postal");
+        break;
+      case dataForm.projectType == handleLanguage("projectArray", 1) ||
+        dataForm.projectType ==
+          handleLanguage("projectArray", 3 && dataForm.address.trim() == ""):
+        setMessageError("Verifique los datos de la dirección");
+        break;
+      case startDateVerification == false:
+        setMessageError("Verifique los datos de la fecha de arranque");
+        break;
+      case finishDateVerification == false:
+        setMessageError(
+          "Verifique los datos de la fecha límite de inscripción"
+        );
+        break;
+      case oneOds == false:
+        setMessageError("Por favor selecione al menos un ODS");
+        break;
+      default:
+        break;
+    }
+
+    return (
+      leaderTypeVerification &&
+      leaderNameVerification &&
+      projectTypeVerification &&
+      emailVerification &&
+      phoneVerification &&
+      donationVerification &&
+      projectVerification &&
+      descriptionVerification &&
+      countryVerification &&
+      stateVerification &&
+      cityVerification &&
+      startDateVerification &&
+      finishDateVerification &&
+      oneOds
+    );
+  };
+
+
   return (
     <>
       <NewProjectFormView
-        leaderType={leaderType}
-        setLeaderType={setLeaderType}
-        name={name}
-        setName={setName}
         checkName={checkName}
         setCheckName={setCheckName}
-        phone={phone}
-        setPhone={setPhone}
-        email={email}
-        setEmail={setEmail}
         checkEmail={checkEmail}
         setCheckEmail={setCheckEmail}
-        rfc={rfc}
-        setRfc={setRfc}
         checkRfc={checkRfc}
         setCheckRfc={setCheckRfc}
         clabe={clabe}
         setClabe={setClabe}
         checkClabe={checkClabe}
         setCheckClabe={setCheckClabe}
-        project={project}
-        setProject={setProject}
-        urlProject={urlProject}
-        setUrlProject={setUrlProject}
         volunteers={volunteers}
         setVolunteers={setVolunteers}
-        description={description}
-        setDescription={setDescription}
-        projectType={projectType}
-        setProjectType={setProjectType}
         donation={donation}
         setDonation={setDonation}
-        country={country}
-        setCountry={setCountry}
-        state={state}
-        setState={setState}
-        zip={zip}
-        setZip={setZip}
-        city={city}
-        setCity={setCity}
-        address={address}
-        setAddress={setAddress}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        finishDate={finishDate}
-        setFinishDate={setFinishDate}
-        checkedOds={checkedOds}
         handleSaveNewProject={handleSaveNewProject}
         handleSaveDraftProject={handleSaveDraftProject}
         handleImageUpload={handleImageUpload}
@@ -668,16 +580,19 @@ function NewProjectForm() {
         handleInputNameChange={handleInputNameChange}
         handleCheckboxEmailChangeCheck={handleCheckboxEmailChangeCheck}
         handleInputEmailChange={handleInputEmailChange}
-        handleVolunteersIncrement= {handleVolunteersIncrement}
-        handleVolunteersDecrement={handleVolunteersDecrement}
         handleCheckboxRfcChangeCheck={handleCheckboxRfcChangeCheck}
         handleInputRfcChange={handleInputRfcChange}
         handleCheckboxClabeChangeCheck={handleCheckboxClabeChangeCheck}
         handleInputClabeChange={handleInputClabeChange}
-        osdArray={osdArray}
+        odsArray={odsArray}
+        handleCheckboxChange={handleCheckboxChange}
       />
     </>
   );
 }
 
+
 export default NewProjectForm;
+
+
+
