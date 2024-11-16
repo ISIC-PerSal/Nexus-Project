@@ -1,42 +1,20 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
+import Cookies from "js-cookie"; // Importar js-cookie
 
 const NexusContext = createContext();
 
 const NexusProvider = ({ children }) => {
-  const [userId, setUserId] = useState(0);
-  const [userType, setUserType] = useState("General");
-  const [userData, setUserData] = useState({
-    name: "",
-    lastName: "",
-    birthday: "",
-    age: 0,
-    email: "",
-    phone: "",
-    rfce: "",
-    clabe: "",
-  });
-  const [language, setLanguage] = useState("es");
+  const initialLanguage = Cookies.get("language")
+    ? Cookies.get("language")
+    : "english";
+
+  const [language, setLanguage] = useState(initialLanguage);
   const [theme, setTheme] = useState("adulto");
   const [selectedOption, setSelectedOption] = useState("Noticias");
 
-  const updateUserId = (id) => {
-    setUserId(id);
-  };
-
-  const updateUserType = (type) => {
-    setUserType(type);
-  };
-
-  const updateUserData = (value, name) => {
-    setUserData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-    console.log(userData);
-  };
-
   const changeLanguage = (lang) => {
     setLanguage(lang);
+    Cookies.set("language", lang, { expires: 30 });
   };
 
   const changeTheme = (theme) => {
@@ -50,12 +28,6 @@ const NexusProvider = ({ children }) => {
   return (
     <NexusContext.Provider
       value={{
-        userId,
-        updateUserId,
-        userType,
-        updateUserType,
-        userData,
-        updateUserData,
         language,
         changeLanguage,
         theme,

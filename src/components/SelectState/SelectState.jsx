@@ -23,7 +23,7 @@ import Uruguay from "../../util/location/Uruguay";
 import Venezuela from "../../util/location/Venezuela";
 import restructureSelect from "../../util/data/restructureSelect";
 
-function SelectState({ state, setState, country }) {
+function SelectState({ label, state, setState, country }) {
   const [estadosArray, setEstadosArray] = useState([]);
 
   const countryArray = [
@@ -65,6 +65,7 @@ function SelectState({ state, setState, country }) {
   return (
     <>
       <SelectStateView
+        label={label}
         estados={estadosArray}
         state={state}
         handleStateChange={handleStateChange}

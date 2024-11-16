@@ -1,0 +1,12 @@
+.volunteers-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+.volunteers-btn > svg {
+  fill: #c13b6c;
+}
