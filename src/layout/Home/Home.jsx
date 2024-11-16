@@ -16,7 +16,6 @@ function Home() {
     <>
       <Navbar />
       {typeUser == "General" ? <HomeView /> : <UnderConstructionView />}
-      <FooterView />
     </>
   );
 }

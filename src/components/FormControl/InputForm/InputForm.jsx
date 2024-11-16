@@ -7,7 +7,7 @@ import "./InputForm.css";
 function InputForm({
   label = "Label",
   disable = false,
-  value,
+  value = "",
   getValue = () => {},
   type = "text",
   placeholder = "",
@@ -111,7 +111,7 @@ function InputForm({
               minLength={minLength}
               className={`form-control ${error ? "is-invalid" : ""}`}
               id={label}
-              value={data}
+              value={value}
               onChange={handleChange}
             />
           ) : (

@@ -52,6 +52,7 @@ function NewProjectFormView({
               {handleLanguage("formName")}
             </label>
             <SelectForm
+              value={dataForm.leaderType}
               label={handleLanguage("representative")}
               getValue={(value) => handleChangeDataForm(value, "leaderType")}
               options={handleLanguage("representativeArray")}
