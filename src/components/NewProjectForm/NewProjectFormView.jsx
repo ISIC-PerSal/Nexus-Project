@@ -4,62 +4,20 @@ import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import Grid from "@mui/material/Grid";
 import SelectCountry from "../SelectCountry/SelectCountry";
 import SelectState from "../SelectState/SelectState";
-import ods from "../../util/ods";
 import SelectCity from "../SelectCity/SelectCity";
 import InputForm from "../FormControl/InputForm/InputForm";
 import SelectForm from "../FormControl/SelectForm/SelectForm";
 import "./NewProjectForm.css";
 
 function NewProjectFormView({
-  leaderType,
-  setLeaderType,
-  name,
-  setName,
   checkName,
-  setCheckName,
-  phone,
-  setPhone,
-  email,
-  setEmail,
   checkEmail,
-  setCheckEmail,
-  rfc,
-  setRfc,
   checkRfc,
-  setCheckRfc,
-  clabe,
-  setClabe,
   checkClabe,
-  setCheckClabe,
-  project,
-  setProject,
-  image,
-  setImage,
-  urlProject,
-  setUrlProject,
   volunteers,
   setVolunteers,
-  description,
-  setDescription,
-  projectType,
-  setProjectType,
   donation,
   setDonation,
-  country,
-  setCountry,
-  state,
-  setState,
-  zip,
-  setZip,
-  city,
-  setCity,
-  address,
-  setAddress,
-  startDate,
-  setStartDate,
-  finishDate,
-  setFinishDate,
-  checkedOds,
   handleCheckboxChange,
   handleSaveNewProject,
   handleSaveDraftProject,
@@ -73,6 +31,11 @@ function NewProjectFormView({
   handleInputNameChange,
   handleCheckboxEmailChangeCheck,
   handleInputEmailChange,
+  handleCheckboxRfcChangeCheck,
+  handleInputRfcChange,
+  handleCheckboxClabeChangeCheck,
+  handleInputClabeChange,
+  odsArray,
 }) {
   const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
   const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
@@ -102,6 +65,7 @@ function NewProjectFormView({
               {handleLanguage("formName")}
             </label>
             <SelectForm
+              value={dataForm.leaderType}
               label={handleLanguage("representative")}
               getValue={(value) => handleChangeDataForm(value, "leaderType")}
               options={handleLanguage("representativeArray")}
@@ -254,7 +218,7 @@ function NewProjectFormView({
                   className="form-check-label text-body-secondary"
                   htmlFor="checkDonations"
                 >
-                  Estoy de acuerdo en recibir donativos para mi proyecto
+                  {handleLanguage("checkDonation")}
                 </label>
                 <Tooltip title={donacion}>
                   <HelpCenterIcon />
@@ -282,121 +246,165 @@ function NewProjectFormView({
             <div
               className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
             >
-            
+              <InputForm
+                label={handleLanguage("rfc")}
+                type={"text"}
+                value={dataForm.rfc}
+                getValue={(value) => handleInputRfcChange(value)}
+                minLength={11}
+                maxLength={13}
+                icon={<HelpCenterIcon />}
+                tooltip={true}
+                tooltipText={longText}
+              />
+              <div className="form-check" style={{ marginTop: "-1rem" }}>
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  checked={checkRfc}
+                  onChange={(e) =>
+                    handleCheckboxRfcChangeCheck(e.target.checked)
+                  }
+                  id="checkRfc"
+                ></input>
+                <label
+                  className="form-check-label text-body-secondary"
+                  htmlFor="checkRfc"
+                >
+                  {handleLanguage("checkRfc")}
+                </label>
+              </div>
+            </div>
             <div
               className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
             >
-              <label htmlFor="CLABE-lider" className="form-label me-1">
-                CLABE interbancaria
-              </label>
-              <Tooltip title={longText}>
-                <HelpCenterIcon />
-              </Tooltip>
-              <input
-                type="text"
-                className="form-control"
-                id="CLABE-lider"
-                maxLength={18}
+              <InputForm
+                label={handleLanguage("clabe")}
+                type={"number"}
+                value={dataForm.clabe}
+                getValue={(value) => handleInputClabeChange(value)}
                 minLength={18}
-                value={clabe}
-                onChange={(e) => setClabe(e.target.value)}
-              ></input>
-              <div className="form-check">
+                maxLength={18}
+                icon={<HelpCenterIcon />}
+                tooltip={true}
+                tooltipText={longText}
+              />
+              <div className="form-check" style={{ marginTop: "-1rem" }}>
                 <input
                   className="form-check-input"
                   type="checkbox"
                   checked={checkClabe}
-                  onChange={(e) => setCheckClabe(e.target.checked)}
+                  onChange={(e) =>
+                    handleCheckboxClabeChangeCheck(e.target.checked)
+                  }
                   id="checkClabe"
                 ></input>
                 <label
                   className="form-check-label text-body-secondary"
                   htmlFor="checkClabe"
                 >
-                  Usar mi CLABE
+                  {handleLanguage("checkClabe")}
                 </label>
               </div>
             </div>
-            <SelectCountry country={country} setCountry={setCountry} />
-            <SelectState state={state} setState={setState} country={country} />
+            <SelectCountry
+              label={handleLanguage("country")}
+              country={dataForm.country}
+              setCountry={(value) => handleChangeDataForm(value, "country")}
+            />
+            <SelectState
+              label={handleLanguage("state")}
+              state={dataForm.state}
+              setState={(value) => handleChangeDataForm(value, "state")}
+              country={dataForm.country}
+            />
             <SelectCity
-              city={city}
-              setCity={setCity}
-              country={country}
-              state={state}
+              label={handleLanguage("city")}
+              city={dataForm.city}
+              setCity={(value) => handleChangeDataForm(value, "city")}
+              country={dataForm.country}
+              state={dataForm.state}
             />
             <div
-              className={`mb-3  ${
-                projectType == "Iniciativa Virtual" ? "no-show" : "show"
+              className={`${
+                dataForm.projectType == handleLanguage("projectArray", 2)
+                  ? "no-show"
+                  : "show"
               }`}
             >
-              <label htmlFor="cp" className="form-label">
-                Código postal
-              </label>
-              <input
+              <InputForm
+                label={handleLanguage("zip")}
                 type="number"
-                className="form-control"
-                id="cp"
-                value={zip}
-                onChange={(e) => setZip(e.target.value)}
-              ></input>
+                value={dataForm.zip}
+                getValue={(value) => handleChangeDataForm(value, "zip")}
+                minLength={5}
+                maxLength={5}
+              />
             </div>
             <div
               className={`mb-3  ${
-                projectType == "Iniciativa Virtual" ? "no-show" : "show"
+                dataForm.projectType == handleLanguage("projectArray", 2)
+                  ? "no-show"
+                  : "show"
               }`}
             >
               <label htmlFor="direccion" className="form-label">
-                Dirección
+                {handleLanguage("address")}{" "}
               </label>
               <textarea
                 className="form-control"
                 id="direccion"
                 rows="2"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                value={dataForm.address}
+                onChange={(e) =>
+                  handleChangeDataForm(e.target.value, "address")
+                }
               ></textarea>
             </div>
             <div className="mb-3">
               <label htmlFor="fecha-arranque" className="form-label">
-                Fecha de arranque
+                {handleLanguage("startDate")}
               </label>
               <input
                 type="date"
                 className="form-control"
                 id="fecha-arranque"
                 rows="2"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                value={dataForm.startDate}
+                onChange={(e) =>
+                  handleChangeDataForm(e.target.value, "startDate")
+                }
               ></input>
             </div>
             <div className="mb-3">
               <label htmlFor="fecha-inscripcion" className="form-label">
-                Fecha límite de inscripción
+                {handleLanguage("finishDate")}
               </label>
               <input
                 type="date"
                 className="form-control"
                 id="fecha-inscripcion"
                 rows="2"
-                value={finishDate}
-                onChange={(e) => setFinishDate(e.target.value)}
+                value={dataForm.finishDate}
+                onChange={(e) =>
+                  handleChangeDataForm(e.target.value, "finishDate")
+                }
               ></input>
             </div>
             <div className="mb-3">
               <label htmlFor="ods" className="form-label">
-                ODS (s) que abarca
+                {handleLanguage("ods")}
               </label>
               <Grid container spacing={2}>
-                {ods.map((item, index) => (
+                {odsArray.map((item, index) => (
                   <Grid key={index} item xs={3}>
                     <div key={index} className="form-check">
                       <input
                         className="form-check-input"
                         type="checkbox"
                         id={`ods${item.ods}`}
-                        checked={checkedOds[item.ods] || false}
-                        onChange={(e) => handleCheckboxChange}
+                        checked={dataForm[`ods${item.ods}`] || false}
+                        onChange={handleCheckboxChange}
                       ></input>
                       <label
                         className="form-check-label"

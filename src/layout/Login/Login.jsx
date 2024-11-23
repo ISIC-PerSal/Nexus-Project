@@ -11,15 +11,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-
-  const {
-    changeNavbarItem,
-    userId,
-    updateUserId,
-    updateUserType,
-    updateUserData,
-  } = useNexusContext();
+  const { changeNavbarItem } = useNexusContext();
 
   useEffect(() => {
     changeNavbarItem("Yo");
@@ -41,7 +33,6 @@ function Login() {
           sessionStorage.setItem("lastName", data.lastName);
           sessionStorage.setItem("birthday", data.birthday);
           sessionStorage.setItem("age", data.age);
-          sessionStorage.setItem("password", data.password);
           sessionStorage.setItem("rfc", data.rfc);
           sessionStorage.setItem("clabe", data.clabe);
           sessionStorage.setItem("type", data.type);
@@ -52,7 +43,7 @@ function Login() {
               JSON.stringify(dataProjects)
             );
           }
-          window.location.href="/home"
+          window.location.href = "/home";
         } else {
           Swal.fire({
             title: "Error!",

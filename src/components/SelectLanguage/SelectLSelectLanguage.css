@@ -1,0 +1,12 @@
+.select-language {
+  background-color: transparent;
+  font-size: 12px;
+  border: 1px solid white;
+  color: white;
+  font-weight: bold;
+  outline: none;
+}
+
+option{
+  color: black !important;
+}

@@ -4,7 +4,7 @@ function SelectForm({
   label = "Label",
   disable = false,
   options = [],
-  value,
+  value="",
   getValue = () => {},
 }) {
   return (

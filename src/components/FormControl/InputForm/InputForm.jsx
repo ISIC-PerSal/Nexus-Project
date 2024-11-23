@@ -1,4 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState }, { useEffect, useState } from "react";
+import Tooltip from "@mui/material/Tooltip";
+import HelpCenterIcon from "@mui/icons-material/HelpCenter";
+
+import "./InputForm.css";
 import Tooltip from "@mui/material/Tooltip";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 
@@ -7,7 +11,7 @@ import "./InputForm.css";
 function InputForm({
   label = "Label",
   disable = false,
-  value,
+  value = "",
   getValue = () => {},
   type = "text",
   placeholder = "",
@@ -96,7 +100,7 @@ function InputForm({
         <div className={`mb-3 ${classNameInput}`}>
           {showLabel ? (
             <label htmlFor={label} className="form-label">
-              {label}
+              {label}{" "}
               {tooltip ? <Tooltip title={tooltipText}>{icon}</Tooltip> : ""}
             </label>
           ) : (
@@ -111,7 +115,7 @@ function InputForm({
               minLength={minLength}
               className={`form-control ${error ? "is-invalid" : ""}`}
               id={label}
-              value={data}
+              value={value}
               onChange={handleChange}
             />
           ) : (
