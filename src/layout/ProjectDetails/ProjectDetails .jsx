@@ -13,6 +13,7 @@ import odsData from "../../util/odsData";
 import getFlag from "../../util/data/getFlag";
 import getRealVolunteers from "../../util/data/getRealVolunteers";
 
+
 function ProjectDetails() {
   const { idProject } = useParams();
   const isLogin = isAuth();

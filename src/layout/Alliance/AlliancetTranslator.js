@@ -1,8 +1,7 @@
 const AllianceTranslator = {
     spanish: {
         title: "Alianza juvenil e infantil",
-        description: <>
-        <p className='text-align-justify p-2'>
+        description: `
             En Nexus Project creemos que todos los aliados aportan algo
             a su causa cuando se les incluye sin barreras, y en este
             mundo maravilloso coexistimos personas de todas las edades.
@@ -11,13 +10,11 @@ const AllianceTranslator = {
             adolescentes, niñas y niños pueden acceder a la red de iniciativas,
             ser líderes o miembros, en un movimiento que por su lado es impulsado
             por y para otros jóvenes e infantes.
-        </p>
-        </>
+        `
     },
     english: {
         title: "Youth and Children's Alliance",
-        description: <>
-        <p className='text-align-justify p-2'>
+        description: `
             At Nexus Project we believe that all allies contribute something
             to their cause when they are included without barriers, and in this
             wonderful world people of all ages coexist.
@@ -25,8 +22,7 @@ const AllianceTranslator = {
             equally, so, through a personalized interface, adolescents, girls and boys can access the network of initiatives,
             be leaders or members, in a movement that is driven
             by and for other young people and children.
-        </p>
-        </>
+        `
     },
 };
 

@@ -10,13 +10,14 @@ import NewProjectFormTranslator from "./NewProjectFormTranslator";
 import ods_en from "../../util/ods_en";
 import ods_es from "../../util/ods_es";
 import FooterView from "../Footer/FooterView";
-
+import { data } from "jquery";
 
 function NewProjectForm({ dataEdit = {} }) {
   const navigate = useNavigate();
   const { language } = useNexusContext();
+  console.log(dataEdit);
 
-const [messageError, setMessageError] = useState("")
+  const [messageError, setMessageError] = useState("")
 
   const [dataForm, setDataForm] = useState({
     idUser: sessionStorage.getItem("id_user"),
@@ -57,7 +58,7 @@ const [messageError, setMessageError] = useState("")
     ods15: false,
     ods16: false,
     ods17: false,
-    status: " ",
+    status: "",
   });
 
 
@@ -69,6 +70,7 @@ const [messageError, setMessageError] = useState("")
       }));
     }
   }, [dataEdit]);
+
   const [odsArray, setOdsArray] = useState([]);
 
 
@@ -79,6 +81,13 @@ const [messageError, setMessageError] = useState("")
   const defaultEmail = sessionStorage.getItem("email");
   const defaultRfc = sessionStorage.getItem("rfc");
   const defaultClabe = sessionStorage.getItem("clabe");
+  const typeUser = sessionStorage.getItem("type");
+
+  useEffect(() => {
+    if (typeUser == "Juvenil") {
+      setDonation(true);
+    }
+  }, [typeUser]);
 
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
@@ -91,7 +100,6 @@ const [messageError, setMessageError] = useState("")
 
   const [volunteers, setVolunteers] = useState(0);
   const [donation, setDonation] = useState(false);
-  const [status, setStatus] = useState("");
 
   const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
@@ -103,7 +111,7 @@ const [messageError, setMessageError] = useState("")
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
     const odsNumber = id.replace("ods", "");
-
+    
 
     setDataForm((prevState) => ({
       ...prevState,
@@ -144,76 +152,20 @@ const [messageError, setMessageError] = useState("")
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
-    console.log(validationDataForm());
-    // if (project.trim() != "") {
-    //   setStatus("Borrador");
-    //   try {
-    //     const data = await fetchNewProject({ ...body, status: "Borrador" });
-    //     if (data.status == "Done") {
-    //       Swal.fire({
-    //         title: "Exito!",
-    //         text: "Se ha guardado el proyecto en borrador!",
-    //         icon: "success",
-    //         confirmButtonText: "Ver proyecto",
-    //       }).then((result) => {
-    //         if (result.isConfirmed) {
-    //           navigate(`/explore/${data.new_id}`, {
-    //             state: { statusProject: "Borrador" },
-    //           });
-    //         } else {
-    //           window.location.href = "/new-project";
-    //         }
-    //       });
-    //     } else {
-    //       Swal.fire({
-    //         title: "Error!",
-    //         text: "Ocurrio un error",
-    //         icon: "error",
-    //         confirmButtonText: "OK",
-    //       });
-    //     }
-    //   } catch (err) {
-    //     Swal.fire({
-    //       title: "Error!",
-    //       text: "Ocurrio un error",
-    //       icon: "error",
-    //       confirmButtonText: "OK",
-    //     });
-    //   }
-    // } else {
-    //   Swal.fire({
-    //     position: "top-end",
-    //     icon: "info",
-    //     title: "Introduzca un título al proyecto",
-    //     showConfirmButton: false,
-    //     timer: 1000,
-    //   });
-    // }
-  };
-  const handleSaveNewProject = async (e) => {
-    e.preventDefault();
-    handleChangeDataForm("Publicado", "status")
-    if (selectedFile) {
-      handleUpload(selectedFile, setImageURL);
-    } else {
-      setImageURL("");
-    }
-    handleChangeDataForm(imageURL, "image")
-    if (
-      validationDataForm()
-    ) {
+
+    if (dataForm.project.trim() != "") {
       try {
-        //const data = await fetchNewProject({ ...body, status: "Publicado" });
+        const data = await fetchNewProject({ ...dataForm, status: "Borrador" });
         if (data.status == "Done") {
           Swal.fire({
             title: "Exito!",
-            text: "Proyecto registrado!",
+            text: "Se ha guardado el proyecto en borrador!",
             icon: "success",
             confirmButtonText: "Ver proyecto",
           }).then((result) => {
             if (result.isConfirmed) {
               navigate(`/explore/${data.new_id}`, {
-                state: { statusProject: "Publicado" },
+                state: { statusProject: "Borrador" },
               });
             } else {
               window.location.href = "/new-project";
@@ -239,12 +191,95 @@ const [messageError, setMessageError] = useState("")
       Swal.fire({
         position: "top-end",
         icon: "info",
-        title: messageError,
+        title: "Introduzca un título al proyecto",
         showConfirmButton: false,
         timer: 1000,
       });
     }
   };
+  const handleSaveNewProject = async (e) => {
+    e.preventDefault();
+
+    Swal.fire({
+      title: "Informacion",
+      html: `
+      Al dar clic en Publicar acepta nuestros <b>Términos y condiciones </b>    
+    `,
+      icon: "info",
+      showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: "Publicar",
+  denyButtonText: `Guardar como borrador`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleSaveConfirmed();
+      } else if (result.isDenied) {
+        handleSaveDraftProject(e);
+      }
+    });
+  };
+
+  const handleSaveConfirmed= async()=>{
+    handleChangeDataForm("Publicado", "status");
+
+    if (selectedFile) {
+      handleUpload(selectedFile, setImageURL);
+    } else {
+      setImageURL("");
+    }
+    handleChangeDataForm(imageURL, "image");
+
+    const validationResult = validationDataForm();
+
+    if (validationResult.isValid) {
+      try {
+        const data = await fetchNewProject({
+          ...dataForm,
+          status: "Publicado",
+        });
+        console.log(data);
+        if (data.status == "Done") {
+          Swal.fire({
+            title: "Exito!",
+            text: "Proyecto registrado!",
+            icon: "success",
+            confirmButtonText: "Ver proyecto",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate(`/explore/${data.new_id}`, {
+                state: { statusProject: "Publicado" },
+              });
+            } else {
+              window.location.href = "/new-project";
+            }
+          });
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Ocurrió un error",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        }
+      } catch (err) {
+        Swal.fire({
+          title: "Error!",
+          text: "Ocurrió un error",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    } else {
+      setMessageError(validationResult.errorMessage);
+      Swal.fire({
+        position: "top-end",
+        icon: "info",
+        title: validationResult.errorMessage,
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
+  }
 
 
   const handleChangeDataForm = (value, name) => {
@@ -366,7 +401,7 @@ const [messageError, setMessageError] = useState("")
     }
     setClabe(value);
   };
-      
+
 
   useEffect(() => {
     handleChangeDataForm(name, "leaderName");
@@ -409,7 +444,7 @@ const [messageError, setMessageError] = useState("")
   }, [donation]);
 
   const messageErrorSwal = (message) => {
-      setMessageError(message);
+    setMessageError(message);
   };
 
   const validationDataForm = () => {
@@ -437,32 +472,27 @@ const [messageError, setMessageError] = useState("")
 
 
     const oneOds = odsValues.some((value) => value === true);
+    let errorMessage = "";
 
 
     const leaderTypeVerification =
       dataForm.leaderType !== "" &&
       dataForm.leaderType !== handleLanguage("representativeArray", 0);
-      if (leaderTypeVerification==false) {
-        
-      }
+    if (leaderTypeVerification == false) {
+
+    }
     const leaderNameVerification = dataForm.leaderName.trim() !== "";
-
-
     const emailVerification =
       emailRegex.test(dataForm.email) && dataForm.email.trim() !== "";
-
-
     const donationVerification = donationVerify;
     const phoneVerification =
       dataForm.phone.trim().length > 9 && regex.test(dataForm.phone);
-
-
     const projectVerification = dataForm.project.trim() !== "";
     const descriptionVerification = dataForm.description.trim() !== "";
     const projectTypeVerification =
       dataForm.projectType !== "" &&
       dataForm.projectType !== handleLanguage("projectArray", 0);
-      const countryVerification =
+    const countryVerification =
       dataForm.country !== "" && dataForm.country !== "Todos";
     const stateVerification = dataForm.state !== "";
     const cityVerification = dataForm.city !== "";
@@ -470,84 +500,82 @@ const [messageError, setMessageError] = useState("")
     const finishDateVerification = dataForm.finishDate !== "";
 
     switch (true) {
-      case leaderTypeVerification == false:
-        setMessageError("Seleccione una opción para el tipo de representante");
+      case !leaderTypeVerification:
+        errorMessage = "Seleccione una opción para el tipo de representante";
         break;
-      case leaderNameVerification == false:
-        setMessageError(
-          "Verifique los datos del nombre del líder o representante"
-        );
+      case !leaderNameVerification:
+        errorMessage =
+          "Verifique los datos del nombre del líder o representante";
         break;
-      case phoneVerification == false:
-        setMessageError("Verifique los datos del numero telefónico");
+      case !phoneVerification:
+        errorMessage = "Verifique los datos del número telefónico";
         break;
-      case emailVerification == false:
-        setMessageError(
-          "Verifique los datos del correo del líder o representante"
-        );
+      case !emailVerification:
+        errorMessage =
+          "Verifique los datos del correo del líder o representante";
         break;
-      case projectVerification == false:
-        setMessageError("Verifique los datos del nombre del proyecto");
+      case !projectVerification:
+        errorMessage = "Verifique los datos del nombre del proyecto";
         break;
-      case descriptionVerification == false:
-        setMessageError("La descripción del proyecto no puede estar vacía");
+      case !descriptionVerification:
+        errorMessage = "La descripción del proyecto no puede estar vacía";
         break;
-      case projectTypeVerification == false:
-        setMessageError("Por favor, seleccione una opción en tipo de proyecto");
+      case !projectTypeVerification:
+        errorMessage = "Por favor, seleccione una opción en tipo de proyecto";
         break;
-      case donationVerification == false:
-        setMessageError("Verifique los datos del RFC y/o CLABE");
+      case !donationVerification:
+        errorMessage = "Verifique los datos del RFC y/o CLABE";
         break;
-      case countryVerification == false:
-        setMessageError("Verifique los datos del país");
+      case !countryVerification:
+        errorMessage = "Verifique los datos del país";
         break;
-      case stateVerification == false:
-        setMessageError("Verifique los datos del estado/provincia/región");
+      case !stateVerification:
+        errorMessage = "Verifique los datos del estado/provincia/región";
         break;
-      case cityVerification == false:
-        setMessageError("Verifique los datos del municipio");
+      case !cityVerification:
+        errorMessage = "Verifique los datos del municipio";
         break;
-      case dataForm.projectType == handleLanguage("projectArray", 1) ||
-        dataForm.projectType ==
-          handleLanguage("projectArray", 3 && dataForm.zip.trim() == ""):
-        setMessageError("Verifique los datos del código postal");
+      case (dataForm.projectType == handleLanguage("projectArray", 1) ||
+        dataForm.projectType == handleLanguage("projectArray", 3)) &&
+        dataForm.zip.trim() == "":
+        errorMessage = "Verifique los datos del código postal";
         break;
-      case dataForm.projectType == handleLanguage("projectArray", 1) ||
-        dataForm.projectType ==
-          handleLanguage("projectArray", 3 && dataForm.address.trim() == ""):
-        setMessageError("Verifique los datos de la dirección");
+      case (dataForm.projectType === handleLanguage("projectArray", 1) ||
+        dataForm.projectType === handleLanguage("projectArray", 3)) &&
+        (!dataForm.address || dataForm.address.trim().length === 0):
+        errorMessage = "Verifique los datos de la dirección";
         break;
-      case startDateVerification == false:
-        setMessageError("Verifique los datos de la fecha de arranque");
+      case !startDateVerification:
+        errorMessage = "Verifique los datos de la fecha de arranque";
         break;
-      case finishDateVerification == false:
-        setMessageError(
-          "Verifique los datos de la fecha límite de inscripción"
-        );
+      case !finishDateVerification:
+        errorMessage = "Verifique los datos de la fecha límite de inscripción";
         break;
-      case oneOds == false:
-        setMessageError("Por favor selecione al menos un ODS");
+      case !oneOds:
+        errorMessage = "Por favor seleccione al menos un ODS";
         break;
       default:
         break;
     }
 
-    return (
-      leaderTypeVerification &&
-      leaderNameVerification &&
-      projectTypeVerification &&
-      emailVerification &&
-      phoneVerification &&
-      donationVerification &&
-      projectVerification &&
-      descriptionVerification &&
-      countryVerification &&
-      stateVerification &&
-      cityVerification &&
-      startDateVerification &&
-      finishDateVerification &&
-      oneOds
-    );
+    return {
+      isValid:
+        leaderTypeVerification &&
+        leaderNameVerification &&
+        projectTypeVerification &&
+        emailVerification &&
+        phoneVerification &&
+        donationVerification &&
+        projectVerification &&
+        descriptionVerification &&
+        countryVerification &&
+        stateVerification &&
+        cityVerification &&
+        startDateVerification &&
+        finishDateVerification &&
+        oneOds,
+      errorMessage,
+    };
   };
 
 

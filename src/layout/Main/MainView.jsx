@@ -3,7 +3,7 @@ import fondoNexus from "../../assets/nexus.png";
 import SocialMediaView from "../../components/SocialMedia/SocialMediaView";
 import Navbar from "../../components/Navbar/Navbar";
 
-function MainView() {
+function MainView({handleLanguage}) {
   return (
     <>
       <Navbar />
@@ -33,7 +33,7 @@ function MainView() {
               textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
             }}
           >
-            Bienvenid@s a
+            {handleLanguage("title")}
           </h1>
           <div className="d-flex align-items-center">
             <h1

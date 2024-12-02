@@ -13,23 +13,38 @@ footer {
   display: flex;
   color: white;
 }
+.bg-principal {
+  background: linear-gradient(
+    to bottom right,
+    #290004 10%,
+    #b62f3d 44%,
+    #e783b8 69%,
+    #ffccfb 87%
+  );
+}
 
-
+.bg-juvenil {
+  background: rgb(8, 134, 52);
+  background: linear-gradient(
+    90deg,
+    rgba(8, 134, 52, 1) 0%,
+    rgba(52, 175, 176, 1) 35%,
+    rgba(164, 255, 207, 1) 100%
+  );
+}
 footer > div {
   width: 25%;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
-
 
 li {
   list-style: none;
 }
 
-
 a {
   text-decoration: none !important;
   color: white !important;
 }
-
-
-

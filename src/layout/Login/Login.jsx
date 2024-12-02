@@ -6,12 +6,24 @@ import Navbar from "../../components/Navbar/Navbar";
 import fetchGetProjectsJoined from "../../util/project/fetchGetProjectsJoined";
 import { useNexusContext } from "../../Hooks/useNexusContext";
 import { useNavigate } from "react-router-dom";
+import LoginTranslator from "./LoginTranslator";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { changeNavbarItem } = useNexusContext();
+  const { language } = useNexusContext();
+
+  const handleLanguage = (field, position) => {
+    const item = LoginTranslator[language];
+    if (position == undefined) {
+      return item[field];
+    } else {
+      const positionValue = item[field];
+      return positionValue[position];
+    }
+  };
 
   useEffect(() => {
     changeNavbarItem("Yo");
@@ -70,6 +82,7 @@ function Login() {
         password={password}
         setPassword={setPassword}
         handleLogin={handleLogin}
+        handleLanguage={handleLanguage}
       />
     </>
   );

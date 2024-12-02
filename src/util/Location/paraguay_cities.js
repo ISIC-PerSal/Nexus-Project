@@ -139,6 +139,12 @@ const paraguay_cities = [
     ],
   },
   {
+    Estado: "Asunción",
+    Ciudades: [
+      "Asunción",
+    ],
+  },
+  {
     Estado: "Guairá",
     Ciudades: [
       "Villarrica",

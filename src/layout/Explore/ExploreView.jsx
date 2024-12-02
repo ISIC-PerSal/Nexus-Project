@@ -33,7 +33,7 @@ function ExploreView({
             <button
               type="button"
               className={`${
-                sessionStorage.getItem("type") == "General"
+                sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")
                   ? "bg-oficial"
                   : "bg-oficial-juvenil"
               } btn text-white h-auto`}

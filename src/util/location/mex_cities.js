@@ -2426,6 +2426,7 @@ const mex_cities = [
       "Uxpanapa",
       "San Rafael",
       "Santiago Sochiapan",
+      "Xalapa",
     ],
   },
   {

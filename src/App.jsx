@@ -27,6 +27,7 @@ import FeedContent from "./layout/FeedContent/FeedContent";
 import EditProject from "./layout/EditProject/EditProject";
 import Support from "./layout/Support/Support";
 import Prueba from "./layout/Prueba/Prueba";
+import AboutScience from "./components/AboutScience/AboutScience";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -84,6 +85,10 @@ function App() {
             <Route
               path="/support"
               element={isLogin ? <Support /> : <Navigate to={"/login"} />}
+            />
+            <Route
+              path="/aboutscience"
+              element={isLogin ? <AboutScience /> : <Navigate to={"/login"} />}
             />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

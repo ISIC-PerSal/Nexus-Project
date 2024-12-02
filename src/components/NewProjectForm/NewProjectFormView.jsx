@@ -38,10 +38,6 @@ function NewProjectFormView({
   handleInputClabeChange,
   odsArray,
 }) {
-  const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
-  const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
-
-
   return (
     <>
       <main className="py-3 bg-img">
@@ -54,6 +50,7 @@ function NewProjectFormView({
               {handleLanguage("formName")}
             </label>
             <SelectForm
+              value={dataForm.leaderType}
               label={handleLanguage("representative")}
               getValue={(value) => handleChangeDataForm(value, "leaderType")}
               options={handleLanguage("representativeArray")}
@@ -196,10 +193,24 @@ function NewProjectFormView({
             </div>
             <SelectForm
               label={handleLanguage("projectType")}
+              value={dataForm.projectType}
               getValue={(value) => handleChangeDataForm(value, "projectType")}
               options={handleLanguage("projectArray")}
             />
-            <div className="mb-3">
+            {sessionStorage.getItem("type") == "Juvenil" ? (
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
+                consequuntur, magni corrupti commodi inventore, quod provident
+                repellat repudiandae dolor odit quibusdam quae beatae labore
+                rerum blanditiis velit, nulla placeat? Maiores!
+              </p>
+            ) : (
+              ""
+            )}
+            {
+              sessionStorage.getItem("Type")=="General"?(
+                <>
+                <div className="mb-3">
               <div className="form-check">
                 <label
                   className="form-check-label text-body-secondary"
@@ -207,7 +218,7 @@ function NewProjectFormView({
                 >
                   {handleLanguage("checkDonation")}
                 </label>
-                <Tooltip title={donacion}>
+                <Tooltip title={handleLanguage("donacion")}>
                   <HelpCenterIcon />
                 </Tooltip>
                 <input
@@ -219,8 +230,11 @@ function NewProjectFormView({
                 ></input>
               </div>
             </div>
+                </>
+              ):""
+            }
             <div
-              className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
+              className={`${sessionStorage.getItem("Type")=="General"? "mb-3 mx-5":""} ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
                 label={handleLanguage("rfc")}
@@ -231,9 +245,12 @@ function NewProjectFormView({
                 maxLength={13}
                 icon={<HelpCenterIcon />}
                 tooltip={true}
-                tooltipText={longText}
+                tooltipText={handleLanguage("longText")}
               />
-              <div className="form-check" style={{ marginTop: "-1rem" }}>
+              {
+                sessionStorage.getItem("Type")=="General"?(
+                  <>
+                  <div className="form-check" style={{ marginTop: "-1rem" }}>
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -250,9 +267,13 @@ function NewProjectFormView({
                   {handleLanguage("checkRfc")}
                 </label>
               </div>
+                  </>
+                ):""
+              }
+              
             </div>
             <div
-              className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
+              className={`${sessionStorage.getItem("Type")=="General"? "mb-3 mx-5":""} ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
                 label={handleLanguage("clabe")}
@@ -263,9 +284,12 @@ function NewProjectFormView({
                 maxLength={18}
                 icon={<HelpCenterIcon />}
                 tooltip={true}
-                tooltipText={longText}
+                tooltipText={handleLanguage("longText")}
               />
-              <div className="form-check" style={{ marginTop: "-1rem" }}>
+              {
+                sessionStorage.getItem("Type")=="General"?(
+                  <>
+                  <div className="form-check" style={{ marginTop: "-1rem" }}>
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -282,7 +306,12 @@ function NewProjectFormView({
                   {handleLanguage("checkClabe")}
                 </label>
               </div>
+                  </>
+                ):""
+              }
+              
             </div>
+            
             <SelectCountry
               label={handleLanguage("country")}
               country={dataForm.country}
@@ -399,9 +428,13 @@ function NewProjectFormView({
               <button
                 onClick={handleSaveNewProject}
                 type="button"
-                className="btn btn-danger w-100"
+                className={`${
+                  sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")
+                    ? "bg-oficial"
+                    : "bg-oficial-juvenil"
+                } btn text-white w-100`}
               >
-                Publicar proyecto
+                {handleLanguage("publish")}
               </button>
             </div>
             <div className="w-50 ps-2">
@@ -410,7 +443,7 @@ function NewProjectFormView({
                 type="button"
                 className="btn bg-secondary w-100 text-white"
               >
-                Guardar borrador
+                {handleLanguage("borrador")}
               </button>
             </div>
           </div>
