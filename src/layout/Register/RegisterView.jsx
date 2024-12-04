@@ -12,16 +12,17 @@ function RegisterView({
   fechaNac,
   setFechaNac,
   handleRegister,
+  handleLanguage,
 }) {
   return (
     <>
       <div className="py-5 w-100 h-100 d-flex justify-content-center align-items-center bg-img border">
         <main className="border bg-white w-50 h-50 p-5 rounded bg-danger-subtle">
           <form>
-            <h1>Registro</h1>
+            <h1>{handleLanguage("title")}</h1>
             <div className="mb-3">
               <label htmlFor="nombreRegistro" className="form-label">
-                Nombre
+                {handleLanguage("name")}
               </label>
               <input
                 minLength={1}
@@ -35,7 +36,7 @@ function RegisterView({
             </div>
             <div className="mb-3">
               <label htmlFor="apellidoRegistro" className="form-label">
-                Apellido
+                {handleLanguage("last_name")}
               </label>
               <input
                 minLength={1}
@@ -49,7 +50,7 @@ function RegisterView({
             </div>
             <div className="mb-3">
               <label htmlFor="fechaNacRegistro" className="form-label">
-                Fecha de nacimiento
+                {handleLanguage("date")}
               </label>
               <input
                 type="date"
@@ -62,7 +63,7 @@ function RegisterView({
             </div>
             <div className="mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">
-                Correo
+                {handleLanguage("email")}
               </label>
               <input
                 type="email"
@@ -74,7 +75,7 @@ function RegisterView({
             </div>
             <div className="mb-3">
               <label htmlFor="exampleInputPassword1" className="form-label">
-                Contraseña
+                {handleLanguage("password")}
               </label>
               <input
                 type="password"
@@ -89,10 +90,10 @@ function RegisterView({
               type="submit"
               className="btn btn-primary"
             >
-              Regístrate
+              {handleLanguage("register")}
             </button>
           </form>
-          <a href="/login">Ir a inicio de sesión</a>
+          <a className="text-dark" href="/login">{handleLanguage("login")}</a>
         </main>
       </div>
     </>

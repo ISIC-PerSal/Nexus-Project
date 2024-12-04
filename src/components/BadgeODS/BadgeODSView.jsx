@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import odsData from "../../util/odsData";
 import ods_en from "../../util/ods_en";
+import { useNexusContext } from "../../Hooks/useNexusContext";
+import ods_es from "../../util/ods_es";
 
 function BadgeODSView({
   item = {},
@@ -10,6 +12,23 @@ function BadgeODSView({
   column = 0,
   spacing = 0,
 }) {
+  const { language } = useNexusContext();
+  const [odsArray, setOdsArray] = useState([]);
+
+  useEffect(() => {
+    const switchOdsArray = (language) => {
+      switch (language) {
+        case "spanish":
+          return ods_es;
+        case "english":
+          return ods_en;
+        default:
+          return [];
+      }
+    };
+    setOdsArray(switchOdsArray(language));
+  }, [language]);
+
   const widthCard = (value) => {
     switch (value) {
       case 5:
@@ -53,7 +72,7 @@ function BadgeODSView({
   return (
     <>
       <div className={className} style={style}>
-        {idOds >= 0 && idOds < odsData.length && (
+        {idOds >= 0 && idOds < odsData.length && odsArray.length && (
           <>
             {showText && (
               <span
@@ -64,7 +83,7 @@ function BadgeODSView({
                 {item.ods}
               </span>
             )}
-            {showImage && <img src={ods_en[idOds].url} alt={item.ods} />}
+            {showImage && <img src={odsArray[idOds].url} alt={item.ods} style={{ width: "100%" }}/>}
           </>
         )}
       </div>

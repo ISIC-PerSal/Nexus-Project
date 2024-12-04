@@ -3,12 +3,10 @@ import Poster from "../../assets/Poster.jpg";
 import Navbar from '../../components/Navbar/Navbar';
 import AboutSection from '../../components/About/AboutSection';
 
-function AboutView() {
+function AboutView({handleLanguage}) {
   return (
     <>
-     <Navbar/>
-     <AboutSection/>
-    
+    <AboutSection handleLanguage={handleLanguage}/>
     </>
   )
 

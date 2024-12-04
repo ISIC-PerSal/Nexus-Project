@@ -10,6 +10,7 @@ function NavbarView({
   handleLogOut,
   language,
   setLanguage,
+  handleLanguage
 }) {
   return (
     <>
@@ -45,7 +46,7 @@ function NavbarView({
                   aria-current="page"
                   onClick={() => handleOption("Noticias")}
                 >
-                  Noticias
+                  {handleLanguage("news")}
                   <div
                     className={
                       selectedOption == "Noticias" ? "color-block" : ""
@@ -58,7 +59,7 @@ function NavbarView({
                   className="nav-link text-white fw-bold"
                   onClick={() => handleOption("Directorio")}
                 >
-                  Directorio
+                  {handleLanguage("directory")}
                   <div
                     className={
                       selectedOption == "Directorio" ? "color-block" : ""
@@ -71,7 +72,7 @@ function NavbarView({
                   className="nav-link text-white fw-bold"
                   onClick={() => handleOption("Registrar")}
                 >
-                  Registrar proyecto
+                  {handleLanguage("register_p")}
                   <div
                     className={
                       selectedOption == "Registrar" ? "color-block" : ""
@@ -84,7 +85,7 @@ function NavbarView({
                   className="nav-link text-white fw-bold"
                   onClick={() => handleOption("Explorar")}
                 >
-                  Explorar proyectos
+                  {handleLanguage("explore")}
                   <div
                     className={
                       selectedOption == "Explorar" ? "color-block" : ""
@@ -98,7 +99,7 @@ function NavbarView({
                     className="nav-link text-white fw-bold"
                     onClick={() => handleOption("Alianza")}
                   >
-                    Alianza juvenil e infantil
+                    {handleLanguage("alliance")}
                     <div
                       className={
                         selectedOption == "Alianza" ? "color-block" : ""
@@ -107,14 +108,26 @@ function NavbarView({
                   </a>
                 </li>
               ) : (
-                ""
+                <li className="nav-item">
+                  <a
+                    className="nav-link text-white fw-bold"
+                    onClick={() => handleOption("ConCiencia")}
+                  >
+                    {handleLanguage("conscience")}
+                    <div
+                      className={
+                        selectedOption == "ConCiencia" ? "color-block" : ""
+                      }
+                    ></div>
+                  </a>
+                </li>
               )}
               <li className="nav-item">
                 <a
                   className="nav-link text-white fw-bold"
                   onClick={() => handleOption("Acerca")}
                 >
-                  Acerca de nosotros
+                  {handleLanguage("aboutUs")}
                   <div
                     className={selectedOption == "Acerca" ? "color-block" : ""}
                   ></div>
@@ -123,7 +136,7 @@ function NavbarView({
               {isLogin ? (
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle text-white fw-bold"
+                    className="nav-link dropdown-toggle text-white fw-bold "
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -142,7 +155,7 @@ function NavbarView({
                         d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
                       />
                     </svg>
-                    Yo
+                    {handleLanguage("me")}
                   </a>
                   <div
                     className={selectedOption == "Yo" ? "color-block" : ""}
@@ -150,38 +163,38 @@ function NavbarView({
                   <ul className="dropdown-menu dropdown-menu-end bg-gral">
                     <li>
                       <a
-                        className="dropdown-item"
+                        className="dropdown-item text-dark"
                         type="button"
                         onClick={() => handleOption("Mi perfil")}
                       >
-                        Mi perfil
+                        {handleLanguage("profile")}
                       </a>
                     </li>
                     <li>
                       <a
-                        className="dropdown-item"
+                        className="dropdown-item text-dark"
                         type="button"
                         onClick={() => handleOption("Mis proyectos")}
                       >
-                        Mis proyectos
+                        {handleLanguage("project")}
                       </a>
                     </li>
                     <li>
                       <a
-                        className="dropdown-item"
+                        className="dropdown-item text-dark"
                         type="button"
                         onClick={() => handleOption("Soporte")}
                       >
-                        Soporte
+                        {handleLanguage("support")}
                       </a>
                     </li>
                     <li>
                       <a
-                        className="dropdown-item"
+                        className="dropdown-item text-dark"
                         type="button"
                         onClick={handleLogOut}
                       >
-                        Cerrar sesión
+                        {handleLanguage("logOut")}
                       </a>
                     </li>
                   </ul>
@@ -194,7 +207,7 @@ function NavbarView({
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    ¡Participa!
+                    {handleLanguage("participate")}
                   </a>
                   <div
                     className={selectedOption == "Yo" ? "color-block" : ""}
@@ -202,20 +215,20 @@ function NavbarView({
                   <ul className="dropdown-menu dropdown-menu-end bg-gral">
                     <li>
                       <a
-                        className="dropdown-item"
+                        className="dropdown-item text-dark"
                         type="button"
                         onClick={() => handleOption("Login")}
                       >
-                        Iniciar sesión
+                        {handleLanguage("login")}
                       </a>
                     </li>
                     <li>
                       <a
-                        className="dropdown-item"
+                        className="dropdown-item text-dark"
                         type="button"
                         onClick={() => handleOption("Register")}
                       >
-                        Crear cuenta
+                        {handleLanguage("register")}
                       </a>
                     </li>
                   </ul>

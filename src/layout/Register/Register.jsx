@@ -4,6 +4,7 @@ import fetchRegister from "../../util/user/fetchRegister";
 import Swal from "sweetalert2";
 import Navbar from "../../components/Navbar/Navbar";
 import { useNexusContext } from "../../Hooks/useNexusContext";
+import RegisterTranslator from "./RegisterTranslator";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -11,6 +12,17 @@ function Register() {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [fechaNac, setFechaNac] = useState("");
+  const { language } = useNexusContext();
+
+  const handleLanguage = (field, position) => {
+    const item = RegisterTranslator[language];
+    if (position == undefined) {
+      return item[field];
+    } else {
+      const positionValue = item[field];
+      return positionValue[position];
+    }
+  };
 
   const { changeNavbarItem } = useNexusContext();
   useEffect(() => {
@@ -102,6 +114,7 @@ function Register() {
         fechaNac={fechaNac}
         setFechaNac={setFechaNac}
         handleRegister={handleRegister}
+        handleLanguage={handleLanguage}
       />
     </>
   );

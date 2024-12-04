@@ -90,15 +90,6 @@ body {
   font-size: 23px;
 }
 
-.quote-juvenil {
-  background-color: #088634 !important;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  color: #fff;
-  margin: 0;
-  padding: 15px;
-  font-size: 23px;
-}
 
 .name {
   background-color: #333;
@@ -114,20 +105,9 @@ blockquote {
   padding: 0;
   margin: 0;
 }
-.blockquote-juvenil::after {
-  border-color: transparent #088634 transparent transparent !important;
-  border-image: none;
-  border-style: solid;
-  border-width: 25px;
-  top: 55px;
-  content: " ";
-  display: block;
-  right: 75%;
-  position: relative;
-}
 
 blockquote::after {
-  border-color: transparent #c13b6c transparent transparent;
+  border-color: transparent #c13b6c transparent transparent ;
   border-image: none;
   border-style: solid;
   border-width: 25px;
@@ -150,7 +130,7 @@ blockquote::after {
 }
 
 .blockquote-juvenil::after {
-  border-color: transparent #088634 transparent transparent !important;
+  border-color: transparent #088634 transparent transparent;
   border-image: none;
   border-style: solid;
   border-width: 25px;
@@ -395,6 +375,15 @@ a {
 .dropdown-menu .dropdown-item:active {
   background-color: #c13b6c !important ; 
   color: white !important; 
+}
+
+.dropdown-menu-juvenil .dropdown-item:hover {
+  background-color: #f3f4f7;
+}
+
+.dropdown-menu-juvenil .dropdown-item:active {
+  background-color: #088634 !important ;
+  color: white !important;
 }
 
 .fixed-badge {

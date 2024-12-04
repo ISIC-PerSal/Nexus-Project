@@ -18,7 +18,7 @@ const paraguay_cities = [
       "Santa Rita",
       "Juan León Mallorquín",
       "Santa Rosa del Monday",
-      "Iruña",
+      "Iruña", 
       "Naranjal",
       "Los Cedrales",
       "San Alberto",
@@ -136,6 +136,12 @@ const paraguay_cities = [
       "Santa Elena",
       "Tobatí",
       "Valenzuela",
+    ],
+  },
+  {
+    Estado: "Asunción",
+    Ciudades: [
+      "Asunción",
     ],
   },
   {

@@ -3,6 +3,7 @@ import NavbarView from "./NavbarView";
 import isAuth from "../../util/isAuth";
 import { useNavigate } from "react-router-dom";
 import { useNexusContext } from "../../Hooks/useNexusContext";
+import NavbarTranslator from "./NavbarTranslator";
 import Cookies from "js-cookie";
 
 function Navbar() {
@@ -12,47 +13,61 @@ function Navbar() {
   const navigate = useNavigate();
   const { selectedOption, changeNavbarItem, language, changeLanguage } =
     useNexusContext();
+    
+  const handleLanguage = (field, position) => {
+    const item = NavbarTranslator[language];
+    if (position == undefined) {
+      return item[field];
+    } else {
+      const positionValue = item[field];
+      return positionValue[position];
+    }
+  };
 
   const handleOption = (option) => {
     changeNavbarItem(option);
     switch (option) {
       case "Noticias":
-        navigate("/home");
+        window.location.href="/home";
         break;
       case "Directorio":
-        navigate("/directory");
+        window.location.href="/directory";
         break;
       case "Registrar":
-        navigate("/new-project");
+        window.location.href="/new-project";
         break;
       case "Explorar":
-        navigate("/explore");
+        window.location.href="/explore";
         break;
       case "Alianza":
-        navigate("/alliance");
+        window.location.href="/alliance";
         break;
       case "Acerca":
-        navigate("/about");
+        window.location.href="/about";
         break;
       case "Mi perfil":
         changeNavbarItem("Yo");
-        navigate("/profile");
+        window.location.href="/profile";
         break;
       case "Mis proyectos":
         changeNavbarItem("Yo");
-        navigate("/my-projects");
+        window.location.href="/my-projects";
         break;
       case "Soporte":
         changeNavbarItem("Yo");
-        navigate("/support");
+        window.location.href="/support";
+        break;
+      case "ConCiencia":
+        changeNavbarItem("ConCiencia");
+        window.location.href="/aboutscience";
         break;
       case "Login":
         changeNavbarItem("Yo");
-        navigate("/login");
+        window.location.href="/login";
         break;
       case "Register":
         changeNavbarItem("Yo");
-        navigate("/register");
+        window.location.href="/register";
         break;
       default:
         break;
@@ -61,7 +76,7 @@ function Navbar() {
 
   const handleLogOut = () => {
     changeNavbarItem("Noticias");
-    window.location.replace("/");
+    window.location.href="/";
   };
   return (
     <>
@@ -73,6 +88,7 @@ function Navbar() {
         handleLogOut={handleLogOut}
         language={language}
         setLanguage={changeLanguage}
+        handleLanguage={handleLanguage}
       />
     </>
   );

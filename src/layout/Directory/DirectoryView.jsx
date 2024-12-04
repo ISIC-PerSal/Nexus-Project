@@ -6,7 +6,7 @@ import paises from "../../util/paises";
 import getDirectory from "../../util/directory/getDirectory";
 import CardODS from "../../components/CardODS/CardODS";
 
-function DirectoryView() {
+function DirectoryView({handleLanguage}) {
   const [ods, setOds] = useState("Todos");
   const [pais, setPais] = useState("Todos");
   const [directoryData, setDirectoryData] = useState([]);
@@ -40,13 +40,13 @@ function DirectoryView() {
       <div className="container w-50 p-3 border rounded border-secondary-subtle bg-gral">
         <div className="mb-3">
           <label htmlFor="seccion-lider" className="form-label fw-bold fs-2">
-            Directorio
+          {handleLanguage("title")}
           </label>
         </div>
         <div className="container-cita p-3">
           <div className="quote-box">
             <div className={`${
-                sessionStorage.getItem("type") == "General"
+                sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")
                   ? "quote"
                   : "quote-juvenil"
               }  edu-au-vic-wa-nt-hand`}>
@@ -61,32 +61,28 @@ function DirectoryView() {
                 <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388q0-.527.062-1.054.093-.558.31-.992t.559-.683q.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 9 7.558V11a1 1 0 0 0 1 1zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612q0-.527.062-1.054.094-.558.31-.992.217-.434.559-.683.34-.279.868-.279V3q-.868 0-1.52.372a3.3 3.3 0 0 0-1.085.992 4.9 4.9 0 0 0-.62 1.458A7.7 7.7 0 0 0 3 7.558V11a1 1 0 0 0 1 1z" />
               </svg>
               <blockquote className={`${
-                  sessionStorage.getItem("type") == "General"
-                    ? ""
+                  sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")
+                    ? "blockquote"
                     : "blockquote-juvenil"
                 }`}>
-                Nunca subestimes el poder de un grupo de personas comprometidas
-                para cambiar el mundo. De hecho, es lo único que lo ha logrado.
+                {handleLanguage("blockQuote")}
               </blockquote>
             </div>
             <div className="name">
-              <b>Margaret Mead</b>, antropóloga cultural estadounidense.
+              <b>Margaret Mead</b>{handleLanguage("author")}
             </div>
           </div>
         </div>
         <div>
           <p className="text-align-justify px-3">
-            Nexus Project se fundamenta en los{" "}
-            <b style={{ color: "#A63F52" }}>nexos</b> entre los miembros de una
-            comunidad para lograr objetivos por el bienestar común. En la
-            sección <b>Directorio</b> hemos reunido enlaces de contacto a
-            aliados poderosos con los que nuestros usuarios podrían amplificar
-            el impacto de sus ideas si estos las conocieran.
+            {handleLanguage("description_1")}{" "}
+            <b style={{ color: "#A63F52" }}>nexos</b>{handleLanguage("description_2")}
+            <b>{handleLanguage("directory")}</b> {handleLanguage("description_3")}
           </p>
         </div>
         <div className="p-4">
           <div>
-            <label>Seleccione un país</label>
+            <label>{handleLanguage("selectCountry")}</label>
             <Select
               placeholder="--"
               options={paises}
@@ -101,9 +97,13 @@ function DirectoryView() {
         <div>
           <div>
             <label
-              className={`${sessionStorage.getItem("type")=="General"?"bg-oficial":"bg-oficial-juvenil"} text-white w-100 p-1 fw-bold`}
+              className={`${
+                sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")
+                ?"bg-oficial"
+                :"bg-oficial-juvenil"
+              } text-white w-100 p-1 fw-bold`}
             >
-              Filtrar por letra inicial
+              {handleLanguage("letterFilter")}
             </label>
             <div className="d-flex flex-row mb-3">
               <div className="p-2">A</div>
@@ -119,7 +119,7 @@ function DirectoryView() {
               className="w-100 p-1 fw-bold"
               style={{ backgroundColor: "#173567", color: "white" }}
             >
-              Filtrar por ODS
+              {handleLanguage("sdgFilter")}
             </label>
             <div className="d-flex justify-content-between mb-3 mt-2">
               {odsData.map((item, index) => (
@@ -162,8 +162,8 @@ function DirectoryView() {
         <div className="d-flex">
           <div className="me-3">
             <h5>
-              País: <span className={`${
-                  sessionStorage.getItem("type") == "General"
+            {handleLanguage("country")} <span className={`${
+                  sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")
                     ? "bg-oficial"
                     : "bg-oficial-juvenil"
                 } ms-1 badge`}>{pais}</span>
@@ -171,8 +171,8 @@ function DirectoryView() {
           </div>
           <div className="me-3">
             <h5>
-              ODS: <span className={`${
-                  sessionStorage.getItem("type") == "General"
+            {handleLanguage("ods")} <span className={`${
+                  sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")
                     ? "bg-oficial"
                     : "bg-oficial-juvenil"
                 } ms-1 badge`}>{ods}</span>

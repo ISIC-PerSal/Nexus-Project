@@ -49,6 +49,8 @@ const NewProjectFormTranslator = {
 
     publish: "Publicar proyecto",
     borrador: "Borrador",
+    longText: "¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.",
+    donacion: `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`,
   },
   english: {
     formName: "Leader data",
@@ -100,6 +102,8 @@ const NewProjectFormTranslator = {
 
     publish: "Post project",
     borrador: "Draft",
+    longText: "Why do we ask this?: In order to securely track financial donations for legal purposes, we request this type of data from our users. It is not shared with anyone else.",
+    donacion: "By authorizing the receipt of donations, you allow the volunteer to contact you to contribute in kind or financially to your cause. Data such as your CLABE will be visible to them.",
   },
 };
 

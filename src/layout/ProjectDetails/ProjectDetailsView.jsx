@@ -40,7 +40,7 @@ function ProjectDetailsView({ data, id, formData, setFormData, imgCountry }) {
         </div>
       </div>
       <main className="py-3 bg-img">
-        <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral">
+        <div className="container w-75 mt-3 p-3 border rounded border-secondary-subtle bg-gral ">
           <div className="custom-grid-container">
             <div className="cover-photo">
               {formData.background ? (

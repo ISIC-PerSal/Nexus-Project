@@ -11,7 +11,17 @@
   border: none;
   background-color: transparent;
 }
-
+.operator-btn-juvenil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border: none;
+  background-color: transparent;
+}
 .operator-btn > svg {
   fill: #c13b6c;
+}
+.operator-btn-juvenil > svg {
+  fill: #088634 ;
 }

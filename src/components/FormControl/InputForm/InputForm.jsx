@@ -125,7 +125,11 @@ function InputForm({
               //Boton de menos
             }
             <button
-              className="operator-btn"
+              className={`${
+                sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")
+                  ? "operator-btn"
+                  : "operator-btn-juvenil"
+              }`}
               type="button"
               onClick={handleDecrement}
               disabled={data <= 0 && !allowNegative}
@@ -145,7 +149,11 @@ function InputForm({
               // Boton de mas
             }
             <button
-              className="operator-btn"
+              className={`${
+                sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")
+                  ? "operator-btn"
+                  : "operator-btn-juvenil"
+              }`}
               type="button"
               onClick={handleIncrement}
             >

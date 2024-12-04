@@ -3,7 +3,7 @@ import CardNewsView from "./CardNewsView";
 import { useNavigate } from "react-router-dom";
 import { getStatusIcon } from "../../util/Icons/getStatusIcon";
 
-function CardNews({ item }) {
+function CardNews({ item, id, title=false }) {
   const statusIcon = getStatusIcon(item.status);
   const Navidate = useNavigate();
 
@@ -15,6 +15,7 @@ function CardNews({ item }) {
       item={item}
       statusIcon={statusIcon}
       handleToFeedContent={handleToFeedContent}
+      title={title}
     />
   );
 }

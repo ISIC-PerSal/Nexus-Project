@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import AboutSectionView from "./AboutSectionView";
 
-function AboutSection() {
+function AboutSection({handleLanguage}) {
   
   return (
     <>
-      <AboutSectionView />
+      <AboutSectionView handleLanguage={handleLanguage}/>
     </>
   );
 }

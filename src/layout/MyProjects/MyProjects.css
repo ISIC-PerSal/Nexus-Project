@@ -28,6 +28,35 @@
   color: #c13b6c;
 }
 
+.tabs-juvenil {
+  background-color: #088634;
+  border: 0px;
+  padding: 5px;
+  margin: 5px;
+  margin-left: 2px;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.tabs-juvenil:hover {
+  background-color: #088634;
+  color: white;
+  transition: background-color 0.3s;
+}
+.tabs-juvenil:active {
+  color: white;
+}
+
+.tabs-juvenil:focus {
+  background-color: #f8f9fa;
+  color: #088634;
+  transition: background-color 0.3s;
+}
+.tab-active-juvenil {
+  background-color: #f8f9fa;
+  color: #088634;
+}
 .fadeIn {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
