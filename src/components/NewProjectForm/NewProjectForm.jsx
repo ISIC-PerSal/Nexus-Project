@@ -6,7 +6,13 @@ import fetchNewProject from "../../util/project/fetchNewProject";
 import convertToLocalURL from "../../util/paths/convertToLocalURL";
 import { useNavigate } from "react-router-dom";
 import { useNexusContext } from "../../Hooks/useNexusContext";
-function NewProjectForm() {
+import NewProjectFormTranslator from "./NewProjectFormTranslator";
+import ods_en from "../../util/ods_en";
+import ods_es from "../../util/ods_es";
+import FooterView from "../Footer/FooterView";
+import { data } from "jquery";
+
+function NewProjectForm({ dataEdit = {} }) {
   const navigate = useNavigate();
   const { language } = useNexusContext();
 
@@ -18,6 +24,40 @@ function NewProjectForm() {
     leaderName: "",
     phone: "",
     email: "",
+    rfc: "",
+    clabe: "",
+    project: "",
+    image: "",
+    urlProject: "",
+    volunteers: 0,
+    description: "",
+    projectType: "",
+    donation: "",
+    country: "",
+    state: "",
+    zip: "",
+    city: "",
+    address: "",
+    startDate: "",
+    finishDate: "",
+    ods1: false,
+    ods2: false,
+    ods3: false,
+    ods4: false,
+    ods5: false,
+    ods6: false,
+    ods7: false,
+    ods8: false,
+    ods9: false,
+    ods10: false,
+    ods11: false,
+    ods12: false,
+    ods13: false,
+    ods14: false,
+    ods15: false,
+    ods16: false,
+    ods17: false,
+    status: "",
   });
 
 
@@ -57,10 +97,7 @@ function NewProjectForm() {
   const [clabe, setClabe] = useState("");
   const [checkClabe, setCheckClabe] = useState(false);
 
-  const [project, setProject] = useState("");
-  const [volunteers, setVolunteers] = useState(1);
-  const [description, setDescription] = useState("");
-  const [projectType, setProjectType] = useState("");
+  const [volunteers, setVolunteers] = useState(0);
   const [donation, setDonation] = useState(false);
 
   const [donationVerify, setDonationVerify] = useState(false);
@@ -114,84 +151,10 @@ function NewProjectForm() {
 
   const handleSaveDraftProject = async (e) => {
     e.preventDefault();
-    console.log(dataForm);
-    console.log(body);
-    if (project.trim() != "") {
-     setStatus("Borrador");
-    try {
-         const data = await fetchNewProject({ ...body, status: "Borrador" });
-         if (data.status == "Done") {
-           Swal.fire({
-             title: "Exito!",
-             text: "Se ha guardado el proyecto en borrador!",
-             icon: "success",
-         confirmButtonText: "Ver proyecto",
-           }).then((result) => {
-             if (result.isConfirmed) {
-               navigate(`/explore/${data.new_id}`, {
-                 state: { statusProject: "Borrador" },
-               });
-         } else {
-               window.location.href = "/new-project";
-             }
-           });
-         } else {
-           Swal.fire({
-             title: "Error!",
-             text: "Ocurrio un error",
-             icon: "error",
-             confirmButtonText: "OK",
-           });
-         }
-       } catch (err) {
-         Swal.fire({
-           title: "Error!",
-           text: "Ocurrio un error",
-           icon: "error",
-           confirmButtonText: "OK",
-         });
-       }
-     } else {
-       Swal.fire({
-         position: "top-end",
-         icon: "info",
-         title: "Introduzca un título al proyecto",
-         showConfirmButton: false,
-         timer: 1000,
-       });
-     }
-  };
-  const handleSaveNewProject = async (e) => {
-    e.preventDefault();
-    setStatus("Publicado");
-    if (selectedFile) {
-      handleUpload(selectedFile, setImageURL);
-    } else {
-      setImageURL("");
-    }
-    const regex = new RegExp(/^[0-9]*$/);
-    if (
-      leaderType != 0 &&
-      name.trim() != "" &&
-      email.trim() != "" &&
-      regex.test(clabe) &&
-      phone.trim().length > 9 &&
-      regex.test(phone) &&
-      project.trim() != "" &&
-      volunteers >= 0 &&
-      description.trim() != "" &&
-      projectType != 0 &&
-      donationVerify == true &&
-      projectTypeVerify == true &&
-      country != "" &&
-      country != "Todos" &&
-      state != "" &&
-      city != "" &&
-      startDate != "" &&
-      finishDate != ""
-    ) {
+
+    if (dataForm.project.trim() != "") {
       try {
-        const data = await fetchNewProject({ ...body, status: "Publicado" });
+        const data = await fetchNewProject({ ...dataForm, status: "Borrador" });
         if (data.status == "Done") {
           Swal.fire({
             title: "Exito!",
@@ -340,15 +303,9 @@ function NewProjectForm() {
   const handleCheckboxNameChangeCheck = (value) => {
     setCheckName(value);
     if (value) {
-      switch (propertyName) {
-        case "name":
-          handleChangeDataForm(
-            `${sessionStorage.getItem("name")} ${sessionStorage.getItem(
-              "lastName"
-            )}`,
-            "name"
-          );
-          break;
+      setName(defaultName);
+    }
+  };
 
 
   const handleCheckboxEmailChangeCheck = (value) => {
@@ -474,7 +431,7 @@ function NewProjectForm() {
         case "english":
           return ods_en;
         default:
-          break;
+          return [];
       }
     };
     setOdsArray(switchOdsArray(language));
@@ -599,15 +556,25 @@ function NewProjectForm() {
       default:
         break;
     }
-     if (checkName) {
-       setName(
-         `${sessionStorage.getItem("name")} ${sessionStorage.getItem(
-           "lastName"
-         )}`
-       );
-     } else {
-       setName("");
-     }
+
+    return {
+      isValid:
+        leaderTypeVerification &&
+        leaderNameVerification &&
+        projectTypeVerification &&
+        emailVerification &&
+        phoneVerification &&
+        donationVerification &&
+        projectVerification &&
+        descriptionVerification &&
+        countryVerification &&
+        stateVerification &&
+        cityVerification &&
+        startDateVerification &&
+        finishDateVerification &&
+        oneOds,
+      errorMessage,
+    };
   };
 
 
@@ -628,22 +595,6 @@ function NewProjectForm() {
         setVolunteers={setVolunteers}
         donation={donation}
         setDonation={setDonation}
-        country={country}
-        setCountry={setCountry}
-        state={state}
-        setState={setState}
-        zip={zip}
-        setZip={setZip}
-        city={city}
-        setCity={setCity}
-        address={address}
-        setAddress={setAddress}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        finishDate={finishDate}
-        setFinishDate={setFinishDate}
-        checkedOds={checkedOds}
-        handleCheckboxChange={handleCheckboxChange}
         handleSaveNewProject={handleSaveNewProject}
         handleSaveDraftProject={handleSaveDraftProject}
         handleImageUpload={handleImageUpload}
@@ -651,7 +602,17 @@ function NewProjectForm() {
         fileInputRef={fileInputRef}
         dataForm={dataForm}
         handleChangeDataForm={handleChangeDataForm}
-        handleChangeCheckBox={handleChangeCheckBox}
+        handleLanguage={handleLanguage}
+        handleCheckboxNameChangeCheck={handleCheckboxNameChangeCheck}
+        handleInputNameChange={handleInputNameChange}
+        handleCheckboxEmailChangeCheck={handleCheckboxEmailChangeCheck}
+        handleInputEmailChange={handleInputEmailChange}
+        handleCheckboxRfcChangeCheck={handleCheckboxRfcChangeCheck}
+        handleInputRfcChange={handleInputRfcChange}
+        handleCheckboxClabeChangeCheck={handleCheckboxClabeChangeCheck}
+        handleInputClabeChange={handleInputClabeChange}
+        odsArray={odsArray}
+        handleCheckboxChange={handleCheckboxChange}
       />
     </>
   );
@@ -659,6 +620,3 @@ function NewProjectForm() {
 
 
 export default NewProjectForm;
-
-
-
