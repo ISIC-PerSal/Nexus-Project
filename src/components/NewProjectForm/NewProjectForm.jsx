@@ -84,50 +84,50 @@ function NewProjectForm() {
     e.preventDefault();
     console.log(dataForm);
     console.log(body);
-    // if (project.trim() != "") {
-    //   setStatus("Borrador");
-    //   try {
-    //     const data = await fetchNewProject({ ...body, status: "Borrador" });
-    //     if (data.status == "Done") {
-    //       Swal.fire({
-    //         title: "Exito!",
-    //         text: "Se ha guardado el proyecto en borrador!",
-    //         icon: "success",
-    //         confirmButtonText: "Ver proyecto",
-    //       }).then((result) => {
-    //         if (result.isConfirmed) {
-    //           navigate(`/explore/${data.new_id}`, {
-    //             state: { statusProject: "Borrador" },
-    //           });
-    //         } else {
-    //           window.location.href = "/new-project";
-    //         }
-    //       });
-    //     } else {
-    //       Swal.fire({
-    //         title: "Error!",
-    //         text: "Ocurrio un error",
-    //         icon: "error",
-    //         confirmButtonText: "OK",
-    //       });
-    //     }
-    //   } catch (err) {
-    //     Swal.fire({
-    //       title: "Error!",
-    //       text: "Ocurrio un error",
-    //       icon: "error",
-    //       confirmButtonText: "OK",
-    //     });
-    //   }
-    // } else {
-    //   Swal.fire({
-    //     position: "top-end",
-    //     icon: "info",
-    //     title: "Introduzca un título al proyecto",
-    //     showConfirmButton: false,
-    //     timer: 1000,
-    //   });
-    // }
+    if (project.trim() != "") {
+     setStatus("Borrador");
+    try {
+         const data = await fetchNewProject({ ...body, status: "Borrador" });
+         if (data.status == "Done") {
+           Swal.fire({
+             title: "Exito!",
+             text: "Se ha guardado el proyecto en borrador!",
+             icon: "success",
+         confirmButtonText: "Ver proyecto",
+           }).then((result) => {
+             if (result.isConfirmed) {
+               navigate(`/explore/${data.new_id}`, {
+                 state: { statusProject: "Borrador" },
+               });
+         } else {
+               window.location.href = "/new-project";
+             }
+           });
+         } else {
+           Swal.fire({
+             title: "Error!",
+             text: "Ocurrio un error",
+             icon: "error",
+             confirmButtonText: "OK",
+           });
+         }
+       } catch (err) {
+         Swal.fire({
+           title: "Error!",
+           text: "Ocurrio un error",
+           icon: "error",
+           confirmButtonText: "OK",
+         });
+       }
+     } else {
+       Swal.fire({
+         position: "top-end",
+         icon: "info",
+         title: "Introduzca un título al proyecto",
+         showConfirmButton: false,
+         timer: 1000,
+       });
+     }
   };
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
@@ -201,68 +201,7 @@ function NewProjectForm() {
       });
     }
   };
-  const handleSaveNewProject = async (e) => {
-    e.preventDefault();
-    handleChangeDataForm("Publicado", "status");
-
-    if (selectedFile) {
-      handleUpload(selectedFile, setImageURL);
-    } else {
-      setImageURL("");
-    }
-    handleChangeDataForm(imageURL, "image");
-
-    const validationResult = validationDataForm();
-
-    if (validationResult.isValid) {
-      try {
-        const data = await fetchNewProject({
-          ...dataForm,
-          status: "Publicado",
-        });
-        console.log(data);
-        if (data.status == "Done") {
-          Swal.fire({
-            title: "Exito!",
-            text: "Proyecto registrado!",
-            icon: "success",
-            confirmButtonText: "Ver proyecto",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate(`/explore/${data.new_id}`, {
-                state: { statusProject: "Publicado" },
-              });
-            } else {
-              window.location.href = "/new-project";
-            }
-          });
-        } else {
-          Swal.fire({
-            title: "Error!",
-            text: "Ocurrió un error",
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-        }
-      } catch (err) {
-        Swal.fire({
-          title: "Error!",
-          text: "Ocurrió un error",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-      }
-    } else {
-      setMessageError(validationResult.errorMessage);
-      Swal.fire({
-        position: "top-end",
-        icon: "info",
-        title: validationResult.errorMessage,
-        showConfirmButton: false,
-        timer: 1000,
-      });
-    }
-  };
+  
 
   const handleChangeDataForm = (value, name) => {
     setDataForm((prevState) => ({
@@ -288,15 +227,15 @@ function NewProjectForm() {
           break;
       }
     }
-    // if (checkName) {
-    //   setName(
-    //     `${sessionStorage.getItem("name")} ${sessionStorage.getItem(
-    //       "lastName"
-    //     )}`
-    //   );
-    // } else {
-    //   setName("");
-    // }
+     if (checkName) {
+       setName(
+         `${sessionStorage.getItem("name")} ${sessionStorage.getItem(
+           "lastName"
+         )}`
+       );
+     } else {
+       setName("");
+     }
   };
 
   return (

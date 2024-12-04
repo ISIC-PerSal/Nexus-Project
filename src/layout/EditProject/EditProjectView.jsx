@@ -4,7 +4,7 @@ import HelpCenterIcon from "@mui/icons-material/HelpCenter";
 import Grid from "@mui/material/Grid";
 import SelectCountry from "../../components/SelectCountry/SelectCountry";
 import SelectState from "../../components/SelectState/SelectState";
-import ods from "../../util/ods";
+import ods from "../../util/odsData.js";
 import SelectCity from "../../components/SelectCity/SelectCity";
 
 function EditProjectView({ data, project, setProject }) {
@@ -183,7 +183,7 @@ function EditProjectView({ data, project, setProject }) {
                 onChange={(e) => setProject(e.target.value)}
               ></input>
             </div>
-            {/* <div className="mb-3">
+            {<div className="mb-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
@@ -205,8 +205,8 @@ function EditProjectView({ data, project, setProject }) {
                 onChange={(e) => handleImageUpload(e, setSelectedFile)}
                 ref={fileInputRef}
               ></input>
-            </div> */}
-            {/* <div className="mb-3">
+            </div> }
+            {<div className="mb-3">
               <label htmlFor="url-proyecto" className="form-label">
                 URL del proyecto <i>(opcional)</i>
               </label>
@@ -217,7 +217,7 @@ function EditProjectView({ data, project, setProject }) {
                 value={urlProject}
                 onChange={(e) => setUrlProject(e.target.value)}
               ></input>
-            </div> */}
+            </div> }
             <div>
               <label htmlFor="nombre-proyecto" className="form-label">
                 Número de voluntarios

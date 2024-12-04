@@ -417,7 +417,6 @@ function NewProjectFormView({
                 ))}
               </Grid>
             </div>
-          </div>
           <div className="w-100 d-flex">
             <div className="w-50 pe-2">
               <button

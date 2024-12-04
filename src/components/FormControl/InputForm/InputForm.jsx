@@ -1,12 +1,8 @@
-import React, { useEffect, useState }, { useEffect, useState } from "react";
-import Tooltip from "@mui/material/Tooltip";
-import HelpCenterIcon from "@mui/icons-material/HelpCenter";
+import React, { useEffect, useState } from "react";
 
 import "./InputForm.css";
 import Tooltip from "@mui/material/Tooltip";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
-
-import "./InputForm.css";
 
 function InputForm({
   label = "Label",
