@@ -63,7 +63,7 @@ function EditProject() {
           projectType: data.project_type || "",
           rfc: data.rfc || "",
           startDate: data.start_date || "",
-          state: data.state || "",
+          state: data.state,
           status: data.status || "",
           urlProject: data.url || "",
           volunteers: data.volunteers || 0,
@@ -71,15 +71,13 @@ function EditProject() {
         };
 
         setDataEdit(transformedData);
-        console.log(transformedData);
       } catch (error) {
         console.error("Error fetching project data:", error);
       }
     };
 
     getDataProject();
-    console.log(idProject);
-    console.log(statusProject);
+    sessionStorage.setItem("state", dataEdit.state)
   }, [idProject, statusProject]);
 
   return (

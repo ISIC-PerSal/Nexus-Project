@@ -15,7 +15,6 @@ import { data } from "jquery";
 function NewProjectForm({ dataEdit = {} }) {
   const navigate = useNavigate();
   const { language } = useNexusContext();
-  console.log(dataEdit);
 
   const [messageError, setMessageError] = useState("")
 

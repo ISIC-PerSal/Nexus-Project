@@ -2,6 +2,7 @@ import React from "react";
 import Select from "react-select";
 
 function SelectCityView({ label, cities, city, handleCityChange }) {
+  const index = cities.findIndex((item) => item.value == city);
   return (
     <>
       <div className="mb-3">
@@ -12,7 +13,7 @@ function SelectCityView({ label, cities, city, handleCityChange }) {
           isSearchable={true}
           placeholder="Selecciona un municipio"
           options={cities}
-          defaultValue={city}
+          value={cities[index]}
           onChange={handleCityChange}
         />
       </div>

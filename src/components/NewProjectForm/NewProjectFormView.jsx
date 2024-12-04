@@ -172,7 +172,7 @@ function NewProjectFormView({
             <InputForm
               label={handleLanguage("numVolunteers")}
               type={"number"}
-              value={volunteers}
+              value={dataForm.volunteers}
               getValue={(value) => setVolunteers(value)}
               maxLength={5}
               showOperators={true}
