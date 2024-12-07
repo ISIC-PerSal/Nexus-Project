@@ -208,7 +208,7 @@ function NewProjectFormView({
               ""
             )}
             {
-              sessionStorage.getItem("Type")=="General"?(
+              sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")?(
                 <>
                 <div className="mb-3">
               <div className="form-check">
@@ -234,7 +234,7 @@ function NewProjectFormView({
               ):""
             }
             <div
-              className={`${sessionStorage.getItem("Type")=="General"? "mb-3 mx-5":""} ${donation == true ? "show" : "no-show"}`}
+              className={`${sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")? "mb-3 mx-5":""} ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
                 label={handleLanguage("rfc")}
@@ -248,7 +248,7 @@ function NewProjectFormView({
                 tooltipText={handleLanguage("longText")}
               />
               {
-                sessionStorage.getItem("Type")=="General"?(
+                sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")?(
                   <>
                   <div className="form-check" style={{ marginTop: "-1rem" }}>
                 <input
@@ -273,7 +273,7 @@ function NewProjectFormView({
               
             </div>
             <div
-              className={`${sessionStorage.getItem("Type")=="General"? "mb-3 mx-5":""} ${donation == true ? "show" : "no-show"}`}
+              className={`${sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")? "mb-3 mx-5":""} ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
                 label={handleLanguage("clabe")}
@@ -287,7 +287,7 @@ function NewProjectFormView({
                 tooltipText={handleLanguage("longText")}
               />
               {
-                sessionStorage.getItem("Type")=="General"?(
+                sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")?(
                   <>
                   <div className="form-check" style={{ marginTop: "-1rem" }}>
                 <input

@@ -143,7 +143,7 @@ function ProjectDetailsView({ data, id, formData, setFormData, imgCountry }) {
                 </div>
                 <div className="ms-3">
                   <div className="mb-3">
-                    <label className="form-label">Voluntarios incritos: </label>
+                    <label className="form-label">Voluntarios inscritos: </label>
                     <div className="p-3 w-100 d-flex justify-content-center">
                       <CircularProgressBar
                         idProject={data.id_project_pk}
