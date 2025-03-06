@@ -15,8 +15,8 @@ import { data } from "jquery";
 function NewProjectForm({ dataEdit = {} }) {
   const navigate = useNavigate();
   const { language } = useNexusContext();
-
-  const [messageError, setMessageError] = useState("")
+  const [imageUploaded, setImageUploaded] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [dataForm, setDataForm] = useState({
     idUser: sessionStorage.getItem("id_user"),
@@ -60,7 +60,6 @@ function NewProjectForm({ dataEdit = {} }) {
     status: "",
   });
 
-
   useEffect(() => {
     if (Object.keys(dataEdit).length > 0) {
       setDataForm((prevDataForm) => ({
@@ -72,21 +71,13 @@ function NewProjectForm({ dataEdit = {} }) {
 
   const [odsArray, setOdsArray] = useState([]);
 
-
   const defaultName =
     sessionStorage.getItem("name") + " " + sessionStorage.getItem("lastName");
-
 
   const defaultEmail = sessionStorage.getItem("email");
   const defaultRfc = sessionStorage.getItem("rfc");
   const defaultClabe = sessionStorage.getItem("clabe");
   const typeUser = sessionStorage.getItem("type");
-
-  useEffect(() => {
-    if (typeUser == "Juvenil") {
-      setDonation(true);
-    }
-  }, [typeUser]);
 
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
@@ -100,24 +91,27 @@ function NewProjectForm({ dataEdit = {} }) {
   const [volunteers, setVolunteers] = useState(0);
   const [donation, setDonation] = useState(false);
 
+  useEffect(() => {
+    if (typeUser == "Juvenil") {
+      setDonation(true);
+    }
+  }, [typeUser]);
+
   const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageURL, setImageURL] = useState("");
 
-
   const handleCheckboxChange = (event) => {
     const { id, checked } = event.target;
     const odsNumber = id.replace("ods", "");
-    
 
     setDataForm((prevState) => ({
       ...prevState,
       [`ods${odsNumber}`]: checked,
     }));
   };
-
 
   useEffect(() => {
     if (dataForm.projectType != handleLanguage("projectArray", 2)) {
@@ -135,7 +129,6 @@ function NewProjectForm({ dataEdit = {} }) {
       handleChangeDataForm("", "address");
     }
   }, [dataForm.projectType, dataForm.zip, dataForm.address]);
-
 
   useEffect(() => {
     if (dataForm.donation === true) {
@@ -196,6 +189,7 @@ function NewProjectForm({ dataEdit = {} }) {
       });
     }
   };
+
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
 
@@ -206,9 +200,9 @@ function NewProjectForm({ dataEdit = {} }) {
     `,
       icon: "info",
       showDenyButton: true,
-  showCancelButton: true,
-  confirmButtonText: "Publicar",
-  denyButtonText: `Guardar como borrador`
+      showCancelButton: true,
+      confirmButtonText: "Publicar",
+      denyButtonText: `Guadar como borrador`,
     }).then((result) => {
       if (result.isConfirmed) {
         handleSaveConfirmed();
@@ -218,68 +212,94 @@ function NewProjectForm({ dataEdit = {} }) {
     });
   };
 
-  const handleSaveConfirmed= async()=>{
+  const handleSaveConfirmed = async () => {
     handleChangeDataForm("Publicado", "status");
+    setIsLoading(true);
+
+    let uploadedImageURL = "";
 
     if (selectedFile) {
-      handleUpload(selectedFile, setImageURL);
-    } else {
-      setImageURL("");
-    }
-    handleChangeDataForm(imageURL, "image");
-
-    const validationResult = validationDataForm();
-
-    if (validationResult.isValid) {
-      try {
-        const data = await fetchNewProject({
-          ...dataForm,
-          status: "Publicado",
-        });
-        console.log(data);
-        if (data.status == "Done") {
-          Swal.fire({
-            title: "Exito!",
-            text: "Proyecto registrado!",
-            icon: "success",
-            confirmButtonText: "Ver proyecto",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate(`/explore/${data.new_id}`, {
-                state: { statusProject: "Publicado" },
-              });
-            } else {
-              window.location.href = "/new-project";
-            }
-          });
-        } else {
-          Swal.fire({
-            title: "Error!",
-            text: "Ocurrió un error",
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-        }
-      } catch (err) {
+      uploadedImageURL = await handleUpload(selectedFile, setImageURL);
+      if (!uploadedImageURL) {
+        setIsLoading(false);
         Swal.fire({
           title: "Error!",
-          text: "Ocurrió un error",
+          text: "No se pudo subir la imagen. Inténtalo de nuevo.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+        return;
+      }
+    }
+
+    setDataForm((prevState) => {
+      const updatedForm = { ...prevState, image: uploadedImageURL };
+
+      const validationResult = validationDataForm(updatedForm);
+      if (!validationResult.isValid) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: validationResult.errorMessage,
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        setIsLoading(false);
+        return updatedForm;
+      }
+
+      sendProjectToDatabase(updatedForm);
+      return updatedForm;
+    });
+  };
+
+  const sendProjectToDatabase = async (projectData) => {
+    try {
+      const data = await fetchNewProject({
+        ...projectData,
+        status: "Publicado",
+      });
+
+      if (data.status === "Done") {
+        setIsLoading(false);
+
+        Swal.fire({
+          title: "¡Éxito!",
+          text: "Proyecto registrado exitosamente.",
+          icon: "success",
+          confirmButtonText: "Ver proyecto",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate(`/explore/${data.new_id}`, {
+              state: { statusProject: "Publicado" },
+            });
+          }
+        });
+      } else {
+        setIsLoading(false);
+        Swal.fire({
+          title: "Error!",
+          text: "Ocurrió un error al registrar el proyecto.",
           icon: "error",
           confirmButtonText: "OK",
         });
       }
-    } else {
-      setMessageError(validationResult.errorMessage);
+    } catch (err) {
+      setIsLoading(false);
       Swal.fire({
-        position: "top-end",
-        icon: "info",
-        title: validationResult.errorMessage,
-        showConfirmButton: false,
-        timer: 1000,
+        title: "Error!",
+        text: "Ocurrió un error en la conexión con el servidor.",
+        icon: "error",
+        confirmButtonText: "OK",
       });
     }
-  }
+  };
 
+  useEffect(() => {
+    if (isLoading) {
+      console.log("Cargando...");
+    }
+  }, [isLoading]);
 
   const handleChangeDataForm = (value, name) => {
     setDataForm((prevState) => ({
@@ -287,7 +307,6 @@ function NewProjectForm({ dataEdit = {} }) {
       [name]: value,
     }));
   };
-
 
   const handleLanguage = (field, position) => {
     const item = NewProjectFormTranslator[language];
@@ -299,7 +318,6 @@ function NewProjectForm({ dataEdit = {} }) {
     }
   };
 
-
   const handleCheckboxNameChangeCheck = (value) => {
     setCheckName(value);
     if (value) {
@@ -307,14 +325,12 @@ function NewProjectForm({ dataEdit = {} }) {
     }
   };
 
-
   const handleCheckboxEmailChangeCheck = (value) => {
     setCheckEmail(value);
     if (value) {
       setEmail(defaultEmail);
     }
   };
-
 
   const handleCheckboxRfcChangeCheck = (value) => {
     setCheckRfc(value);
@@ -329,7 +345,6 @@ function NewProjectForm({ dataEdit = {} }) {
     }
   };
 
-
   useEffect(() => {
     const resetName = () => {
       if (checkName) {
@@ -338,7 +353,6 @@ function NewProjectForm({ dataEdit = {} }) {
     };
     resetName();
   }, [checkName]);
-
 
   useEffect(() => {
     const resetEmail = () => {
@@ -349,7 +363,6 @@ function NewProjectForm({ dataEdit = {} }) {
     resetEmail();
   }, [checkEmail]);
 
-
   useEffect(() => {
     const resetRfc = () => {
       if (checkRfc) {
@@ -358,7 +371,6 @@ function NewProjectForm({ dataEdit = {} }) {
     };
     resetRfc();
   }, [checkRfc]);
-
 
   useEffect(() => {
     const resetClabe = () => {
@@ -369,14 +381,12 @@ function NewProjectForm({ dataEdit = {} }) {
     resetClabe();
   }, [checkClabe]);
 
-
   const handleInputNameChange = (value) => {
     if (checkName) {
       setCheckName(false);
     }
     setName(value);
   };
-
 
   const handleInputEmailChange = (value) => {
     if (checkEmail) {
@@ -385,14 +395,12 @@ function NewProjectForm({ dataEdit = {} }) {
     setEmail(value);
   };
 
-
   const handleInputRfcChange = (value) => {
     if (checkRfc) {
       setCheckRfc(false);
     }
     setRfc(value);
   };
-
 
   const handleInputClabeChange = (value) => {
     if (checkClabe) {
@@ -401,16 +409,13 @@ function NewProjectForm({ dataEdit = {} }) {
     setClabe(value);
   };
 
-
   useEffect(() => {
     handleChangeDataForm(name, "leaderName");
   }, [name]);
 
-
   useEffect(() => {
     handleChangeDataForm(email, "email");
   }, [email]);
-
 
   useEffect(() => {
     handleChangeDataForm(rfc, "rfc");
@@ -421,7 +426,6 @@ function NewProjectForm({ dataEdit = {} }) {
   useEffect(() => {
     handleChangeDataForm(volunteers, "volunteers");
   }, [volunteers]);
-
 
   useEffect(() => {
     const switchOdsArray = (language) => {
@@ -437,14 +441,9 @@ function NewProjectForm({ dataEdit = {} }) {
     setOdsArray(switchOdsArray(language));
   }, [language]);
 
-
   useEffect(() => {
     handleChangeDataForm(donation, "donation");
   }, [donation]);
-
-  const messageErrorSwal = (message) => {
-    setMessageError(message);
-  };
 
   const validationDataForm = () => {
     const regex = new RegExp(/^[0-9]*$/);
@@ -469,17 +468,12 @@ function NewProjectForm({ dataEdit = {} }) {
       dataForm.ods17,
     ];
 
-
     const oneOds = odsValues.some((value) => value === true);
     let errorMessage = "";
-
 
     const leaderTypeVerification =
       dataForm.leaderType !== "" &&
       dataForm.leaderType !== handleLanguage("representativeArray", 0);
-    if (leaderTypeVerification == false) {
-
-    }
     const leaderNameVerification = dataForm.leaderName.trim() !== "";
     const emailVerification =
       emailRegex.test(dataForm.email) && dataForm.email.trim() !== "";
@@ -497,7 +491,6 @@ function NewProjectForm({ dataEdit = {} }) {
     const cityVerification = dataForm.city !== "";
     const startDateVerification = dataForm.startDate !== "";
     const finishDateVerification = dataForm.finishDate !== "";
-
     switch (true) {
       case !leaderTypeVerification:
         errorMessage = "Seleccione una opción para el tipo de representante";
@@ -577,7 +570,6 @@ function NewProjectForm({ dataEdit = {} }) {
     };
   };
 
-
   return (
     <>
       <NewProjectFormView
@@ -618,8 +610,4 @@ function NewProjectForm({ dataEdit = {} }) {
   );
 }
 
-
 export default NewProjectForm;
-
-
-

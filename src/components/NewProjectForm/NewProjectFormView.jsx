@@ -144,13 +144,25 @@ function NewProjectFormView({
                 {`${handleLanguage("descriptiveImg")}`}{" "}
                 <i>{` (${handleLanguage("optional")})`}</i>
               </label>
-              <input
-                type="file"
-                className="form-control"
-                id="img-proyecto"
-                onChange={(e) => handleImageUpload(e, setSelectedFile)}
-                ref={fileInputRef}
-              ></input>
+              <div className="d-flex">
+                <input
+                  type="file"
+                  className="form-control me-3"
+                  id="img-proyecto"
+                  onChange={(e) => handleImageUpload(e, setSelectedFile)}
+                  ref={fileInputRef}
+                ></input>
+                <input
+                  type="button"
+                  value="X"
+                  onClick={() => {
+                    setSelectedFile(null);
+                    if (fileInputRef.current) {
+                      fileInputRef.current.value = "";
+                    }
+                  }}
+                />
+              </div>
             </div>
             <InputForm
               label={
