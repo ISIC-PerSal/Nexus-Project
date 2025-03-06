@@ -71,15 +71,12 @@ function EditProject() {
         };
 
         setDataEdit(transformedData);
-        console.log(transformedData);
       } catch (error) {
         console.error("Error fetching project data:", error);
       }
     };
 
     getDataProject();
-    console.log(idProject);
-    console.log(statusProject);
   }, [idProject, statusProject]);
 
   return (

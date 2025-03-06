@@ -1,9 +1,11 @@
 import React from "react";
 import "./Footer.css";
 function FooterView() {
+  const typeUser = sessionStorage.getItem("type") || "General";
+
   return (
     <>
-      <footer>
+      <footer className={typeUser == "General" ? "bg-principal" : "bg-juvenil"}>
         <div>
           <ul>
             <li className="fw-bold">

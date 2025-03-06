@@ -2,10 +2,10 @@ import React from "react";
 import getDataApi from "../getDataApi";
 const API_NEXUS_PROJECT = import.meta.env.VITE_API_NEXUS_PROJECT_DATABASE;
 
-async function fetchGetFeedByProject(body) {
-  const url = `${API_NEXUS_PROJECT}/project/getFeedByProject.php`;
+async function getArticles(title) {
+  const url = `${API_NEXUS_PROJECT}/articles/getArticles.php?title=${title}`;
   try {
-    const data = await getDataApi(url, body);
+    const data = await getDataApi(url);
     return data;
   } catch (error) {
     console.error("Error: ", error.message);
@@ -13,4 +13,4 @@ async function fetchGetFeedByProject(body) {
   }
 }
 
-export default fetchGetFeedByProject;
+export default getArticles;

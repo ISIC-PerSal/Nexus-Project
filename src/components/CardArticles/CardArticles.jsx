@@ -1,22 +1,25 @@
 import React, { useState } from "react";
-import CardODSView from "./CardODSView";
+import CardArticlesView from "./CardArticlesView";
 
-function CardODS({ item }) {
+function CardArticles({ data }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDescription = () => {
     setIsExpanded(!isExpanded);
   };
-
+  const hanldeOpenUrl = () => {
+    window.open(data.url, "_blank");
+  };
   return (
     <>
-      <CardODSView
-        item={item}
+      <CardArticlesView
+        item={data}
         toggleDescription={toggleDescription}
         isExpanded={isExpanded}
+        hanldeOpenUrl={hanldeOpenUrl}
       />
     </>
   );
 }
 
-export default CardODS;
+export default CardArticles;

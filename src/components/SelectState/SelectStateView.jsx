@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-function SelectStateView({ label, estados, state, handleStateChange }) {
+function SelectStateView({ label, estados, state, handleStateChange, index }) {
   return (
     <>
       <div className="mb-3">
@@ -11,7 +11,7 @@ function SelectStateView({ label, estados, state, handleStateChange }) {
         <Select
           placeholder="--"
           options={estados}
-          defaultValue={state}
+          value={estados[index]}
           onChange={handleStateChange}
           isSearchable={true}
         />

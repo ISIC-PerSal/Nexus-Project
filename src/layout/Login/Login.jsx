@@ -22,7 +22,7 @@ function Login() {
     if (email.trim() != "" && password != "") {
       const body = {
         email: email,
-        password: password,
+        password: password, 
       };
       try {
         const data = await fetchLogin(body);

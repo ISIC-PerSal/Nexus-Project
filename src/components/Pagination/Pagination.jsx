@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import PaginationView from "./PaginationView";
 import NoDataView from "../NoData/NoDataView";
 import LoadingView from "../Loading/LoadingView";
-import { components } from "react-select";
 
 function Pagination({ data, Component }) {
   const [loading, setLoading] = useState(true);

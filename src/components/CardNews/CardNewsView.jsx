@@ -1,7 +1,7 @@
 import React from "react";
 import CarruselFade from "../CarruselFade/CarruselFade";
 
-function CardNewsView({ item, statusIcon, handleToFeedContent }) {
+function CardNewsView({ item, statusIcon, handleToFeedContent, title }) {
   const dateSplit = item.created_at.split(" ")[0];
   const dateArray = dateSplit.split("-");
   const date = dateArray[2] + "/" + dateArray[1] + "/" + dateArray[0];
@@ -77,6 +77,11 @@ function CardNewsView({ item, statusIcon, handleToFeedContent }) {
             <span className="ms-1">{time}</span>
           </div>
         </span>
+        {title == true ? (
+          <div className="fw-bold">{item.project_name}</div>
+        ) : (
+          ""
+        )}
         <div
           className="card-text truncated-text"
           dangerouslySetInnerHTML={{

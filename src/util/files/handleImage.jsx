@@ -1,50 +1,67 @@
-// imageHandlers.js
 import Swal from "sweetalert2";
 
 const API_NEXUS_PROJECT = import.meta.env.VITE_API_NEXUS_PROJECT_DATABASE;
-const url = `${API_NEXUS_PROJECT}/files/imageUpload.php`;
-
+const url = `${API_NEXUS_PROJECT}/files/imageUpload.php`; 
 export const handleImageUpload = (e, setSelectedFile) => {
   const file = e.target.files[0];
-  if (file && file.type === "image/jpeg") {
+
+  if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
     setSelectedFile(file);
   } else {
     Swal.fire({
-      title: "Extensión del archivo",
-      text: "Por favor, sube una imagen en formato JPG.",
+      title: "Formato no válido",
+      text: "Por favor, sube una imagen en formato JPG o PNG.",
       icon: "error",
     });
-    e.target.value = "";
+    e.target.value = ""; 
   }
 };
 
 export const handleUpload = async (selectedFile, setImageURL) => {
   if (!selectedFile) {
-    return;
+    Swal.fire({
+      title: "Error",
+      text: "No has seleccionado ninguna imagen.",
+      icon: "warning",
+    });
+    return null;
   }
 
   const formData = new FormData();
   formData.append("image", selectedFile);
 
   try {
+    // console.log("Enviando imagen al servidor:", formData);
     const response = await fetch(url, {
       method: "POST",
       body: formData,
     });
 
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error(`Error en la subida (${response.status})`);
     }
 
     const data = await response.json();
-    console.log(data);
+    //console.log("Respuesta del servidor:", data);
 
     if (data.url) {
       setImageURL(data.url);
+      return data.url; 
     } else {
-      console.error("No URL returned from server");
+      Swal.fire({
+        title: "Error en la subida",
+        text: "El servidor no devolvió una URL válida.",
+        icon: "error",
+      });
+      return null;
     }
   } catch (error) {
     console.error("Error al subir la imagen:", error);
+    Swal.fire({
+      title: "Error de conexión",
+      text: "No se pudo conectar con el servidor. Intenta de nuevo.",
+      icon: "error",
+    });
+    return null;
   }
 };

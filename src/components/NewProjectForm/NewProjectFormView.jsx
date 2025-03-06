@@ -39,7 +39,6 @@ function NewProjectFormView({
 }) {
   const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
   const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
-
   return (
     <>
       <main className="py-3 bg-img">
@@ -146,13 +145,25 @@ function NewProjectFormView({
                 {`${handleLanguage("descriptiveImg")}`}{" "}
                 <i>{` (${handleLanguage("optional")})`}</i>
               </label>
-              <input
-                type="file"
-                className="form-control"
-                id="img-proyecto"
-                onChange={(e) => handleImageUpload(e, setSelectedFile)}
-                ref={fileInputRef}
-              ></input>
+              <div className="d-flex">
+                <input
+                  type="file"
+                  className="form-control me-3"
+                  id="img-proyecto"
+                  onChange={(e) => handleImageUpload(e, setSelectedFile)}
+                  ref={fileInputRef}
+                ></input>
+                <input
+                  type="button"
+                  value="X"
+                  onClick={() => {
+                    setSelectedFile(null);
+                    if (fileInputRef.current) {
+                      fileInputRef.current.value = ""; 
+                    }
+                  }}
+                />
+              </div>
             </div>
             <InputForm
               label={
@@ -174,7 +185,7 @@ function NewProjectFormView({
             <InputForm
               label={handleLanguage("numVolunteers")}
               type={"number"}
-              value={volunteers}
+              value={dataForm.volunteers}
               getValue={(value) => setVolunteers(value)}
               maxLength={5}
               showOperators={true}
@@ -195,31 +206,50 @@ function NewProjectFormView({
             </div>
             <SelectForm
               label={handleLanguage("projectType")}
+              value={dataForm.projectType}
               getValue={(value) => handleChangeDataForm(value, "projectType")}
               options={handleLanguage("projectArray")}
             />
-            <div className="mb-3">
-              <div className="form-check">
-                <label
-                  className="form-check-label text-body-secondary"
-                  htmlFor="checkDonations"
-                >
-                  {handleLanguage("checkDonation")}
-                </label>
-                <Tooltip title={donacion}>
-                  <HelpCenterIcon />
-                </Tooltip>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="checkDonations"
-                  checked={donation}
-                  onChange={(e) => setDonation(e.target.checked)}
-                ></input>
-              </div>
-            </div>
+            {sessionStorage.getItem("type") == "Juvenil" ? (
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
+                consequuntur, magni corrupti commodi inventore, quod provident
+                repellat repudiandae dolor odit quibusdam quae beatae labore
+                rerum blanditiis velit, nulla placeat? Maiores!
+              </p>
+            ) : (
+              ""
+            )}
+            {sessionStorage.getItem("type") == "General" ? (
+              <>
+                <div className="mb-3">
+                  <div className="form-check">
+                    <label
+                      className="form-check-label text-body-secondary"
+                      htmlFor="checkDonations"
+                    >
+                      {handleLanguage("checkDonation")}
+                    </label>
+                    <Tooltip title={donacion}>
+                      <HelpCenterIcon />
+                    </Tooltip>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="checkDonations"
+                      checked={donation}
+                      onChange={(e) => setDonation(e.target.checked)}
+                    ></input>
+                  </div>
+                </div>
+              </>
+            ) : (
+              ""
+            )}
             <div
-              className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
+              className={`${
+                sessionStorage.getItem("type") == "General" ? "mb-3 mx-5" : ""
+              } ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
                 label={handleLanguage("rfc")}
@@ -232,26 +262,34 @@ function NewProjectFormView({
                 tooltip={true}
                 tooltipText={longText}
               />
-              <div className="form-check" style={{ marginTop: "-1rem" }}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={checkRfc}
-                  onChange={(e) =>
-                    handleCheckboxRfcChangeCheck(e.target.checked)
-                  }
-                  id="checkRfc"
-                ></input>
-                <label
-                  className="form-check-label text-body-secondary"
-                  htmlFor="checkRfc"
-                >
-                  {handleLanguage("checkRfc")}
-                </label>
-              </div>
+              {sessionStorage.getItem("type") == "General" ? (
+                <>
+                  <div className="form-check" style={{ marginTop: "-1rem" }}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={checkRfc}
+                      onChange={(e) =>
+                        handleCheckboxRfcChangeCheck(e.target.checked)
+                      }
+                      id="checkRfc"
+                    ></input>
+                    <label
+                      className="form-check-label text-body-secondary"
+                      htmlFor="checkRfc"
+                    >
+                      {handleLanguage("checkRfc")}
+                    </label>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
             <div
-              className={`mb-3 mx-5 ${donation == true ? "show" : "no-show"}`}
+              className={`${
+                sessionStorage.getItem("type") == "General" ? "mb-3 mx-5" : ""
+              } ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
                 label={handleLanguage("clabe")}
@@ -264,23 +302,29 @@ function NewProjectFormView({
                 tooltip={true}
                 tooltipText={longText}
               />
-              <div className="form-check" style={{ marginTop: "-1rem" }}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={checkClabe}
-                  onChange={(e) =>
-                    handleCheckboxClabeChangeCheck(e.target.checked)
-                  }
-                  id="checkClabe"
-                ></input>
-                <label
-                  className="form-check-label text-body-secondary"
-                  htmlFor="checkClabe"
-                >
-                  {handleLanguage("checkClabe")}
-                </label>
-              </div>
+              {sessionStorage.getItem("type") == "General" ? (
+                <>
+                  <div className="form-check" style={{ marginTop: "-1rem" }}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={checkClabe}
+                      onChange={(e) =>
+                        handleCheckboxClabeChangeCheck(e.target.checked)
+                      }
+                      id="checkClabe"
+                    ></input>
+                    <label
+                      className="form-check-label text-body-secondary"
+                      htmlFor="checkClabe"
+                    >
+                      {handleLanguage("checkClabe")}
+                    </label>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
             <SelectCountry
               label={handleLanguage("country")}

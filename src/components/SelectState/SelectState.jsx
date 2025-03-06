@@ -25,6 +25,12 @@ import restructureSelect from "../../util/data/restructureSelect";
 
 function SelectState({ label, state, setState, country }) {
   const [estadosArray, setEstadosArray] = useState([]);
+  const [stateValue, setStateValue] = useState("")
+  const [indexValue, setindexValue] = useState(-1)
+  useEffect(() => {
+    setStateValue(state)
+  }, [state])
+  
 
   const countryArray = [
     { Pais: "Argentina", Estados: Argentina },
@@ -62,6 +68,12 @@ function SelectState({ label, state, setState, country }) {
     setEstadosArray(restructureSelect(estados));
   }, [country]);
 
+  useEffect(() => {
+    console.log(stateValue);
+    const index = estadosArray.findIndex((item) => item.value == stateValue);
+    setindexValue(index)
+  }, [estadosArray]);
+
   return (
     <>
       <SelectStateView
@@ -70,6 +82,7 @@ function SelectState({ label, state, setState, country }) {
         state={state}
         handleStateChange={handleStateChange}
         key={country}
+        index={indexValue}
       />
     </>
   );

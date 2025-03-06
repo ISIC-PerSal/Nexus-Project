@@ -15,7 +15,8 @@ import { data } from "jquery";
 function NewProjectForm({ dataEdit = {} }) {
   const navigate = useNavigate();
   const { language } = useNexusContext();
-  console.log(dataEdit);
+  const [imageUploaded, setImageUploaded] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [dataForm, setDataForm] = useState({
     idUser: sessionStorage.getItem("id_user"),
@@ -76,6 +77,7 @@ function NewProjectForm({ dataEdit = {} }) {
   const defaultEmail = sessionStorage.getItem("email");
   const defaultRfc = sessionStorage.getItem("rfc");
   const defaultClabe = sessionStorage.getItem("clabe");
+  const typeUser = sessionStorage.getItem("type");
 
   const [name, setName] = useState("");
   const [checkName, setCheckName] = useState(false);
@@ -88,6 +90,12 @@ function NewProjectForm({ dataEdit = {} }) {
 
   const [volunteers, setVolunteers] = useState(0);
   const [donation, setDonation] = useState(false);
+
+  useEffect(() => {
+    if (typeUser == "Juvenil") {
+      setDonation(true);
+    }
+  }, [typeUser]);
 
   const [donationVerify, setDonationVerify] = useState(false);
   const [projectTypeVerify, setProjectTypeVerify] = useState(false);
@@ -181,68 +189,117 @@ function NewProjectForm({ dataEdit = {} }) {
       });
     }
   };
+
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
+
+    Swal.fire({
+      title: "Informacion",
+      html: `
+      Al dar clic en Publicar acepta nuestros <b>Términos y condiciones </b>    
+    `,
+      icon: "info",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Publicar",
+      denyButtonText: `Guadar como borrador`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleSaveConfirmed();
+      } else if (result.isDenied) {
+        handleSaveDraftProject(e);
+      }
+    });
+  };
+
+  const handleSaveConfirmed = async () => {
     handleChangeDataForm("Publicado", "status");
+    setIsLoading(true);
+
+    let uploadedImageURL = "";
 
     if (selectedFile) {
-      handleUpload(selectedFile, setImageURL);
-    } else {
-      setImageURL("");
-    }
-    handleChangeDataForm(imageURL, "image");
-
-    const validationResult = validationDataForm();
-
-    if (validationResult.isValid) {
-      try {
-        const data = await fetchNewProject({
-          ...dataForm,
-          status: "Publicado",
-        });
-        console.log(data);
-        if (data.status == "Done") {
-          Swal.fire({
-            title: "Exito!",
-            text: "Proyecto registrado!",
-            icon: "success",
-            confirmButtonText: "Ver proyecto",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate(`/explore/${data.new_id}`, {
-                state: { statusProject: "Publicado" },
-              });
-            } else {
-              window.location.href = "/new-project";
-            }
-          });
-        } else {
-          Swal.fire({
-            title: "Error!",
-            text: "Ocurrió un error",
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-        }
-      } catch (err) {
+      uploadedImageURL = await handleUpload(selectedFile, setImageURL);
+      if (!uploadedImageURL) {
+        setIsLoading(false);
         Swal.fire({
           title: "Error!",
-          text: "Ocurrió un error",
+          text: "No se pudo subir la imagen. Inténtalo de nuevo.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+        return;
+      }
+    }
+
+    setDataForm((prevState) => {
+      const updatedForm = { ...prevState, image: uploadedImageURL };
+
+      const validationResult = validationDataForm(updatedForm);
+      if (!validationResult.isValid) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: validationResult.errorMessage,
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        setIsLoading(false);
+        return updatedForm;
+      }
+
+      sendProjectToDatabase(updatedForm);
+      return updatedForm;
+    });
+  };
+
+  const sendProjectToDatabase = async (projectData) => {
+    try {
+      const data = await fetchNewProject({
+        ...projectData,
+        status: "Publicado",
+      });
+
+      if (data.status === "Done") {
+        setIsLoading(false);
+
+        Swal.fire({
+          title: "¡Éxito!",
+          text: "Proyecto registrado exitosamente.",
+          icon: "success",
+          confirmButtonText: "Ver proyecto",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate(`/explore/${data.new_id}`, {
+              state: { statusProject: "Publicado" },
+            });
+          }
+        });
+      } else {
+        setIsLoading(false);
+        Swal.fire({
+          title: "Error!",
+          text: "Ocurrió un error al registrar el proyecto.",
           icon: "error",
           confirmButtonText: "OK",
         });
       }
-    } else {
-      setMessageError(validationResult.errorMessage);
+    } catch (err) {
+      setIsLoading(false);
       Swal.fire({
-        position: "top-end",
-        icon: "info",
-        title: validationResult.errorMessage,
-        showConfirmButton: false,
-        timer: 1000,
+        title: "Error!",
+        text: "Ocurrió un error en la conexión con el servidor.",
+        icon: "error",
+        confirmButtonText: "OK",
       });
     }
   };
+
+  useEffect(() => {
+    if (isLoading) {
+      console.log("Cargando...");
+    }
+  }, [isLoading]);
 
   const handleChangeDataForm = (value, name) => {
     setDataForm((prevState) => ({
@@ -434,7 +491,6 @@ function NewProjectForm({ dataEdit = {} }) {
     const cityVerification = dataForm.city !== "";
     const startDateVerification = dataForm.startDate !== "";
     const finishDateVerification = dataForm.finishDate !== "";
-
     switch (true) {
       case !leaderTypeVerification:
         errorMessage = "Seleccione una opción para el tipo de representante";
@@ -471,14 +527,14 @@ function NewProjectForm({ dataEdit = {} }) {
       case !cityVerification:
         errorMessage = "Verifique los datos del municipio";
         break;
-      case dataForm.projectType == handleLanguage("projectArray", 1) ||
-        dataForm.projectType ==
-          handleLanguage("projectArray", 3 && dataForm.zip.trim() == ""):
+      case (dataForm.projectType == handleLanguage("projectArray", 1) ||
+        dataForm.projectType == handleLanguage("projectArray", 3)) &&
+        dataForm.zip.trim() == "":
         errorMessage = "Verifique los datos del código postal";
         break;
-      case dataForm.projectType == handleLanguage("projectArray", 1) ||
-        dataForm.projectType ==
-          handleLanguage("projectArray", 3 && dataForm.address.trim() == ""):
+      case (dataForm.projectType === handleLanguage("projectArray", 1) ||
+        dataForm.projectType === handleLanguage("projectArray", 3)) &&
+        (!dataForm.address || dataForm.address.trim().length === 0):
         errorMessage = "Verifique los datos de la dirección";
         break;
       case !startDateVerification:

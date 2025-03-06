@@ -29,7 +29,6 @@ function ProjectDetails() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
   const [formData, setFormData] = useState({
     leaderType: "",
     name: "",
@@ -146,7 +145,6 @@ function ProjectDetails() {
       </>
     );
   }
-
   const bandera = (item) => {
     return getFlag(item);
   };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter  as Router,
   Routes,
   Route,
   Navigate,
@@ -27,6 +27,7 @@ import FeedContent from "./layout/FeedContent/FeedContent";
 import EditProject from "./layout/EditProject/EditProject";
 import Support from "./layout/Support/Support";
 import Prueba from "./layout/Prueba/Prueba";
+import AboutScience from "./layout/AboutScience/AboutScience";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -84,6 +85,10 @@ function App() {
             <Route
               path="/support"
               element={isLogin ? <Support /> : <Navigate to={"/login"} />}
+            />
+            <Route
+              path="/aboutscience"
+              element={isLogin ? <AboutScience /> : <Navigate to={"/login"} />}
             />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

@@ -7,6 +7,7 @@ function SelectCountryView({
   country,
   countryOptions,
 }) {
+  const index = countryOptions.findIndex((item) => item.value == country);
   return (
     <>
       <div className="mb-3">
@@ -16,7 +17,7 @@ function SelectCountryView({
         <Select
           placeholder="--"
           options={countryOptions}
-          defaultValue={country}
+          value={country ? countryOptions[index] : null}
           onChange={handleCountryChange}
           isSearchable={true}
         />

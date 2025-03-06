@@ -63,7 +63,6 @@ function ProjectFeed() {
     if (permission) {
       fetchData();
     }
-    console.log(permission)
   }, [idProject, permission]);
 
   return (

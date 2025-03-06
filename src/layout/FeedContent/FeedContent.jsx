@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useParams } from "react-router-dom";
 import { getStatusIcon } from "../../util/Icons/getStatusIcon";
 
-function FeedContent() {
+function FeedContent({ dataNews = "" }) {
   const { idProject, feed } = useParams();
   const [dataFeed, setDataFeed] = useState({});
 
@@ -14,7 +14,9 @@ function FeedContent() {
   const getDate = () => {
     const dateSplit = dataFeed.created_at?.split(" ")[0];
     const dateArray = dateSplit?.split("-");
-    return dateArray ? dateArray[2] + "/" + dateArray[1] + "/" + dateArray[0] : "";
+    return dateArray
+      ? dateArray[2] + "/" + dateArray[1] + "/" + dateArray[0]
+      : "";
   };
 
   const getTime = () => {
