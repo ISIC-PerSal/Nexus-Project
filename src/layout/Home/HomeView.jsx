@@ -11,7 +11,6 @@ function HomeView({ data = [] }) {
   );
   const maxItems = dataImage.length >= 5 ? 5 : dataImage.length;
   const images = dataImage.slice(0, maxItems).map((item) => item);
-  console.log(data);
   const Navidate = useNavigate();
 
   const handleToFeedContent = (id, code) => {
