@@ -4,25 +4,27 @@ import DT from "datatables.net-dt";
 import "datatables.net-select-dt";
 import "datatables.net-responsive-dt";
 import logoDefault from "../../assets/nexus.png";
-import "./ProjectTable.css"
+import "./ProjectTable.css";
 
 DataTable.use(DT);
 function ProjectTableView({
   title = "",
   type = "",
-  dataProject,
+  dataProject = [],
   edit,
   activity,
   explore,
 }) {
   const [tableData, setTableData] = useState([]);
+  console.log(dataProject);
 
   useEffect(() => {
-    const formattedData = dataProject.map((project) => [
-      logoProject(project.image),
-      project.project,
-      project.project_type,
-      `<div class="dropdown">
+    if (dataProject && dataProject.length > 0) {
+      const formattedData = dataProject.map((project) => [
+        logoProject(project.image),
+        project.project,
+        project.project_type,
+        `<div class="dropdown">
   <button
     class="btn bg-oficial text-white dropdown-toggle"
     type="button"
@@ -71,9 +73,10 @@ function ProjectTableView({
   </ul>
 </div>
 `,
-    ]);
+      ]);
 
-    setTableData(formattedData);
+      setTableData(formattedData);
+    }
   }, [dataProject]);
 
   const logoProject = (imageUrl) => {
