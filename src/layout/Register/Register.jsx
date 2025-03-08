@@ -63,7 +63,7 @@ function Register() {
         } else {
           Swal.fire({
             title: "Error!",
-            text: "Ocurrio un error",
+            text: data.message,
             icon: "error",
             confirmButtonText: "OK",
           });

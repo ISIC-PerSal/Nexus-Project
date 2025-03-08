@@ -4,18 +4,19 @@ import DT from "datatables.net-dt";
 import "datatables.net-select-dt";
 import "datatables.net-responsive-dt";
 import logoDefault from "../../assets/nexus.png";
-import "./ProjectTable.css"
+import "./ProjectTable.css";
 
 DataTable.use(DT);
 function ProjectTableView({
   title = "",
   type = "",
-  dataProject,
+  dataProject = [],
   edit,
   activity,
   explore,
 }) {
   const [tableData, setTableData] = useState([]);
+  console.log(dataProject);
 
   useEffect(() => {
     if (dataProject && dataProject.length > 0) {
