@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SelectStateView from "./SelectStateView";
 
+
 import Argentina from "../../util/location/Argentina";
 import Mexico from "../../util/location/Mexico";
 import Belice from "../../util/location/Belice";
@@ -23,13 +24,15 @@ import Uruguay from "../../util/location/Uruguay";
 import Venezuela from "../../util/location/Venezuela";
 import restructureSelect from "../../util/data/restructureSelect";
 
+
 function SelectState({ label, state, setState, country }) {
   const [estadosArray, setEstadosArray] = useState([]);
   const [stateValue, setStateValue] = useState("")
-  const [indexValue, setindexValue] = useState(-1)
+  const [indexValue, setIndexValue] = useState(-1)
   useEffect(() => {
     setStateValue(state)
   }, [state]);
+
 
   const countryArray = [
     { Pais: "Argentina", Estados: Argentina },
@@ -55,12 +58,14 @@ function SelectState({ label, state, setState, country }) {
     { Pais: "Todos", Estados: [] },
   ];
 
+
   const handleStateChange = (selectedState) => {
     const selectedStateName = selectedState?.label?.props?.children[1] || "";
     setState(selectedStateName);
-    const indexEstado= estados.findIndex((item) => item.value == state);
-    setIndex(indexEstado);
+    const indexEstado= estadosArray.findIndex((item) => item.value == state);
+    setIndexValue(indexEstado);
   };
+
 
   useEffect(() => {
     setState("");
@@ -69,10 +74,12 @@ function SelectState({ label, state, setState, country }) {
     setEstadosArray(restructureSelect(estados));
   }, [country]);
 
+
   useEffect(() => {
     const index = estadosArray.findIndex((item) => item.value == stateValue);
-    setindexValue(index)
+    setIndexValue(index)
   }, [estadosArray]);
+
 
   return (
     <>
@@ -88,4 +95,8 @@ function SelectState({ label, state, setState, country }) {
   );
 }
 
+
 export default SelectState;
+
+
+

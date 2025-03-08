@@ -18,11 +18,12 @@ function ProjectTableView({
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
-    const formattedData = dataProject.map((project) => [
-      logoProject(project.image),
-      project.project,
-      project.project_type,
-      `<div class="dropdown">
+    if (dataProject && dataProject.length > 0) {
+      const formattedData = dataProject.map((project) => [
+        logoProject(project.image),
+        project.project,
+        project.project_type,
+        `<div class="dropdown">
   <button
     class="btn bg-oficial text-white dropdown-toggle"
     type="button"
@@ -33,9 +34,8 @@ function ProjectTableView({
     Herramientas
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  ${
-    type == "Propio"
-      ? `<li>
+  ${type == "Propio"
+          ? `<li>
       <button
         class="btn-edit btn dropdown-item"
         data-id="${project.id_project_pk}"
@@ -44,11 +44,10 @@ function ProjectTableView({
         Editar
       </button>
     </li>`
-      : ""
-  }
-  ${
-    type == "Propio"
-      ? `<li>
+          : ""
+        }
+  ${type == "Propio"
+          ? `<li>
       <button
         class="btn-activity btn dropdown-item"
         data-id="${project.id_project_pk}"
@@ -57,8 +56,8 @@ function ProjectTableView({
         Nueva actividad
       </button>
     </li>`
-      : ""
-  }
+          : ""
+        }
     <li>
       <button
         class="btn-explore btn dropdown-item"
@@ -71,9 +70,10 @@ function ProjectTableView({
   </ul>
 </div>
 `,
-    ]);
+      ]);
 
-    setTableData(formattedData);
+      setTableData(formattedData);
+    }
   }, [dataProject]);
 
   const logoProject = (imageUrl) => {
