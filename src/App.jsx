@@ -28,6 +28,7 @@ import EditProject from "./layout/EditProject/EditProject";
 import Support from "./layout/Support/Support";
 import Prueba from "./layout/Prueba/Prueba";
 import AboutScience from "./components/AboutScience/AboutScience";
+import TermsAndConditionsView from "./layout/Terms&Conditions/TermsAndConditions ";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -95,6 +96,10 @@ function App() {
             <Route
               path="/home"
               element={isLogin ? <Home /> : <Navigate to={"/"} />}
+            />
+            <Route
+              path="/privacy_policies"
+              element={isLogin ? <TermsAndConditionsView /> : <Navigate to={"/login"} />}
             />
             <Route path="*" element={<ErrorView />} />
           </Routes>

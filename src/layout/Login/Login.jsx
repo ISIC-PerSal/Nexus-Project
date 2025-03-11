@@ -48,6 +48,8 @@ function Login() {
           sessionStorage.setItem("rfc", data.rfc);
           sessionStorage.setItem("clabe", data.clabe);
           sessionStorage.setItem("type", data.type);
+          sessionStorage.setItem("tk1", data.tk1);
+          sessionStorage.setItem("tk2", data.tk2);
           const dataProjects = await fetchGetProjectsJoined(data.id_user);
           if (dataProjects) {
             sessionStorage.setItem(
@@ -59,7 +61,7 @@ function Login() {
         } else {
           Swal.fire({
             title: "Error!",
-            text: "Revise sus credenciales",
+            text: data.message,
             icon: "error",
             confirmButtonText: "OK",
           });

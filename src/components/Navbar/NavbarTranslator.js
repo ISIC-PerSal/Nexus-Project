@@ -2,7 +2,7 @@ const NavbarTranslator = {
     spanish: {
         news: "Noticias",
         directory: "Directorio",
-        register_p: "Registar Proyecto",
+        register_p: "Registrar Proyecto",
         explore: "Explorar proyectos",
         alliance: "Alianza juvenil e infantil",
         conscience: "Con ConCiencia",

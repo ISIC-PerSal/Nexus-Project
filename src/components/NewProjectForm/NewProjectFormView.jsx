@@ -9,7 +9,6 @@ import InputForm from "../FormControl/InputForm/InputForm";
 import SelectForm from "../FormControl/SelectForm/SelectForm";
 import "./NewProjectForm.css";
 
-
 function NewProjectFormView({
   checkName,
   checkEmail,
@@ -145,13 +144,25 @@ function NewProjectFormView({
                 {`${handleLanguage("descriptiveImg")}`}{" "}
                 <i>{` (${handleLanguage("optional")})`}</i>
               </label>
-              <input
-                type="file"
-                className="form-control"
-                id="img-proyecto"
-                onChange={(e) => handleImageUpload(e, setSelectedFile)}
-                ref={fileInputRef}
-              ></input>
+              <div className="d-flex">
+                <input
+                  type="file"
+                  className="form-control me-3"
+                  id="img-proyecto"
+                  onChange={(e) => handleImageUpload(e, setSelectedFile)}
+                  ref={fileInputRef}
+                ></input>
+                <input
+                  type="button"
+                  value="X"
+                  onClick={() => {
+                    setSelectedFile(null);
+                    if (fileInputRef.current) {
+                      fileInputRef.current.value = "";
+                    }
+                  }}
+                />
+              </div>
             </div>
             <InputForm
               label={
@@ -208,34 +219,40 @@ function NewProjectFormView({
             ) : (
               ""
             )}
-            {
-              sessionStorage.getItem("Type")=="General"?(
-                <>
+            {sessionStorage.getItem("type") === "General" ||
+            !sessionStorage.getItem("type") ? (
+              <>
                 <div className="mb-3">
-              <div className="form-check">
-                <label
-                  className="form-check-label text-body-secondary"
-                  htmlFor="checkDonations"
-                >
-                  {handleLanguage("checkDonation")}
-                </label>
-                <Tooltip title={handleLanguage("donacion")}>
-                  <HelpCenterIcon />
-                </Tooltip>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="checkDonations"
-                  checked={donation}
-                  onChange={(e) => setDonation(e.target.checked)}
-                ></input>
-              </div>
-            </div>
-                </>
-              ):""
-            }
+                  <div className="form-check">
+                    <label
+                      className="form-check-label text-body-secondary"
+                      htmlFor="checkDonations"
+                    >
+                      {handleLanguage("checkDonation")}
+                    </label>
+                    <Tooltip title={handleLanguage("donacion")}>
+                      <HelpCenterIcon />
+                    </Tooltip>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id="checkDonations"
+                      checked={donation}
+                      onChange={(e) => setDonation(e.target.checked)}
+                    ></input>
+                  </div>
+                </div>
+              </>
+            ) : (
+              ""
+            )}
             <div
-              className={`${sessionStorage.getItem("Type")=="General"? "mb-3 mx-5":""} ${donation == true ? "show" : "no-show"}`}
+              className={`${
+                sessionStorage.getItem("type") === "General" ||
+                !sessionStorage.getItem("type")
+                  ? "mb-3 mx-5"
+                  : ""
+              } ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
                 label={handleLanguage("rfc")}
@@ -248,33 +265,38 @@ function NewProjectFormView({
                 tooltip={true}
                 tooltipText={handleLanguage("longText")}
               />
-              {
-                sessionStorage.getItem("Type")=="General"?(
-                  <>
+              {sessionStorage.getItem("type") === "General" ||
+              !sessionStorage.getItem("type") ? (
+                <>
                   <div className="form-check" style={{ marginTop: "-1rem" }}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={checkRfc}
-                  onChange={(e) =>
-                    handleCheckboxRfcChangeCheck(e.target.checked)
-                  }
-                  id="checkRfc"
-                ></input>
-                <label
-                  className="form-check-label text-body-secondary"
-                  htmlFor="checkRfc"
-                >
-                  {handleLanguage("checkRfc")}
-                </label>
-              </div>
-                  </>
-                ):""
-              }
-              
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={checkRfc}
+                      onChange={(e) =>
+                        handleCheckboxRfcChangeCheck(e.target.checked)
+                      }
+                      id="checkRfc"
+                    ></input>
+                    <label
+                      className="form-check-label text-body-secondary"
+                      htmlFor="checkRfc"
+                    >
+                      {handleLanguage("checkRfc")}
+                    </label>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
             <div
-              className={`${sessionStorage.getItem("Type")=="General"? "mb-3 mx-5":""} ${donation == true ? "show" : "no-show"}`}
+              className={`${
+                sessionStorage.getItem("type") === "General" ||
+                !sessionStorage.getItem("type")
+                  ? "mb-3 mx-5"
+                  : ""
+              } ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
                 label={handleLanguage("clabe")}
@@ -287,32 +309,32 @@ function NewProjectFormView({
                 tooltip={true}
                 tooltipText={handleLanguage("longText")}
               />
-              {
-                sessionStorage.getItem("Type")=="General"?(
-                  <>
+              {sessionStorage.getItem("type") === "General" ||
+              !sessionStorage.getItem("type") ? (
+                <>
                   <div className="form-check" style={{ marginTop: "-1rem" }}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={checkClabe}
-                  onChange={(e) =>
-                    handleCheckboxClabeChangeCheck(e.target.checked)
-                  }
-                  id="checkClabe"
-                ></input>
-                <label
-                  className="form-check-label text-body-secondary"
-                  htmlFor="checkClabe"
-                >
-                  {handleLanguage("checkClabe")}
-                </label>
-              </div>
-                  </>
-                ):""
-              }
-              
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={checkClabe}
+                      onChange={(e) =>
+                        handleCheckboxClabeChangeCheck(e.target.checked)
+                      }
+                      id="checkClabe"
+                    ></input>
+                    <label
+                      className="form-check-label text-body-secondary"
+                      htmlFor="checkClabe"
+                    >
+                      {handleLanguage("checkClabe")}
+                    </label>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
-            
+
             <SelectCountry
               label={handleLanguage("country")}
               country={dataForm.country}
@@ -382,7 +404,7 @@ function NewProjectFormView({
                 }
               ></input>
             </div>
-            <div className="mb-3">
+            <div className={"mb-3"}>
               <label htmlFor="fecha-inscripcion" className="form-label">
                 {handleLanguage("finishDate")}
               </label>
@@ -392,11 +414,14 @@ function NewProjectFormView({
                 id="fecha-inscripcion"
                 rows="2"
                 value={dataForm.finishDate}
+                max={dataForm.startDate}
                 onChange={(e) =>
                   handleChangeDataForm(e.target.value, "finishDate")
                 }
+                disabled={!dataForm.startDate}
               ></input>
             </div>
+
             <div className="mb-3">
               <label htmlFor="ods" className="form-label">
                 {handleLanguage("ods")}
@@ -429,7 +454,8 @@ function NewProjectFormView({
                 onClick={handleSaveNewProject}
                 type="button"
                 className={`${
-                  sessionStorage.getItem("type") === "General" || !sessionStorage.getItem("type")
+                  sessionStorage.getItem("type") === "General" ||
+                  !sessionStorage.getItem("type")
                     ? "bg-oficial"
                     : "bg-oficial-juvenil"
                 } btn text-white w-100`}
@@ -453,8 +479,4 @@ function NewProjectFormView({
   );
 }
 
-
 export default NewProjectFormView;
-
-
-

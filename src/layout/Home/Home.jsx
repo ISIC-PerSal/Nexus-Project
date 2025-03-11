@@ -36,7 +36,6 @@ function Home() {
       };
       try {
         const data = await fetchGetNewsByUser(body);
-        console.log(data)
         setDataNews(data);
       } catch (error) {
         console.error("Error fetching news:", error);

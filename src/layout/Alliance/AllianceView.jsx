@@ -16,6 +16,31 @@ function AllianceView({handleLanguage}) {
                         {handleLanguage("description")}
                         </p>
                     </div>
+
+                    <div>
+                        <h3>
+                            {handleLanguage("Q1")}
+                        </h3>
+                        <p>
+                            {handleLanguage("desc2")}
+                        </p>
+                        <h3>{handleLanguage("Q2")}</h3>
+                        <p>
+                            {handleLanguage("desc3")}
+                            <br></br>
+                            <br></br>
+                            <ul>
+                                <li>
+                                    {handleLanguage("desc3_1")}
+                                </li>
+                                <br></br>
+                                <li>
+                                    {handleLanguage("desc3_2")}
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+
                     <div className="d-flex justify-content-center mb-3 pt-2">
                         <img
                             src={childrensSection_juve_2}

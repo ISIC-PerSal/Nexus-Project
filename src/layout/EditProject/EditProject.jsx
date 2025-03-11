@@ -38,7 +38,7 @@ function EditProject() {
           email: data.email,
           finishDate: data.finish_date,
           idUser: data.id_user_fk,
-          image: data.image,
+          image: '',
           leaderName: data.name || "",
           leaderType: data.leader_type || "",
           ods1: data.ods1 === 1,
@@ -77,7 +77,7 @@ function EditProject() {
     };
 
     getDataProject();
-    sessionStorage.setItem("state", dataEdit.state)
+    sessionStorage.setItem("state", dataEdit.state);
   }, [idProject, statusProject]);
 
   return (
@@ -85,7 +85,7 @@ function EditProject() {
       {dataEdit && dataEdit.project != "" ? (
         <>
           <Navbar />
-          <NewProjectForm dataEdit={dataEdit} />
+          <NewProjectForm dataEdit={dataEdit} idProject={idProject} />
         </>
       ) : (
         <ErrorView />
