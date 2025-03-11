@@ -59,7 +59,7 @@ const paraguay_cities = [
       "Fulgencio Yegros",
       "General Higinio Morínigo",
       "Maciel",
-      "San Juan Nepomuceno",
+      "San Juan Nepomuceno", 
       "Tavai",
       "Yuty",
     ],
