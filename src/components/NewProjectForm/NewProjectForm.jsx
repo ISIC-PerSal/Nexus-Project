@@ -370,11 +370,14 @@ function NewProjectForm({ dataEdit = {}, idProject = "" }) {
   };
 
   const handleLanguage = (field, position) => {
-    const item = NewProjectFormTranslator[language];
+    const type = sessionStorage.getItem("type");
+    const itemLanguaje = NewProjectFormTranslator[language];
+    const item = itemLanguaje[type];
     if (position == undefined) {
       return item[field];
     } else {
       const positionValue = item[field];
+      console.log(positionValue);
       return positionValue[position];
     }
   };

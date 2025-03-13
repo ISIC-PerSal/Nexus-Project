@@ -94,8 +94,18 @@ function RegisterView({
             </button>
           </form>
           <a className="text-dark" href="/login">{handleLanguage("login")}</a>
+          <div className="verification-container">
+          <h2>Por favor, verifica tu correo</h2>
+          <p>Te hemos enviado un código de verificación a tu correo.</p>
+          <input
+            type="text"
+            placeholder="Ingresa el código de verificación"
+          />
+          <button >Verificar Código</button>
+        </div>
         </main>
       </div>
+      
     </>
   );
 }

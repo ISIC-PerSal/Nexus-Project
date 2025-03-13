@@ -29,6 +29,8 @@ import Support from "./layout/Support/Support";
 import Prueba from "./layout/Prueba/Prueba";
 import AboutScience from "./components/AboutScience/AboutScience";
 import TermsAndConditionsView from "./layout/Terms&Conditions/TermsAndConditions ";
+import Tutorial from "./layout/Tutorials/Tutorial"
+import Tutorials from "./layout/Tutorials/Tutorial";
 
 function App() {
   const isLogin = isAuth() != null;
@@ -97,6 +99,7 @@ function App() {
               path="/home"
               element={isLogin ? <Home /> : <Navigate to={"/"} />}
             />
+            <Route path="/tutorials" element={<Tutorials />} />
             <Route
               path="/privacy_policies"
               element={isLogin ? <TermsAndConditionsView /> : <Navigate to={"/login"} />}

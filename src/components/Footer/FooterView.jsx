@@ -46,7 +46,7 @@ function FooterView({type = "General", handleLanguage}) {
           <ul>
             <li className="fw-bold">{handleLanguage("colum_3")}</li>
             <li>
-              <a href="">{handleLanguage("text_3_1")}</a>
+              <a href="/tutorials">{handleLanguage("text_3_1")}</a>
             </li>
           </ul>
         </div>

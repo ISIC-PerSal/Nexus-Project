@@ -124,6 +124,7 @@ function SelectCity({ label, city, setCity, country, state }) {
   }
 
   useEffect(() => {
+    setCities([])
     const citiesOptions = filterCities(country, state);
     const cities =
       citiesOptions.map((ciudad) => ({
@@ -131,7 +132,7 @@ function SelectCity({ label, city, setCity, country, state }) {
         value: ciudad,
       })) || [];
     setCities(cities);
-  }, [state]);
+  }, [state, country]);
 
   const handleCityChange = (selectedCity) => {
     setCity(selectedCity.value);
