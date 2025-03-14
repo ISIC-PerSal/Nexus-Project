@@ -5,7 +5,7 @@ function Tutorials() {
     return (
         <>
             <Navbar />
-            <div className="container w-75 mt-3 p-3 mb-3 border rounded border-secondary-subtle bg-gral">
+            <div className="container w-75 mgit t-3 p-3 mb-3 border rounded border-secondary-subtle bg-gral">
                 <h1>Tutoriales</h1>
                 <div className="accordion" id="accordionExample">
                     <div className="accordion-item">

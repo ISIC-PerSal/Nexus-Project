@@ -28,11 +28,11 @@ import restructureSelect from "../../util/data/restructureSelect";
 function SelectState({ label, state, setState, country }) {
   const [estadosArray, setEstadosArray] = useState([]);
   const [stateValue, setStateValue] = useState("")
-  const [indexValue, setIndexValue] = useState(-1)
+  const [indexValue, setindexValue] = useState(-1)
   useEffect(() => {
     setStateValue(state)
-  }, [state]);
-
+  }, [state])
+  
 
   const countryArray = [
     { Pais: "Argentina", Estados: Argentina },
@@ -74,12 +74,11 @@ function SelectState({ label, state, setState, country }) {
     setEstadosArray(restructureSelect(estados));
   }, [country]);
 
-
   useEffect(() => {
+    console.log(stateValue);
     const index = estadosArray.findIndex((item) => item.value == stateValue);
-    setIndexValue(index)
+    setindexValue(index)
   }, [estadosArray]);
-
 
   return (
     <>

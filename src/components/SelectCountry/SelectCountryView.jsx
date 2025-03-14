@@ -17,7 +17,6 @@ function SelectCountryView({
         <Select
           placeholder="--"
           options={countryOptions}
-          defaultValue={country}
           value={country ? countryOptions[index] : null}
           onChange={handleCountryChange}
           isSearchable={true}

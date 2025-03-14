@@ -16,7 +16,8 @@ import fetchUpdateProject from "../../util/project/fetchUpdateProject";
 function NewProjectForm({ dataEdit = {}, idProject = "" }) {
   const navigate = useNavigate();
   const { language } = useNexusContext();
-  const [imageUploaded, setImageUploaded] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [dataForm, setDataForm] = useState({
     idUser: sessionStorage.getItem("id_user"),
@@ -192,14 +193,105 @@ function NewProjectForm({ dataEdit = {}, idProject = "" }) {
 
   const handleSaveNewProject = async (e) => {
     e.preventDefault();
-    const validationResult = validationDataForm();
-    if (false) {
+
+    Swal.fire({
+      title: "Informacion",
+      html: `
+      Al dar clic en Publicar acepta nuestros <b>Términos y condiciones </b>    
+    `,
+      icon: "info",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Publicar",
+      denyButtonText: `Guadar como borrador`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleSaveConfirmed();
+      } else if (result.isDenied) {
+        handleSaveDraftProject(e);
+      }
+    });
+  };
+
+  const handleSaveConfirmed = async () => {
+    handleChangeDataForm("Publicado", "status");
+    setIsLoading(true);
+
+    let uploadedImageURL = "";
+
+    if (selectedFile) {
+      uploadedImageURL = await handleUpload(selectedFile, setImageURL);
+      if (!uploadedImageURL) {
+        setIsLoading(false);
+        Swal.fire({
+          title: "Error!",
+          text: "No se pudo subir la imagen. Inténtalo de nuevo.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+        return;
+      }
+    }
+
+    setDataForm((prevState) => {
+      const updatedForm = { ...prevState, image: uploadedImageURL };
+
+      const validationResult = validationDataForm(updatedForm);
+      if (!validationResult.isValid) {
+        Swal.fire({
+          position: "top-end",
+          icon: "info",
+          title: validationResult.errorMessage,
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        setIsLoading(false);
+        return updatedForm;
+      }
+
+      sendProjectToDatabase(updatedForm);
+      return updatedForm;
+    });
+  };
+
+  const sendProjectToDatabase = async (projectData) => {
+    try {
+      const data = await fetchNewProject({
+        ...projectData,
+        status: "Publicado",
+      });
+
+      if (data.status === "Done") {
+        setIsLoading(false);
+
+        Swal.fire({
+          title: "¡Éxito!",
+          text: "Proyecto registrado exitosamente.",
+          icon: "success",
+          confirmButtonText: "Ver proyecto",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate(`/explore/${data.new_id}`, {
+              state: { statusProject: "Publicado" },
+            });
+          }
+        });
+      } else {
+        setIsLoading(false);
+        Swal.fire({
+          title: "Error!",
+          text: "Ocurrió un error al registrar el proyecto.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    } catch (err) {
+      setIsLoading(false);
       Swal.fire({
-        position: "top-end",
-        icon: "info",
-        title: validationResult.errorMessage,
-        showConfirmButton: false,
-        timer: 1000,
+        title: "Error!",
+        text: "Ocurrió un error en la conexión con el servidor.",
+        icon: "error",
+        confirmButtonText: "OK",
       });
     } else {
       Swal.fire({
@@ -361,6 +453,12 @@ function NewProjectForm({ dataEdit = {}, idProject = "" }) {
       });
     }
   };
+
+  useEffect(() => {
+    if (isLoading) {
+      console.log("Cargando...");
+    }
+  }, [isLoading]);
 
   const handleChangeDataForm = (value, name) => {
     setDataForm((prevState) => ({

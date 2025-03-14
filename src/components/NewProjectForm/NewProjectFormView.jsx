@@ -37,6 +37,8 @@ function NewProjectFormView({
   handleInputClabeChange,
   odsArray,
 }) {
+  const longText = `¿Por qué preguntamos esto?: Para tener un seguimiento seguro de donativos financieros en temas legales, solicitamos este tipo de datos a nuestros usuarios. No se comparten con nadie más.`;
+  const donacion = `Al autorizar la recepción de donativos, permites al voluntariado contactarte para contribuir en especie o financieramente a tu causa. Datos como tu CLABE serán visibles para ellos.`;
   return (
     <>
       <main className="py-3 bg-img">
@@ -157,7 +159,7 @@ function NewProjectFormView({
                   onClick={() => {
                     setSelectedFile(null);
                     if (fileInputRef.current) {
-                      fileInputRef.current.value = "";
+                      fileInputRef.current.value = ""; 
                     }
                   }}
                 />
@@ -218,8 +220,7 @@ function NewProjectFormView({
             ) : (
               ""
             )}
-            {sessionStorage.getItem("type") === "General" ||
-            !sessionStorage.getItem("type") ? (
+            {sessionStorage.getItem("type") == "General" ? (
               <>
                 <div className="mb-3">
                   <div className="form-check">
@@ -229,7 +230,7 @@ function NewProjectFormView({
                     >
                       {handleLanguage("checkDonation")}
                     </label>
-                    <Tooltip title={handleLanguage("donacion")}>
+                    <Tooltip title={donacion}>
                       <HelpCenterIcon />
                     </Tooltip>
                     <input
@@ -247,10 +248,7 @@ function NewProjectFormView({
             )}
             <div
               className={`${
-                sessionStorage.getItem("type") === "General" ||
-                !sessionStorage.getItem("type")
-                  ? "mb-3 mx-5"
-                  : ""
+                sessionStorage.getItem("type") == "General" ? "mb-3 mx-5" : ""
               } ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
@@ -264,8 +262,7 @@ function NewProjectFormView({
                 tooltip={true}
                 tooltipText={handleLanguage("longText")}
               />
-              {sessionStorage.getItem("type") === "General" ||
-              !sessionStorage.getItem("type") ? (
+              {sessionStorage.getItem("type") == "General" ? (
                 <>
                   <div className="form-check" style={{ marginTop: "-1rem" }}>
                     <input
@@ -291,10 +288,7 @@ function NewProjectFormView({
             </div>
             <div
               className={`${
-                sessionStorage.getItem("type") === "General" ||
-                !sessionStorage.getItem("type")
-                  ? "mb-3 mx-5"
-                  : ""
+                sessionStorage.getItem("type") == "General" ? "mb-3 mx-5" : ""
               } ${donation == true ? "show" : "no-show"}`}
             >
               <InputForm
@@ -308,8 +302,7 @@ function NewProjectFormView({
                 tooltip={true}
                 tooltipText={handleLanguage("longText")}
               />
-              {sessionStorage.getItem("type") === "General" ||
-              !sessionStorage.getItem("type") ? (
+              {sessionStorage.getItem("type") == "General" ? (
                 <>
                   <div className="form-check" style={{ marginTop: "-1rem" }}>
                     <input

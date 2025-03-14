@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter  as Router,
   Routes,
   Route,
   Navigate,
@@ -27,10 +27,7 @@ import FeedContent from "./layout/FeedContent/FeedContent";
 import EditProject from "./layout/EditProject/EditProject";
 import Support from "./layout/Support/Support";
 import Prueba from "./layout/Prueba/Prueba";
-import AboutScience from "./components/AboutScience/AboutScience";
-import TermsAndConditionsView from "./layout/Terms&Conditions/TermsAndConditions ";
-import Tutorial from "./layout/Tutorials/Tutorial"
-import Tutorials from "./layout/Tutorials/Tutorial";
+import AboutScience from "./layout/AboutScience/AboutScience";
 
 function App() {
   const isLogin = isAuth() != null;

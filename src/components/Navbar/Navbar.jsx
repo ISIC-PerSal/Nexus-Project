@@ -29,46 +29,46 @@ function Navbar() {
     changeNavbarItem(option);
     switch (option) {
       case "Noticias":
-        window.location.href="/home";
+        window.location.href = "/home";
         break;
       case "Directorio":
-        window.location.href="/directory";
+        window.location.href = "/directory";
         break;
       case "Registrar":
-        window.location.href="/new-project";
+        window.location.href = "/new-project";
         break;
       case "Explorar":
-        window.location.href="/explore";
+        window.location.href = "/explore";
         break;
       case "Alianza":
-        window.location.href="/alliance";
+        window.location.href = "/alliance";
         break;
       case "Acerca":
-        window.location.href="/about";
+        window.location.href = "/about";
         break;
       case "Mi perfil":
         changeNavbarItem("Yo");
-        window.location.href="/profile";
+        window.location.href = "/profile";
         break;
       case "Mis proyectos":
         changeNavbarItem("Yo");
-        window.location.href="/my-projects";
+        window.location.href = "/my-projects";
         break;
       case "Soporte":
         changeNavbarItem("Yo");
-        window.location.href="/support";
+        window.location.href = "/support";
         break;
       case "ConCiencia":
-        changeNavbarItem("ConCiencia");
-        window.location.href="/aboutscience";
+        changeNavbarItem("Science");
+        window.location.href = "/aboutscience";
         break;
       case "Login":
         changeNavbarItem("Yo");
-        window.location.href="/login";
+        window.location.href = "/login";
         break;
       case "Register":
         changeNavbarItem("Yo");
-        window.location.href="/register";
+        window.location.href = "/register";
         break;
       default:
         break;

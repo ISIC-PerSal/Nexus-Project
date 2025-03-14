@@ -2,10 +2,9 @@ import Swal from "sweetalert2";
 
 
 const API_NEXUS_PROJECT = import.meta.env.VITE_API_NEXUS_PROJECT_DATABASE;
-const url = `${API_NEXUS_PROJECT}/files/imageUpload.php`;
+const url = `${API_NEXUS_PROJECT}/files/imageUpload.php`; 
 export const handleImageUpload = (e, setSelectedFile) => {
   const file = e.target.files[0];
-
 
   if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
     setSelectedFile(file);
@@ -15,7 +14,7 @@ export const handleImageUpload = (e, setSelectedFile) => {
       text: "Por favor, sube una imagen en formato JPG o PNG.",
       icon: "error",
     });
-    e.target.value = "";
+    e.target.value = ""; 
   }
 };
 
@@ -36,7 +35,7 @@ export const handleUpload = async (selectedFile, setImageURL) => {
 
 
   try {
-    console.log("Enviando imagen al servidor:", formData);
+    // console.log("Enviando imagen al servidor:", formData);
     const response = await fetch(url, {
       method: "POST",
       body: formData,
@@ -49,12 +48,11 @@ export const handleUpload = async (selectedFile, setImageURL) => {
 
 
     const data = await response.json();
-    console.log("Respuesta del servidor:", data);
-
+    //console.log("Respuesta del servidor:", data);
 
     if (data.url) {
       setImageURL(data.url);
-      return data.url;
+      return data.url; 
     } else {
       Swal.fire({
         title: "Error en la subida",

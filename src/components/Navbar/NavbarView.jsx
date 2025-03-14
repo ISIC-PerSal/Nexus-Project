@@ -21,7 +21,7 @@ function NavbarView({
       >
         <div className="container-fluid">
           <a
-            className="navbar-brand d-flex justify-content-center align-items-center text-white fw-bold fs-2"
+            className="navbar-brand d-flex justify-content-center align-items-center fw-bold fs-2"
             onClick={() => handleOption("Noticias")}
           >
             <img src={logo} alt="" style={{ width: "50px" }} />
@@ -111,12 +111,12 @@ function NavbarView({
                 <li className="nav-item">
                   <a
                     className="nav-link text-white fw-bold"
-                    onClick={() => handleOption("ConCiencia")}
+                    onClick={() => handleOption("Science")}
                   >
-                    {handleLanguage("conscience")}
+                    Con ConCiencia
                     <div
                       className={
-                        selectedOption == "ConCiencia" ? "color-block" : ""
+                        selectedOption == "Science" ? "color-block" : ""
                       }
                     ></div>
                   </a>
@@ -136,7 +136,7 @@ function NavbarView({
               {isLogin ? (
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle text-white fw-bold "
+                    className="nav-link dropdown-toggle fw-bold"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -160,7 +160,7 @@ function NavbarView({
                   <div
                     className={selectedOption == "Yo" ? "color-block" : ""}
                   ></div>{" "}
-                  <ul className="dropdown-menu dropdown-menu-end bg-gral">
+                  <ul className="dropdown-menu dropdown-menu-end">
                     <li>
                       <a
                         className="dropdown-item text-dark"
@@ -202,7 +202,7 @@ function NavbarView({
               ) : (
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle text-white fw-bold"
+                    className="nav-link dropdown-toggle fw-bold"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -212,10 +212,10 @@ function NavbarView({
                   <div
                     className={selectedOption == "Yo" ? "color-block" : ""}
                   ></div>{" "}
-                  <ul className="dropdown-menu dropdown-menu-end bg-gral">
+                  <ul className="dropdown-menu dropdown-menu-end ">
                     <li>
                       <a
-                        className="dropdown-item text-dark"
+                        className="dropdown-item "
                         type="button"
                         onClick={() => handleOption("Login")}
                       >
@@ -236,10 +236,7 @@ function NavbarView({
               )}
             </ul>
           </div>
-          <SelectLanguage
-            language={language}
-            setLanguage={setLanguage}
-          />
+          <SelectLanguage language={language} setLanguage={setLanguage} />
         </div>
       </nav>
     </>

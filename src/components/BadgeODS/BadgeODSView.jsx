@@ -14,7 +14,6 @@ function BadgeODSView({
 }) {
   const { language } = useNexusContext();
   const [odsArray, setOdsArray] = useState([]);
-
   useEffect(() => {
     const switchOdsArray = (language) => {
       switch (language) {
@@ -83,7 +82,13 @@ function BadgeODSView({
                 {item.ods}
               </span>
             )}
-            {showImage && <img src={odsArray[idOds].url} alt={item.ods} style={{ width: "100%" }}/>}
+            {showImage && (
+              <img
+                src={odsArray[idOds].url}
+                alt={item.ods}
+                style={{ width: "100%" }}
+              />
+            )}
           </>
         )}
       </div>

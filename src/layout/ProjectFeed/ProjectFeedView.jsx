@@ -2,6 +2,7 @@ import React from "react";
 import CardNews from "../../components/CardNews/CardNews";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import NoDataView from "../../components/NoData/NoDataView";
+import CardsNewsView from "../../components/CardsNews/CardsNewsView";
 
 function ProjectFeedView({ data = [], project }) {
   const background = project.background_image || "";
@@ -60,15 +61,7 @@ function ProjectFeedView({ data = [], project }) {
           </div>
         </div>
         <div className="mt-5">
-          {data.length > 0 ? (
-            <Masonry columnsCount={2} gutter="10px">
-              {data.map((item, index) => (
-                <CardNews item={item} key={index} />
-              ))}
-            </Masonry>
-          ) : (
-            <NoDataView />
-          )}
+          <CardsNewsView data={data} />
         </div>
       </main>
     </>

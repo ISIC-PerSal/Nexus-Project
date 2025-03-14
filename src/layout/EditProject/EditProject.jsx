@@ -77,7 +77,6 @@ function EditProject() {
     };
 
     getDataProject();
-    sessionStorage.setItem("state", dataEdit.state);
   }, [idProject, statusProject]);
 
   return (

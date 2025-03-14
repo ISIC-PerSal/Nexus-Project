@@ -77,7 +77,11 @@ function CardNewsView({ item, statusIcon, handleToFeedContent, title }) {
             <span className="ms-1">{time}</span>
           </div>
         </span>
-        {title == true ? <div className="fw-bold">{item.project_name}</div> : ""}
+        {title == true ? (
+          <div className="fw-bold">{item.project_name}</div>
+        ) : (
+          ""
+        )}
         <div
           className="card-text"
           style={{

@@ -126,7 +126,7 @@ function ProjectDetailsView({ data, id, formData, setFormData, imgCountry }) {
                   <div className="form-label me-2">ODS:</div>
 
                   <div className="d-flex justify-content-center">
-                    <div className="mb-2 d-flex flex-wrap justify-content-center">
+                    <div className="mb-2 d-flex flex-wrap justify-content-center w-100">
                       {formData.odsArray.map((item, index) => (
                         <BadgeODSView
                           key={index}

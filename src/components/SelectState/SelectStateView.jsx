@@ -2,7 +2,6 @@ import React from "react";
 import Select from "react-select";
 
 function SelectStateView({ label, estados, state, handleStateChange, index }) {
-
   return (
     <>
       <div className="mb-3">
